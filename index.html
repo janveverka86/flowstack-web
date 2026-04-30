@@ -1,6 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cs">
 <head>
+  <!-- Consent Mode v2 defaults — must be before GTM -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      analytics_storage: 'denied',
+      wait_for_update: 500
+    });
+  </script>
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -11,6 +23,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Flowstack — Data & Analytics Agency</title>
+  <meta name="description" content="Jan Veverka – marketingový stratég a datový inženýr. Pomáhám e-commerce značkám růst skrze data-driven strategii, měřicí infrastrukturu a automatizované pipeline." />
+  <link rel="canonical" href="https://flowstack.cz/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://flowstack.cz/" />
+  <meta property="og:title" content="Flowstack — Data & Analytics Agency" />
+  <meta property="og:description" content="Jan Veverka – marketingový stratég a datový inženýr. Pomáhám e-commerce značkám růst skrze data-driven strategii, měřicí infrastrukturu a automatizované pipeline." />
+  <meta property="og:image" content="https://flowstack.cz/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Flowstack — Data & Analytics Agency" />
+  <meta name="twitter:description" content="Jan Veverka – marketingový stratég a datový inženýr. Pomáhám e-commerce značkám růst skrze data-driven strategii, měřicí infrastrukturu a automatizované pipeline." />
+  <meta name="twitter:image" content="https://flowstack.cz/og-image.png" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230a0a0a'/><text x='6' y='24' font-family='serif' font-size='22' fill='%23c8f04a'>F</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     :root { --bg:#0a0a0a; --fg:#f0ede6; --accent:#c8f04a; --muted:#555; --border:#1e1e1e; }
@@ -32,7 +58,7 @@
     .lang-btn.active { color:var(--accent); border-color:var(--accent); }
 
     /* ── HERO — čistě typografický ── */
-    .hero { position:relative; z-index:1; padding:5rem 2rem 7rem; max-width:1100px; margin:0 auto; }
+    .hero { position:relative; z-index:1; padding:5rem 2rem 7rem; max-width:1100px; margin:0 auto; overflow:hidden; }
     .tag { display:inline-block; font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); border:1px solid var(--accent); padding:.3rem .8rem; margin-bottom:2.5rem; opacity:0; animation:fadeUp .6s .1s forwards; }
     h1 { font-family:'DM Serif Display',serif; font-size:clamp(3rem,8vw,7rem); line-height:1.0; letter-spacing:-.03em; margin-bottom:2rem; opacity:0; animation:fadeUp .7s .2s forwards; }
     h1 em { font-style:italic; color:var(--accent); }
@@ -84,11 +110,15 @@
 
     /* ── SERVICES ── */
     .services { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1px; background:var(--border); border:1px solid var(--border); }
-    .service { background:var(--bg); padding:2.5rem 2rem; transition:background .2s; }
+    .service { position:relative; background:var(--bg); padding:2.5rem 2rem; transition:background .2s; }
     .service:hover { background:#111; }
     .service-num { font-size:.65rem; color:var(--accent); letter-spacing:.15em; margin-bottom:1.2rem; }
     .service h3 { font-family:'DM Serif Display',serif; font-size:1.3rem; font-weight:400; margin-bottom:.8rem; letter-spacing:-.02em; }
     .service p { font-size:.78rem; line-height:1.7; color:#666; }
+    .service-icon { position:absolute; top:1.5rem; right:1.5rem; color:var(--accent); opacity:.12; transition:opacity .3s; pointer-events:none; }
+    .service:hover .service-icon { opacity:.45; }
+    .hero-visual { position:absolute; right:-1rem; bottom:4rem; width:400px; pointer-events:none; opacity:0; animation:fadeUp .9s .8s forwards; -webkit-mask-image:linear-gradient(to right, transparent 0%, black 62%); mask-image:linear-gradient(to right, transparent 0%, black 62%); }
+    @media(max-width:900px) { .hero-visual { display:none; } }
 
     /* ── APPROACH ── */
     .approach { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:start; }
@@ -120,6 +150,34 @@
     body.lang-cs span[data-lang="cs"] { display:inline; }
 
     @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal { opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    /* ── CTA SECTION ── */
+    .cta-section { position:relative; z-index:1; border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:7rem 2rem; text-align:center; }
+    .cta-section h2 { font-family:'DM Serif Display',serif; font-size:clamp(2rem,5vw,3.8rem); font-weight:400; letter-spacing:-.03em; line-height:1.1; margin-bottom:1.5rem; }
+    .cta-section h2 em { font-style:italic; color:var(--accent); }
+    .cta-section p { font-size:.85rem; color:#777; line-height:1.8; max-width:480px; margin:0 auto 3rem; }
+    .cta-btn { display:inline-block; background:var(--accent); color:#0a0a0a; font-family:'DM Mono',monospace; font-size:.75rem; font-weight:500; letter-spacing:.1em; text-transform:uppercase; text-decoration:none; padding:1rem 2.5rem; transition:opacity .2s; }
+    .cta-btn:hover { opacity:.8; }
+
+    /* ── COOKIE MODAL ── */
+    #cookie-overlay { position:fixed; inset:0; z-index:1000; background:rgba(0,0,0,.75); display:flex; align-items:center; justify-content:center; padding:1.5rem; backdrop-filter:blur(4px); }
+    #cookie-banner { background:#111; border:1px solid var(--border); padding:2.5rem; max-width:420px; width:100%; text-align:center; }
+    #cookie-banner svg { margin-bottom:1.5rem; overflow:visible; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+    .cursor-blink { animation:blink 1s step-end infinite; }
+    #cookie-banner h3 { font-family:'DM Serif Display',serif; font-size:1.4rem; font-weight:400; letter-spacing:-.02em; margin-bottom:.8rem; }
+    #cookie-banner p { font-size:.78rem; color:#888; line-height:1.75; margin-bottom:2rem; }
+    #cookie-banner p em { color:var(--accent); font-style:normal; }
+    .cookie-btns { display:flex; flex-direction:column; gap:.5rem; }
+    .cookie-btns-row { display:flex; gap:.5rem; }
+    .cookie-btn { font-family:'DM Mono',monospace; font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; cursor:pointer; padding:.6rem 1.4rem; border:1px solid var(--border); background:none; color:var(--muted); transition:color .2s,border-color .2s,background .2s; flex:1; }
+    .cookie-btn.accept-all { background:var(--accent); color:#0a0a0a; border-color:var(--accent); }
+    .cookie-btn:hover { border-color:var(--accent); color:var(--accent); }
+    .cookie-btn.accept-all:hover { opacity:.85; color:#0a0a0a; }
   </style>
 </head>
 <body class="lang-cs">
@@ -127,6 +185,44 @@
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PQGBDW9Q"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
+
+<div id="cookie-overlay" style="display:none">
+  <div id="cookie-banner">
+    <!-- terminal / SQL window -->
+    <svg width="280" height="108" viewBox="0 0 280 108" xmlns="http://www.w3.org/2000/svg">
+      <rect width="280" height="108" rx="6" fill="#0d0d0d" stroke="#222" stroke-width="1"/>
+      <rect width="280" height="26" rx="6" fill="#181818"/>
+      <rect y="20" width="280" height="6" fill="#181818"/>
+      <circle cx="20" cy="13" r="5" fill="#2a2a2a"/>
+      <circle cx="38" cy="13" r="5" fill="#2a2a2a"/>
+      <circle cx="56" cy="13" r="5" fill="#2a2a2a"/>
+      <text x="18" y="50" font-family="'Courier New',Courier,monospace" font-size="12.5" fill="#c8f04a">SELECT * FROM you</text>
+      <text x="18" y="70" font-family="'Courier New',Courier,monospace" font-size="12.5" fill="#888">WHERE consent = <tspan fill="#c8f04a">true</tspan></text>
+      <text x="18" y="90" font-family="'Courier New',Courier,monospace" font-size="12.5" fill="#555">LIMIT 1;<tspan class="cursor-blink" fill="#c8f04a"> ▌</tspan></text>
+    </svg>
+    <h3>
+      <span data-lang="cs">Pracuji s daty. Transparentně.</span>
+      <span data-lang="en">I work with data. Transparently.</span>
+    </h3>
+    <p>
+      <span data-lang="cs">Každý den stavím analytické pipeline pro e-commerce značky. Přesně vím, co tyto cookies sbírají — žádné skryté řádky, žádný bullshit. Výsledky vrátím v grafech.</span>
+      <span data-lang="en">Every day I build analytics pipelines for e-commerce brands. I know exactly what these cookies collect — no hidden rows, no BS. I'll return the results as charts.</span>
+    </p>
+    <div class="cookie-btns">
+      <button class="cookie-btn accept-all" onclick="cookieAcceptAll()">
+        <span data-lang="cs">Přijmout vše</span><span data-lang="en">Accept all</span>
+      </button>
+      <div class="cookie-btns-row">
+        <button class="cookie-btn" onclick="cookieAcceptAnalytics()">
+          <span data-lang="cs">Jen analytika</span><span data-lang="en">Analytics only</span>
+        </button>
+        <button class="cookie-btn" onclick="cookieDecline()">
+          <span data-lang="cs">Odmítnout</span><span data-lang="en">Decline</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 
   <nav>
     <div class="logo">Flow<span>stack</span></div>
@@ -158,23 +254,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span data-lang="en">Get in touch</span>
       <span data-lang="cs">Napište mi</span>
     </a>
+    <div class="hero-visual">
+      <svg viewBox="0 0 400 270" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- horizontal grid lines -->
+        <line x1="0" y1="60"  x2="400" y2="60"  stroke="#1a1a1a" stroke-width="1"/>
+        <line x1="0" y1="120" x2="400" y2="120" stroke="#1a1a1a" stroke-width="1"/>
+        <line x1="0" y1="180" x2="400" y2="180" stroke="#1a1a1a" stroke-width="1"/>
+        <line x1="0" y1="240" x2="400" y2="240" stroke="#1a1a1a" stroke-width="1"/>
+        <!-- slow / flat line -->
+        <path d="M 10,248 C 130,236 270,212 395,192" stroke="#1e1e1e" stroke-width="1.5"/>
+        <!-- medium growth line -->
+        <path d="M 10,244 L 60,232 L 120,216 L 180,194 L 240,166 L 300,134 L 360,104 L 395,88" stroke="#2d2d2d" stroke-width="1.5"/>
+        <!-- main accent line — strong upward trend -->
+        <path d="M 10,240 C 95,204 210,122 395,48" stroke="#c8f04a" stroke-width="2"/>
+        <!-- data points -->
+        <circle cx="10"  cy="240" r="3.5" stroke="#c8f04a" stroke-width="1.5" fill="#0a0a0a"/>
+        <circle cx="110" cy="188" r="3"   stroke="#c8f04a" stroke-width="1.5" fill="#0a0a0a"/>
+        <circle cx="215" cy="118" r="3"   stroke="#c8f04a" stroke-width="1.5" fill="#0a0a0a"/>
+        <circle cx="320" cy="68"  r="3"   stroke="#c8f04a" stroke-width="1.5" fill="#0a0a0a"/>
+        <circle cx="395" cy="48"  r="5"   fill="#c8f04a"/>
+      </svg>
+    </div>
   </div>
 
   <!-- SERVICES -->
-  <div class="section">
+  <div class="section reveal">
     <div class="section-label"><span data-lang="en">Services</span><span data-lang="cs">Služby</span></div>
     <div class="services">
-      <div class="service"><div class="service-num">01</div><h3 data-lang="en">Marketing Strategy & Business Insights</h3><h3 data-lang="cs">Marketingová strategie & business insights</h3><p data-lang="en">Analytical frameworks supporting decisions around performance, profitability, and growth. KPIs: ROAS, PNO, LTV, CAC, margins, YoY.</p><p data-lang="cs">Analytické rámce pro rozhodnutí kolem výkonu, ziskovosti a růstu. KPI: ROAS, PNO, LTV, CAC, marže, YoY.</p></div>
-      <div class="service"><div class="service-num">02</div><h3 data-lang="en">Data Engineering & Automation</h3><h3 data-lang="cs">Data engineering & automatizace</h3><p data-lang="en">Custom Python connectors for automated data collection from ad platforms, CRMs, and e-commerce systems into BigQuery.</p><p data-lang="cs">Vlastní Python konektory pro automatický sběr dat z reklamních platforem, CRM a e-commerce systémů do BigQuery.</p></div>
-      <div class="service"><div class="service-num">03</div><h3 data-lang="en">BigQuery & Dataform (ELT)</h3><h3 data-lang="cs">BigQuery & Dataform (ELT)</h3><p data-lang="en">Analytical data models in BigQuery using Dataform for reporting, forecasting, and strategic decision-making.</p><p data-lang="cs">Analytické datové modely v BigQuery pomocí Dataform pro reporting, forecasting a strategická rozhodnutí.</p></div>
-      <div class="service"><div class="service-num">04</div><h3 data-lang="en">BI & Visualization</h3><h3 data-lang="cs">BI & vizualizace</h3><p data-lang="en">Clear dashboards in Google Google Data Studio and Power BI for marketers, management, and founders.</p><p data-lang="cs">Přehledné dashboardy v Google Google Data Studio a Power BI pro marketéry, management i majitele.</p></div>
-      <div class="service"><div class="service-num">05</div><h3 data-lang="en">Tracking Infrastructure</h3><h3 data-lang="cs">Tracking infrastruktura</h3><p data-lang="en">Server-side GTM, GA4, and first-party data pipelines. Accurate measurement despite privacy restrictions.</p><p data-lang="cs">Server-side GTM, GA4 a first-party data pipeline. Přesné měření navzdory omezením soukromí.</p></div>
-      <div class="service"><div class="service-num">06</div><h3 data-lang="en">SQL Data Integration</h3><h3 data-lang="cs">SQL datová integrace</h3><p data-lang="en">Integrating cost, performance, revenue, and customer data into unified datasets reflecting real business logic.</p><p data-lang="cs">Integrace nákladů, výkonu, tržeb a zákaznických dat do jednotných datasetů reflektujících reálnou business logiku.</p></div>
+      <div class="service"><div class="service-num">01</div><h3 data-lang="en">Marketing Strategy & Business Insights</h3><h3 data-lang="cs">Marketingová strategie & business insights</h3><p data-lang="en">Analytical frameworks supporting decisions around performance, profitability, and growth. KPIs: ROAS, PNO, LTV, CAC, margins, YoY.</p><p data-lang="cs">Analytické rámce pro rozhodnutí kolem výkonu, ziskovosti a růstu. KPI: ROAS, PNO, LTV, CAC, marže, YoY.</p><svg class="service-icon" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><polyline points="3,23 9,15 16,18 24,7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="18,7 24,7 24,13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div class="service"><div class="service-num">02</div><h3 data-lang="en">Data Engineering & Automation</h3><h3 data-lang="cs">Data engineering & automatizace</h3><p data-lang="en">Custom Python connectors for automated data collection from ad platforms, CRMs, and e-commerce systems into BigQuery.</p><p data-lang="cs">Vlastní Python konektory pro automatický sběr dat z reklamních platforem, CRM a e-commerce systémů do BigQuery.</p><svg class="service-icon" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="10" width="7" height="8" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="11" y="10" width="7" height="8" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="21" y="10" width="7" height="8" rx="1" stroke="currentColor" stroke-width="1.5"/><line x1="8" y1="14" x2="11" y2="14" stroke="currentColor" stroke-width="1.5"/><line x1="18" y1="14" x2="21" y2="14" stroke="currentColor" stroke-width="1.5"/></svg></div>
+      <div class="service"><div class="service-num">03</div><h3 data-lang="en">BigQuery & Dataform (ELT)</h3><h3 data-lang="cs">BigQuery & Dataform (ELT)</h3><p data-lang="en">Analytical data models in BigQuery using Dataform for reporting, forecasting, and strategic decision-making.</p><p data-lang="cs">Analytické datové modely v BigQuery pomocí Dataform pro reporting, forecasting a strategická rozhodnutí.</p><svg class="service-icon" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><ellipse cx="14" cy="8" rx="10" ry="3.5" stroke="currentColor" stroke-width="1.5"/><line x1="4" y1="8" x2="4" y2="20" stroke="currentColor" stroke-width="1.5"/><line x1="24" y1="8" x2="24" y2="20" stroke="currentColor" stroke-width="1.5"/><ellipse cx="14" cy="14" rx="10" ry="3.5" stroke="currentColor" stroke-width=".75" opacity=".5"/><ellipse cx="14" cy="20" rx="10" ry="3.5" stroke="currentColor" stroke-width="1.5"/></svg></div>
+      <div class="service"><div class="service-num">04</div><h3 data-lang="en">BI & Visualization</h3><h3 data-lang="cs">BI & vizualizace</h3><p data-lang="en">Clear dashboards in Google Google Data Studio and Power BI for marketers, management, and founders.</p><p data-lang="cs">Přehledné dashboardy v Google Google Data Studio a Power BI pro marketéry, management i majitele.</p><svg class="service-icon" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="17" width="5" height="8" stroke="currentColor" stroke-width="1.5"/><rect x="12" y="11" width="5" height="14" stroke="currentColor" stroke-width="1.5"/><rect x="21" y="7" width="5" height="18" stroke="currentColor" stroke-width="1.5"/><line x1="2" y1="25" x2="27" y2="25" stroke="currentColor" stroke-width="1"/></svg></div>
+      <div class="service"><div class="service-num">05</div><h3 data-lang="en">Tracking Infrastructure</h3><h3 data-lang="cs">Tracking infrastruktura</h3><p data-lang="en">Server-side GTM, GA4, and first-party data pipelines. Accurate measurement despite privacy restrictions.</p><p data-lang="cs">Server-side GTM, GA4 a first-party data pipeline. Přesné měření navzdory omezením soukromí.</p><svg class="service-icon" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="19" r="2.5" fill="currentColor"/><path d="M 9,15 Q 14,9 19,15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M 5,11 Q 14,3 23,11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity=".65"/><path d="M 1,7 Q 14,-3 27,7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity=".3"/></svg></div>
+      <div class="service"><div class="service-num">06</div><h3 data-lang="en">SQL Data Integration</h3><h3 data-lang="cs">SQL datová integrace</h3><p data-lang="en">Integrating cost, performance, revenue, and customer data into unified datasets reflecting real business logic.</p><p data-lang="cs">Integrace nákladů, výkonu, tržeb a zákaznických dat do jednotných datasetů reflektujících reálnou business logiku.</p><svg class="service-icon" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="13" r="7" stroke="currentColor" stroke-width="1.5"/><circle cx="18" cy="13" r="7" stroke="currentColor" stroke-width="1.5"/></svg></div>
     </div>
   </div>
 
   <!-- APPROACH -->
-  <div class="section">
+  <div class="section reveal">
     <div class="section-label"><span data-lang="en">Approach</span><span data-lang="cs">Přístup</span></div>
     <div class="approach">
       <div class="approach-text">
@@ -198,7 +315,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <!-- TECH STACK -->
-  <div class="section">
+  <div class="section reveal">
     <div class="section-label">Tech stack</div>
     <div class="accent-line"></div>
     <div class="stack-list">
@@ -207,7 +324,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <!-- ABOUT -->
-  <div class="section">
+  <div class="section reveal">
     <div class="section-label"><span data-lang="en">About</span><span data-lang="cs">O mně</span></div>
     <div class="about">
       <div class="about-photo">
@@ -222,6 +339,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 
+  <!-- CTA -->
+  <div class="cta-section reveal">
+    <h2>
+      <span data-lang="cs">Pojďme se pobavit<br>o vašich <em>datech.</em></span>
+      <span data-lang="en">Let's talk about<br>your <em>data.</em></span>
+    </h2>
+    <p>
+      <span data-lang="cs">Ať už potřebujete zprovoznit měření, postavit pipeline nebo pochopit čísla — napište mi.</span>
+      <span data-lang="en">Whether you need measurement set up, a pipeline built, or your numbers to finally make sense — get in touch.</span>
+    </p>
+    <a href="mailto:jan.veverka@flowstack.cz" class="cta-btn">
+      <span data-lang="cs">Napsat</span>
+      <span data-lang="en">Get in touch</span>
+    </a>
+  </div>
+
   <footer>
     <p>© 2025 Flowstack · Jan Veverka · Czech Republic</p>
     <div class="nav-links">
@@ -231,13 +364,66 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </footer>
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Jan Veverka",
+    "url": "https://flowstack.cz",
+    "jobTitle": "Marketing Strategist & Data Engineer",
+    "worksFor": { "@type": "Organization", "name": "Flowstack" },
+    "address": { "@type": "PostalAddress", "addressLocality": "Zlín", "addressCountry": "CZ" },
+    "email": "mailto:jan.veverka@flowstack.cz",
+    "telephone": "+420602603423",
+    "sameAs": ["https://www.linkedin.com/in/jan-veverka-39b24938"]
+  }
+  </script>
   <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
     function setLang(lang) {
+      document.documentElement.lang = lang === 'cs' ? 'cs' : 'en';
       document.body.className = 'lang-' + lang;
       document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.classList.toggle('active', btn.textContent.toLowerCase() === lang || (lang === 'cs' && btn.textContent === 'CZ'));
       });
     }
+
+    function hideBanner() {
+      document.getElementById('cookie-overlay').style.display = 'none';
+    }
+
+    function cookieAcceptAll() {
+      localStorage.setItem('cookie_consent', 'all');
+      gtag('consent', 'update', { ad_storage:'granted', ad_user_data:'granted', ad_personalization:'granted', analytics_storage:'granted' });
+      hideBanner();
+    }
+
+    function cookieAcceptAnalytics() {
+      localStorage.setItem('cookie_consent', 'analytics');
+      gtag('consent', 'update', { ad_storage:'denied', ad_user_data:'denied', ad_personalization:'denied', analytics_storage:'granted' });
+      hideBanner();
+    }
+
+    function cookieDecline() {
+      localStorage.setItem('cookie_consent', 'declined');
+      hideBanner();
+    }
+
+    (function() {
+      var c = localStorage.getItem('cookie_consent');
+      if (!c) {
+        document.getElementById('cookie-overlay').style.display = 'flex';
+      } else if (c === 'all') {
+        gtag('consent', 'update', { ad_storage:'granted', ad_user_data:'granted', ad_personalization:'granted', analytics_storage:'granted' });
+      } else if (c === 'analytics') {
+        gtag('consent', 'update', { ad_storage:'denied', ad_user_data:'denied', ad_personalization:'denied', analytics_storage:'granted' });
+      }
+    })();
   </script>
 </body>
 </html>
