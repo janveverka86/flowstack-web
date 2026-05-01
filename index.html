@@ -62,6 +62,7 @@
     @media(max-width:600px) {
       nav { padding:1rem 1.2rem; }
       .logo { font-size:1.1rem; }
+      .logo-sub { display:none; }
       .nav-links { gap:1rem; }
       nav a[href^="mailto"] { display:none; }
     }
@@ -129,6 +130,7 @@
 
     /* ── CLIENTS ── */
     .logos-strip { display:flex; align-items:center; justify-content:space-between; gap:2rem; flex-wrap:wrap; }
+    @media(max-width:640px) { .logos-strip { justify-content:center; gap:1.5rem; } }
     .client-logo { height:34px; max-width:160px; object-fit:contain; filter:brightness(0) invert(1) opacity(.4); transition:filter .3s; }
     .client-logo:hover { filter:brightness(0) invert(1) opacity(.85); }
     .client-logo-opaque { filter:invert(1) grayscale(1) opacity(.5); }
@@ -144,7 +146,12 @@
     .mockup-card:nth-child(3) { z-index:1; }
     .mockup-card svg { display:block; width:100%; height:auto; }
     .mockups-fade { display:none; }
-    @media(max-width:860px) { .mockup-card { width:72vw; margin-right:-80px; transform:perspective(700px) rotateY(-18deg); } }
+    @media(max-width:860px) { .mockup-card { width:72vw; margin-right:-60px; transform:perspective(700px) rotateY(-18deg); } }
+    @media(max-width:600px) {
+      .mockups-track { flex-direction:column; gap:1rem; overflow:visible; padding:1rem 0 1.5rem; }
+      .mockup-card { width:100%; margin-right:0; transform:none; box-shadow:0 4px 24px rgba(0,0,0,.6); }
+      .mockups-section { overflow:visible; }
+    }
 
     /* ── SECTION TINTING ── */
     .tinted::before { content:''; display:none; }
@@ -177,6 +184,7 @@
     .accent-line { width:48px; height:2px; background:var(--accent); margin-bottom:2rem; }
 
     footer { position:relative; z-index:1; border-top:1px solid var(--border); padding:2rem; max-width:1100px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+    @media(max-width:600px) { footer { flex-direction:column; align-items:flex-start; gap:.6rem; } footer .nav-links { flex-wrap:wrap; gap:.8rem; } }
     footer p { font-size:.7rem; color:var(--muted); letter-spacing:.08em; }
     footer a { color:var(--muted); text-decoration:none; font-size:.7rem; letter-spacing:.08em; transition:color .2s; }
     footer a:hover { color:var(--accent); }
