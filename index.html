@@ -205,6 +205,17 @@
     .reveal { opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease; }
     .reveal.visible { opacity:1; transform:translateY(0); }
 
+    /* ── BLOG PREVIEW ── */
+    .blog-preview { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border); margin-top:2rem; }
+    .bp-card { background:var(--bg); padding:2rem 1.8rem; text-decoration:none; display:block; transition:background .2s; }
+    .bp-card:hover { background:#111; }
+    .bp-tag { font-size:.62rem; letter-spacing:.18em; text-transform:uppercase; color:var(--accent); margin-bottom:.7rem; }
+    .bp-title { font-family:'DM Serif Display',serif; font-size:1.1rem; font-weight:400; letter-spacing:-.02em; line-height:1.25; color:var(--fg); margin-bottom:.7rem; }
+    .bp-excerpt { font-size:.76rem; color:#777; line-height:1.7; }
+    .bp-meta { font-size:.62rem; color:var(--muted); letter-spacing:.08em; margin-top:1rem; padding-top:.9rem; border-top:1px solid var(--border); }
+    .blog-preview-footer { display:flex; justify-content:flex-end; margin-top:1.5rem; }
+    @media(max-width:768px) { .blog-preview { grid-template-columns:1fr; } }
+
     /* ── CTA SECTION ── */
     .cta-section { position:relative; z-index:1; border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:5rem 2rem; text-align:center; }
     .cta-section h2 { font-family:'DM Serif Display',serif; font-size:clamp(2rem,5vw,3.8rem); font-weight:400; letter-spacing:-.03em; line-height:1.1; margin-bottom:1.5rem; }
@@ -689,6 +700,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <div class="stack-list" style="margin-top:2.5rem;">
       <div class="stack-item">Python</div><div class="stack-item">JavaScript</div><div class="stack-item">Google BigQuery</div><div class="stack-item">Google Firestore</div><div class="stack-item">Dataform</div><div class="stack-item">SQL</div><div class="stack-item">Google Data Studio</div><div class="stack-item">GA4</div><div class="stack-item">Google Ads</div><div class="stack-item">GTM / sGTM</div><div class="stack-item">Google Cloud Platform</div><div class="stack-item">Cloud Run</div>
+    </div>
+  </div>
+
+  <!-- BLOG PREVIEW -->
+  <div class="section reveal">
+    <div class="section-label"><span data-lang="cs">Blog</span><span data-lang="en">Blog</span></div>
+    <div class="blog-preview">
+      <a href="/blog/bigquery-ai-agenti.html" class="bp-card">
+        <div class="bp-tag">AI & Data Engineering</div>
+        <div class="bp-title">BigQuery jako datový základ pro AI agenty</div>
+        <div class="bp-excerpt">AI agenti potřebují čistá, strukturovaná data. Proč je BigQuery ideální základ a jaké use cases dávají e-shopům největší smysl.</div>
+        <div class="bp-meta">Květen 2026 &nbsp;·&nbsp; 7 min</div>
+      </a>
+      <a href="/blog/sgtm-pro-eshop.html" class="bp-card">
+        <div class="bp-tag">Měření dat</div>
+        <div class="bp-title">Server-side GTM pro e-shop: jak přestat ztrácet konverzní data</div>
+        <div class="bp-excerpt">E-shopy přichází o 20–40 % konverzních dat kvůli blokátorům reklam a omezením cookies. sGTM to řeší přesunem měření na váš server.</div>
+        <div class="bp-meta">Duben 2026 &nbsp;·&nbsp; 6 min</div>
+      </a>
+      <a href="/blog/1st-party-data-ecommerce.html" class="bp-card">
+        <div class="bp-tag">Měření dat</div>
+        <div class="bp-title">1st party data pro e-commerce: jak měřit v době, kdy cookies mizí</div>
+        <div class="bp-excerpt">Safari ITP, iOS 14, Chrome bez third-party cookies — bez správné strategie nevidíte 30–40 % uživatelů. Jak to napravit.</div>
+        <div class="bp-meta">Březen 2026 &nbsp;·&nbsp; 6 min</div>
+      </a>
+    </div>
+    <div class="blog-preview-footer">
+      <a href="/blog/" class="cta-btn" style="font-size:.68rem; padding:.75rem 1.8rem;">
+        <span data-lang="cs">Všechny články</span><span data-lang="en">All articles</span>
+      </a>
     </div>
   </div>
 
