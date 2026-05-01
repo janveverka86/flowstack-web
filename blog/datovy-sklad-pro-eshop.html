@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Datový sklad pro e-shop: jeden zdroj pravdy místo 8 Excelů | Flowstack Blog</title>
+  <meta name="description" content="Jak datový sklad řeší chaos s daty v e-commerce. BigQuery, ETL, dbt — bez IT žargonu, s konkrétními příklady a cenami." />
+  <link rel="canonical" href="https://flowstack.cz/blog/datovy-sklad-pro-eshop.html" />
+  <meta property="og:title" content="Datový sklad pro e-shop: jeden zdroj pravdy místo 8 Excelů | Flowstack Blog" />
+  <meta property="og:description" content="Jak datový sklad řeší chaos s daty v e-commerce. BigQuery, ETL, dbt — bez IT žargonu, s konkrétními příklady a cenami." />
+  <meta property="og:url" content="https://flowstack.cz/blog/datovy-sklad-pro-eshop.html" />
+  <meta property="og:type" content="article" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230a0a0a'/><text x='6' y='24' font-family='serif' font-size='22' fill='%23c8f04a'>F</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="blog.css" />
+</head>
+<body>
+  <div class="nav-wrap">
+    <nav>
+      <a href="/" class="logo">Flow<span>stack</span></a>
+      <div class="nav-links">
+        <a href="/blog/">Blog</a>
+        <a href="/" class="hide-mobile">Zpět na web</a>
+        <a href="mailto:jan.veverka@flowstack.cz">Email</a>
+      </div>
+    </nav>
+  </div>
+  <div class="nav-spacer"></div>
+
+  <article class="article-wrap">
+    <span class="article-tag">Data Engineering</span>
+    <h1 class="article-title">Datový sklad pro e-shop: jeden zdroj pravdy místo 8 Excelů</h1>
+    <div class="article-meta">Jan Veverka &nbsp;·&nbsp; Květen 2025 &nbsp;·&nbsp; 6 min čtení</div>
+
+    <div class="article-body">
+
+      <p>Typický středně velký e-shop má data rozházená v osmi různých systémech. GA4 měří návštěvnost, Shoptet nebo Shopify eviduje objednávky, Google Ads a Sklik hlásí výdaje na reklamu, Meta Ads má vlastní přehled konverzí, Heuréka sbírá recenze a data o produktech, CRM sleduje historii zákazníků a skladový systém zná stav zásob. Každý systém funguje dobře sám o sobě. Ale nikde neexistuje jedno místo, kde byste viděli celkový obraz.</p>
+
+      <p>Výsledek? Marketingový ředitel sleduje čísla v Google Ads, obchodní ředitel kouká do Shoptetu a majitel firmy dostane každé pondělí ručně sestavený Excel, který v okamžiku odeslání už zastarává. Datová analytika pro e-shop za těchto podmínek není analytika — je to boj s chaosem.</p>
+
+      <h2>Co je datový sklad a proč ho potřebujete</h2>
+
+      <p>Datový sklad je centrální databáze, kam natáhnete data ze všech zdrojů, transformujete je do konzistentního formátu a vytvoříte z nich jeden zdroj pravdy. Není to aplikace, kterou si stáhnete a hned používáte. Je to architektura — způsob, jak data v organizaci uchopit.</p>
+
+      <p>Pro e-commerce v roce 2025 to v praxi znamená tyto vrstvy:</p>
+
+      <ol>
+        <li><strong>Datové zdroje</strong> — GA4, Shoptet, Google Ads, Meta Ads, Heuréka, CRM, sklad</li>
+        <li><strong>ETL konektory</strong> — nástroje jako Airbyte, Stitch nebo Fivetran, které data pravidelně stahují a nahrávají do databáze</li>
+        <li><strong>BigQuery</strong> — cloudová databáze od Googlu, kde jsou data uložena v raw podobě</li>
+        <li><strong>Transformační vrstva (dbt nebo Dataform)</strong> — zde se data čistí, propojují a modelují do tabulek, které dávají smysl pro byznys</li>
+        <li><strong>BI nástroj</strong> — Looker Studio, Metabase nebo Power BI, kde výsledky vidí celý tým</li>
+      </ol>
+
+      <h2>Čtyři konkrétní problémy, které datový sklad řeší</h2>
+
+      <h3>1. Každý vidí jiné číslo</h3>
+
+      <p>GA4 hlásí 1 000 objednávek za minulý měsíc. Shoptet eviduje 950. Meta Ads tvrdí, že přispěla ke 1 200 konverzím. Kdo má pravdu? Ve skutečnosti každý z nich — jen každý počítá jinak. GA4 měří sessions, Shoptet eviduje dokončené objednávky po odečtení storen, Meta Ads počítá view-through i click-through konverze z reklamního okna 28 dnů zpět.</p>
+
+      <p>Datový sklad tento zmatek odstraní. Definujete jednou a pro všechny, co je <em>objednávka</em>, co je <em>konverze</em> a jak se počítá <em>výkon kampaně</em>. Tato definice žije v transformační vrstvě a platí pro celou firmu.</p>
+
+      <h3>2. Ruční stahování reportů každý týden</h3>
+
+      <p>Analytik nebo marketér každé pondělí ráno stáhne export z GA4, export z Google Ads, export ze Shoptetu, zkopíruje data do sdíleného Excelu, ručně sladí sloupce a po hodině práce pošle report, který je okamžitě zastaralý. Tento proces je drahý, chybový a demotivující.</p>
+
+      <p>S datovým skladem ETL konektory stahují data automaticky — typicky každou hodinu nebo každý den. Report v Looker Studiu se aktualizuje sám. Pondělní ráno se věnuje analýze, ne kopírování buněk.</p>
+
+      <h3>3. Nemožnost propojit zákaznická data</h3>
+
+      <p>Kdo z vašich zákazníků nakoupil více než třikrát? Jaká je průměrná životní hodnota zákazníka (LTV) podle akviziční kampaně? Kteří zákazníci z loňského vánočního výprodeje se vrátili? Bez datového skladu na tyto otázky neodpovíte — data zákazníků jsou v CRM, data objednávek v Shoptetu a akvizice v Google Ads. Tři ostrovy bez mostu.</p>
+
+      <div class="highlight-box">
+        <p><strong>Příklad z praxe:</strong> E-shop s oblečením zjistil po propojení dat, že zákazníci akvizovaní přes Meta Ads mají průměrnou LTV 1 800 Kč za 12 měsíců, zatímco zákazníci z Google Shopping dosahují 2 400 Kč. Přitom CPA z Meta vypadala lépe. Bez datového skladu by toto zjištění nebylo možné.</p>
+      </div>
+
+      <h3>4. Zpoždění rozhodování</h3>
+
+      <p>Pokud máte data až druhý den ráno po ručním stažení, nemůžete reagovat na výpadek kampaně nebo náhlý nárůst košíkových opuštění v reálném čase. Datový sklad s automatickým ETL dodává data s minimálním zpožděním — rozhodnutí pak děláte na základě aktuálních čísel, ne včerejšího pocitu.</p>
+
+      <h2>Kdy datový sklad skutečně potřebujete</h2>
+
+      <ul>
+        <li>Máte tři a více datových zdrojů, které chcete propojovat</li>
+        <li>Roční tržby přesahují 10 milionů Kč a data jsou klíčovým vstupem pro rozhodování</li>
+        <li>Pravidelně ztrácíte čas ručním sestavováním reportů</li>
+        <li>Chcete analyzovat chování zákazníků napříč kanály nebo měřit LTV</li>
+      </ul>
+
+      <h2>Jak dlouho trvá implementace a co stojí</h2>
+
+      <p>Základní datový sklad pro e-shop — propojení čtyř až šesti zdrojů, transformace do reportovacích tabulek a dashboard v Looker Studiu — trvá typicky čtyři až osm týdnů. Provozní náklady na BigQuery pro středně velký e-shop se pohybují v řádu stovek korun měsíčně.</p>
+
+      <pre><code>-- Příklad: propojení objednávek se zákaznickými segmenty v BigQuery
+SELECT
+  o.order_id,
+  o.customer_email,
+  o.revenue,
+  c.acquisition_channel,
+  c.first_order_date,
+  DATE_DIFF(o.order_date, c.first_order_date, DAY) AS days_since_first_order
+FROM orders o
+LEFT JOIN customers c
+  ON o.customer_email = c.email
+WHERE o.status = 'completed'
+  AND o.order_date >= DATE_SUB(CURRENT_DATE(), INTERVAL 90 DAY)</code></pre>
+
+      <p>Tento dotaz v Excelu bez datového skladu napsat nelze. V BigQuery běží za sekundy.</p>
+
+      <h2>Datový sklad není IT projekt</h2>
+
+      <p>Nejčastější omyl: "To je pro nás moc technické, to je věc pro IT." Datový sklad je business nástroj. Stejně jako CRM nebo účetní software. Ano, implementace vyžaduje technické znalosti — ale výstupem je dashboard, kde marketér vidí ROAS podle kanálu, obchodní ředitel sleduje LTV a majitel firmy má přehled o celkovém výkonu bez jediného ručního exportu.</p>
+
+      <p>Investice do datové analytiky pro e-shop se vrátí v okamžiku, kdy přestanete plýtvat reklamními výdaji na segmenty zákazníků, které nepřinášejí hodnotu — a začnete škálovat to, co funguje.</p>
+
+    </div>
+
+    <div class="article-cta">
+      <h3>Řešíte podobný problém?</h3>
+      <p>Pokud máte data v pěti různých systémech a chybí vám jeden ucelený pohled, rád se s vámi pobavím o tom, jak by datový sklad mohl vypadat pro váš konkrétní e-shop. Bez závazků — jen konkrétní rozhovor o vašich datech.</p>
+      <a href="mailto:jan.veverka@flowstack.cz" class="cta-btn">Napište mi</a>
+    </div>
+  </article>
+
+  <footer>
+    <p>© 2025 Flowstack · Jan Veverka</p>
+    <div style="display:flex;gap:1.5rem;">
+      <a href="/">flowstack.cz</a>
+      <a href="/blog/">Blog</a>
+      <a href="mailto:jan.veverka@flowstack.cz">jan.veverka@flowstack.cz</a>
+    </div>
+  </footer>
+</body>
+</html>

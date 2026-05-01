@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>1st party data pro e-commerce: jak měřit bez third-party cookies | Flowstack Blog</title>
+  <meta name="description" content="Third-party cookies mizí. Jak sbírat first party data v e-shopu, zachovat tracking a neztrácet konverze. Konkrétní kroky pro rok 2025." />
+  <link rel="canonical" href="https://flowstack.cz/blog/1st-party-data-ecommerce.html" />
+  <meta property="og:title" content="1st party data pro e-commerce: jak měřit bez third-party cookies | Flowstack Blog" />
+  <meta property="og:description" content="Third-party cookies mizí. Jak sbírat first party data v e-shopu, zachovat tracking a neztrácet konverze. Konkrétní kroky pro rok 2025." />
+  <meta property="og:url" content="https://flowstack.cz/blog/1st-party-data-ecommerce.html" />
+  <meta property="og:type" content="article" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230a0a0a'/><text x='6' y='24' font-family='serif' font-size='22' fill='%23c8f04a'>F</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="blog.css" />
+</head>
+<body>
+  <div class="nav-wrap">
+    <nav>
+      <a href="/" class="logo">Flow<span>stack</span></a>
+      <div class="nav-links">
+        <a href="/blog/">Blog</a>
+        <a href="/" class="hide-mobile">Zpět na web</a>
+        <a href="mailto:jan.veverka@flowstack.cz">Email</a>
+      </div>
+    </nav>
+  </div>
+  <div class="nav-spacer"></div>
+
+  <article class="article-wrap">
+    <span class="article-tag">Měření dat</span>
+    <h1 class="article-title">1st party data pro e-commerce: jak měřit v době, kdy cookies mizí</h1>
+    <div class="article-meta">Jan Veverka &nbsp;·&nbsp; Květen 2025 &nbsp;·&nbsp; 6 min čtení</div>
+
+    <div class="article-body">
+
+      <p>Svět online měření se za posledních pět let radikálně změnil. Safari přišlo s Intelligent Tracking Prevention (ITP) už v roce 2017 a zkrátilo platnost third-party cookies na 7 dní. Apple v roce 2020 s iOS 14 omezil sdílení dat z aplikací a zasadil ránu Meta Ads trackingu. A Google — po letech odkládání — postupuje s omezováním third-party cookies v Chrome i v roce 2025.</p>
+
+      <p>Výsledek je prostý: bez správně nastaveného first party data přístupu dnes typický e-shop nevidí 30 až 40 procent svých uživatelů. Reklamní platformy optimalizují s neúplnými daty. Re-targeting oslovuje menší publikum. A atribuce kampaní je čím dál méně spolehlivá.</p>
+
+      <h2>Co jsou 1st party data a proč jsou jiná</h2>
+
+      <p>First party data jsou data, která sbíráte přímo vy — na svém webu, ve své aplikaci, z vlastního CRM. Žádný prostředník, žádná třetí strana. Zákazník přijde na váš web, vy zaznamenáte jeho chování pomocí vašeho kódu, do vašeho serveru, s vaší cookie nastavenou na vaší doméně.</p>
+
+      <p>Third-party data naopak sbírají jiní — typicky Google nebo Meta — přes skripty běžící na tisících různých webech zároveň. Tento model regulace a prohlížeče postupně rozbíjejí. Vaše vlastní data vám nikdo nezakáže sbírat — pokud to děláte transparentně a v souladu s GDPR.</p>
+
+      <h2>Čtyři způsoby, jak sbírat first party data pro e-shop</h2>
+
+      <h3>1. Server-side first-party cookies přes sGTM</h3>
+
+      <p>Klasický Google Tag Manager nastavuje cookies jako třetí strana (z domény <code>google-analytics.com</code>, ne z vaší domény). Safari a ITP takové cookies maže po 7 dnech.</p>
+
+      <p>Server-side GTM přesouvá logiku tagování na váš vlastní server. Cookie pak pochází přímo z vaší domény — a může mít platnost 400 dní. Zákazník, který se vrátí za tři týdny, bude správně rozpoznán jako vracející se uživatel, místo abyste ho znovu počítali jako nového.</p>
+
+      <div class="highlight-box">
+        <p><strong>Technický detail:</strong> sGTM typicky běží jako kontejner na Google Cloud Run. Nastavení vyžaduje vlastní subdoménu (např. <code>gtm.vaseshop.cz</code>), SSL certifikát a konfiguraci v GTM rozhraní. Náklady na provoz jsou v řádu stovek korun měsíčně.</p>
+      </div>
+
+      <h3>2. User ID tracking — zákazník jako kotva</h3>
+
+      <p>Přihlášený zákazník je váš největší datový asset. Pokud zákazníkovi přiřadíte interní User ID a předáte ho do GA4 i do reklamních platforem, propojíte jeho chování napříč sessiony, zařízeními i prohlížeči.</p>
+
+      <p>Zákazník, který si prohlíží produkty na telefonu a pak nakoupí na počítači, už není dvě různé neznámé osoby — je to jeden zákazník s jednou cestou k nákupu. Atribuce kampaní najednou dává smysl. User ID tracking navíc umožní propojit anonymní návštěvy s daty z CRM — a otevírá cestu k výpočtu LTV a segmentaci zákazníků.</p>
+
+      <h3>3. Enhanced Conversions a Conversion API</h3>
+
+      <p>Google Enhanced Conversions a Meta Conversion API (CAPI) fungují na stejném principu: v okamžiku konverze vezmete identifikátor zákazníka (e-mailová adresa, telefon), zahashujete ho (SHA-256) a pošlete přímo do reklamní platformy. Platforma ho porovná se svou databází přihlášených uživatelů a přiřadí konverzi správné kampani.</p>
+
+      <p>Tím obcházíte problém s blokovanými pixely a cookies. Data jdou přímo ze serveru na server. Hashování zajišťuje, že posíláte anonymizovaná data, ne čitelné osobní údaje.</p>
+
+      <pre><code>// Odeslání Enhanced Conversion dat při potvrzení objednávky
+gtag('event', 'purchase', {
+  transaction_id: 'ORDER-12345',
+  value: 1490,
+  currency: 'CZK',
+  user_data: {
+    email_address: sha256('zakaznik@email.cz'),
+    phone_number: sha256('+420601234567')
+  }
+});</code></pre>
+
+      <h3>4. Obohacení dat z CRM</h3>
+
+      <p>Anonymní návštěvník se stane zákazníkem ve chvíli, kdy zadá objednávku nebo vyplní formulář. Od toho okamžiku ho můžete propojit s celou jeho historií v CRM — předchozí nákupy, kategorie produktů, průměrná hodnota košíku. Toto propojení umožňuje segmentovat zákazníky a přizpůsobovat reklamy jejich skutečné hodnotě pro firmu.</p>
+
+      <h2>Praktický checklist pro e-shop</h2>
+
+      <ul>
+        <li>Nasadit server-side GTM na vlastní subdoménu a přesunout GA4 a reklamní tagy na server-side</li>
+        <li>Nastavit first-party cookie pro klientské ID s platností 400 dní</li>
+        <li>Implementovat User ID v GA4 pro přihlášené zákazníky</li>
+        <li>Aktivovat Enhanced Conversions v Google Ads a ověřit odesílání hashovaných dat</li>
+        <li>Propojit Meta Pixel s Conversion API — ideálně přes server-side GTM</li>
+        <li>Definovat zákaznické segmenty v CRM a zpřístupnit je pro reklamní publika</li>
+      </ul>
+
+      <h2>Co od toho čekat</h2>
+
+      <p>Po správné implementaci first party data přístupu typicky vidíte lepší matching konverzí v Google Ads (o 10–20 % více přiřazených konverzí), stabilnější publika pro re-targeting i po aktualizacích prohlížečů a spolehlivější data pro optimalizaci kampaní. A hlavně — přestanete být závislí na rozhodnutích, která dělají Google, Apple nebo regulátoři za vás.</p>
+
+      <div class="highlight-box">
+        <p><strong>Důležité:</strong> Všechny výše popsané techniky předpokládají, že máte v pořádku souhlasový banner a zpracováváte data pouze od uživatelů, kteří dali souhlas. First party data nejsou způsob, jak obejít GDPR — jsou to nástroje pro efektivní měření v rámci zákona.</p>
+      </div>
+
+      <h2>First party data jsou o vztahu se zákazníkem</h2>
+
+      <p>Na konci dne nejde jen o technologii. E-shop, který zákazníka dobře zná, může komunikovat relevantně a budovat skutečnou loajalitu. Third-party cookies tuto znalost simulovaly pomocí sledování napříč weby. First party data ji budují přímo, transparentně, na základě skutečného vztahu se zákazníkem. Technická implementace je zvládnutelná za týdny. Výhody trvají roky.</p>
+
+    </div>
+
+    <div class="article-cta">
+      <h3>Řešíte podobný problém?</h3>
+      <p>Pokud si nejste jisti, jak moc vám third-party cookies ovlivňují data, nebo chcete vědět, kde začít s first party přístupem ve vašem e-shopu, napište mi. Rád se podívám na váš konkrétní technický stack a navrhnu realistické kroky.</p>
+      <a href="mailto:jan.veverka@flowstack.cz" class="cta-btn">Napište mi</a>
+    </div>
+  </article>
+
+  <footer>
+    <p>© 2025 Flowstack · Jan Veverka</p>
+    <div style="display:flex;gap:1.5rem;">
+      <a href="/">flowstack.cz</a>
+      <a href="/blog/">Blog</a>
+      <a href="mailto:jan.veverka@flowstack.cz">jan.veverka@flowstack.cz</a>
+    </div>
+  </footer>
+</body>
+</html>

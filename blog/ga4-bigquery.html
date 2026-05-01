@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>GA4 BigQuery export pro e-commerce: co s tím jde dělat | Flowstack Blog</title>
+  <meta name="description" content="GA4 UI nestačí na seriózní e-commerce analýzy. BigQuery export odstraní sampling, prodlouží retenci a umožní join s daty z Heuréky nebo Meta Ads." />
+  <link rel="canonical" href="https://flowstack.cz/blog/ga4-bigquery.html" />
+  <meta property="og:title" content="GA4 BigQuery export pro e-commerce: co s tím jde dělat | Flowstack Blog" />
+  <meta property="og:description" content="GA4 UI nestačí na seriózní e-commerce analýzy. BigQuery export odstraní sampling, prodlouží retenci a umožní join s daty z Heuréky nebo Meta Ads." />
+  <meta property="og:url" content="https://flowstack.cz/blog/ga4-bigquery.html" />
+  <meta property="og:type" content="article" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230a0a0a'/><text x='6' y='24' font-family='serif' font-size='22' fill='%23c8f04a'>F</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="blog.css" />
+</head>
+<body>
+  <div class="nav-wrap">
+    <nav>
+      <a href="/" class="logo">Flow<span>stack</span></a>
+      <div class="nav-links">
+        <a href="/blog/">Blog</a>
+        <a href="/" class="hide-mobile">Zpět na web</a>
+        <a href="mailto:jan.veverka@flowstack.cz">Email</a>
+      </div>
+    </nav>
+  </div>
+  <div class="nav-spacer"></div>
+
+  <article class="article-wrap">
+    <span class="article-tag">Datová analytika</span>
+    <h1 class="article-title">GA4 BigQuery export: jak dostat z analytiky víc než základní přehledy</h1>
+    <div class="article-meta">Jan Veverka &nbsp;·&nbsp; Květen 2025 &nbsp;·&nbsp; 6 min čtení</div>
+
+    <div class="article-body">
+
+      <p>GA4 rozhraní je slušný nástroj pro sledování provozu webu. Kolik bylo relací, odkud lidé přicházejí, jaké stránky navštěvují — na to stačí. Ale pokud chcete e-commerce analytiku, která vám skutečně pomůže při rozhodování o rozpočtech, produktovém mixu nebo výkonu kampaní, narazíte na limity poměrně rychle. GA4 UI na seriózní analýzy nestačí. Přitom řešení existuje a je dostupné přímo přes standardní GA4: export raw dat do BigQuery.</p>
+
+      <h2>4 limity, na které v GA4 UI dříve nebo později narazíte</h2>
+
+      <h3>1. Data thresholding — GA4 skrývá data, která nechcete vidět skrytá</h3>
+
+      <p>Pokud máte zapnutý Consent Mode nebo Google Signals, GA4 začne při malých vzorcích dat aplikovat tzv. thresholding — jednoduše skryje řádky v tabulce, aby nezveřejnilo demografické informace o malých skupinách uživatelů. V praxi to vypadá tak, že zkoumáte výkon konkrétní kampaně na konkrétní kategorii produktů a část dat je prostě pryč. V BigQuery thresholding neexistuje — pracujete s kompletními raw daty, každý hit je jeden řádek v tabulce.</p>
+
+      <h3>2. Retence dat jen 14 měsíců</h3>
+
+      <p>Ve výchozím nastavení GA4 uchovává data na úrovni událostí pouhé 2 měsíce. Pokud to ručně nezměníte na maximum 14 měsíců, přijdete o historická data velmi rychle. A ani 14 měsíců nestačí, pokud chcete porovnat dvě předvánoční sezony nebo analyzovat, jak se změnilo chování zákazníků za poslední 3 roky. BigQuery data ukládá trvale — dokud si je sami nesmažete.</p>
+
+      <h3>3. GA4 nelze propojit s externími daty</h3>
+
+      <p>Chcete vědět, jaký je skutečný ROAS vaší Sklik kampaně, když do nákladů zahrnete i poplatky agentuře? GA4 vám to neřekne. Chcete joinovat data z Heuréky, Meta Ads a Google Ads do jednoho pohledu s jednou definicí konverze? GA4 UI to neumí. BigQuery ano — importujete data odkudkoli a joinujete SQL dotazem.</p>
+
+      <h3>4. Omezené custom dimenze a metriky</h3>
+
+      <p>GA4 standard povoluje 50 custom dimenzí na úrovni události. Jakmile potřebujete trackovat více atributů produktu, zákaznické segmenty nebo věrnostní program, začnete narážet. V BigQuery tato omezení neexistují — raw data obsahují kompletní parametry každé události tak, jak jste je odeslali.</p>
+
+      <h2>Co je BigQuery a jak export funguje</h2>
+
+      <p>BigQuery je Google Cloud datový sklad navržený pro analytické dotazy nad velkými objemy dat. Na rozdíl od klasických relačních databází ho nemusíte spravovat, škálovat ani udržovat — zadáte SQL dotaz, BigQuery ho spustí paralelně na spoustě serverů a výsledek dostanete během sekund, i když se dotazujete přes miliardy řádků.</p>
+
+      <p>GA4 do BigQuery exportuje každý hit, každou událost jako samostatný řádek. Vidíte přesně, co uživatel udělal, v jaké sekvenci, s jakými parametry. Žádné agregace, žádné předpočítané metriky. Nastavení exportu je jednoduché: v GA4 Admin → BigQuery Linking, vyberete svůj Google Cloud projekt a zvolíte typ exportu — denní (data předchozího dne se exportují jednou ráno) nebo streaming (data přicházejí průběžně s latencí v řádu minut).</p>
+
+      <h2>Co konkrétně s GA4 daty v BigQuery jde dělat</h2>
+
+      <h3>1. Vlastní SQL dotazy bez limitů a bez samplingu</h3>
+
+      <p>Napíšete dotaz, dostanete přesné číslo. Kolik unikátních zákazníků nakoupilo více než dvakrát za poslední rok a jaká byla jejich průměrná hodnota objednávky? Tři řádky SQL. V GA4 UI byste to skládali z více reportů a stejně byste si nebyli jistí přesností.</p>
+
+      <h3>2. Jeden pohled na ROAS přes všechny reklamní platformy</h3>
+
+      <p>Do BigQuery naimportujete nákladová data z Google Ads, Meta Ads, Skliku a Heuréky. V GA4 datech máte tržby přiřazené ke zdrojům. Joinujete je dohromady a najednou vidíte skutečný ROAS každého kanálu s jednou konzistentní definicí — ne čtyři různá čísla ze čtyř různých platforem, z nichž každá si konverzi přisuzuje po svém.</p>
+
+      <h3>3. Vlastní atribuční model</h3>
+
+      <p>Last-click atribuce je přežitek. V BigQuery vidíte kompletní cestu každého zákazníka a můžete ji rozdělit podle vlastní logiky: lineárně, podle polohy v cestě, nebo vlastním pravidlem, které odpovídá vašemu businessu.</p>
+
+      <h3>4. Neomezená retence</h3>
+
+      <p>Jakmile jednou zapnete BigQuery export, data se tam hromadí a nikam nemizí. Za dva roky se budete moci podívat, jak sezona 2025 vypadala v porovnání se sezonou 2024 a 2023 — na úrovni konkrétních produktů, zdrojů, zákaznických segmentů.</p>
+
+      <h2>Ukázka: tržby podle zdroje za posledních 30 dní</h2>
+
+      <pre><code>SELECT
+  traffic_source.source        AS zdroj,
+  traffic_source.medium        AS medium,
+  COUNT(DISTINCT user_pseudo_id) AS uzivatele,
+  SUM(
+    (SELECT value.double_value
+     FROM UNNEST(event_params)
+     WHERE key = 'value')
+  )                            AS trzby_czk
+FROM
+  `vas-projekt.analytics_123456789.events_*`
+WHERE
+  _TABLE_SUFFIX BETWEEN
+    FORMAT_DATE('%Y%m%d', DATE_SUB(CURRENT_DATE(), INTERVAL 30 DAY))
+    AND FORMAT_DATE('%Y%m%d', CURRENT_DATE())
+  AND event_name = 'purchase'
+GROUP BY
+  zdroj, medium
+ORDER BY
+  trzby_czk DESC;</code></pre>
+
+      <p>Výsledkem je přehled tržeb podle zdroje a média za posledních 30 dní — bez samplingu, bez thresholdingu, přesně tak jak data přišla.</p>
+
+      <h2>Pro koho BigQuery export dává smysl</h2>
+
+      <ul>
+        <li>Máte více než 500 transakcí měsíčně.</li>
+        <li>Investujete do více reklamních kanálů a potřebujete jeden pohled na výkon.</li>
+        <li>Potřebujete historická data déle než 14 měsíců — pro sezónní analýzy nebo modelování trendů.</li>
+        <li>Váš tým potřebuje ad-hoc dotazy bez závislosti na GA4 UI a jeho omezeních.</li>
+      </ul>
+
+      <p>Náklady na BigQuery jsou při objemech dat typického středního e-shopu velmi nízké — řádově desítky korun měsíčně za uložení dat. Reálná investice je čas na nastavení exportu, vytvoření datového modelu a napojení na vizualizační nástroj (Looker Studio, Metabase nebo Power BI).</p>
+
+      <h2>Závěr</h2>
+
+      <p>GA4 BigQuery export není pro každého, ale pro e-shopy, které to s datovou analytikou myslí vážně, je to přechod, který se vyplatí udělat co nejdříve. Každý den bez exportu jsou data, která se nikdy nevrátí. Jakmile je export spuštěný, začíná se budovat datový základ, ze kterého budete těžit roky.</p>
+
+    </div>
+
+    <div class="article-cta">
+      <h3>Řešíte podobný problém?</h3>
+      <p>Pokud chcete nastavit BigQuery export a začít s daty dělat víc než jen základní přehledy, rád vám pomůžu s celým procesem — od propojení GA4 až po první užitečné dotazy.</p>
+      <a href="mailto:jan.veverka@flowstack.cz" class="cta-btn">Napište mi</a>
+    </div>
+  </article>
+
+  <footer>
+    <p>© 2025 Flowstack · Jan Veverka</p>
+    <div style="display:flex;gap:1.5rem;">
+      <a href="/">flowstack.cz</a>
+      <a href="/blog/">Blog</a>
+      <a href="mailto:jan.veverka@flowstack.cz">jan.veverka@flowstack.cz</a>
+    </div>
+  </footer>
+</body>
+</html>

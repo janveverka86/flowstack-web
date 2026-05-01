@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Consent Mode v2: proč ho potřebujete a jak ho správně nastavit | Flowstack Blog</title>
+  <meta name="description" content="Google Consent Mode v2 je povinný od března 2024. Jak funguje Advanced Mode, co zachrání v měření konverzí a jak ho správně implementovat v GTM." />
+  <link rel="canonical" href="https://flowstack.cz/blog/consent-mode-v2.html" />
+  <meta property="og:title" content="Consent Mode v2: proč ho potřebujete a jak ho správně nastavit | Flowstack Blog" />
+  <meta property="og:description" content="Google Consent Mode v2 je povinný od března 2024. Jak funguje Advanced Mode, co zachrání v měření konverzí a jak ho správně implementovat v GTM." />
+  <meta property="og:url" content="https://flowstack.cz/blog/consent-mode-v2.html" />
+  <meta property="og:type" content="article" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230a0a0a'/><text x='6' y='24' font-family='serif' font-size='22' fill='%23c8f04a'>F</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="blog.css" />
+</head>
+<body>
+  <div class="nav-wrap">
+    <nav>
+      <a href="/" class="logo">Flow<span>stack</span></a>
+      <div class="nav-links">
+        <a href="/blog/">Blog</a>
+        <a href="/" class="hide-mobile">Zpět na web</a>
+        <a href="mailto:jan.veverka@flowstack.cz">Email</a>
+      </div>
+    </nav>
+  </div>
+  <div class="nav-spacer"></div>
+
+  <article class="article-wrap">
+    <span class="article-tag">Měření dat</span>
+    <h1 class="article-title">Consent Mode v2: proč ho potřebujete a jak ho správně nastavit</h1>
+    <div class="article-meta">Jan Veverka &nbsp;·&nbsp; Květen 2025 &nbsp;·&nbsp; 6 min čtení</div>
+
+    <div class="article-body">
+
+      <p>Od března 2024 Google vyžaduje Consent Mode v2 pro všechny weby v Evropské unii, které používají Google Ads nebo GA4. Není to doporučení — je to podmínka. Bez správně implementovaného Consent Mode v2 přicházíte o modelování konverzí od uživatelů, kteří odmítli cookies. A při typickém e-shopu, kde cookies odmítá 30 až 40 procent návštěvníků, to není zanedbatelná část dat.</p>
+
+      <p>Přesto většina webů má Consent Mode buď nenasazený vůbec, nebo nasazený v základní (a výrazně méně efektivní) variantě. Tento článek vysvětluje, co Consent Mode v2 je, proč záleží na volbě mezi Basic a Advanced Mode a jak implementaci provést správně.</p>
+
+      <h2>Co Consent Mode v2 vlastně dělá</h2>
+
+      <p>Consent Mode je mechanismus, kterým web informuje Google, jaké souhlasy konkrétní uživatel udělil. Google pak podle těchto signálů rozhoduje, jak s daty naloží. Systém pracuje se čtyřmi parametry:</p>
+
+      <ul>
+        <li><code>analytics_storage</code> — souhlas s ukládáním dat pro analytiku (GA4)</li>
+        <li><code>ad_storage</code> — souhlas s ukládáním dat pro reklamu (cookies Google Ads)</li>
+        <li><code>ad_user_data</code> — souhlas s odesíláním uživatelských dat do Googlu pro reklamní účely</li>
+        <li><code>ad_personalization</code> — souhlas s personalizovanou reklamou (remarketing)</li>
+      </ul>
+
+      <p>Parametry <code>ad_user_data</code> a <code>ad_personalization</code> jsou novinkou v2 — v původním Consent Mode chyběly. Právě proto Google označil upgrade na v2 jako povinný.</p>
+
+      <h2>Basic Mode vs. Advanced Mode: zásadní rozdíl</h2>
+
+      <h3>Basic Mode</h3>
+
+      <p>V Basic Mode se Google tagy spustí až poté, co uživatel aktivně udělí souhlas. Uživatel, který banner odmítne nebo ho ignoruje, není zaznamenán vůbec — ani anonymně, ani přes modelování. Pro e-shop se 35% mírou odmítnutí souhlasu to znamená, že třetina uživatelů prostě zmizí z vašich dat.</p>
+
+      <h3>Advanced Mode</h3>
+
+      <p>V Advanced Mode se tagy spustí okamžitě po načtení stránky — ještě předtím, než uživatel rozhodne o cookies. Pokud uživatel souhlas odmítne, tagy nesbírají osobní data ani neukládají identifikační cookies. Ale odesílají anonymní "ping" bez identifikátorů — signál, který Google používá pro statistické modelování.</p>
+
+      <p>Na základě chování uživatelů, kteří souhlas udělili, Google modeluje pravděpodobné konverze těch, kteří souhlas odmítli. Tato modelovaná data pak vidíte v Google Ads jako <em>modelované konverze</em> a v GA4 jako <em>behavioral modeling</em>.</p>
+
+      <div class="highlight-box">
+        <p><strong>Konkrétní dopad:</strong> Při míře odmítnutí cookies 35 % a správně nasazeném Advanced Mode typicky zachráníte 15–25 % dat, která byste v Basic Mode ztratili úplně. V Google Ads se to projeví jako viditelný nárůst počtu zaznamenaných konverzí — bez jakékoli změny v samotném marketingu.</p>
+      </div>
+
+      <h2>Jak implementovat Consent Mode v2 krok za krokem</h2>
+
+      <h3>Krok 1: Vyberte CMP s podporou CM v2</h3>
+
+      <p>CMP (Consent Management Platform) je váš cookie banner — software, který zobrazuje souhlas uživateli a předává výsledek do GTM a Google tagů. Ne každé řešení podporuje Consent Mode v2 správně. Ověřené možnosti zahrnují Cookiebot, CookieFirst, OneTrust a z českých řešení například Complianz nebo Usercentrics.</p>
+
+      <p>Klíčové je, aby CMP umělo odesílat všechny čtyři consent parametry včetně <code>ad_user_data</code> a <code>ad_personalization</code>. Mnoho starších bannerů odesílá pouze <code>analytics_storage</code> a <code>ad_storage</code> — a splňuje tak jen CM v1, ne v2.</p>
+
+      <h3>Krok 2: Nastavte výchozí stav v GTM</h3>
+
+      <p>Advanced Mode vyžaduje, aby web nastavil výchozí consent stav ještě před načtením jakéhokoliv tagu. V GTM to zajistíte pomocí šablony Consent Initialization — speciálního triggeru, který se spustí jako úplně první, před všemi ostatními tagy.</p>
+
+      <pre><code>// Výchozí stav před rozhodnutím uživatele (Advanced Mode)
+gtag('consent', 'default', {
+  'analytics_storage': 'denied',
+  'ad_storage': 'denied',
+  'ad_user_data': 'denied',
+  'ad_personalization': 'denied',
+  'wait_for_update': 500
+});
+
+// Po udělení souhlasu CMP zavolá update:
+gtag('consent', 'update', {
+  'analytics_storage': 'granted',
+  'ad_storage': 'granted',
+  'ad_user_data': 'granted',
+  'ad_personalization': 'granted'
+});</code></pre>
+
+      <h3>Krok 3: Aktualizujte Google Ads a GA4 tagy</h3>
+
+      <p>Tagy v GTM musí být nastaveny jako "consent-aware" — respektují consent stav a nepředávají data, pokud příslušný parametr není nastaven na <code>granted</code>. Moderní šablony Google tagů v GTM to dělají automaticky. Starší vlastní skripty nebo HTML tagy je třeba aktualizovat nebo nahradit.</p>
+
+      <h3>Krok 4: Ověřte implementaci</h3>
+
+      <p>Google Tag Assistant zobrazí, zda tagy správně reagují na změnu consent stavu. GA4 DebugView ukáže, zda se události posílají s odpovídajícími parametry. Specificky ověřte:</p>
+
+      <ul>
+        <li>Po odmítnutí cookies — žádná identifikační data se neodesílají</li>
+        <li>Po udělení souhlasu — všechny tagy se spustí korektně</li>
+        <li>Anonymní ping se odesílá i při odmítnutí (Advanced Mode signal)</li>
+        <li>V Google Ads se začnou zobrazovat modelované konverze (obvykle po 7–14 dnech sběru dat)</li>
+      </ul>
+
+      <h2>Co čekat po implementaci</h2>
+
+      <p>V Google Ads typicky uvidíte nárůst zaznamenaných konverzí o 15–25 % — to jsou modelované konverze od uživatelů, kteří cookies odmítli. V GA4 se zlepší pokrytí uživatelů a přesnost funnel analýz. Optimalizační algoritmy Google Ads budou pracovat s úplnějšími daty.</p>
+
+      <div class="highlight-box">
+        <p><strong>Upozornění:</strong> Consent Mode v2 není náhrada za právně správný cookie banner. Jsou to dvě různé věci. CM v2 řeší technickou komunikaci se Googlem. Váš banner musí být zároveň GDPR-compliant — bez předem zaškrtnutých polí, s rovnocennou možností odmítnout a s jasným popisem, k čemu data slouží.</p>
+      </div>
+
+      <h2>Implementace, která se vyplatí</h2>
+
+      <p>Consent Mode v2 v Advanced Mode je dnes standardem, ne nadstandardem. Každý e-shop v EU, který investuje do Google reklamy nebo pracuje s GA4, by ho měl mít správně nasazený. Implementace trvá při správném postupu jeden až tři dny. Výhody — zachráněná data, lepší optimalizace kampaní, soulad s požadavky Googlu — jsou trvalé.</p>
+
+      <p>Pokud nevíte, zda váš aktuální banner Consent Mode v2 skutečně podporuje a v jaké variantě, je čas to zjistit. Odpověď se dá ověřit za pět minut v Tag Assistant.</p>
+
+    </div>
+
+    <div class="article-cta">
+      <h3>Řešíte podobný problém?</h3>
+      <p>Pokud chcete vědět, zda máte Consent Mode v2 správně nasazený — nebo jestli vůbec — rád se podívám na váš web a implementaci zkontroluji. Mnohdy stačí pár úprav v GTM, které zachrání výraznou část měřených dat.</p>
+      <a href="mailto:jan.veverka@flowstack.cz" class="cta-btn">Napište mi</a>
+    </div>
+  </article>
+
+  <footer>
+    <p>© 2025 Flowstack · Jan Veverka</p>
+    <div style="display:flex;gap:1.5rem;">
+      <a href="/">flowstack.cz</a>
+      <a href="/blog/">Blog</a>
+      <a href="mailto:jan.veverka@flowstack.cz">jan.veverka@flowstack.cz</a>
+    </div>
+  </footer>
+</body>
+</html>

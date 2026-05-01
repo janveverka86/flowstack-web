@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>BigQuery jako základ pro AI agenty: jak propojit e-shop s umělou inteligencí | Flowstack Blog</title>
+  <meta name="description" content="AI agenti potřebují čistá, strukturovaná data. BigQuery jako datový základ umožňuje e-shopům napojit LLM agenty, forecasting a anomaly detection." />
+  <link rel="canonical" href="https://flowstack.cz/blog/bigquery-ai-agenti.html" />
+  <meta property="og:title" content="BigQuery jako základ pro AI agenty: jak propojit e-shop s umělou inteligencí | Flowstack Blog" />
+  <meta property="og:description" content="AI agenti potřebují čistá, strukturovaná data. BigQuery jako datový základ umožňuje e-shopům napojit LLM agenty, forecasting a anomaly detection." />
+  <meta property="og:url" content="https://flowstack.cz/blog/bigquery-ai-agenti.html" />
+  <meta property="og:type" content="article" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230a0a0a'/><text x='6' y='24' font-family='serif' font-size='22' fill='%23c8f04a'>F</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="blog.css" />
+</head>
+<body>
+  <div class="nav-wrap">
+    <nav>
+      <a href="/" class="logo">Flow<span>stack</span></a>
+      <div class="nav-links">
+        <a href="/blog/">Blog</a>
+        <a href="/" class="hide-mobile">Zpět na web</a>
+        <a href="mailto:jan.veverka@flowstack.cz">Email</a>
+      </div>
+    </nav>
+  </div>
+  <div class="nav-spacer"></div>
+
+  <article class="article-wrap">
+    <span class="article-tag">AI & Data Engineering</span>
+    <h1 class="article-title">BigQuery jako datový základ pro AI agenty: jak propojit e-shop s umělou inteligencí</h1>
+    <div class="article-meta">Jan Veverka &nbsp;·&nbsp; Květen 2025 &nbsp;·&nbsp; 7 min čtení</div>
+
+    <div class="article-body">
+
+      <p>AI agenti jsou momentálně nejžhavější téma v technologickém světě. Každý chce automatizovat reporting, nechat AI hlídat anomálie v datech nebo mít asistenta, kterého se můžete zeptat na výkon e-shopu přirozenou češtinou. Problém je, že většina e-shopů na tohle ještě není připravená — ne proto, že by AI nebyla dostupná, ale proto, že nemají data ve správné formě. Garbage in, garbage out. AI agent, který dostane nestrukturovaná, nekonzistentní data z pěti různých zdrojů, vám neporadí nic užitečného.</p>
+
+      <p>BigQuery jako centrální datový sklad je právě ten základ, který AI agentům umožní fungovat. A výstavba tohoto základu je práce, která se vyplatí dvakrát — jednou pro stávající reporting a analytiku, podruhé jako vstupní brána pro jakoukoliv AI vrstvu, kterou přidáte v budoucnu.</p>
+
+      <h2>Proč AI agenti potřebují čistá data v BigQuery</h2>
+
+      <p>Představte si, že chcete AI agenta, který každé ráno pošle do Slacku shrnutí výkonu e-shopu za předchozí den. Tržby, konverzní poměr, nejprodávanější produkty, porovnání s minulým týdnem. Zní jednoduše. Ale kde agent ta data vezme?</p>
+
+      <p>Pokud jsou tržby v Shoptetu, konverze v GA4, náklady na kampaně v Google Ads a Meta Ads, a skladové zásoby v Pohoda, agent musí v reálném čase volat čtyři různá API, z nichž každé vrací data v jiném formátu, s jinou definicí „konverze" a jiným časovým pásmem. Výsledek bude nejistý, pomalý a těžko laditelný.</p>
+
+      <p>BigQuery tento problém řeší tím, že všechna data jsou na jednom místě, transformovaná do konzistentního formátu, s jasnými definicemi metrik. Agent se neptá čtyř systémů — ptá se jednoho SQL dotazu. A SQL je jazyk, který LLM modely (Claude, GPT-4, Gemini) velmi dobře ovládají.</p>
+
+      <h2>Architektura: jak to funguje dohromady</h2>
+
+      <p>Typická architektura pro e-shop s AI agenty vypadá takto:</p>
+
+      <ul>
+        <li><strong>Datové zdroje:</strong> GA4, Google Ads, Meta Ads, Shoptet/Shopify API, CRM, Sklik, Heuréka — data se automaticky exportují nebo stahují přes ETL pipeline.</li>
+        <li><strong>BigQuery (datový sklad):</strong> surová data se transformují přes Dataform nebo dbt do čistých, pojmenovaných tabulek — <code>fct_orders</code>, <code>fct_sessions</code>, <code>dim_products</code>, <code>fct_ad_spend</code>.</li>
+        <li><strong>AI agent vrstva:</strong> LLM model (nejčastěji přes Google Vertex AI nebo přímo Claude/GPT API) dostane přístup k BigQuery přes SQL rozhraní. Uživatel se ptá přirozeným jazykem, agent přeloží otázku na SQL, spustí ho a výsledek interpretuje.</li>
+        <li><strong>Výstupy:</strong> Slack notifikace, e-mailové reporty, dashboard alerting, nebo interaktivní chatbot v interním nástroji.</li>
+      </ul>
+
+      <h2>4 konkrétní use cases pro e-commerce</h2>
+
+      <h3>1. Denní reporting agent — konec ručních reportů</h3>
+
+      <p>Agent každé ráno v 7:00 spustí sadu SQL dotazů nad BigQuery, shrne výsledky a pošle strukturovanou zprávu do Slacku nebo na email. Tržby za včerejšek, porovnání s průměrem posledních 4 týdnů, konverzní poměr, průměrná hodnota objednávky. Pokud je něco výrazně mimo průměr, agent to označí jako anomálii a přidá možné vysvětlení (víkend, svátky, pokles v konkrétní kampani).</p>
+
+      <p>Čas ušetřený: typicky 30–60 minut denně pro analytika nebo marketingového manažera, který tato čísla jinak sbírá ručně.</p>
+
+      <h3>2. Anomaly detection — agent jako hlídač</h3>
+
+      <p>Agent průběžně monitoruje klíčové metriky v BigQuery a upozorní, když se něco výrazně odchýlí od normy. Propad konverzního poměru o více než 20 % oproti předchozím 7 dnům? Notifikace do Slacku. Nárůst ceny za konverzi v Google Ads o 40 %? Alert s linkem na detail kampaně. Vyprodání top produktu bez naplánované náhrady? Upozornění pro nákupčího.</p>
+
+      <p>Bez BigQuery byste tyto anomálie zjistili buď náhodou, nebo až po dnech. S agentem to víte do hodiny.</p>
+
+      <h3>3. NL2SQL — ptáte se, data odpovídají</h3>
+
+      <p>Tohle je nejefektnější use case. Místo abyste čekali na analytika nebo sami šli do GA4, jednoduše napíšete do chatu: <em>„Jaké byly tržby z Heuréky za posledních 30 dní v porovnání s Meta Ads, a jaký byl ROAS každého kanálu?"</em> Agent otázku přeloží na SQL dotaz, spustí ho nad BigQuery a výsledek vrátí v přehledné tabulce s komentářem.</p>
+
+      <p>Předpokladem je dobrý datový model v BigQuery — konzistentní názvy tabulek, zdokumentované metriky, jasné definice. To je práce, která se dělá jednou a pak funguje pro všechny dotazy.</p>
+
+      <h3>4. Demand forecasting — kolik objednat na sezonu</h3>
+
+      <p>BigQuery ML (vestavěné ML funkce přímo v BigQuery) umožňuje trénovat forecasting modely přímo nad historickými daty prodejů. Bez nutnosti exportovat data do Pythonu nebo samostatného ML frameworku. Agent pak může automaticky generovat predikce prodeje na příštích 30 dní pro každý produkt — a tyto predikce může rovnou porovnat s aktuálními zásobami a identifikovat potenciální výpadky.</p>
+
+      <h2>Jak výstavba vypadá v praxi</h2>
+
+      <p>Práce probíhá ve dvou fázích. První fáze je výstavba datového skladu — napojení zdrojů, transformace dat, definice metrik. Tato fáze trvá typicky 4–8 týdnů a je cenná sama o sobě, i bez AI agentů. Vznikne vám jeden konzistentní zdroj pravdy pro celý e-shop.</p>
+
+      <p>Druhá fáze je napojení AI vrstvy — integrace LLM modelu s BigQuery přes SQL, nastavení agentů pro konkrétní use cases, testování a ladění promptů. Tato fáze trvá 1–3 týdny v závislosti na složitosti use cases. Výsledkem jsou agenti, kteří běží autonomně a vy dostáváte informace, aniž byste museli cokoliv ručně stahovat nebo sestavovat.</p>
+
+      <div class="highlight-box">
+        <p><strong>Klíčový poznatek:</strong> Investice do BigQuery datového skladu se vyplatí dvojnásobně. Primárně pro stávající reporting a analytiku. Sekundárně jako datový základ pro AI — bez tohoto základu by implementace AI agentů trvala 3–5× déle a výsledky by byly nespolehlivé.</p>
+      </div>
+
+      <h2>Co od toho realisticky čekat</h2>
+
+      <p>AI agenti nad BigQuery nejsou magické řešení, které nahradí analytika nebo marketingového manažera. Jsou to nástroje, které šetří čas na rutinních úkolech — sběru dat, sestavování reportů, hlídání metrik — a uvolňují kapacitu na práci, kde je lidský úsudek nenahraditelný: interpretace, strategie, experimentování.</p>
+
+      <p>Realistické výsledky po implementaci: reporting, který dříve trval 45 minut, se zkrátí na 0 (agent to udělá za vás). Anomálie, které jste zjistili po 2 dnech, budete vědět do hodiny. Odpovědi na ad-hoc datové otázky, na které jste čekali den na analytika, dostanete za minutu.</p>
+
+      <h2>Závěr</h2>
+
+      <p>E-shopy, které dnes investují do solidního datového základu v BigQuery, si otevírají cestu k AI nástrojům, které budou v příštích 2–3 letech standardem. Výstavba datového skladu není IT projekt bez okamžitého přínosu — je to investice, která se vyplácí od prvního dne v podobě lepšího reportingu a lepší viditelnosti do dat, a v horizontu 6–12 měsíců jako základ pro AI vrstvu, která celý provoz zefektivní.</p>
+
+    </div>
+
+    <div class="article-cta">
+      <h3>Chcete postavit datový základ pro AI?</h3>
+      <p>Pomáhám e-shopům navrhnout a postavit BigQuery datový sklad, který je připravený jak pro stávající reporting, tak pro napojení AI agentů. Pokud vás téma zajímá, rád si popovídáme o tom, co by dávalo smysl ve vašem konkrétním případě.</p>
+      <a href="mailto:jan.veverka@flowstack.cz" class="cta-btn">Napište mi</a>
+    </div>
+  </article>
+
+  <footer>
+    <p>© 2025 Flowstack · Jan Veverka</p>
+    <div style="display:flex;gap:1.5rem;">
+      <a href="/">flowstack.cz</a>
+      <a href="/blog/">Blog</a>
+      <a href="mailto:jan.veverka@flowstack.cz">jan.veverka@flowstack.cz</a>
+    </div>
+  </footer>
+</body>
+</html>
