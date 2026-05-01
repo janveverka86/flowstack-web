@@ -22,33 +22,36 @@
   <!-- End Google Tag Manager -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Flowstack — Data & Analytics Agency</title>
-  <meta name="description" content="Jan Veverka – marketingový stratég a datový inženýr. Pomáhám e-commerce značkám růst skrze data-driven strategii, měřicí infrastrukturu a automatizované pipeline." />
+  <title>Flowstack – Jan Veverka | Datová analytika & data engineering</title>
+  <meta name="description" content="Jan Veverka – marketingový stratég a datový inženýr. Datová analytika, BigQuery, sGTM a reporting pro e-commerce značky." />
   <link rel="canonical" href="https://flowstack.cz/" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://flowstack.cz/" />
-  <meta property="og:title" content="Flowstack — Data & Analytics Agency" />
-  <meta property="og:description" content="Jan Veverka – marketingový stratég a datový inženýr. Pomáhám e-commerce značkám růst skrze data-driven strategii, měřicí infrastrukturu a automatizované pipeline." />
+  <meta property="og:title" content="Flowstack – Jan Veverka | Datová analytika & data engineering" />
+  <meta property="og:description" content="Jan Veverka – marketingový stratég a datový inženýr. Datová analytika, BigQuery, sGTM a reporting pro e-commerce značky." />
   <meta property="og:image" content="https://flowstack.cz/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Flowstack — Data & Analytics Agency" />
-  <meta name="twitter:description" content="Jan Veverka – marketingový stratég a datový inženýr. Pomáhám e-commerce značkám růst skrze data-driven strategii, měřicí infrastrukturu a automatizované pipeline." />
+  <meta name="twitter:title" content="Flowstack – Jan Veverka | Datová analytika & data engineering" />
+  <meta name="twitter:description" content="Jan Veverka – marketingový stratég a datový inženýr. Datová analytika, BigQuery, sGTM a reporting pro e-commerce značky." />
   <meta name="twitter:image" content="https://flowstack.cz/og-image.png" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230a0a0a'/><text x='6' y='24' font-family='serif' font-size='22' fill='%23c8f04a'>F</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
-    :root { --bg:#0a0a0a; --fg:#f0ede6; --accent:#c8f04a; --muted:#555; --border:#1e1e1e; }
+    :root { --bg:#0a0a0a; --fg:#f0ede6; --accent:#c8f04a; --muted:#666; --border:#2c2c2c; }
     *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
     html { scroll-behavior:smooth; }
     body { background:var(--bg); color:var(--fg); font-family:'DM Mono',monospace; font-weight:300; min-height:100vh; overflow-x:hidden; }
     body::before { content:''; position:fixed; inset:0; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events:none; z-index:999; opacity:.4; }
-    body::after { content:''; position:fixed; inset:0; background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px); background-size:60px 60px; pointer-events:none; z-index:0; }
+    body::after { content:''; position:fixed; inset:0; background-image:linear-gradient(#1e1e1e 1px,transparent 1px),linear-gradient(90deg,#1e1e1e 1px,transparent 1px); background-size:60px 60px; pointer-events:none; z-index:0; }
 
-    nav { position:relative; z-index:10; display:flex; justify-content:space-between; align-items:center; padding:2rem; max-width:1100px; margin:0 auto; }
-    .logo { font-family:'DM Serif Display',serif; font-size:1.4rem; color:var(--fg); letter-spacing:-.02em; }
+    .nav-wrap { position:sticky; top:0; z-index:100; background:rgba(10,10,10,.92); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border-bottom:1px solid transparent; transition:border-color .3s; }
+    .nav-wrap.scrolled { border-bottom-color:var(--border); }
+    nav { position:relative; z-index:10; display:flex; justify-content:space-between; align-items:center; padding:1.4rem 2rem; max-width:1100px; margin:0 auto; }
+    .logo { font-family:'DM Serif Display',serif; font-size:1.4rem; color:var(--fg); letter-spacing:-.02em; line-height:1; }
     .logo span { color:var(--accent); }
+    .logo-sub { font-family:'DM Mono',monospace; font-size:.55rem; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); margin-top:.3rem; font-weight:300; }
     .nav-links { display:flex; align-items:center; gap:2rem; }
     nav a { color:var(--muted); text-decoration:none; font-size:.75rem; letter-spacing:.12em; text-transform:uppercase; transition:color .2s; }
     nav a:hover { color:var(--accent); }
@@ -56,19 +59,26 @@
     .lang-btn { background:none; border:1px solid transparent; color:var(--muted); font-family:'DM Mono',monospace; font-size:.7rem; letter-spacing:.12em; text-transform:uppercase; cursor:pointer; padding:.25rem .5rem; transition:color .2s,border-color .2s; }
     .lang-btn:hover { color:var(--accent); }
     .lang-btn.active { color:var(--accent); border-color:var(--accent); }
+    @media(max-width:600px) {
+      nav { padding:1rem 1.2rem; }
+      .logo { font-size:1.1rem; }
+      .nav-links { gap:1rem; }
+      nav a[href^="mailto"] { display:none; }
+    }
 
     /* ── HERO — čistě typografický ── */
-    .hero { position:relative; z-index:1; padding:5rem 2rem 7rem; max-width:1100px; margin:0 auto; overflow:hidden; }
+    .hero { position:relative; z-index:1; padding:5rem 2rem 3rem; max-width:1100px; margin:0 auto; overflow:hidden; }
     .tag { display:inline-block; font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); border:1px solid var(--accent); padding:.3rem .8rem; margin-bottom:2.5rem; opacity:0; animation:fadeUp .6s .1s forwards; }
     h1 { font-family:'DM Serif Display',serif; font-size:clamp(3rem,8vw,7rem); line-height:1.0; letter-spacing:-.03em; margin-bottom:2rem; opacity:0; animation:fadeUp .7s .2s forwards; }
     h1 em { font-style:italic; color:var(--accent); }
-    .hero-sub { max-width:580px; font-size:.88rem; line-height:1.8; color:#888; margin-bottom:3rem; opacity:0; animation:fadeUp .7s .35s forwards; }
+    .hero-sub { max-width:580px; font-size:.88rem; line-height:1.8; color:#aaa; margin-bottom:3rem; opacity:0; animation:fadeUp .7s .35s forwards; }
     .hero-cta { display:inline-block; background:var(--accent); color:#0a0a0a; font-family:'DM Mono',monospace; font-size:.75rem; font-weight:500; letter-spacing:.1em; text-transform:uppercase; text-decoration:none; padding:.9rem 2rem; transition:opacity .2s; opacity:0; animation:fadeUp .7s .5s forwards; }
     .hero-cta:hover { opacity:.8; }
 
     /* ── SECTIONS ── */
     .section { position:relative; z-index:1; padding:3rem 2rem; max-width:1100px; margin:0 auto; }
-    .section-label { font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin-bottom:3rem; padding-bottom:1rem; border-bottom:1px solid var(--border); }
+    .section-label { font-size:.72rem; letter-spacing:.22em; text-transform:uppercase; color:#bbb; margin-bottom:3rem; padding-bottom:1rem; border-bottom:1px solid var(--border); padding-left:.8rem; border-left:2px solid var(--accent); }
+    .section-divider { height:1px; background:linear-gradient(to right, var(--accent) 0%, var(--border) 30%, transparent 100%); margin:0; border:none; position:relative; z-index:2; }
 
     /* ── ABOUT ── */
     .about {
@@ -105,30 +115,59 @@
     .about-text p {
       font-size:.82rem;
       line-height:1.9;
-      color:#777;
+      color:#999;
     }
+
+    /* ── COUNTERS ── */
+    .counters { display:grid; grid-template-columns:repeat(4,1fr); width:100%; border-top:2px solid var(--accent); border-bottom:1px solid var(--border); background:linear-gradient(to bottom, rgba(200,240,74,.06) 0%, transparent 100%); }
+    @media(max-width:640px) { .counters { grid-template-columns:repeat(2,1fr); } }
+    .counter-item { padding:3.5rem 1.5rem; text-align:center; position:relative; }
+    .counter-item:not(:last-child)::after { content:''; position:absolute; top:15%; right:0; height:70%; width:1px; background:linear-gradient(to bottom, transparent, var(--border) 25%, var(--border) 75%, transparent); }
+    @media(max-width:640px) { .counter-item:nth-child(2)::after { display:none; } }
+    .counter-val { font-family:'DM Serif Display',serif; font-size:clamp(3.5rem,6vw,5.5rem); color:var(--accent); letter-spacing:-.04em; line-height:1; display:block; }
+    .counter-label { font-size:.78rem; letter-spacing:.1em; text-transform:uppercase; color:#bbb; margin-top:1.2rem; line-height:1.6; }
+
+    /* ── CLIENTS ── */
+    .logos-strip { display:flex; align-items:center; justify-content:space-between; gap:2rem; flex-wrap:wrap; }
+    .client-logo { height:34px; max-width:160px; object-fit:contain; filter:brightness(0) invert(1) opacity(.4); transition:filter .3s; }
+    .client-logo:hover { filter:brightness(0) invert(1) opacity(.85); }
+    .client-logo-opaque { filter:invert(1) grayscale(1) opacity(.5); }
+    .client-logo-opaque:hover { filter:invert(1) grayscale(1) opacity(.95); }
+
+    /* ── MOCKUPS ── */
+    .mockups-section { position:relative; z-index:1; padding:3rem 2rem; max-width:1100px; margin:0 auto; overflow:hidden; }
+    .mockups-track-wrap { position:relative; }
+    .mockups-track { display:flex; gap:0; overflow:visible; padding:1rem 0 2.5rem; }
+    .mockup-card { flex-shrink:0; width:440px; border:1px solid var(--border); overflow:hidden; position:relative; transform:perspective(900px) rotateY(-24deg); margin-right:-150px; box-shadow:22px 0 60px rgba(0,0,0,.85); }
+    .mockup-card:nth-child(1) { z-index:3; }
+    .mockup-card:nth-child(2) { z-index:2; }
+    .mockup-card:nth-child(3) { z-index:1; }
+    .mockup-card svg { display:block; width:100%; height:auto; }
+    .mockups-fade { display:none; }
+    @media(max-width:860px) { .mockup-card { width:72vw; margin-right:-80px; transform:perspective(700px) rotateY(-18deg); } }
+
+    /* ── SECTION TINTING ── */
+    .tinted::before { content:''; display:none; }
 
     /* ── SERVICES ── */
     .services { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1px; background:var(--border); border:1px solid var(--border); }
     .service { position:relative; background:var(--bg); padding:2.5rem 2rem; transition:background .2s; }
-    .service:hover { background:#111; }
+    .service:hover { background:#1e1e1e; }
     .service-num { font-size:.65rem; color:var(--accent); letter-spacing:.15em; margin-bottom:1.2rem; }
     .service h3 { font-family:'DM Serif Display',serif; font-size:1.3rem; font-weight:400; margin-bottom:.8rem; letter-spacing:-.02em; }
-    .service p { font-size:.78rem; line-height:1.7; color:#666; }
+    .service p { font-size:.78rem; line-height:1.7; color:#888; }
     .service-icon { position:absolute; top:1.5rem; right:1.5rem; color:var(--accent); opacity:.12; transition:opacity .3s; pointer-events:none; }
     .service:hover .service-icon { opacity:.45; }
-    .hero-visual { position:absolute; right:-1rem; bottom:4rem; width:400px; pointer-events:none; opacity:0; animation:fadeUp .9s .8s forwards; -webkit-mask-image:linear-gradient(to right, transparent 0%, black 62%); mask-image:linear-gradient(to right, transparent 0%, black 62%); }
-    @media(max-width:900px) { .hero-visual { display:none; } }
 
     /* ── APPROACH ── */
     .approach { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:start; }
     @media(max-width:640px) { .approach { grid-template-columns:1fr; gap:2rem; } }
     .approach-text h2 { font-family:'DM Serif Display',serif; font-size:clamp(1.8rem,4vw,2.8rem); font-weight:400; letter-spacing:-.02em; line-height:1.15; margin-bottom:1.5rem; }
     .approach-text h2 em { font-style:italic; color:var(--accent); }
-    .approach-text p { font-size:.82rem; line-height:1.8; color:#777; margin-bottom:1rem; }
+    .approach-text p { font-size:.82rem; line-height:1.8; color:#999; margin-bottom:1rem; }
     .kpi-list { display:flex; flex-direction:column; gap:1px; background:var(--border); border:1px solid var(--border); }
-    .kpi-item { background:var(--bg); padding:1.2rem 1.5rem; display:flex; align-items:center; gap:1rem; font-size:.75rem; color:#666; transition:background .2s,color .2s; }
-    .kpi-item:hover { background:#111; color:var(--fg); }
+    .kpi-item { background:var(--bg); padding:1.2rem 1.5rem; display:flex; align-items:center; gap:1rem; font-size:.75rem; color:#888; transition:background .2s,color .2s; }
+    .kpi-item:hover { background:#1e1e1e; color:var(--fg); }
     .kpi-dot { width:6px; height:6px; background:var(--accent); flex-shrink:0; }
 
     /* ── STACK ── */
@@ -159,7 +198,7 @@
     .cta-section { position:relative; z-index:1; border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:5rem 2rem; text-align:center; }
     .cta-section h2 { font-family:'DM Serif Display',serif; font-size:clamp(2rem,5vw,3.8rem); font-weight:400; letter-spacing:-.03em; line-height:1.1; margin-bottom:1.5rem; }
     .cta-section h2 em { font-style:italic; color:var(--accent); }
-    .cta-section p { font-size:.85rem; color:#777; line-height:1.8; max-width:480px; margin:0 auto 3rem; }
+    .cta-section p { font-size:.85rem; color:#999; line-height:1.8; max-width:480px; margin:0 auto 3rem; }
     .cta-btn { display:inline-block; background:var(--accent); color:#0a0a0a; font-family:'DM Mono',monospace; font-size:.75rem; font-weight:500; letter-spacing:.1em; text-transform:uppercase; text-decoration:none; padding:1rem 2.5rem; transition:opacity .2s; }
     .cta-btn:hover { opacity:.8; }
 
@@ -224,8 +263,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </div>
 
+  <div class="nav-wrap" id="nav-wrap">
   <nav>
-    <div class="logo">Flow<span>stack</span></div>
+    <div class="logo">Flow<span>stack</span><div class="logo-sub">Jan Veverka · Datová analytika</div></div>
     <div class="nav-links">
       <a href="https://www.linkedin.com/in/jan-veverka-39b24938" target="_blank" rel="noopener">LinkedIn</a>
       <a href="mailto:jan.veverka@flowstack.cz">jan.veverka@flowstack.cz</a>
@@ -235,6 +275,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
   </nav>
+  </div>
 
   <!-- HERO — čistě typografický -->
   <div class="hero">
@@ -254,31 +295,46 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span data-lang="en">Get in touch</span>
       <span data-lang="cs">Napište mi</span>
     </a>
-    <div class="hero-visual">
-      <svg viewBox="0 0 400 270" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- horizontal grid lines -->
-        <line x1="0" y1="60"  x2="400" y2="60"  stroke="#1a1a1a" stroke-width="1"/>
-        <line x1="0" y1="120" x2="400" y2="120" stroke="#1a1a1a" stroke-width="1"/>
-        <line x1="0" y1="180" x2="400" y2="180" stroke="#1a1a1a" stroke-width="1"/>
-        <line x1="0" y1="240" x2="400" y2="240" stroke="#1a1a1a" stroke-width="1"/>
-        <!-- slow / flat line -->
-        <path d="M 10,248 C 130,236 270,212 395,192" stroke="#1e1e1e" stroke-width="1.5"/>
-        <!-- medium growth line -->
-        <path d="M 10,244 L 60,232 L 120,216 L 180,194 L 240,166 L 300,134 L 360,104 L 395,88" stroke="#2d2d2d" stroke-width="1.5"/>
-        <!-- main accent line — strong upward trend -->
-        <path d="M 10,240 C 95,204 210,122 395,48" stroke="#c8f04a" stroke-width="2"/>
-        <!-- data points -->
-        <circle cx="10"  cy="240" r="3.5" stroke="#c8f04a" stroke-width="1.5" fill="#0a0a0a"/>
-        <circle cx="110" cy="188" r="3"   stroke="#c8f04a" stroke-width="1.5" fill="#0a0a0a"/>
-        <circle cx="215" cy="118" r="3"   stroke="#c8f04a" stroke-width="1.5" fill="#0a0a0a"/>
-        <circle cx="320" cy="68"  r="3"   stroke="#c8f04a" stroke-width="1.5" fill="#0a0a0a"/>
-        <circle cx="395" cy="48"  r="5"   fill="#c8f04a"/>
-      </svg>
+  </div>
+
+  <!-- COUNTERS -->
+  <div class="section reveal">
+    <div class="counters">
+      <div class="counter-item">
+        <div class="counter-val" data-target="7" data-suffix="+">0</div>
+        <div class="counter-label"><span data-lang="en">Years of experience</span><span data-lang="cs">Let zkušeností</span></div>
+      </div>
+      <div class="counter-item">
+        <div class="counter-val" data-target="100" data-suffix="+">0</div>
+        <div class="counter-label"><span data-lang="en">Running reports</span><span data-lang="cs">Běžících reportů</span></div>
+      </div>
+      <div class="counter-item">
+        <div class="counter-val" data-target="300" data-suffix="+">0</div>
+        <div class="counter-label"><span data-lang="en">Data connectors</span><span data-lang="cs">Datových konektorů</span></div>
+      </div>
+      <div class="counter-item">
+        <div class="counter-val" data-target="10" data-suffix="+">0</div>
+        <div class="counter-label"><span data-lang="en">sGTM integrations</span><span data-lang="cs">sGTM integrací</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLIENTS -->
+  <div class="section reveal">
+    <div class="section-label"><span data-lang="en">My Clients</span><span data-lang="cs">Moji klienti</span></div>
+    <div class="logos-strip">
+      <img src="https://www.sufan.cz/assets/front/images/Logo_web_1.svg" alt="Sufan" class="client-logo"/>
+      <img src="https://egjmi6onsmw.exactdn.com/wp-content/uploads/2020/11/logo_reknihy_rgb.svg" alt="Reknihy" class="client-logo"/>
+      <img src="https://cdn.myshoptet.com/usr/www.havlikovaapoteka.cz/user/logos/group_9337.svg" alt="Havlíkova apotéka" class="client-logo"/>
+      <img src="https://cdn.myshoptet.com/usr/716622.myshoptet.com/user/documents/upload/Ikonky/footer-logo.png" alt="" class="client-logo"/>
+      <img src="https://www.naturalprotein.cz/upload/images/logo/frame-470-1-.webp" alt="Natural Protein" class="client-logo"/>
+      <img src="https://www.thechillidoctor.cz/files/designer/05cc495256c19482f18ab39a9122bd5c.jpeg" alt="The Chilli Doctor" class="client-logo client-logo-opaque"/>
+      <img src="https://fotbalmania.com/wp-content/uploads/2024/10/WhatsApp_Image_2024-10-31_at_6.40.48_PM-removebg-preview.png" alt="Fotbalmania" class="client-logo"/>
     </div>
   </div>
 
   <!-- SERVICES -->
-  <div class="section reveal">
+  <div class="section tinted reveal">
     <div class="section-label"><span data-lang="en">Services</span><span data-lang="cs">Služby</span></div>
     <div class="services">
       <div class="service"><div class="service-num">01</div><h3 data-lang="en">Marketing Strategy & Business Insights</h3><h3 data-lang="cs">Marketingová strategie & business insights</h3><p data-lang="en">Analytical frameworks supporting decisions around performance, profitability, and growth. KPIs: ROAS, PNO, LTV, CAC, margins, YoY.</p><p data-lang="cs">Analytické rámce pro rozhodnutí kolem výkonu, ziskovosti a růstu. KPI: ROAS, PNO, LTV, CAC, marže, YoY.</p><svg class="service-icon" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><polyline points="3,23 9,15 16,18 24,7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="18,7 24,7 24,13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -287,6 +343,296 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="service"><div class="service-num">04</div><h3 data-lang="en">BI & Visualization</h3><h3 data-lang="cs">BI & vizualizace</h3><p data-lang="en">Clear dashboards in Google Google Data Studio and Power BI for marketers, management, and founders.</p><p data-lang="cs">Přehledné dashboardy v Google Google Data Studio a Power BI pro marketéry, management i majitele.</p><svg class="service-icon" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="17" width="5" height="8" stroke="currentColor" stroke-width="1.5"/><rect x="12" y="11" width="5" height="14" stroke="currentColor" stroke-width="1.5"/><rect x="21" y="7" width="5" height="18" stroke="currentColor" stroke-width="1.5"/><line x1="2" y1="25" x2="27" y2="25" stroke="currentColor" stroke-width="1"/></svg></div>
       <div class="service"><div class="service-num">05</div><h3 data-lang="en">Tracking Infrastructure</h3><h3 data-lang="cs">Tracking infrastruktura</h3><p data-lang="en">Server-side GTM, GA4, and first-party data pipelines. Accurate measurement despite privacy restrictions.</p><p data-lang="cs">Server-side GTM, GA4 a first-party data pipeline. Přesné měření navzdory omezením soukromí.</p><svg class="service-icon" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="14" cy="19" r="2.5" fill="currentColor"/><path d="M 9,15 Q 14,9 19,15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M 5,11 Q 14,3 23,11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity=".65"/><path d="M 1,7 Q 14,-3 27,7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity=".3"/></svg></div>
       <div class="service"><div class="service-num">06</div><h3 data-lang="en">SQL Data Integration</h3><h3 data-lang="cs">SQL datová integrace</h3><p data-lang="en">Integrating cost, performance, revenue, and customer data into unified datasets reflecting real business logic.</p><p data-lang="cs">Integrace nákladů, výkonu, tržeb a zákaznických dat do jednotných datasetů reflektujících reálnou business logiku.</p><svg class="service-icon" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="13" r="7" stroke="currentColor" stroke-width="1.5"/><circle cx="18" cy="13" r="7" stroke="currentColor" stroke-width="1.5"/></svg></div>
+    </div>
+  </div>
+
+  <!-- MOCKUPS -->
+  <div class="mockups-section reveal">
+    <div class="section-label"><span data-lang="en">Sample Dashboards</span><span data-lang="cs">Ukázky dashboardů</span></div>
+    <div class="mockups-track-wrap">
+      <div class="mockups-track" id="mockups-track">
+
+        <div class="mockup-card">
+          <svg viewBox="0 0 880 520" xmlns="http://www.w3.org/2000/svg">
+            <rect width="880" height="520" fill="#0a0a0a"/>
+            <rect width="880" height="44" fill="#111"/>
+            <text x="20" y="27" font-family="system-ui,sans-serif" font-size="11" fill="#f0ede6" letter-spacing=".03em">Výkonnostní přehled — duben 2024</text>
+            <rect x="668" y="12" width="188" height="20" rx="2" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+            <text x="676" y="26" font-family="system-ui,sans-serif" font-size="9" fill="#555">1. 4. – 30. 4. 2024  ▾</text>
+            <rect x="16" y="58" width="200" height="82" fill="#0f0f0f" stroke="#1e1e1e" stroke-width="1"/>
+            <text x="28" y="78" font-family="system-ui,sans-serif" font-size="8.5" fill="#555" letter-spacing=".1em">TRŽBY</text>
+            <text x="28" y="109" font-family="system-ui,sans-serif" font-size="21" fill="#f0ede6">2 480 000 Kč</text>
+            <text x="28" y="129" font-family="system-ui,sans-serif" font-size="9" fill="#c8f04a">↑ 12 % vs. minulý měsíc</text>
+            <rect x="230" y="58" width="190" height="82" fill="#0f0f0f" stroke="#1e1e1e" stroke-width="1"/>
+            <text x="242" y="78" font-family="system-ui,sans-serif" font-size="8.5" fill="#555" letter-spacing=".1em">ROAS</text>
+            <text x="242" y="109" font-family="system-ui,sans-serif" font-size="21" fill="#f0ede6">4,8×</text>
+            <text x="242" y="129" font-family="system-ui,sans-serif" font-size="9" fill="#c8f04a">↑ 5 % vs. minulý měsíc</text>
+            <rect x="434" y="58" width="190" height="82" fill="#0f0f0f" stroke="#1e1e1e" stroke-width="1"/>
+            <text x="446" y="78" font-family="system-ui,sans-serif" font-size="8.5" fill="#555" letter-spacing=".1em">OBJEDNÁVKY</text>
+            <text x="446" y="109" font-family="system-ui,sans-serif" font-size="21" fill="#f0ede6">1 842</text>
+            <text x="446" y="129" font-family="system-ui,sans-serif" font-size="9" fill="#c8f04a">↑ 8 % vs. minulý měsíc</text>
+            <rect x="638" y="58" width="226" height="82" fill="#0f0f0f" stroke="#1e1e1e" stroke-width="1"/>
+            <text x="650" y="78" font-family="system-ui,sans-serif" font-size="8.5" fill="#555" letter-spacing=".1em">CPA</text>
+            <text x="650" y="109" font-family="system-ui,sans-serif" font-size="21" fill="#f0ede6">187 Kč</text>
+            <text x="650" y="129" font-family="system-ui,sans-serif" font-size="9" fill="#c8f04a">↓ 3 % vs. minulý měsíc</text>
+            <rect x="16" y="156" width="494" height="224" fill="#0f0f0f" stroke="#1e1e1e" stroke-width="1"/>
+            <text x="28" y="175" font-family="system-ui,sans-serif" font-size="8.5" fill="#555" letter-spacing=".08em">TRŽBY V ČASE</text>
+            <line x1="62" y1="192" x2="502" y2="192" stroke="#181818" stroke-width="1"/>
+            <line x1="62" y1="220" x2="502" y2="220" stroke="#181818" stroke-width="1"/>
+            <line x1="62" y1="248" x2="502" y2="248" stroke="#181818" stroke-width="1"/>
+            <line x1="62" y1="276" x2="502" y2="276" stroke="#181818" stroke-width="1"/>
+            <line x1="62" y1="304" x2="502" y2="304" stroke="#181818" stroke-width="1"/>
+            <line x1="62" y1="332" x2="502" y2="332" stroke="#181818" stroke-width="1"/>
+            <text x="28" y="196" font-family="system-ui,sans-serif" font-size="7.5" fill="#444">2,5M</text>
+            <text x="28" y="224" font-family="system-ui,sans-serif" font-size="7.5" fill="#444">2,0M</text>
+            <text x="28" y="252" font-family="system-ui,sans-serif" font-size="7.5" fill="#444">1,5M</text>
+            <text x="28" y="280" font-family="system-ui,sans-serif" font-size="7.5" fill="#444">1,0M</text>
+            <text x="28" y="308" font-family="system-ui,sans-serif" font-size="7.5" fill="#444">500K</text>
+            <text x="28" y="336" font-family="system-ui,sans-serif" font-size="7.5" fill="#444">0</text>
+            <path d="M 62,310 C 150,286 220,260 290,236 C 360,212 420,198 502,188" stroke="#c8f04a" stroke-width="1.5" fill="none"/>
+            <path d="M 62,310 C 150,286 220,260 290,236 C 360,212 420,198 502,188 L 502,332 L 62,332 Z" fill="#c8f04a" opacity=".07"/>
+            <circle cx="62"  cy="310" r="3" fill="#c8f04a"/>
+            <circle cx="190" cy="265" r="3" fill="#c8f04a"/>
+            <circle cx="316" cy="232" r="3" fill="#c8f04a"/>
+            <circle cx="440" cy="200" r="3" fill="#c8f04a"/>
+            <circle cx="502" cy="188" r="3.5" fill="#c8f04a"/>
+            <text x="62"  y="350" font-family="system-ui,sans-serif" font-size="8" fill="#444" text-anchor="middle">1.4</text>
+            <text x="190" y="350" font-family="system-ui,sans-serif" font-size="8" fill="#444" text-anchor="middle">8.4</text>
+            <text x="316" y="350" font-family="system-ui,sans-serif" font-size="8" fill="#444" text-anchor="middle">15.4</text>
+            <text x="440" y="350" font-family="system-ui,sans-serif" font-size="8" fill="#444" text-anchor="middle">22.4</text>
+            <text x="502" y="350" font-family="system-ui,sans-serif" font-size="8" fill="#444" text-anchor="middle">30.4</text>
+            <rect x="526" y="156" width="338" height="224" fill="#0f0f0f" stroke="#1e1e1e" stroke-width="1"/>
+            <text x="538" y="175" font-family="system-ui,sans-serif" font-size="8.5" fill="#555" letter-spacing=".08em">VÝKON KANÁLŮ</text>
+            <text x="538" y="204" font-family="system-ui,sans-serif" font-size="8" fill="#666">Google Search</text>
+            <rect x="638" y="192" width="172" height="14" fill="#c8f04a" opacity=".72"/>
+            <text x="813" y="204" font-family="system-ui,sans-serif" font-size="8" fill="#888"> 1,2M</text>
+            <text x="538" y="230" font-family="system-ui,sans-serif" font-size="8" fill="#666">Google Shopping</text>
+            <rect x="638" y="218" width="122" height="14" fill="#c8f04a" opacity=".52"/>
+            <text x="763" y="230" font-family="system-ui,sans-serif" font-size="8" fill="#888"> 860K</text>
+            <text x="538" y="256" font-family="system-ui,sans-serif" font-size="8" fill="#666">Meta Ads</text>
+            <rect x="638" y="244" width="88" height="14" fill="#c8f04a" opacity=".38"/>
+            <text x="729" y="256" font-family="system-ui,sans-serif" font-size="8" fill="#888"> 620K</text>
+            <text x="538" y="282" font-family="system-ui,sans-serif" font-size="8" fill="#666">E-mail</text>
+            <rect x="638" y="270" width="52" height="14" fill="#c8f04a" opacity=".26"/>
+            <text x="693" y="282" font-family="system-ui,sans-serif" font-size="8" fill="#888"> 280K</text>
+            <text x="538" y="308" font-family="system-ui,sans-serif" font-size="8" fill="#666">Přímá návštěvnost</text>
+            <rect x="638" y="296" width="34" height="14" fill="#c8f04a" opacity=".18"/>
+            <text x="675" y="308" font-family="system-ui,sans-serif" font-size="8" fill="#888"> 180K</text>
+            <rect x="16" y="396" width="848" height="108" fill="#0f0f0f" stroke="#1e1e1e" stroke-width="1"/>
+            <text x="28" y="415" font-family="system-ui,sans-serif" font-size="8.5" fill="#555" letter-spacing=".08em">TOP KAMPANĚ</text>
+            <rect x="16" y="422" width="848" height="18" fill="#111"/>
+            <text x="28"  y="434" font-family="system-ui,sans-serif" font-size="8" fill="#444">Kampaň</text>
+            <text x="430" y="434" font-family="system-ui,sans-serif" font-size="8" fill="#444">Investice</text>
+            <text x="540" y="434" font-family="system-ui,sans-serif" font-size="8" fill="#444">Tržby</text>
+            <text x="660" y="434" font-family="system-ui,sans-serif" font-size="8" fill="#444">ROAS</text>
+            <text x="760" y="434" font-family="system-ui,sans-serif" font-size="8" fill="#444">Objednávky</text>
+            <line x1="16" y1="440" x2="864" y2="440" stroke="#181818" stroke-width="1"/>
+            <text x="28"  y="455" font-family="system-ui,sans-serif" font-size="8.5" fill="#888">Brand — Google Search CZ</text>
+            <text x="430" y="455" font-family="system-ui,sans-serif" font-size="8.5" fill="#888">48 200 Kč</text>
+            <text x="540" y="455" font-family="system-ui,sans-serif" font-size="8.5" fill="#888">382 000 Kč</text>
+            <text x="660" y="455" font-family="system-ui,sans-serif" font-size="8.5" fill="#c8f04a">7,9×</text>
+            <text x="760" y="455" font-family="system-ui,sans-serif" font-size="8.5" fill="#888">318</text>
+            <line x1="16" y1="462" x2="864" y2="462" stroke="#181818" stroke-width="1"/>
+            <text x="28"  y="477" font-family="system-ui,sans-serif" font-size="8.5" fill="#888">Shopping — Dynamic Feed</text>
+            <text x="430" y="477" font-family="system-ui,sans-serif" font-size="8.5" fill="#888">92 400 Kč</text>
+            <text x="540" y="477" font-family="system-ui,sans-serif" font-size="8.5" fill="#888">460 000 Kč</text>
+            <text x="660" y="477" font-family="system-ui,sans-serif" font-size="8.5" fill="#c8f04a">5,0×</text>
+            <text x="760" y="477" font-family="system-ui,sans-serif" font-size="8.5" fill="#888">542</text>
+            <line x1="16" y1="484" x2="864" y2="484" stroke="#181818" stroke-width="1"/>
+            <text x="28"  y="499" font-family="system-ui,sans-serif" font-size="8.5" fill="#888">Meta — Retargeting CZ</text>
+            <text x="430" y="499" font-family="system-ui,sans-serif" font-size="8.5" fill="#888">34 800 Kč</text>
+            <text x="540" y="499" font-family="system-ui,sans-serif" font-size="8.5" fill="#888">128 000 Kč</text>
+            <text x="660" y="499" font-family="system-ui,sans-serif" font-size="8.5" fill="#888">3,7×</text>
+            <text x="760" y="499" font-family="system-ui,sans-serif" font-size="8.5" fill="#888">214</text>
+          </svg>
+        </div>
+
+        <div class="mockup-card">
+          <svg viewBox="0 0 880 520" xmlns="http://www.w3.org/2000/svg">
+            <rect width="880" height="520" fill="#0a0a0a"/>
+            <rect width="880" height="44" fill="#111"/>
+            <text x="20" y="27" font-family="system-ui,sans-serif" font-size="11" fill="#f0ede6" letter-spacing=".03em">Atribuční přehled — Q1 2024</text>
+            <rect x="668" y="12" width="188" height="20" rx="2" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+            <text x="676" y="26" font-family="system-ui,sans-serif" font-size="9" fill="#555">1. 1. – 31. 3. 2024  ▾</text>
+            <rect x="16" y="58" width="410" height="280" fill="#0f0f0f" stroke="#1e1e1e" stroke-width="1"/>
+            <text x="28" y="78" font-family="system-ui,sans-serif" font-size="8.5" fill="#555" letter-spacing=".08em">ATRIBUCE DLE KANÁLU</text>
+            <circle cx="185" cy="192" r="65" fill="none" stroke="#c8f04a" stroke-width="28" stroke-dasharray="171.5 236.9" stroke-dashoffset="102.1"/>
+            <circle cx="185" cy="192" r="65" fill="none" stroke="#5c7c1a" stroke-width="28" stroke-dasharray="106.2 302.2" stroke-dashoffset="-69.4"/>
+            <circle cx="185" cy="192" r="65" fill="none" stroke="#2a4010" stroke-width="28" stroke-dasharray="81.7 326.7" stroke-dashoffset="-175.6"/>
+            <circle cx="185" cy="192" r="65" fill="none" stroke="#1a2808" stroke-width="28" stroke-dasharray="49.0 359.4" stroke-dashoffset="-257.3"/>
+            <circle cx="185" cy="192" r="48" fill="#0f0f0f"/>
+            <text x="185" y="187" font-family="system-ui,sans-serif" font-size="20" fill="#f0ede6" text-anchor="middle">42 %</text>
+            <text x="185" y="203" font-family="system-ui,sans-serif" font-size="8.5" fill="#888" text-anchor="middle">Google Search</text>
+            <rect x="292" y="162" width="10" height="10" fill="#c8f04a"/>
+            <text x="308" y="171" font-family="system-ui,sans-serif" font-size="9" fill="#888">Google Search</text>
+            <text x="392" y="171" font-family="system-ui,sans-serif" font-size="9" fill="#c8f04a">42 %</text>
+            <rect x="292" y="184" width="10" height="10" fill="#5c7c1a"/>
+            <text x="308" y="193" font-family="system-ui,sans-serif" font-size="9" fill="#888">Google Shopping</text>
+            <text x="392" y="193" font-family="system-ui,sans-serif" font-size="9" fill="#888">26 %</text>
+            <rect x="292" y="206" width="10" height="10" fill="#2a4010"/>
+            <text x="308" y="215" font-family="system-ui,sans-serif" font-size="9" fill="#888">Meta Ads</text>
+            <text x="392" y="215" font-family="system-ui,sans-serif" font-size="9" fill="#888">20 %</text>
+            <rect x="292" y="228" width="10" height="10" fill="#1a2808"/>
+            <text x="308" y="237" font-family="system-ui,sans-serif" font-size="9" fill="#888">Ostatní</text>
+            <text x="392" y="237" font-family="system-ui,sans-serif" font-size="9" fill="#888">12 %</text>
+            <rect x="442" y="58" width="422" height="280" fill="#0f0f0f" stroke="#1e1e1e" stroke-width="1"/>
+            <text x="454" y="78" font-family="system-ui,sans-serif" font-size="8.5" fill="#555" letter-spacing=".08em">ROAS DLE KANÁLU</text>
+            <line x1="606" y1="88" x2="606" y2="322" stroke="#181818" stroke-width="1"/>
+            <line x1="688" y1="88" x2="688" y2="322" stroke="#181818" stroke-width="1"/>
+            <line x1="770" y1="88" x2="770" y2="322" stroke="#181818" stroke-width="1"/>
+            <line x1="852" y1="88" x2="852" y2="322" stroke="#181818" stroke-width="1"/>
+            <text x="606" y="334" font-family="system-ui,sans-serif" font-size="7.5" fill="#444" text-anchor="middle">2×</text>
+            <text x="688" y="334" font-family="system-ui,sans-serif" font-size="7.5" fill="#444" text-anchor="middle">4×</text>
+            <text x="770" y="334" font-family="system-ui,sans-serif" font-size="7.5" fill="#444" text-anchor="middle">6×</text>
+            <text x="852" y="334" font-family="system-ui,sans-serif" font-size="7.5" fill="#444" text-anchor="middle">8×</text>
+            <text x="454" y="110" font-family="system-ui,sans-serif" font-size="8.5" fill="#666">Brand Search</text>
+            <rect x="524" y="97" width="309" height="16" fill="#c8f04a" opacity=".75"/>
+            <text x="836" y="110" font-family="system-ui,sans-serif" font-size="8" fill="#aaa"> 7,5×</text>
+            <text x="454" y="140" font-family="system-ui,sans-serif" font-size="8.5" fill="#666">E-mail</text>
+            <rect x="524" y="127" width="215" height="16" fill="#c8f04a" opacity=".55"/>
+            <text x="742" y="140" font-family="system-ui,sans-serif" font-size="8" fill="#888"> 5,2×</text>
+            <text x="454" y="170" font-family="system-ui,sans-serif" font-size="8.5" fill="#666">Google Shopping</text>
+            <rect x="524" y="157" width="198" height="16" fill="#c8f04a" opacity=".46"/>
+            <text x="725" y="170" font-family="system-ui,sans-serif" font-size="8" fill="#888"> 4,8×</text>
+            <text x="454" y="200" font-family="system-ui,sans-serif" font-size="8.5" fill="#666">Google Generic</text>
+            <rect x="524" y="187" width="169" height="16" fill="#c8f04a" opacity=".38"/>
+            <text x="696" y="200" font-family="system-ui,sans-serif" font-size="8" fill="#888"> 4,1×</text>
+            <text x="454" y="230" font-family="system-ui,sans-serif" font-size="8.5" fill="#666">Meta Ads</text>
+            <rect x="524" y="217" width="153" height="16" fill="#c8f04a" opacity=".30"/>
+            <text x="680" y="230" font-family="system-ui,sans-serif" font-size="8" fill="#888"> 3,7×</text>
+            <rect x="16" y="354" width="848" height="150" fill="#0f0f0f" stroke="#1e1e1e" stroke-width="1"/>
+            <text x="28" y="373" font-family="system-ui,sans-serif" font-size="8.5" fill="#555" letter-spacing=".08em">INVESTICE VS. TRŽBY — MĚSÍČNĚ</text>
+            <line x1="80" y1="390" x2="852" y2="390" stroke="#181818" stroke-width="1"/>
+            <line x1="80" y1="418" x2="852" y2="418" stroke="#181818" stroke-width="1"/>
+            <line x1="80" y1="446" x2="852" y2="446" stroke="#181818" stroke-width="1"/>
+            <line x1="80" y1="474" x2="852" y2="474" stroke="#181818" stroke-width="1"/>
+            <text x="24" y="394" font-family="system-ui,sans-serif" font-size="7.5" fill="#444">3M</text>
+            <text x="24" y="422" font-family="system-ui,sans-serif" font-size="7.5" fill="#444">2M</text>
+            <text x="24" y="450" font-family="system-ui,sans-serif" font-size="7.5" fill="#444">1M</text>
+            <text x="24" y="478" font-family="system-ui,sans-serif" font-size="7.5" fill="#444">0</text>
+            <rect x="110" y="462" width="22" height="12" fill="#2d4d12" opacity=".9"/>
+            <rect x="136" y="424" width="22" height="50" fill="#c8f04a" opacity=".55"/>
+            <text x="134" y="490" font-family="system-ui,sans-serif" font-size="8" fill="#555" text-anchor="middle">leden</text>
+            <rect x="340" y="461" width="22" height="13" fill="#2d4d12" opacity=".9"/>
+            <rect x="366" y="418" width="22" height="56" fill="#c8f04a" opacity=".55"/>
+            <text x="364" y="490" font-family="system-ui,sans-serif" font-size="8" fill="#555" text-anchor="middle">únor</text>
+            <rect x="570" y="460" width="22" height="14" fill="#2d4d12" opacity=".9"/>
+            <rect x="596" y="406" width="22" height="68" fill="#c8f04a" opacity=".55"/>
+            <text x="594" y="490" font-family="system-ui,sans-serif" font-size="8" fill="#555" text-anchor="middle">březen</text>
+            <rect x="720" y="382" width="10" height="10" fill="#2d4d12" opacity=".9"/>
+            <text x="734" y="391" font-family="system-ui,sans-serif" font-size="8" fill="#888">Investice</text>
+            <rect x="800" y="382" width="10" height="10" fill="#c8f04a" opacity=".55"/>
+            <text x="814" y="391" font-family="system-ui,sans-serif" font-size="8" fill="#888">Tržby</text>
+          </svg>
+        </div>
+
+        <div class="mockup-card">
+          <svg viewBox="0 0 880 520" xmlns="http://www.w3.org/2000/svg">
+            <rect width="880" height="520" fill="#0a0a0a"/>
+            <rect width="880" height="44" fill="#111"/>
+            <text x="20" y="27" font-family="system-ui,sans-serif" font-size="11" fill="#f0ede6" letter-spacing=".03em">E-commerce přehled — 2024 vs. 2023</text>
+            <rect x="668" y="12" width="188" height="20" rx="2" fill="#1a1a1a" stroke="#2a2a2a" stroke-width="1"/>
+            <text x="676" y="26" font-family="system-ui,sans-serif" font-size="9" fill="#555">leden – prosinec  ▾</text>
+            <rect x="16" y="58" width="276" height="82" fill="#0f0f0f" stroke="#1e1e1e" stroke-width="1"/>
+            <text x="28" y="78" font-family="system-ui,sans-serif" font-size="8.5" fill="#555" letter-spacing=".1em">CELKOVÉ TRŽBY</text>
+            <text x="28" y="109" font-family="system-ui,sans-serif" font-size="21" fill="#f0ede6">28 640 000 Kč</text>
+            <text x="28" y="129" font-family="system-ui,sans-serif" font-size="9" fill="#c8f04a">↑ 22 % vs. 2023</text>
+            <rect x="306" y="58" width="264" height="82" fill="#0f0f0f" stroke="#1e1e1e" stroke-width="1"/>
+            <text x="318" y="78" font-family="system-ui,sans-serif" font-size="8.5" fill="#555" letter-spacing=".1em">PRŮMĚRNÝ AOV</text>
+            <text x="318" y="109" font-family="system-ui,sans-serif" font-size="21" fill="#f0ede6">1 480 Kč</text>
+            <text x="318" y="129" font-family="system-ui,sans-serif" font-size="9" fill="#c8f04a">↑ 8 % vs. 2023</text>
+            <rect x="584" y="58" width="280" height="82" fill="#0f0f0f" stroke="#1e1e1e" stroke-width="1"/>
+            <text x="596" y="78" font-family="system-ui,sans-serif" font-size="8.5" fill="#555" letter-spacing=".1em">KONVERZNÍ POMĚR</text>
+            <text x="596" y="109" font-family="system-ui,sans-serif" font-size="21" fill="#f0ede6">3,4 %</text>
+            <text x="596" y="129" font-family="system-ui,sans-serif" font-size="9" fill="#c8f04a">↑ 0,6 p.b. vs. 2023</text>
+            <rect x="16" y="156" width="540" height="220" fill="#0f0f0f" stroke="#1e1e1e" stroke-width="1"/>
+            <text x="28" y="176" font-family="system-ui,sans-serif" font-size="8.5" fill="#555" letter-spacing=".08em">TRŽBY ROK PO ROCE</text>
+            <line x1="420" y1="169" x2="440" y2="169" stroke="#c8f04a" stroke-width="1.5"/>
+            <circle cx="430" cy="169" r="2.5" fill="#c8f04a"/>
+            <text x="444" y="173" font-family="system-ui,sans-serif" font-size="8" fill="#888">2024</text>
+            <line x1="492" y1="169" x2="512" y2="169" stroke="#333" stroke-width="1.5" stroke-dasharray="4 2"/>
+            <text x="516" y="173" font-family="system-ui,sans-serif" font-size="8" fill="#555">2023</text>
+            <line x1="58" y1="194" x2="548" y2="194" stroke="#181818" stroke-width="1"/>
+            <line x1="58" y1="222" x2="548" y2="222" stroke="#181818" stroke-width="1"/>
+            <line x1="58" y1="250" x2="548" y2="250" stroke="#181818" stroke-width="1"/>
+            <line x1="58" y1="278" x2="548" y2="278" stroke="#181818" stroke-width="1"/>
+            <line x1="58" y1="306" x2="548" y2="306" stroke="#181818" stroke-width="1"/>
+            <line x1="58" y1="334" x2="548" y2="334" stroke="#181818" stroke-width="1"/>
+            <text x="24" y="198" font-family="system-ui,sans-serif" font-size="7.5" fill="#444">3,5M</text>
+            <text x="24" y="226" font-family="system-ui,sans-serif" font-size="7.5" fill="#444">2,5M</text>
+            <text x="24" y="254" font-family="system-ui,sans-serif" font-size="7.5" fill="#444">2,0M</text>
+            <text x="24" y="282" font-family="system-ui,sans-serif" font-size="7.5" fill="#444">1,5M</text>
+            <text x="24" y="310" font-family="system-ui,sans-serif" font-size="7.5" fill="#444">1,0M</text>
+            <text x="24" y="338" font-family="system-ui,sans-serif" font-size="7.5" fill="#444">0</text>
+            <path d="M 58,316 L 98,314 L 138,308 L 178,296 L 218,282 L 258,270 L 298,258 L 338,246 L 378,238 L 418,230 L 458,226 L 498,222 L 538,220" stroke="#333" stroke-width="1.5" fill="none" stroke-dasharray="4 2"/>
+            <path d="M 58,310 L 98,304 L 138,290 L 178,268 L 218,244 L 258,220 L 298,200 L 338,188 L 378,196 L 418,202 L 458,194 L 498,196 L 538,194" stroke="#c8f04a" stroke-width="1.5" fill="none"/>
+            <path d="M 58,310 L 98,304 L 138,290 L 178,268 L 218,244 L 258,220 L 298,200 L 338,188 L 378,196 L 418,202 L 458,194 L 498,196 L 538,194 L 538,334 L 58,334 Z" fill="#c8f04a" opacity=".06"/>
+            <text x="58"  y="352" font-family="system-ui,sans-serif" font-size="7.5" fill="#444" text-anchor="middle">led</text>
+            <text x="138" y="352" font-family="system-ui,sans-serif" font-size="7.5" fill="#444" text-anchor="middle">bře</text>
+            <text x="218" y="352" font-family="system-ui,sans-serif" font-size="7.5" fill="#444" text-anchor="middle">kvě</text>
+            <text x="298" y="352" font-family="system-ui,sans-serif" font-size="7.5" fill="#444" text-anchor="middle">čvc</text>
+            <text x="378" y="352" font-family="system-ui,sans-serif" font-size="7.5" fill="#444" text-anchor="middle">zář</text>
+            <text x="458" y="352" font-family="system-ui,sans-serif" font-size="7.5" fill="#444" text-anchor="middle">lis</text>
+            <text x="538" y="352" font-family="system-ui,sans-serif" font-size="7.5" fill="#444" text-anchor="middle">pro</text>
+            <rect x="572" y="156" width="292" height="220" fill="#0f0f0f" stroke="#1e1e1e" stroke-width="1"/>
+            <text x="584" y="176" font-family="system-ui,sans-serif" font-size="8.5" fill="#555" letter-spacing=".08em">TRŽBY DLE KATEGORIE</text>
+            <line x1="584" y1="194" x2="848" y2="194" stroke="#181818" stroke-width="1"/>
+            <line x1="584" y1="229" x2="848" y2="229" stroke="#181818" stroke-width="1"/>
+            <line x1="584" y1="264" x2="848" y2="264" stroke="#181818" stroke-width="1"/>
+            <line x1="584" y1="299" x2="848" y2="299" stroke="#181818" stroke-width="1"/>
+            <text x="590" y="198" font-family="system-ui,sans-serif" font-size="7.5" fill="#444">8M</text>
+            <text x="590" y="233" font-family="system-ui,sans-serif" font-size="7.5" fill="#444">6M</text>
+            <text x="590" y="268" font-family="system-ui,sans-serif" font-size="7.5" fill="#444">4M</text>
+            <text x="590" y="303" font-family="system-ui,sans-serif" font-size="7.5" fill="#444">2M</text>
+            <rect x="604" y="194" width="30" height="140" fill="#c8f04a" opacity=".65"/>
+            <text x="619" y="349" font-family="system-ui,sans-serif" font-size="7.5" fill="#555" text-anchor="middle">Obl.</text>
+            <rect x="654" y="238" width="30" height="96" fill="#c8f04a" opacity=".48"/>
+            <text x="669" y="349" font-family="system-ui,sans-serif" font-size="7.5" fill="#555" text-anchor="middle">Obuv</text>
+            <rect x="704" y="264" width="30" height="70" fill="#c8f04a" opacity=".36"/>
+            <text x="719" y="349" font-family="system-ui,sans-serif" font-size="7.5" fill="#555" text-anchor="middle">Dopl.</text>
+            <rect x="754" y="282" width="30" height="52" fill="#c8f04a" opacity=".26"/>
+            <text x="769" y="349" font-family="system-ui,sans-serif" font-size="7.5" fill="#555" text-anchor="middle">Sport</text>
+            <rect x="804" y="299" width="30" height="35" fill="#c8f04a" opacity=".18"/>
+            <text x="819" y="349" font-family="system-ui,sans-serif" font-size="7.5" fill="#555" text-anchor="middle">Ost.</text>
+            <rect x="16" y="392" width="848" height="112" fill="#0f0f0f" stroke="#1e1e1e" stroke-width="1"/>
+            <text x="28" y="411" font-family="system-ui,sans-serif" font-size="8.5" fill="#555" letter-spacing=".08em">ZÁKAZNICKÉ METRIKY</text>
+            <rect x="16" y="418" width="848" height="18" fill="#111"/>
+            <text x="28"  y="430" font-family="system-ui,sans-serif" font-size="8" fill="#444">Segment</text>
+            <text x="220" y="430" font-family="system-ui,sans-serif" font-size="8" fill="#444">Zákazníků</text>
+            <text x="340" y="430" font-family="system-ui,sans-serif" font-size="8" fill="#444">LTV (12M)</text>
+            <text x="470" y="430" font-family="system-ui,sans-serif" font-size="8" fill="#444">CAC</text>
+            <text x="570" y="430" font-family="system-ui,sans-serif" font-size="8" fill="#444">LTV:CAC</text>
+            <text x="680" y="430" font-family="system-ui,sans-serif" font-size="8" fill="#444">Retence</text>
+            <text x="780" y="430" font-family="system-ui,sans-serif" font-size="8" fill="#444">AOV</text>
+            <line x1="16" y1="436" x2="864" y2="436" stroke="#181818" stroke-width="1"/>
+            <text x="28"  y="452" font-family="system-ui,sans-serif" font-size="8.5" fill="#888">Nový zákazník — Google</text>
+            <text x="220" y="452" font-family="system-ui,sans-serif" font-size="8.5" fill="#888">4 218</text>
+            <text x="340" y="452" font-family="system-ui,sans-serif" font-size="8.5" fill="#888">6 480 Kč</text>
+            <text x="470" y="452" font-family="system-ui,sans-serif" font-size="8.5" fill="#888">820 Kč</text>
+            <text x="570" y="452" font-family="system-ui,sans-serif" font-size="8.5" fill="#c8f04a">7,9×</text>
+            <text x="680" y="452" font-family="system-ui,sans-serif" font-size="8.5" fill="#888">38 %</text>
+            <text x="780" y="452" font-family="system-ui,sans-serif" font-size="8.5" fill="#888">1 540 Kč</text>
+            <line x1="16" y1="459" x2="864" y2="459" stroke="#181818" stroke-width="1"/>
+            <text x="28"  y="475" font-family="system-ui,sans-serif" font-size="8.5" fill="#888">Opakující se zákazník</text>
+            <text x="220" y="475" font-family="system-ui,sans-serif" font-size="8.5" fill="#888">2 846</text>
+            <text x="340" y="475" font-family="system-ui,sans-serif" font-size="8.5" fill="#888">12 200 Kč</text>
+            <text x="470" y="475" font-family="system-ui,sans-serif" font-size="8.5" fill="#888">340 Kč</text>
+            <text x="570" y="475" font-family="system-ui,sans-serif" font-size="8.5" fill="#c8f04a">35,9×</text>
+            <text x="680" y="475" font-family="system-ui,sans-serif" font-size="8.5" fill="#888">74 %</text>
+            <text x="780" y="475" font-family="system-ui,sans-serif" font-size="8.5" fill="#888">1 890 Kč</text>
+            <line x1="16" y1="482" x2="864" y2="482" stroke="#181818" stroke-width="1"/>
+            <text x="28"  y="498" font-family="system-ui,sans-serif" font-size="8.5" fill="#888">VIP zákazník (top 10 %)</text>
+            <text x="220" y="498" font-family="system-ui,sans-serif" font-size="8.5" fill="#888">718</text>
+            <text x="340" y="498" font-family="system-ui,sans-serif" font-size="8.5" fill="#888">34 800 Kč</text>
+            <text x="470" y="498" font-family="system-ui,sans-serif" font-size="8.5" fill="#888">480 Kč</text>
+            <text x="570" y="498" font-family="system-ui,sans-serif" font-size="8.5" fill="#c8f04a">72,5×</text>
+            <text x="680" y="498" font-family="system-ui,sans-serif" font-size="8.5" fill="#888">91 %</text>
+            <text x="780" y="498" font-family="system-ui,sans-serif" font-size="8.5" fill="#888">4 240 Kč</text>
+          </svg>
+        </div>
+
+      </div>
+      <div class="mockups-fade"></div>
     </div>
   </div>
 
@@ -314,17 +660,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 
-  <!-- TECH STACK -->
-  <div class="section reveal">
-    <div class="section-label">Tech stack</div>
-    <div class="accent-line"></div>
-    <div class="stack-list">
-      <div class="stack-item">Python</div><div class="stack-item">Google BigQuery</div><div class="stack-item">Dataform</div><div class="stack-item">SQL</div><div class="stack-item">Google Data Studio</div><div class="stack-item">Power BI</div><div class="stack-item">GA4</div><div class="stack-item">Google Ads</div><div class="stack-item">GTM / sGTM</div><div class="stack-item">Meta Ads API</div><div class="stack-item">TikTok Ads API</div><div class="stack-item">Google Cloud Platform</div><div class="stack-item">Cloud Run</div>
-    </div>
-  </div>
-
   <!-- ABOUT -->
-  <div class="section reveal">
+  <div class="section tinted reveal">
     <div class="section-label"><span data-lang="en">About</span><span data-lang="cs">O mně</span></div>
     <div class="about">
       <div class="about-photo">
@@ -336,6 +673,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p data-lang="en">I'm Jan, a marketing strategist and data engineer based in Zlín. For the past few years I've been helping e-commerce brands make sense of their data — building the infrastructure that connects ad spend to real business outcomes. I work at the intersection of marketing thinking and engineering, which means I care as much about the strategy as about the pipeline that makes it measurable.</p>
         <p data-lang="cs">Jsem Jan Veverka, marketingový stratég a datový inženýr původem z Plzně, dnes působím ve Zlíně. Posledních několik let pomáhám e-commerce značkám zorientovat se v datech — stavím infrastrukturu která propojuje reklamní výdaje s reálnými business výsledky. Pohybuji se na pomezí marketingu a technologií, takže mě zajímá stejně strategie jako pipeline která ji měří.</p>
       </div>
+    </div>
+    <div class="stack-list" style="margin-top:2.5rem;">
+      <div class="stack-item">Python</div><div class="stack-item">JavaScript</div><div class="stack-item">Google BigQuery</div><div class="stack-item">Google Firestore</div><div class="stack-item">Dataform</div><div class="stack-item">SQL</div><div class="stack-item">Google Data Studio</div><div class="stack-item">GA4</div><div class="stack-item">Google Ads</div><div class="stack-item">GTM / sGTM</div><div class="stack-item">Google Cloud Platform</div><div class="stack-item">Cloud Run</div>
     </div>
   </div>
 
@@ -379,11 +719,44 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
   </script>
   <script>
+    // Section dividers
+    document.querySelectorAll('.section, .mockups-section, .cta-section').forEach((el, i) => {
+      if (i === 0) return;
+      const hr = document.createElement('hr');
+      hr.className = 'section-divider';
+      el.parentNode.insertBefore(hr, el);
+    });
+
+    // Sticky nav
+    const navWrap = document.getElementById('nav-wrap');
+    window.addEventListener('scroll', () => navWrap.classList.toggle('scrolled', window.scrollY > 10), { passive: true });
+
     // Scroll reveal
     const observer = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Counters
+    const counterObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target;
+        const target = +el.dataset.target;
+        const suffix = el.dataset.suffix || '';
+        let current = 0;
+        const steps = 60;
+        const inc = target / steps;
+        const timer = setInterval(() => {
+          current = Math.min(current + inc, target);
+          el.textContent = Math.floor(current) + suffix;
+          if (current >= target) clearInterval(timer);
+        }, 18);
+        counterObs.unobserve(el);
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.counter-val[data-target]').forEach(el => counterObs.observe(el));
+
 
     function setLang(lang) {
       document.documentElement.lang = lang === 'cs' ? 'cs' : 'en';
