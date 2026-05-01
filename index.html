@@ -46,8 +46,10 @@
     body::before { content:''; position:fixed; inset:0; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events:none; z-index:999; opacity:.4; }
     body::after { content:''; position:fixed; inset:0; background-image:linear-gradient(#1e1e1e 1px,transparent 1px),linear-gradient(90deg,#1e1e1e 1px,transparent 1px); background-size:60px 60px; pointer-events:none; z-index:0; }
 
-    .nav-wrap { position:sticky; top:0; z-index:100; background:rgba(10,10,10,.92); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border-bottom:1px solid transparent; transition:border-color .3s; padding-top:env(safe-area-inset-top); }
+    .nav-wrap { position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(10,10,10,.96); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border-bottom:1px solid transparent; transition:border-color .3s; padding-top:env(safe-area-inset-top); }
     .nav-wrap.scrolled { border-bottom-color:var(--border); }
+    .nav-spacer { height:calc(68px + env(safe-area-inset-top, 0px)); }
+    @media(max-width:600px) { .nav-spacer { height:calc(58px + env(safe-area-inset-top, 0px)); } }
     nav { position:relative; z-index:10; display:flex; justify-content:space-between; align-items:center; padding:1.4rem 2rem; max-width:1100px; margin:0 auto; }
     .logo { font-family:'DM Serif Display',serif; font-size:1.4rem; color:var(--fg); letter-spacing:-.02em; line-height:1; }
     .logo span { color:var(--accent); }
@@ -284,6 +286,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </nav>
   </div>
+  <div class="nav-spacer"></div>
 
   <!-- HERO — čistě typografický -->
   <div class="hero">
