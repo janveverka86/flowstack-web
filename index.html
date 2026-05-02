@@ -57,6 +57,7 @@
     .nav-links { display:flex; align-items:center; gap:2rem; }
     nav a { color:var(--muted); text-decoration:none; font-size:.75rem; letter-spacing:.12em; text-transform:uppercase; transition:color .2s; }
     nav a:hover { color:var(--accent); }
+    .nav-sep { width:1px; height:14px; background:var(--border); align-self:center; }
     .lang-switcher { display:flex; gap:.4rem; margin-left:1rem; padding-left:1rem; border-left:1px solid var(--border); }
     .lang-btn { background:none; border:1px solid transparent; color:var(--muted); font-family:'DM Mono',monospace; font-size:.7rem; letter-spacing:.12em; text-transform:uppercase; cursor:pointer; padding:.25rem .5rem; transition:color .2s,border-color .2s; }
     .lang-btn:hover { color:var(--accent); }
@@ -75,6 +76,7 @@
       .nav-links.open { display:flex; }
       .nav-links a { padding:.9rem 0; border-bottom:1px solid var(--border); width:100%; font-size:.8rem; }
       .nav-links > a:last-of-type { border-bottom:none; }
+      .nav-sep { display:none; }
       .lang-switcher { margin:1rem 0 1.2rem; padding:.8rem 0 0; border-top:1px solid var(--border); border-left:none; padding-left:0; margin-left:0; }
     }
 
@@ -298,11 +300,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <nav>
     <div class="logo">Flow<span>stack</span><div class="logo-sub">Jan Veverka · Datová analytika</div></div>
     <div class="nav-links" id="nav-links">
-      <a href="#sluzby"><span data-lang="cs">Služby</span><span data-lang="en">Services</span></a>
       <a href="#reference"><span data-lang="cs">Reference</span><span data-lang="en">Clients</span></a>
-      <a href="/blog/">Blog</a>
+      <a href="#sluzby"><span data-lang="cs">Služby</span><span data-lang="en">Services</span></a>
       <a href="#o-mne"><span data-lang="cs">O mně</span><span data-lang="en">About</span></a>
       <a href="#kontakt"><span data-lang="cs">Kontakt</span><span data-lang="en">Contact</span></a>
+      <span class="nav-sep"></span>
+      <a href="/blog/">Blog</a>
       <div class="lang-switcher">
         <button class="lang-btn" onclick="setLang('en')">EN</button>
         <button class="lang-btn active" onclick="setLang('cs')">CZ</button>
