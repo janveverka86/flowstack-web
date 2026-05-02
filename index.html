@@ -144,7 +144,7 @@
     /* ── CLIENTS ── */
     .logos-strip { display:flex; align-items:center; justify-content:space-evenly; gap:1rem; flex-wrap:nowrap; }
     .logos-strip a { display:flex; align-items:center; justify-content:center; flex:1; text-decoration:none; }
-    @media(max-width:640px) { .logos-strip { gap:.5rem; } .client-logo { height:24px; } }
+    @media(max-width:640px) { .logos-strip { flex-wrap:wrap; justify-content:center; gap:1.5rem 2rem; } .logos-strip a { flex:0 0 calc(33% - 2rem); } .client-logo { height:26px; } }
     .client-logo { height:34px; max-width:160px; object-fit:contain; filter:brightness(0) invert(1) opacity(.4); transition:filter .3s; }
     .client-logo:hover { filter:brightness(0) invert(1) opacity(.85); }
     .client-logo-opaque { filter:invert(1) grayscale(1) opacity(.5); }
