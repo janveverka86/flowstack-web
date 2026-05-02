@@ -61,12 +61,21 @@
     .lang-btn { background:none; border:1px solid transparent; color:var(--muted); font-family:'DM Mono',monospace; font-size:.7rem; letter-spacing:.12em; text-transform:uppercase; cursor:pointer; padding:.25rem .5rem; transition:color .2s,border-color .2s; }
     .lang-btn:hover { color:var(--accent); }
     .lang-btn.active { color:var(--accent); border-color:var(--accent); }
-    @media(max-width:600px) {
+    .hamburger { display:none; flex-direction:column; justify-content:center; gap:5px; background:none; border:none; cursor:pointer; padding:4px; flex-shrink:0; }
+    .hamburger span { display:block; width:20px; height:1.5px; background:var(--fg); transition:transform .25s, opacity .25s; }
+    .hamburger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity:0; }
+    .hamburger.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
+    @media(max-width:700px) {
       nav { padding:1rem 1.2rem; }
       .logo { font-size:1.1rem; }
       .logo-sub { display:none; }
-      .nav-links { gap:1rem; }
-      nav a[href^="mailto"] { display:none; }
+      .hamburger { display:flex; }
+      .nav-links { display:none; flex-direction:column; align-items:flex-start; gap:0; position:absolute; top:100%; left:0; right:0; background:rgba(10,10,10,.97); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); padding:0 1.5rem; border-bottom:1px solid var(--border); z-index:99; }
+      .nav-links.open { display:flex; }
+      .nav-links a { padding:.9rem 0; border-bottom:1px solid var(--border); width:100%; font-size:.8rem; }
+      .nav-links > a:last-of-type { border-bottom:none; }
+      .lang-switcher { margin:1rem 0 1.2rem; padding:.8rem 0 0; border-top:1px solid var(--border); border-left:none; padding-left:0; margin-left:0; }
     }
 
     /* ── HERO — čistě typografický ── */
@@ -288,15 +297,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="nav-wrap" id="nav-wrap">
   <nav>
     <div class="logo">Flow<span>stack</span><div class="logo-sub">Jan Veverka · Datová analytika</div></div>
-    <div class="nav-links">
+    <div class="nav-links" id="nav-links">
+      <a href="#sluzby"><span data-lang="cs">Služby</span><span data-lang="en">Services</span></a>
+      <a href="#reference"><span data-lang="cs">Reference</span><span data-lang="en">Clients</span></a>
       <a href="/blog/">Blog</a>
-      <a href="https://www.linkedin.com/in/jan-veverka-39b24938" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="mailto:jan.veverka@flowstack.cz">Email</a>
+      <a href="#o-mne"><span data-lang="cs">O mně</span><span data-lang="en">About</span></a>
+      <a href="#kontakt"><span data-lang="cs">Kontakt</span><span data-lang="en">Contact</span></a>
       <div class="lang-switcher">
         <button class="lang-btn" onclick="setLang('en')">EN</button>
         <button class="lang-btn active" onclick="setLang('cs')">CZ</button>
       </div>
     </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
   </div>
   <div class="nav-spacer"></div>
@@ -344,7 +358,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <!-- CLIENTS -->
-  <div class="section reveal">
+  <div class="section reveal" id="reference">
     <div class="section-label"><span data-lang="en">My Clients</span><span data-lang="cs">Moji klienti</span></div>
     <div class="logos-strip">
       <a href="https://www.sufan.cz" target="_blank" rel="noopener noreferrer"><img src="https://www.sufan.cz/assets/front/images/Logo_web_1.svg" alt="Sufan" class="client-logo"/></a>
@@ -358,7 +372,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <!-- SERVICES -->
-  <div class="section tinted reveal">
+  <div class="section tinted reveal" id="sluzby">
     <div class="section-label"><span data-lang="en">Services</span><span data-lang="cs">Služby</span></div>
     <div class="services">
       <div class="service"><div class="service-num">01</div><h3 data-lang="en">Marketing Strategy & Business Insights</h3><h3 data-lang="cs">Marketingová strategie & business insights</h3><p data-lang="en">Analytical frameworks supporting decisions around performance, profitability, and growth. KPIs: ROAS, PNO, LTV, CAC, margins, YoY.</p><p data-lang="cs">Analytické rámce pro rozhodnutí kolem výkonu, ziskovosti a růstu. KPI: ROAS, PNO, LTV, CAC, marže, YoY.</p><svg class="service-icon" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><polyline points="3,23 9,15 16,18 24,7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="18,7 24,7 24,13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -685,7 +699,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <!-- ABOUT -->
-  <div class="section tinted reveal">
+  <div class="section tinted reveal" id="o-mne">
     <div class="section-label"><span data-lang="en">About</span><span data-lang="cs">O mně</span></div>
     <div class="about">
       <div class="about-photo">
@@ -704,7 +718,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <!-- BLOG PREVIEW -->
-  <div class="section reveal">
+  <div class="section reveal" id="blog">
     <div class="section-label"><span data-lang="cs">Blog</span><span data-lang="en">Blog</span></div>
     <div class="blog-preview">
       <a href="/blog/bigquery-ai-agenti.html" class="bp-card">
@@ -734,7 +748,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <!-- CTA -->
-  <div class="cta-section reveal">
+  <div class="cta-section reveal" id="kontakt">
     <h2>
       <span data-lang="cs">Pojďme se pobavit<br>o vašich <em>datech.</em></span>
       <span data-lang="en">Let's talk about<br>your <em>data.</em></span>
@@ -797,6 +811,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     // Sticky nav
     const navWrap = document.getElementById('nav-wrap');
     window.addEventListener('scroll', () => navWrap.classList.toggle('scrolled', window.scrollY > 10), { passive: true });
+
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+    hamburger.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      hamburger.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', open);
+    });
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
 
     // Scroll reveal
     const observer = new IntersectionObserver(entries => {
