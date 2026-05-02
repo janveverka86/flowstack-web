@@ -1,6 +1,6 @@
 :root { --bg:#0a0a0a; --fg:#f0ede6; --accent:#f0b429; --muted:#666; --border:#2c2c2c; }
 *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
-html { scroll-behavior:smooth; }
+html { scroll-behavior:smooth; background:#0a0a0a; }
 body { background:radial-gradient(ellipse at 50% 0%, #131110 0%, var(--bg) 65%); color:var(--fg); font-family:'DM Sans',sans-serif; font-weight:400; min-height:100vh; overflow-x:clip; }
 body::after { content:''; position:fixed; inset:0; background-image:radial-gradient(circle, #252525 1px, transparent 1px); background-size:28px 28px; pointer-events:none; z-index:0; opacity:.45; }
 
