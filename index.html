@@ -142,9 +142,9 @@
     .counter-label { font-family:'DM Mono',monospace; font-size:.78rem; letter-spacing:.1em; text-transform:uppercase; color:#bbb; margin-top:1.2rem; line-height:1.6; }
 
     /* ── CLIENTS ── */
-    .logos-strip { display:flex; align-items:center; justify-content:space-between; gap:2rem; flex-wrap:wrap; }
-    .logos-strip a { display:flex; align-items:center; text-decoration:none; }
-    @media(max-width:640px) { .logos-strip { justify-content:center; gap:1.5rem; } }
+    .logos-strip { display:flex; align-items:center; justify-content:space-evenly; gap:1rem; flex-wrap:nowrap; }
+    .logos-strip a { display:flex; align-items:center; justify-content:center; flex:1; text-decoration:none; }
+    @media(max-width:640px) { .logos-strip { gap:.5rem; } .client-logo { height:24px; } }
     .client-logo { height:34px; max-width:160px; object-fit:contain; filter:brightness(0) invert(1) opacity(.4); transition:filter .3s; }
     .client-logo:hover { filter:brightness(0) invert(1) opacity(.85); }
     .client-logo-opaque { filter:invert(1) grayscale(1) opacity(.5); }
@@ -405,7 +405,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="https://www.naturalprotein.cz" target="_blank" rel="noopener noreferrer"><img src="https://www.naturalprotein.cz/upload/images/logo/frame-470-1-.webp" alt="Natural Protein" class="client-logo"/></a>
       <a href="https://www.tamazpet.com" target="_blank" rel="noopener noreferrer"><img src="/img/tamazpet.svg" alt="Tamazpet" class="client-logo"/></a>
       <a href="https://www.fnshp.cz" target="_blank" rel="noopener noreferrer"><img src="https://fotbalmania.com/wp-content/uploads/2024/10/WhatsApp_Image_2024-10-31_at_6.40.48_PM-removebg-preview.png" alt="FNSHP" class="client-logo"/></a>
-      <a href="https://www.thechillidoctor.cz" target="_blank" rel="noopener noreferrer"><img src="/img/chillidoctor.svg" alt="The Chilli Doctor" class="client-logo" style="filter:brightness(0) invert(1) opacity(.45)"/></a>
+
     </div>
   </div>
 
