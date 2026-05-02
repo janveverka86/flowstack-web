@@ -218,7 +218,9 @@
 
     /* ── BLOG PREVIEW ── */
     .blog-preview { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border); margin-top:2rem; }
-    .bp-card { background:var(--bg); padding:2rem 1.8rem; text-decoration:none; display:block; transition:background .2s; }
+    .bp-card { background:var(--bg); padding:2rem 1.8rem; text-decoration:none; display:block; transition:background .2s; overflow:hidden; }
+    .bp-art { margin:-2rem -1.8rem 1.2rem; border-bottom:1px solid var(--border); overflow:hidden; }
+    .bp-art svg { display:block; width:100%; height:auto; }
     .bp-card:hover { background:#111; }
     .bp-tag { font-size:.62rem; letter-spacing:.18em; text-transform:uppercase; color:var(--accent); margin-bottom:.7rem; }
     .bp-title { font-family:'DM Serif Display',serif; font-size:1.1rem; font-weight:400; letter-spacing:-.02em; line-height:1.25; color:var(--fg); margin-bottom:.7rem; }
@@ -725,18 +727,72 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="section-label"><span data-lang="cs">Blog</span><span data-lang="en">Blog</span></div>
     <div class="blog-preview">
       <a href="/blog/bigquery-ai-agenti.html" class="bp-card">
+        <div class="bp-art"><svg viewBox="0 0 400 110" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:auto">
+  <rect width="400" height="110" fill="#0d0d0d"/>
+  <rect x="12" y="20" width="80" height="20" fill="none" stroke="#2c2c2c" stroke-width="1"/>
+  <text x="52" y="34" fill="#555" font-family="'DM Mono',monospace" font-size="7" text-anchor="middle">E-shop data</text>
+  <rect x="12" y="50" width="80" height="20" fill="none" stroke="#2c2c2c" stroke-width="1"/>
+  <text x="52" y="64" fill="#555" font-family="'DM Mono',monospace" font-size="7" text-anchor="middle">Ads / CRM</text>
+  <rect x="12" y="80" width="80" height="20" fill="none" stroke="#2c2c2c" stroke-width="1"/>
+  <text x="52" y="94" fill="#555" font-family="'DM Mono',monospace" font-size="7" text-anchor="middle">Analytics</text>
+  <line x1="92" y1="30" x2="145" y2="55" stroke="#2c2c2c" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="92" y1="60" x2="145" y2="55" stroke="#2c2c2c" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="92" y1="90" x2="145" y2="55" stroke="#2c2c2c" stroke-width="1" stroke-dasharray="3,3"/>
+  <rect x="150" y="33" width="100" height="44" fill="#111" stroke="#c8f04a" stroke-width="1.5"/>
+  <text x="200" y="53" fill="#c8f04a" font-family="'DM Mono',monospace" font-size="9" text-anchor="middle">BigQuery</text>
+  <text x="200" y="67" fill="#444" font-family="'DM Mono',monospace" font-size="7" text-anchor="middle">datový základ</text>
+  <line x1="250" y1="45" x2="300" y2="33" stroke="#c8f04a" stroke-width="1" stroke-dasharray="3,3" opacity="0.6"/>
+  <line x1="250" y1="55" x2="300" y2="55" stroke="#c8f04a" stroke-width="1" stroke-dasharray="3,3" opacity="0.6"/>
+  <line x1="250" y1="65" x2="300" y2="77" stroke="#c8f04a" stroke-width="1" stroke-dasharray="3,3" opacity="0.6"/>
+  <rect x="305" y="20" width="80" height="20" fill="none" stroke="#2c2c2c" stroke-width="1"/>
+  <text x="345" y="34" fill="#f0ede6" font-family="'DM Mono',monospace" font-size="7" text-anchor="middle">AI Agenti</text>
+  <rect x="305" y="45" width="80" height="20" fill="none" stroke="#2c2c2c" stroke-width="1"/>
+  <text x="345" y="59" fill="#f0ede6" font-family="'DM Mono',monospace" font-size="7" text-anchor="middle">Forecasting</text>
+  <rect x="305" y="70" width="80" height="20" fill="none" stroke="#2c2c2c" stroke-width="1"/>
+  <text x="345" y="84" fill="#f0ede6" font-family="'DM Mono',monospace" font-size="7" text-anchor="middle">Dashboardy</text>
+</svg></div>
         <div class="bp-tag">AI & Data Engineering</div>
         <div class="bp-title">BigQuery jako datový základ pro AI agenty</div>
         <div class="bp-excerpt">AI agenti potřebují čistá, strukturovaná data. Proč je BigQuery ideální základ a jaké use cases dávají e-shopům největší smysl.</div>
         <div class="bp-meta">Květen 2026 &nbsp;·&nbsp; 7 min</div>
       </a>
       <a href="/blog/sgtm-pro-eshop.html" class="bp-card">
+        <div class="bp-art"><svg viewBox="0 0 400 110" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:auto">
+  <rect width="400" height="110" fill="#0d0d0d"/>
+  <text x="20" y="28" fill="#444" font-family="'DM Mono',monospace" font-size="7" letter-spacing="1">ZACHYCENÁ DATA</text>
+  <text x="20" y="52" fill="#555" font-family="'DM Mono',monospace" font-size="8">Bez sGTM</text>
+  <rect x="105" y="40" width="250" height="18" fill="#1a1a1a" stroke="#2c2c2c" stroke-width="1"/>
+  <rect x="105" y="40" width="155" height="18" fill="#333"/>
+  <text x="182" y="53" fill="#777" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle">62 %</text>
+  <text x="315" y="53" fill="#333" font-family="'DM Mono',monospace" font-size="7" text-anchor="middle">ztraceno</text>
+  <text x="20" y="84" fill="#c8f04a" font-family="'DM Mono',monospace" font-size="8">Se sGTM</text>
+  <rect x="105" y="72" width="250" height="18" fill="#1a1a1a" stroke="#2c2c2c" stroke-width="1"/>
+  <rect x="105" y="72" width="237" height="18" fill="#c8f04a" opacity="0.75"/>
+  <text x="218" y="85" fill="#0a0a0a" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle" font-weight="500">95 %</text>
+</svg></div>
         <div class="bp-tag">Měření dat</div>
         <div class="bp-title">Server-side GTM pro e-shop: jak přestat ztrácet konverzní data</div>
         <div class="bp-excerpt">E-shopy přichází o 20–40 % konverzních dat kvůli blokátorům reklam a omezením cookies. sGTM to řeší přesunem měření na váš server.</div>
         <div class="bp-meta">Duben 2026 &nbsp;·&nbsp; 6 min</div>
       </a>
       <a href="/blog/1st-party-data-ecommerce.html" class="bp-card">
+        <div class="bp-art"><svg viewBox="0 0 400 110" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:auto">
+  <rect width="400" height="110" fill="#0d0d0d"/>
+  <text x="20" y="20" fill="#444" font-family="'DM Mono',monospace" font-size="7" letter-spacing="1">DOSAH MĚŘENÍ V ČASE</text>
+  <line x1="40" y1="25" x2="40" y2="88" stroke="#2c2c2c" stroke-width="1"/>
+  <line x1="40" y1="88" x2="385" y2="88" stroke="#2c2c2c" stroke-width="1"/>
+  <line x1="40" y1="28" x2="385" y2="28" stroke="#1e1e1e" stroke-width="1"/>
+  <line x1="40" y1="55" x2="385" y2="55" stroke="#1e1e1e" stroke-width="1"/>
+  <text x="35" y="31" fill="#333" font-family="'DM Mono',monospace" font-size="6" text-anchor="end">100%</text>
+  <text x="35" y="58" fill="#333" font-family="'DM Mono',monospace" font-size="6" text-anchor="end">70%</text>
+  <polyline points="40,28 90,36 160,48 240,60 320,68 385,72" fill="none" stroke="#444" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polyline points="160,31 240,30 320,29 385,28" fill="none" stroke="#c8f04a" stroke-width="2"/>
+  <text x="60" y="99" fill="#333" font-family="'DM Mono',monospace" font-size="6">2017</text>
+  <text x="230" y="99" fill="#333" font-family="'DM Mono',monospace" font-size="6">2021</text>
+  <text x="360" y="99" fill="#333" font-family="'DM Mono',monospace" font-size="6">2025</text>
+  <line x1="320" y1="108" x2="340" y2="108" stroke="#c8f04a" stroke-width="1.5"/>
+  <text x="344" y="111" fill="#c8f04a" font-family="'DM Mono',monospace" font-size="6">1st party</text>
+</svg></div>
         <div class="bp-tag">Měření dat</div>
         <div class="bp-title">1st party data pro e-commerce: jak měřit v době, kdy cookies mizí</div>
         <div class="bp-excerpt">Safari ITP, iOS 14, Chrome bez third-party cookies — bez správné strategie nevidíte 30–40 % uživatelů. Jak to napravit.</div>

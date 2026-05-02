@@ -23,6 +23,12 @@ nav a:hover { color:var(--accent); }
 .article-title { font-family:'DM Serif Display',serif; font-size:clamp(2rem,5vw,3rem); font-weight:400; letter-spacing:-.03em; line-height:1.1; margin-bottom:1rem; }
 .article-meta { font-size:.7rem; color:var(--muted); letter-spacing:.1em; margin-bottom:3rem; padding-bottom:2rem; border-bottom:1px solid var(--border); }
 
+/* ILLUSTRATIONS */
+.article-illustration { margin-bottom:2.5rem; border:1px solid var(--border); overflow:hidden; }
+.article-illustration svg { display:block; width:100%; height:auto; }
+.card-art { margin:-2.5rem -2rem 1.5rem; border-bottom:1px solid var(--border); overflow:hidden; }
+.card-art svg { display:block; width:100%; height:auto; }
+
 /* ARTICLE BODY */
 .article-body h2 { font-family:'DM Serif Display',serif; font-size:clamp(1.4rem,3vw,1.9rem); font-weight:400; letter-spacing:-.02em; line-height:1.2; margin:3rem 0 1rem; }
 .article-body h3 { font-size:.85rem; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin:2rem 0 .7rem; }
