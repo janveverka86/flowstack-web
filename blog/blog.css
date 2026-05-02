@@ -1,7 +1,7 @@
 :root { --bg:#0a0a0a; --fg:#f0ede6; --accent:#c8f04a; --muted:#666; --border:#2c2c2c; }
 *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
 html { scroll-behavior:smooth; }
-body { background:var(--bg); color:var(--fg); font-family:'DM Mono',monospace; font-weight:300; min-height:100vh; overflow-x:hidden; }
+body { background:var(--bg); color:var(--fg); font-family:'DM Mono',monospace; font-weight:300; min-height:100vh; overflow-x:clip; }
 body::after { content:''; position:fixed; inset:0; background-image:linear-gradient(#1e1e1e 1px,transparent 1px),linear-gradient(90deg,#1e1e1e 1px,transparent 1px); background-size:60px 60px; pointer-events:none; z-index:0; }
 
 /* NAV */
