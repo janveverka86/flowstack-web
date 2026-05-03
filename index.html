@@ -378,29 +378,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </a>
     </div>
     <div class="hero-visual" aria-hidden="true">
-      <svg viewBox="0 0 460 280" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 460 260" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <linearGradient id="funnelFill" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#f0b429" stop-opacity=".14"/>
-            <stop offset="100%" stop-color="#f0b429" stop-opacity=".03"/>
-          </linearGradient>
-          <linearGradient id="lineGlow" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stop-color="#f0b429" stop-opacity=".3"/>
-            <stop offset="100%" stop-color="#f0b429" stop-opacity="1"/>
+          <linearGradient id="areaFill" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#f0b429" stop-opacity=".10"/>
+            <stop offset="100%" stop-color="#f0b429" stop-opacity="0"/>
           </linearGradient>
         </defs>
-        <!-- Funnel fill -->
-        <path d="M30,20 L250,20 L165,200 L115,200 Z" fill="url(#funnelFill)"/>
-        <!-- Funnel outline -->
-        <path d="M30,20 L250,20 L165,200 L115,200 Z" fill="none" stroke="#f0b429" stroke-opacity=".2" stroke-width="1.5" stroke-linejoin="round"/>
-        <!-- Section dividers -->
-        <line x1="58" y1="80" x2="222" y2="80" stroke="#f0b429" stroke-opacity=".12" stroke-width="1"/>
-        <line x1="87" y1="140" x2="193" y2="140" stroke="#f0b429" stroke-opacity=".12" stroke-width="1"/>
-        <!-- Rising curve from funnel exit -->
-        <path d="M140,210 C190,195 270,162 340,128 C388,105 424,82 440,58" stroke="url(#lineGlow)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-        <!-- Endpoint glow + dot -->
-        <circle cx="440" cy="58" r="14" fill="#f0b429" opacity=".08"/>
-        <circle cx="440" cy="58" r="5" fill="#f0b429"/>
+        <!-- Area under curve -->
+        <path d="M10,245 C90,240 175,215 260,175 C325,145 390,105 440,60 L440,260 L10,260 Z" fill="url(#areaFill)"/>
+        <!-- Glow wide -->
+        <path d="M10,245 C90,240 175,215 260,175 C325,145 390,105 440,60" stroke="#f0b429" stroke-width="28" stroke-linecap="round" fill="none" opacity=".04"/>
+        <!-- Glow narrow -->
+        <path d="M10,245 C90,240 175,215 260,175 C325,145 390,105 440,60" stroke="#f0b429" stroke-width="9" stroke-linecap="round" fill="none" opacity=".11"/>
+        <!-- Crisp line -->
+        <path d="M10,245 C90,240 175,215 260,175 C325,145 390,105 440,60" stroke="#f0b429" stroke-width="2" stroke-linecap="round" fill="none"/>
+        <!-- Endpoint glow -->
+        <circle cx="440" cy="60" r="20" fill="#f0b429" opacity=".07"/>
+        <circle cx="440" cy="60" r="11" fill="#f0b429" opacity=".11"/>
+        <!-- Endpoint dot -->
+        <circle cx="440" cy="60" r="4.5" fill="#f0b429"/>
       </svg>
     </div>
   </div>
