@@ -81,24 +81,18 @@
     }
 
     /* ── HERO ── */
-    .hero { position:relative; z-index:1; padding:5rem 2rem 3rem; max-width:1100px; margin:0 auto; overflow:hidden; display:flex; align-items:center; gap:4rem; }
-    .hero-text { flex:1; min-width:0; }
-    .hero-visual { flex:0 0 420px; opacity:0; animation:fadeUp .8s .6s forwards; }
-    .hero-visual svg { display:block; width:100%; filter:drop-shadow(0 12px 48px rgba(240,180,41,.08)); }
-    @media(max-width:960px) { .hero { flex-direction:column; gap:2.5rem; } .hero-visual { flex:none; width:100%; max-width:460px; } }
-    @media(max-width:640px) { .hero-visual { display:none; } }
-    @keyframes drawCurve { to { stroke-dashoffset:0; } }
-    @keyframes glowPulse { 0%,100%{opacity:.05;} 50%{opacity:.2;} }
-    @keyframes showEl { to { opacity:1; } }
-    .hero-curve { stroke-dasharray:620; stroke-dashoffset:620; animation:drawCurve 1.4s ease-out 1.5s forwards; }
-    .hero-glow-pulse { animation:glowPulse 3s ease-in-out 3.1s infinite; }
-    .hero-arrow { opacity:0; animation:showEl .35s ease-out 2.8s forwards; }
-    .tag { display:inline-block; font-family:'DM Mono',monospace; font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); border:1px solid var(--accent); padding:.3rem .8rem; margin-bottom:2.5rem; opacity:0; animation:fadeUp .6s .1s forwards; }
-    h1 { font-family:'DM Serif Display',serif; font-size:clamp(3rem,8vw,7rem); line-height:1.0; letter-spacing:-.03em; margin-bottom:2rem; opacity:0; animation:fadeUp .7s .2s forwards; }
+    .hero { position:relative; z-index:1; padding:5rem 2rem 3rem; max-width:1100px; margin:0 auto; overflow:hidden; }
+    .tag {display:inline-block; font-family:'DM Mono',monospace; font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); border:1px solid var(--accent); padding:.3rem .8rem; margin-bottom:2.5rem; opacity:0; animation:fadeUp .6s .1s forwards; }
+    h1 { font-family:'DM Serif Display',serif; font-size:clamp(2.5rem,6vw,5.5rem); line-height:1.05; letter-spacing:-.03em; margin-bottom:2rem; opacity:0; animation:fadeUp .7s .2s forwards; }
     h1 em { font-style:italic; color:var(--accent); }
     .hero-sub { max-width:580px; font-size:1rem; line-height:1.75; color:#aaa; margin-bottom:3rem; opacity:0; animation:fadeUp .7s .35s forwards; }
     .hero-cta { display:inline-block; background:var(--accent); color:#0a0a0a; font-family:'DM Mono',monospace; font-size:.75rem; font-weight:500; letter-spacing:.1em; text-transform:uppercase; text-decoration:none; padding:.9rem 2rem; transition:opacity .2s; opacity:0; animation:fadeUp .7s .5s forwards; }
     .hero-cta:hover { opacity:.8; }
+    .hero-inner { display:flex; align-items:center; gap:2rem; }
+    .hero-text { flex:1; min-width:0; }
+    .hero-visual { flex:0 0 200px; display:flex; align-items:center; justify-content:center; opacity:0; animation:fadeUp .8s .7s forwards; }
+    @media(max-width:768px) { .hero-visual { display:none; } }
+    @media(min-width:769px) { h1 { white-space:nowrap; } }
 
     /* ── SECTIONS ── */
     .section { position:relative; z-index:1; padding:3rem 2rem; max-width:1100px; margin:0 auto; }
@@ -268,6 +262,7 @@
     .cookie-btn.accept-all { background:var(--accent); color:#0a0a0a; border-color:var(--accent); }
     .cookie-btn:hover { border-color:var(--accent); color:var(--accent); }
     .cookie-btn.accept-all:hover { opacity:.85; color:#0a0a0a; }
+
   </style>
 </head>
 <body class="lang-cs">
@@ -365,39 +360,39 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- HERO -->
   <div class="hero">
-    <div class="hero-text">
-      <div class="tag">
-        <span data-lang="en">Senior Marketing Strategist & Data Analytics</span>
-        <span data-lang="cs">Marketingový stratég & datová analytika</span>
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="tag">
+          <span data-lang="en">Senior Marketing Strategist & Data Analytics</span>
+          <span data-lang="cs">Marketingový stratég & datová analytika</span>
+        </div>
+        <h1>
+          <span data-lang="en">Marketing thinking<br>meets data<br><em>engineering.</em></span>
+          <span data-lang="cs">Marketingové myšlení<br>potkává data<br><em>engineering.</em></span>
+        </h1>
+        <p class="hero-sub">
+          <span data-lang="en">I help e-commerce brands grow through data-driven strategy — connecting marketing decisions with reliable measurement infrastructure, automated pipelines, and clear reporting.</span>
+          <span data-lang="cs">Pomáhám e-commerce značkám růst skrze data-driven strategii — propojuji marketingová rozhodnutí se spolehlivou měřicí infrastrukturou, automatizovanými pipeline a přehledným reportingem.</span>
+        </p>
+        <a href="mailto:jan.veverka@flowstack.cz" class="hero-cta">
+          <span data-lang="en">Get in touch</span>
+          <span data-lang="cs">Napište mi</span>
+        </a>
       </div>
-      <h1>
-        <span data-lang="en">Marketing thinking<br>meets <em>data engineering.</em></span>
-        <span data-lang="cs">Marketingové myšlení<br>potkává <em>data engineering.</em></span>
-      </h1>
-      <p class="hero-sub">
-        <span data-lang="en">I help e-commerce brands grow through data-driven strategy — connecting marketing decisions with reliable measurement infrastructure, automated pipelines, and clear reporting.</span>
-        <span data-lang="cs">Pomáhám e-commerce značkám růst skrze data-driven strategii — propojuji marketingová rozhodnutí se spolehlivou měřicí infrastrukturou, automatizovanými pipeline a přehledným reportingem.</span>
-      </p>
-      <a href="mailto:jan.veverka@flowstack.cz" class="hero-cta">
-        <span data-lang="en">Get in touch</span>
-        <span data-lang="cs">Napište mi</span>
-      </a>
-    </div>
-    <div class="hero-visual" aria-hidden="true">
-      <svg viewBox="0 0 460 200" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="areaFill" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#f0b429" stop-opacity=".10"/>
-            <stop offset="100%" stop-color="#f0b429" stop-opacity="0"/>
-          </linearGradient>
-        </defs>
-        <path d="M10,185 C90,180 175,158 260,120 C325,92 390,52 440,20 L440,200 L10,200 Z" fill="url(#areaFill)"/>
-        <path class="hero-curve" d="M10,185 C90,180 175,158 260,120 C325,92 390,52 440,20" stroke="#f0b429" stroke-width="28" stroke-linecap="round" fill="none" opacity=".04"/>
-        <path class="hero-curve" d="M10,185 C90,180 175,158 260,120 C325,92 390,52 440,20" stroke="#f0b429" stroke-width="9" stroke-linecap="round" fill="none" opacity=".11"/>
-        <path class="hero-curve" d="M10,185 C90,180 175,158 260,120 C325,92 390,52 440,20" stroke="#f0b429" stroke-width="2" stroke-linecap="round" fill="none"/>
-        <circle class="hero-glow-pulse" cx="440" cy="20" r="22" fill="#f0b429" opacity=".05"/>
-        <path class="hero-arrow" d="M433,31 L440,20 L427,22" stroke="#f0b429" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-      </svg>
+      <div class="hero-visual" aria-hidden="true">
+        <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="hero-tip" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+              <polygon points="0 0,8 3,0 6" fill="var(--accent)"/>
+            </marker>
+          </defs>
+          <circle cx="100" cy="100" r="80" stroke="var(--accent)" stroke-width="1.2" fill="none" opacity="0.18"/>
+          <circle cx="100" cy="100" r="56" stroke="var(--accent)" stroke-width="1.2" fill="none" opacity="0.4"/>
+          <circle cx="100" cy="100" r="32" stroke="var(--accent)" stroke-width="1.5" fill="none" opacity="0.7"/>
+          <circle cx="100" cy="100" r="6" fill="var(--accent)" opacity="0.9"/>
+          <line x1="170" y1="22" x2="100" y2="100" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" marker-end="url(#hero-tip)" opacity="0.85"/>
+        </svg>
+      </div>
     </div>
   </div>
 
