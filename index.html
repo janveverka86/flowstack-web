@@ -229,7 +229,7 @@
     /* ── BLOG PREVIEW ── */
     .blog-preview-wrap { position:relative; margin-top:2rem; }
     .blog-preview { display:flex; gap:1px; overflow-x:hidden; scroll-snap-type:x mandatory; scroll-behavior:smooth; background:var(--border); border:1px solid var(--border); }
-    .bp-card { flex:0 0 calc(50% - .5px); scroll-snap-align:start; background:var(--bg); padding:2.5rem 2.2rem 2rem; text-decoration:none; display:block; transition:background .2s; position:relative; overflow:hidden; }
+    .bp-card { flex:0 0 calc((100% - 2px) / 3); scroll-snap-align:start; background:var(--bg); padding:2.5rem 2.2rem 2rem; text-decoration:none; display:block; transition:background .2s; position:relative; overflow:hidden; }
     .bp-card::after { content:''; position:absolute; bottom:0; left:0; width:0; height:2px; background:var(--accent); transition:width .4s ease; }
     .bp-card:hover::after { width:100%; }
     .bp-card:hover { background:#ece7de; }
@@ -876,7 +876,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="bp-dot active"></div>
         <div class="bp-dot"></div>
         <div class="bp-dot"></div>
-        <div class="bp-dot"></div>
       </div>
       <div class="bp-nav">
         <button class="bp-btn" id="bpPrev" aria-label="Předchozí" disabled>←</button>
@@ -1105,7 +1104,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       var next  = document.getElementById('bpNext');
       var dots  = document.querySelectorAll('#bpDots .bp-dot');
       var cards = track.querySelectorAll('.bp-card');
-      var perPage = window.innerWidth <= 768 ? 1 : 2;
+      var perPage = window.innerWidth <= 768 ? 1 : 3;
       var total = Math.ceil(cards.length / perPage);
       var current = 0;
 
