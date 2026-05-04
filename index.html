@@ -225,8 +225,9 @@
     .reveal.visible { opacity:1; transform:translateY(0); }
 
     /* ── BLOG PREVIEW ── */
-    .blog-preview { display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--border); border:1px solid var(--border); margin-top:2rem; }
-    .bp-card { background:var(--bg); padding:2.5rem 2.2rem 2rem; text-decoration:none; display:block; transition:background .2s; position:relative; overflow:hidden; }
+    .blog-preview-wrap { position:relative; margin-top:2rem; }
+    .blog-preview { display:flex; gap:1px; overflow-x:hidden; scroll-snap-type:x mandatory; scroll-behavior:smooth; background:var(--border); border:1px solid var(--border); }
+    .bp-card { flex:0 0 calc(50% - .5px); scroll-snap-align:start; background:var(--bg); padding:2.5rem 2.2rem 2rem; text-decoration:none; display:block; transition:background .2s; position:relative; overflow:hidden; }
     .bp-card::after { content:''; position:absolute; bottom:0; left:0; width:0; height:2px; background:var(--accent); transition:width .4s ease; }
     .bp-card:hover::after { width:100%; }
     .bp-card:hover { background:#ece7de; }
@@ -236,10 +237,18 @@
     .bp-title { font-family:'Playfair Display',serif; font-size:1.2rem; font-weight:400; letter-spacing:-.01em; line-height:1.3; color:var(--fg); margin-bottom:.85rem; }
     .bp-excerpt { font-size:.85rem; color:#6a6258; line-height:1.72; }
     .bp-meta { font-family:'DM Mono',monospace; font-size:.63rem; color:var(--muted); letter-spacing:.08em; margin-top:1.5rem; display:flex; justify-content:space-between; align-items:center; }
-    .bp-arrow { color:var(--accent); transition:transform .2s; display:inline-block; font-size:1rem; }
-    .bp-card:hover .bp-arrow { transform:translateX(5px); }
+    .bp-read-arrow { color:var(--accent); transition:transform .2s; display:inline-block; font-size:1rem; }
+    .bp-card:hover .bp-read-arrow { transform:translateX(5px); }
+    .bp-controls { display:flex; align-items:center; justify-content:space-between; margin-top:1.2rem; }
+    .bp-dots { display:flex; gap:.45rem; }
+    .bp-dot { width:6px; height:6px; border-radius:50%; background:var(--border); transition:background .2s; cursor:pointer; }
+    .bp-dot.active { background:var(--accent); }
+    .bp-nav { display:flex; gap:.5rem; }
+    .bp-btn { width:38px; height:38px; border:1px solid var(--border); background:var(--bg); color:var(--fg); font-size:1rem; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:border-color .2s, background .2s; }
+    .bp-btn:hover { border-color:var(--accent); background:#ece7de; }
+    .bp-btn:disabled { opacity:.3; cursor:default; }
     .blog-preview-footer { display:flex; justify-content:flex-end; margin-top:1.5rem; }
-@media(max-width:768px) { .blog-preview { grid-template-columns:1fr; } .bp-num { font-size:3rem; } }
+@media(max-width:768px) { .bp-card { flex:0 0 100%; } .bp-num { font-size:3rem; } }
 
     /* ── CTA SECTION ── */
     .cta-section { position:relative; z-index:1; border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:5rem 2rem; }
@@ -801,36 +810,49 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- BLOG PREVIEW -->
   <div class="section reveal" id="blog">
     <div class="section-label"><span data-lang="cs">Blog</span><span data-lang="en">Blog</span></div>
-    <div class="blog-preview">
+    <div class="blog-preview-wrap">
+    <div class="blog-preview" id="bpTrack">
       <a href="/blog/shoptet-reporting-bigquery.html" class="bp-card">
         <div class="bp-num">01</div>
         <div class="bp-tag">Data Engineering</div>
         <div class="bp-title">Shoptet reporting v Looker Studiu: jak dostat data z e-shopu do pořádného dashboardu</div>
         <div class="bp-excerpt">Shoptet má základní přehledy, ale ne custom reporting. Jak napojit e-shop na BigQuery a postavit dashboardy přesně podle vašich potřeb.</div>
-        <div class="bp-meta"><span>Červen 2026 &nbsp;·&nbsp; 7 min</span><span class="bp-arrow">→</span></div>
+        <div class="bp-meta"><span>Červen 2026 &nbsp;·&nbsp; 7 min</span><span class="bp-read-arrow">→</span></div>
       </a>
       <a href="/blog/pohoda-reporting-bigquery.html" class="bp-card">
         <div class="bp-num">02</div>
         <div class="bp-tag">Data Engineering</div>
         <div class="bp-title">Pohoda a BigQuery: jak automatizovat reporting z účetního systému</div>
         <div class="bp-excerpt">Pohoda nemá API — ale má MS SQL databázi. Jak si postavit vlastní Python konektor, dostat data do BigQuery a přestat reportovat z Excelu.</div>
-        <div class="bp-meta"><span>Červen 2026 &nbsp;·&nbsp; 7 min</span><span class="bp-arrow">→</span></div>
+        <div class="bp-meta"><span>Červen 2026 &nbsp;·&nbsp; 7 min</span><span class="bp-read-arrow">→</span></div>
       </a>
       <a href="/blog/bigquery-ai-agenti.html" class="bp-card">
         <div class="bp-num">03</div>
         <div class="bp-tag">AI & Data Engineering</div>
         <div class="bp-title">BigQuery jako datový základ pro AI agenty</div>
         <div class="bp-excerpt">AI agenti potřebují čistá, strukturovaná data. Proč je BigQuery ideální základ a jaké use cases dávají e-shopům největší smysl.</div>
-        <div class="bp-meta"><span>Květen 2026 &nbsp;·&nbsp; 7 min</span><span class="bp-arrow">→</span></div>
+        <div class="bp-meta"><span>Květen 2026 &nbsp;·&nbsp; 7 min</span><span class="bp-read-arrow">→</span></div>
       </a>
       <a href="/blog/datovy-sklad-pro-eshop.html" class="bp-card">
         <div class="bp-num">04</div>
         <div class="bp-tag">Data Engineering</div>
         <div class="bp-title">Datový sklad pro e-shop: jeden zdroj pravdy místo 8 Excelů</div>
         <div class="bp-excerpt">Typický e-shop má data v 8 různých systémech. Datový sklad je centrální místo, kde se všechna data propojí a dají smysl.</div>
-        <div class="bp-meta"><span>Leden 2026 &nbsp;·&nbsp; 6 min</span><span class="bp-arrow">→</span></div>
+        <div class="bp-meta"><span>Leden 2026 &nbsp;·&nbsp; 6 min</span><span class="bp-read-arrow">→</span></div>
       </a>
     </div>
+    <div class="bp-controls">
+      <div class="bp-dots" id="bpDots">
+        <div class="bp-dot active"></div>
+        <div class="bp-dot"></div>
+        <div class="bp-dot"></div>
+      </div>
+      <div class="bp-nav">
+        <button class="bp-btn" id="bpPrev" aria-label="Předchozí" disabled>←</button>
+        <button class="bp-btn" id="bpNext" aria-label="Další">→</button>
+      </div>
+    </div>
+    </div><!-- /.blog-preview-wrap -->
     <div class="blog-preview-footer">
       <a href="/blog/" class="cta-btn" style="font-size:.68rem; padding:.75rem 1.8rem;">
         <span data-lang="cs">Všechny články</span><span data-lang="en">All articles</span>
@@ -1042,6 +1064,52 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           errEl.textContent = 'Chyba sítě. Zkuste to znovu.';
           errEl.hidden = false;
         }
+      });
+    })();
+  </script>
+  <script>
+    (function() {
+      var track = document.getElementById('bpTrack');
+      var prev  = document.getElementById('bpPrev');
+      var next  = document.getElementById('bpNext');
+      var dots  = document.querySelectorAll('#bpDots .bp-dot');
+      var cards = track.querySelectorAll('.bp-card');
+      var perPage = window.innerWidth <= 768 ? 1 : 2;
+      var total = Math.ceil(cards.length / perPage);
+      var current = 0;
+
+      function cardWidth() { return cards[0].offsetWidth + 1; }
+
+      function goTo(idx) {
+        current = Math.max(0, Math.min(idx, total - 1));
+        track.scrollTo({ left: current * cardWidth() * perPage, behavior: 'smooth' });
+        dots.forEach(function(d, i) { d.classList.toggle('active', i === current); });
+        prev.disabled = current === 0;
+        next.disabled = current === total - 1;
+      }
+
+      prev.addEventListener('click', function() { goTo(current - 1); });
+      next.addEventListener('click', function() { goTo(current + 1); });
+      dots.forEach(function(d, i) { d.addEventListener('click', function() { goTo(i); }); });
+
+      track.addEventListener('scroll', function() {
+        var idx = Math.round(track.scrollLeft / (cardWidth() * perPage));
+        if (idx !== current) {
+          current = idx;
+          dots.forEach(function(d, i) { d.classList.toggle('active', i === current); });
+          prev.disabled = current === 0;
+          next.disabled = current === total - 1;
+        }
+      }, { passive: true });
+
+      window.addEventListener('resize', function() {
+        perPage = window.innerWidth <= 768 ? 1 : 2;
+        total = Math.ceil(cards.length / perPage);
+        current = 0;
+        track.scrollTo({ left: 0, behavior: 'instant' });
+        dots.forEach(function(d, i) { d.classList.toggle('active', i === 0); });
+        prev.disabled = true;
+        next.disabled = total <= 1;
       });
     })();
   </script>
