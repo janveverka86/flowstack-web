@@ -226,16 +226,20 @@
 
     /* ── BLOG PREVIEW ── */
     .blog-preview { display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--border); border:1px solid var(--border); margin-top:2rem; }
-    .bp-card { background:var(--bg); padding:2rem 1.8rem; text-decoration:none; display:block; transition:background .2s; overflow:hidden; }
-    .bp-art { margin:.8rem 0 1.2rem; border:1px solid var(--border); overflow:hidden; }
-    .bp-art svg { display:block; width:100%; height:auto; }
+    .bp-card { background:var(--bg); padding:2.5rem 2.2rem 2rem; text-decoration:none; display:block; transition:background .2s; position:relative; overflow:hidden; }
+    .bp-card::after { content:''; position:absolute; bottom:0; left:0; width:0; height:2px; background:var(--accent); transition:width .4s ease; }
+    .bp-card:hover::after { width:100%; }
     .bp-card:hover { background:#ece7de; }
-    .bp-tag { font-family:'DM Mono',monospace; font-size:.68rem; letter-spacing:.18em; text-transform:uppercase; color:var(--accent); margin-bottom:.7rem; }
-    .bp-title { font-family:'Playfair Display',serif; font-size:1.6rem; font-weight:400; letter-spacing:-.02em; line-height:1.25; color:var(--fg); margin-bottom:.7rem; }
-    .bp-excerpt { font-size:.95rem; color:#6a6258; line-height:1.7; }
-    .bp-meta { font-family:'DM Mono',monospace; font-size:.65rem; color:var(--muted); letter-spacing:.08em; margin-top:1rem; padding-top:.9rem; border-top:1px solid var(--border); }
+    .bp-num { font-family:'Playfair Display',serif; font-size:3.8rem; font-weight:400; color:var(--border); line-height:1; margin-bottom:1.4rem; letter-spacing:-.04em; transition:color .25s; }
+    .bp-card:hover .bp-num { color:#ccc8be; }
+    .bp-tag { font-family:'Inter',sans-serif; font-size:.63rem; font-weight:500; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); margin-bottom:.5rem; }
+    .bp-title { font-family:'Playfair Display',serif; font-size:1.2rem; font-weight:400; letter-spacing:-.01em; line-height:1.3; color:var(--fg); margin-bottom:.85rem; }
+    .bp-excerpt { font-size:.85rem; color:#6a6258; line-height:1.72; }
+    .bp-meta { font-family:'DM Mono',monospace; font-size:.63rem; color:var(--muted); letter-spacing:.08em; margin-top:1.5rem; display:flex; justify-content:space-between; align-items:center; }
+    .bp-arrow { color:var(--accent); transition:transform .2s; display:inline-block; font-size:1rem; }
+    .bp-card:hover .bp-arrow { transform:translateX(5px); }
     .blog-preview-footer { display:flex; justify-content:flex-end; margin-top:1.5rem; }
-@media(max-width:768px) { .blog-preview { grid-template-columns:1fr; } }
+@media(max-width:768px) { .blog-preview { grid-template-columns:1fr; } .bp-num { font-size:3rem; } }
 
     /* ── CTA SECTION ── */
     .cta-section { position:relative; z-index:1; border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:5rem 2rem; }
@@ -799,130 +803,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="section-label"><span data-lang="cs">Blog</span><span data-lang="en">Blog</span></div>
     <div class="blog-preview">
       <a href="/blog/shoptet-reporting-bigquery.html" class="bp-card">
+        <div class="bp-num">01</div>
         <div class="bp-tag">Data Engineering</div>
         <div class="bp-title">Shoptet reporting v Looker Studiu: jak dostat data z e-shopu do pořádného dashboardu</div>
-        <div class="bp-art"><svg viewBox="0 0 400 110" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:auto">
-  <rect width="400" height="110" fill="#f8f8f8"/>
-  <rect x="8" y="20" width="80" height="70" fill="#eeeeee" stroke="#ddd" stroke-width="1"/>
-  <text x="48" y="38" fill="#999" font-family="'DM Mono',monospace" font-size="6" text-anchor="middle">SHOPTET</text>
-  <text x="48" y="52" fill="#666" font-family="'DM Mono',monospace" font-size="6" text-anchor="middle">REST API</text>
-  <text x="48" y="64" fill="#666" font-family="'DM Mono',monospace" font-size="6" text-anchor="middle">CSV export</text>
-  <text x="48" y="76" fill="#666" font-family="'DM Mono',monospace" font-size="6" text-anchor="middle">webhooks</text>
-  <text x="96" y="57" fill="#d4920e" font-family="'DM Mono',monospace" font-size="10">→</text>
-  <rect x="112" y="20" width="80" height="70" fill="#f2f2f2" stroke="#d4920e" stroke-width="1.5"/>
-  <text x="152" y="38" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7" text-anchor="middle">BigQuery</text>
-  <text x="122" y="52" fill="#3a3a3a" font-family="'DM Mono',monospace" font-size="6">▸ orders</text>
-  <text x="122" y="63" fill="#3a3a3a" font-family="'DM Mono',monospace" font-size="6">▸ products</text>
-  <text x="122" y="74" fill="#3a3a3a" font-family="'DM Mono',monospace" font-size="6">▸ customers</text>
-  <text x="200" y="57" fill="#d4920e" font-family="'DM Mono',monospace" font-size="10">→</text>
-  <rect x="216" y="20" width="80" height="70" fill="#eeeeee" stroke="#ddd" stroke-width="1"/>
-  <text x="256" y="38" fill="#999" font-family="'DM Mono',monospace" font-size="6" text-anchor="middle">Looker</text>
-  <text x="256" y="48" fill="#999" font-family="'DM Mono',monospace" font-size="6" text-anchor="middle">Studio</text>
-  <rect x="224" y="56" width="64" height="8" fill="#d4920e" opacity="0.6"/>
-  <rect x="224" y="68" width="48" height="8" fill="#d4920e" opacity="0.35"/>
-  <rect x="224" y="80" width="56" height="8" fill="#d4920e" opacity="0.5"/>
-  <text x="308" y="42" fill="#999" font-family="'DM Mono',monospace" font-size="6">objednávky</text>
-  <text x="308" y="56" fill="#999" font-family="'DM Mono',monospace" font-size="6">ROAS</text>
-  <text x="308" y="70" fill="#999" font-family="'DM Mono',monospace" font-size="6">marže</text>
-  <text x="308" y="84" fill="#d4920e" font-family="'DM Mono',monospace" font-size="6">real-time</text>
-</svg></div>
-
         <div class="bp-excerpt">Shoptet má základní přehledy, ale ne custom reporting. Jak napojit e-shop na BigQuery a postavit dashboardy přesně podle vašich potřeb.</div>
-        <div class="bp-meta">Červen 2026 &nbsp;·&nbsp; 7 min</div>
+        <div class="bp-meta"><span>Červen 2026 &nbsp;·&nbsp; 7 min</span><span class="bp-arrow">→</span></div>
       </a>
       <a href="/blog/pohoda-reporting-bigquery.html" class="bp-card">
+        <div class="bp-num">02</div>
         <div class="bp-tag">Data Engineering</div>
         <div class="bp-title">Pohoda a BigQuery: jak automatizovat reporting z účetního systému</div>
-        <div class="bp-art"><svg viewBox="0 0 400 110" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:auto">
-  <rect width="400" height="110" fill="#f8f8f8"/>
-  <rect x="8" y="20" width="80" height="70" fill="#eeeeee" stroke="#ddd" stroke-width="1"/>
-  <text x="48" y="36" fill="#999" font-family="'DM Mono',monospace" font-size="6" text-anchor="middle">POHODA SQL</text>
-  <text x="22" y="50" fill="#666" font-family="'DM Mono',monospace" font-size="6">MS SQL</text>
-  <text x="22" y="62" fill="#666" font-family="'DM Mono',monospace" font-size="6">faktury</text>
-  <text x="22" y="74" fill="#666" font-family="'DM Mono',monospace" font-size="6">zásoby</text>
-  <text x="22" y="86" fill="#666" font-family="'DM Mono',monospace" font-size="6">adresář</text>
-  <text x="96" y="57" fill="#d4920e" font-family="'DM Mono',monospace" font-size="10">→</text>
-  <rect x="112" y="28" width="80" height="54" fill="#f2f2f2" stroke="#888" stroke-width="1" stroke-dasharray="3,2"/>
-  <text x="152" y="44" fill="#888" font-family="'DM Mono',monospace" font-size="6" text-anchor="middle">Python</text>
-  <text x="152" y="56" fill="#666" font-family="'DM Mono',monospace" font-size="6" text-anchor="middle">pyodbc</text>
-  <text x="152" y="68" fill="#d4d4d4" font-family="'DM Mono',monospace" font-size="5" text-anchor="middle">incremental</text>
-  <text x="200" y="57" fill="#d4920e" font-family="'DM Mono',monospace" font-size="10">→</text>
-  <rect x="216" y="20" width="80" height="70" fill="#f2f2f2" stroke="#d4920e" stroke-width="1.5"/>
-  <text x="256" y="36" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7" text-anchor="middle">BigQuery</text>
-  <text x="226" y="50" fill="#3a3a3a" font-family="'DM Mono',monospace" font-size="6">▸ cash flow</text>
-  <text x="226" y="62" fill="#3a3a3a" font-family="'DM Mono',monospace" font-size="6">▸ marže</text>
-  <text x="226" y="74" fill="#3a3a3a" font-family="'DM Mono',monospace" font-size="6">▸ dlužníci</text>
-  <text x="300" y="57" fill="#d4920e" font-family="'DM Mono',monospace" font-size="10">→</text>
-  <rect x="316" y="30" width="72" height="50" fill="#eeeeee" stroke="#ddd" stroke-width="1"/>
-  <text x="352" y="46" fill="#999" font-family="'DM Mono',monospace" font-size="6" text-anchor="middle">Looker</text>
-  <text x="352" y="57" fill="#999" font-family="'DM Mono',monospace" font-size="6" text-anchor="middle">Studio</text>
-  <rect x="324" y="65" width="56" height="6" fill="#d4920e" opacity="0.55"/>
-  <rect x="324" y="74" width="40" height="6" fill="#d4920e" opacity="0.35"/>
-</svg></div>
-
         <div class="bp-excerpt">Pohoda nemá API — ale má MS SQL databázi. Jak si postavit vlastní Python konektor, dostat data do BigQuery a přestat reportovat z Excelu.</div>
-        <div class="bp-meta">Červen 2026 &nbsp;·&nbsp; 7 min</div>
+        <div class="bp-meta"><span>Červen 2026 &nbsp;·&nbsp; 7 min</span><span class="bp-arrow">→</span></div>
       </a>
       <a href="/blog/bigquery-ai-agenti.html" class="bp-card">
+        <div class="bp-num">03</div>
         <div class="bp-tag">AI & Data Engineering</div>
         <div class="bp-title">BigQuery jako datový základ pro AI agenty</div>
-        <div class="bp-art"><svg viewBox="0 0 400 110" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:auto">
-  <rect width="400" height="110" fill="#f8f8f8"/>
-  <rect x="12" y="15" width="140" height="34" fill="#eeeeee" stroke="#ddd" stroke-width="1"/>
-  <text x="20" y="28" fill="#666" font-family="'DM Mono',monospace" font-size="6" letter-spacing="1">AI AGENT</text>
-  <text x="20" y="42" fill="#1c1814" font-family="'DM Mono',monospace" font-size="7">"Kteří zákazníci</text>
-  <text x="20" y="54" fill="#1c1814" font-family="'DM Mono',monospace" font-size="7"> jsou v riziku?"</text>
-  <line x1="152" y1="32" x2="185" y2="48" stroke="#444" stroke-width="1" stroke-dasharray="3,2"/>
-  <line x1="185" y1="62" x2="152" y2="78" stroke="#d4920e" stroke-width="1" stroke-dasharray="3,2" opacity="0.7"/>
-  <rect x="190" y="32" width="110" height="46" fill="#f2f2f2" stroke="#d4920e" stroke-width="1.5"/>
-  <text x="245" y="50" fill="#d4920e" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle">BigQuery</text>
-  <text x="200" y="64" fill="#2c2c2c" font-family="'DM Mono',monospace" font-size="6">SELECT ...</text>
-  <text x="200" y="74" fill="#999" font-family="'DM Mono',monospace" font-size="6">→ 1 247 rows</text>
-  <rect x="12" y="65" width="140" height="30" fill="#eeeeee" stroke="#ddd" stroke-width="1"/>
-  <text x="20" y="78" fill="#666" font-family="'DM Mono',monospace" font-size="6" letter-spacing="1">ODPOVĚĎ</text>
-  <text x="20" y="90" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7">"1 247, seg. 30–45 let"</text>
-  <rect x="315" y="20" width="72" height="70" fill="#eeeeee" stroke="#ddd" stroke-width="1"/>
-  <text x="351" y="34" fill="#666" font-family="'DM Mono',monospace" font-size="6" text-anchor="middle">USE CASES</text>
-  <text x="323" y="47" fill="#666" font-family="'DM Mono',monospace" font-size="6">Churn</text>
-  <text x="323" y="58" fill="#666" font-family="'DM Mono',monospace" font-size="6">Forecast</text>
-  <text x="323" y="69" fill="#666" font-family="'DM Mono',monospace" font-size="6">Q&amp;A bot</text>
-  <text x="323" y="80" fill="#666" font-family="'DM Mono',monospace" font-size="6">Alerts</text>
-</svg></div>
-
         <div class="bp-excerpt">AI agenti potřebují čistá, strukturovaná data. Proč je BigQuery ideální základ a jaké use cases dávají e-shopům největší smysl.</div>
-        <div class="bp-meta">Květen 2026 &nbsp;·&nbsp; 7 min</div>
+        <div class="bp-meta"><span>Květen 2026 &nbsp;·&nbsp; 7 min</span><span class="bp-arrow">→</span></div>
       </a>
       <a href="/blog/datovy-sklad-pro-eshop.html" class="bp-card">
+        <div class="bp-num">04</div>
         <div class="bp-tag">Data Engineering</div>
         <div class="bp-title">Datový sklad pro e-shop: jeden zdroj pravdy místo 8 Excelů</div>
-        <div class="bp-art"><svg viewBox="0 0 400 110" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:auto">
-  <rect width="400" height="110" fill="#f8f8f8"/>
-  <rect x="8" y="12" width="78" height="16" fill="none" stroke="#ddd" stroke-width="1"/>
-  <text x="47" y="24" fill="#999" font-family="'DM Mono',monospace" font-size="6" text-anchor="middle">Excel tržby</text>
-  <rect x="8" y="34" width="78" height="16" fill="none" stroke="#ddd" stroke-width="1"/>
-  <text x="47" y="46" fill="#999" font-family="'DM Mono',monospace" font-size="6" text-anchor="middle">Meta export</text>
-  <rect x="8" y="56" width="78" height="16" fill="none" stroke="#ddd" stroke-width="1"/>
-  <text x="47" y="68" fill="#999" font-family="'DM Mono',monospace" font-size="6" text-anchor="middle">Shoptet rpt.</text>
-  <rect x="8" y="78" width="78" height="16" fill="none" stroke="#ddd" stroke-width="1"/>
-  <text x="47" y="90" fill="#999" font-family="'DM Mono',monospace" font-size="6" text-anchor="middle">GA4 CSV</text>
-  <text x="96" y="55" fill="#d4920e" font-family="'DM Mono',monospace" font-size="10">→</text>
-  <rect x="110" y="12" width="155" height="86" fill="#f2f2f2" stroke="#d4920e" stroke-width="1.5"/>
-  <text x="187" y="28" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7" text-anchor="middle">BigQuery</text>
-  <text x="120" y="43" fill="#3a3a3a" font-family="'DM Mono',monospace" font-size="6">▸ orders</text>
-  <text x="120" y="55" fill="#3a3a3a" font-family="'DM Mono',monospace" font-size="6">▸ customers</text>
-  <text x="120" y="67" fill="#3a3a3a" font-family="'DM Mono',monospace" font-size="6">▸ marketing</text>
-  <text x="120" y="79" fill="#3a3a3a" font-family="'DM Mono',monospace" font-size="6">▸ products</text>
-  <text x="120" y="91" fill="#3a3a3a" font-family="'DM Mono',monospace" font-size="6">▸ inventory</text>
-  <rect x="278" y="20" width="110" height="70" fill="#eeeeee" stroke="#ddd" stroke-width="1"/>
-  <text x="333" y="35" fill="#666" font-family="'DM Mono',monospace" font-size="6" text-anchor="middle">1 zdroj pravdy</text>
-  <text x="288" y="50" fill="#666" font-family="'DM Mono',monospace" font-size="6">SQL joiny</text>
-  <text x="288" y="62" fill="#666" font-family="'DM Mono',monospace" font-size="6">Dashboardy</text>
-  <text x="288" y="74" fill="#666" font-family="'DM Mono',monospace" font-size="6">AI Agenti</text>
-  <text x="288" y="86" fill="#666" font-family="'DM Mono',monospace" font-size="6">Reporting</text>
-</svg></div>
-
         <div class="bp-excerpt">Typický e-shop má data v 8 různých systémech. Datový sklad je centrální místo, kde se všechna data propojí a dají smysl.</div>
-        <div class="bp-meta">Leden 2026 &nbsp;·&nbsp; 6 min</div>
+        <div class="bp-meta"><span>Leden 2026 &nbsp;·&nbsp; 6 min</span><span class="bp-arrow">→</span></div>
       </a>
     </div>
     <div class="blog-preview-footer">
