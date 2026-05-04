@@ -238,13 +238,16 @@
 @media(max-width:768px) { .blog-preview { grid-template-columns:1fr; } }
 
     /* ── CTA SECTION ── */
-    .cta-section { position:relative; z-index:1; border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:5rem 2rem; text-align:center; }
-    .cta-section h2 { font-family:'Playfair Display',serif; font-size:clamp(2rem,5vw,3.8rem); font-weight:400; letter-spacing:-.03em; line-height:1.1; margin-bottom:1.5rem; }
+    .cta-section { position:relative; z-index:1; border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:5rem 2rem; }
+    .cta-inner { display:flex; align-items:flex-start; gap:5rem; max-width:1100px; margin:0 auto; }
+    .cta-text { flex:1; padding-top:.5rem; }
+    .cta-section h2 { font-family:'Playfair Display',serif; font-size:clamp(2rem,4vw,3.2rem); font-weight:400; letter-spacing:-.03em; line-height:1.1; margin-bottom:1.5rem; }
     .cta-section h2 em { font-style:italic; color:var(--accent); }
-    .cta-section p { font-size:.95rem; color:#6a6258; line-height:1.8; max-width:480px; margin:0 auto 3rem; }
+    .cta-section p { font-size:.95rem; color:#6a6258; line-height:1.8; }
     .cta-btn { display:inline-block; background:var(--accent); color:#fff; font-family:'DM Mono',monospace; font-size:.75rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; text-decoration:none; padding:1rem 2.5rem; transition:opacity .2s; }
     .cta-btn:hover { opacity:.8; }
-    .contact-form { max-width:480px; margin:0 auto; text-align:left; }
+    .contact-form { flex:0 0 420px; max-width:420px; }
+    @media(max-width:800px) { .cta-inner { flex-direction:column; gap:2.5rem; } .contact-form { flex:none; max-width:100%; width:100%; } }
     .contact-form input, .contact-form textarea { width:100%; background:#ede8e0; border:1px solid var(--border); padding:.85rem 1rem; font-family:'Inter',sans-serif; font-size:.88rem; color:var(--fg); outline:none; transition:border-color .2s; margin-bottom:.75rem; display:block; appearance:none; border-radius:0; }
     .contact-form input:focus, .contact-form textarea:focus { border-color:var(--accent); }
     .contact-form textarea { min-height:120px; resize:vertical; }
@@ -877,6 +880,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- CTA -->
   <div class="cta-section reveal" id="kontakt">
+    <div class="cta-inner">
+    <div class="cta-text">
     <h2>
       <span data-lang="cs">Pojďme se pobavit<br>o vašich <em>datech.</em></span>
       <span data-lang="en">Let's talk about<br>your <em>data.</em></span>
@@ -885,6 +890,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span data-lang="cs">Ať už potřebujete zprovoznit měření, postavit pipeline nebo pochopit čísla — napište mi.</span>
       <span data-lang="en">Whether you need measurement set up, a pipeline built, or your numbers to finally make sense — get in touch.</span>
     </p>
+    </div>
     <form id="contact-form" action="https://formspree.io/f/xaqvejza" method="POST" class="contact-form">
       <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" />
       <input type="text" name="name" placeholder="Jméno" required />
@@ -894,6 +900,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="form-error" id="form-error" hidden></p>
       <p class="form-recaptcha-note">Stránka je chráněna reCAPTCHA (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy</a> &amp; <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Terms</a>).</p>
     </form>
+    </div><!-- /.cta-inner -->
   </div>
 
   <footer>
