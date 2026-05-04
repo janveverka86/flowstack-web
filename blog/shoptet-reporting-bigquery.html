@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Shoptet reporting v Looker Studiu: jak dostat data z e-shopu do pořádného dashboardu | Flowstack Blog</title>
+  <meta name="description" content="Shoptet má vlastní statistiky, ale nestačí. Jak napojit Shoptet na BigQuery přes API nebo exporty, transformovat data a vizualizovat v Looker Studiu." />
+  <link rel="canonical" href="https://flowstack.cz/blog/shoptet-reporting-bigquery.html" />
+  <meta property="og:title" content="Shoptet reporting v Looker Studiu: jak dostat data z e-shopu do pořádného dashboardu | Flowstack Blog" />
+  <meta property="og:description" content="Shoptet má vlastní statistiky, ale nestačí. Jak napojit Shoptet na BigQuery přes API nebo exporty, transformovat data a vizualizovat v Looker Studiu." />
+  <meta property="og:url" content="https://flowstack.cz/blog/shoptet-reporting-bigquery.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://flowstack.cz/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Shoptet reporting v Looker Studiu: jak dostat data z e-shopu do pořádného dashboardu | Flowstack Blog" />
+  <meta name="twitter:description" content="Shoptet má vlastní statistiky, ale nestačí. Jak napojit Shoptet na BigQuery přes API nebo exporty, transformovat data a vizualizovat v Looker Studiu." />
+  <meta name="twitter:image" content="https://flowstack.cz/og-image.png" />
+  <meta property="article:published_time" content="2026-06-01T00:00:00+01:00" />
+  <meta property="article:author" content="Jan Veverka" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23f4f0e8'/><text x='6' y='24' font-family='serif' font-size='22' fill='%23d4920e'>F</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="blog.css" />
+  <link rel="alternate" type="application/rss+xml" title="Flowstack Blog RSS" href="https://flowstack.cz/feed.xml" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Shoptet reporting v Looker Studiu: jak dostat data z e-shopu do pořádného dashboardu",
+    "description": "Shoptet má vlastní statistiky, ale nestačí. Jak napojit Shoptet na BigQuery přes API nebo exporty, transformovat data a vizualizovat v Looker Studiu.",
+    "url": "https://flowstack.cz/blog/shoptet-reporting-bigquery.html",
+    "datePublished": "2026-06-01",
+    "author": { "@type": "Person", "name": "Jan Veverka", "url": "https://flowstack.cz" },
+    "publisher": { "@type": "Organization", "name": "Flowstack", "url": "https://flowstack.cz" },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://flowstack.cz/blog/shoptet-reporting-bigquery.html" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Flowstack", "item": "https://flowstack.cz/" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://flowstack.cz/blog/" },
+      { "@type": "ListItem", "position": 3, "name": "Shoptet reporting v Looker Studiu", "item": "https://flowstack.cz/blog/shoptet-reporting-bigquery.html" }
+    ]
+  }
+  </script>
+  <script src="https://www.google.com/recaptcha/api.js?render=6LevXNgsAAAAALh4ZbMWnXz73v20fOgPLx_3zlRK" async defer></script>
+</head>
+<body>
+  <div class="nav-wrap">
+    <nav>
+      <a href="/" class="logo">Flow<span>stack</span><div class="logo-sub">Jan Veverka · Datová analytika</div></a>
+      <div class="nav-links">
+        <a href="/blog/">Blog</a>
+        <a href="/" class="hide-mobile">Zpět na web</a>
+      </div>
+    </nav>
+  </div>
+  <div class="nav-spacer"></div>
+
+  <article class="article-wrap">
+    <span class="article-tag">Data Engineering</span>
+    <h1 class="article-title">Shoptet reporting v Looker Studiu: jak dostat data z e-shopu do pořádného dashboardu</h1>
+    <div class="article-meta">Jan Veverka &nbsp;·&nbsp; Červen 2026 &nbsp;·&nbsp; 7 min čtení</div>
+
+    <div class="article-illustration">
+      <div class="illus-header">
+        <span class="illus-dots"><i></i><i></i><i></i></span>
+        <span class="illus-title">Architektura: Shoptet → BigQuery → Looker Studio</span>
+      </div>
+<svg viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:auto">
+  <rect width="800" height="200" fill="#f8f8f8"/>
+  <!-- Shoptet -->
+  <rect x="20" y="60" width="140" height="80" fill="#eeeeee" stroke="#ddd" stroke-width="1"/>
+  <text x="90" y="90" fill="#d4920e" font-family="'DM Mono',monospace" font-size="9" text-anchor="middle" font-weight="500">Shoptet</text>
+  <text x="90" y="108" fill="#666" font-family="'DM Mono',monospace" font-size="7" text-anchor="middle">REST API</text>
+  <text x="90" y="122" fill="#999" font-family="'DM Mono',monospace" font-size="6" text-anchor="middle">CSV export</text>
+  <text x="90" y="134" fill="#999" font-family="'DM Mono',monospace" font-size="6" text-anchor="middle">Webhooks</text>
+  <!-- Arrow 1 -->
+  <line x1="160" y1="100" x2="215" y2="100" stroke="#d4920e" stroke-width="2"/>
+  <polygon points="215,100 207,96 207,104" fill="#d4920e"/>
+  <text x="187" y="92" fill="#999" font-family="'DM Mono',monospace" font-size="6" text-anchor="middle">konektor</text>
+  <!-- BigQuery -->
+  <rect x="220" y="40" width="160" height="120" fill="#f2f2f2" stroke="#d4920e" stroke-width="1.5"/>
+  <text x="300" y="65" fill="#d4920e" font-family="'DM Mono',monospace" font-size="9" text-anchor="middle" font-weight="500">BigQuery</text>
+  <text x="232" y="85" fill="#3a3a3a" font-family="'DM Mono',monospace" font-size="6">▸ shoptet_orders</text>
+  <text x="232" y="98" fill="#3a3a3a" font-family="'DM Mono',monospace" font-size="6">▸ shoptet_products</text>
+  <text x="232" y="111" fill="#3a3a3a" font-family="'DM Mono',monospace" font-size="6">▸ shoptet_customers</text>
+  <text x="232" y="124" fill="#999" font-family="'DM Mono',monospace" font-size="6">▸ ga4_events</text>
+  <text x="232" y="137" fill="#999" font-family="'DM Mono',monospace" font-size="6">▸ meta_ads</text>
+  <text x="232" y="152" fill="#d4920e" font-family="'DM Mono',monospace" font-size="6">▸ view_kpi_daily</text>
+  <!-- Arrow 2 -->
+  <line x1="380" y1="100" x2="435" y2="100" stroke="#d4920e" stroke-width="2"/>
+  <polygon points="435,100 427,96 427,104" fill="#d4920e"/>
+  <text x="407" y="92" fill="#999" font-family="'DM Mono',monospace" font-size="6" text-anchor="middle">SQL view</text>
+  <!-- Looker Studio -->
+  <rect x="440" y="55" width="155" height="90" fill="#eeeeee" stroke="#ddd" stroke-width="1"/>
+  <text x="517" y="78" fill="#d4920e" font-family="'DM Mono',monospace" font-size="9" text-anchor="middle" font-weight="500">Looker Studio</text>
+  <text x="453" y="96" fill="#666" font-family="'DM Mono',monospace" font-size="6">📊 Tržby a marže</text>
+  <text x="453" y="109" fill="#666" font-family="'DM Mono',monospace" font-size="6">📦 Skladovost</text>
+  <text x="453" y="122" fill="#666" font-family="'DM Mono',monospace" font-size="6">🛒 Zákazníci / LTV</text>
+  <text x="453" y="135" fill="#666" font-family="'DM Mono',monospace" font-size="6">📣 ROAS kanálů</text>
+  <!-- GA4 input arrow -->
+  <rect x="620" y="60" width="100" height="35" fill="#eeeeee" stroke="#ddd" stroke-width="1"/>
+  <text x="670" y="78" fill="#666" font-family="'DM Mono',monospace" font-size="7" text-anchor="middle">GA4 export</text>
+  <text x="670" y="90" fill="#999" font-family="'DM Mono',monospace" font-size="6" text-anchor="middle">Meta Ads API</text>
+  <line x1="620" y1="77" x2="385" y2="95" stroke="#ddd" stroke-width="1" stroke-dasharray="4,3"/>
+  <!-- Meta input arrow -->
+  <rect x="620" y="105" width="100" height="35" fill="#eeeeee" stroke="#ddd" stroke-width="1"/>
+  <text x="670" y="123" fill="#666" font-family="'DM Mono',monospace" font-size="7" text-anchor="middle">Heureka API</text>
+  <text x="670" y="135" fill="#999" font-family="'DM Mono',monospace" font-size="6" text-anchor="middle">Sklik / GDS</text>
+  <line x1="620" y1="122" x2="385" y2="107" stroke="#ddd" stroke-width="1" stroke-dasharray="4,3"/>
+</svg></div>
+
+    <div class="article-body">
+
+      <p>Shoptet má vlastní přehled statistik — tržby, objednávky, návštěvnost. Pro první rok provozu to stačí. Pak přijde chvíle, kdy potřebujete vědět, která kategorie má nejlepší marži, jak se liší zákaznická hodnota podle zdroje akvizice, nebo proč se obrat zvýšil, ale zisk ne. A v té chvíli vám Shoptet statistiky přestanou stačit.</p>
+
+      <p>Řešením je přesunout data ze Shoptetu do BigQuery, propojit je s reklamními platformami a GA4 a vizualizovat v Looker Studiu. Výsledek je dashboard, který aktualizuje se automaticky každý den a dá vám odpovědi, které z Shoptetu nepřečtete.</p>
+
+      <h2>Co Shoptet umí nativně — a kde to nestačí</h2>
+
+      <p>Shoptet nabízí přehled objednávek, produktových statistik a základní přehled tržeb. Má i napojení na GA4 přes ecommerce tracking. To je solidní základ, ale naráží na několik omezení:</p>
+
+      <ul>
+        <li>Data ze Shoptetu nejdou propojit s náklady na reklamu — nevíte, kolik vás stál zákazník z Google Ads vs. z Mety.</li>
+        <li>Marže v reportech není, protože Shoptet nezná vaše nákupní ceny (nebo je má jen částečně).</li>
+        <li>Historická data jsou omezená a jejich export do Excelu je ruční práce.</li>
+        <li>Segmentace zákazníků — RFM analýza, opakované nákupy, zákaznická hodnota — to Shoptet neumí vůbec.</li>
+      </ul>
+
+      <p>Všechna tato data existují. Jsou v Shoptetu, v GA4, v Meta Ads, v Google Ads. Chybí jen místo, kde se propojí.</p>
+
+      <h2>Jak dostat data ze Shoptetu do BigQuery</h2>
+
+      <p>Shoptet nabízí několik cest exportu. Která je pro vás správná, závisí na tarifu a na tom, jak často data potřebujete aktualizovat.</p>
+
+      <h3>Shoptet REST API — nejlepší volba pro Premium tarif</h3>
+
+      <p>Shoptet REST API je dostupné na tarifu Premium a výše. Přes API dostanete kompletní data v reálném čase: objednávky se všemi položkami, zákazníky, produkty se skladovými zásobami, kategorie, kupóny. Autentizace probíhá přes OAuth2 a dokumentace je na developer.shoptet.com dobře zpracovaná.</p>
+
+      <p>Konektor, který stavím pro klienty, volá API v pravidelných intervalech (typicky každých 15 minut nebo jednou denně pro historická data), výsledky zapisuje do BigQuery jako append-only tabulky a přes SQL views vytváří aktualizované pohledy na data. Celý pipeline běží v Google Cloud Functions — bez serveru, platíte jen za skutečné spuštění.</p>
+
+      <h3>CSV/XML export — funkční řešení pro nižší tarify</h3>
+
+      <p>Pokud nemáte Premium tarif, Shoptet umožňuje ruční nebo plánovaný CSV export objednávek a produktů. Automatizovat jde přes Shoptet Feed URL nebo plánovaný export do e-mailu. Data pak zpracujete Python skriptem nebo přes Make.com a nahrajete do BigQuery přes Cloud Storage.</p>
+
+      <p>Nevýhoda je jednoznačná: denní granularita a nutnost řešit inkrementální load — jak poznat, která data jsou nová a která se změnila (například stornovaná objednávka).</p>
+
+      <h3>Webhooky + Make.com pro real-time přenos</h3>
+
+      <p>Shoptet podporuje webhooky pro klíčové události — nová objednávka, změna stavu, nový zákazník. Přes Make.com nebo n8n zachytíte event, zpracujete payload a zapíšete přímo do BigQuery. Výhodou je okamžitá aktualizace bez polling API. Vhodné pro dashboardy, kde potřebujete data v řádu minut, ne hodin.</p>
+
+      <h2>Co s daty v BigQuery udělat</h2>
+
+      <p>Surová data ze Shoptetu jsou jen začátek. Hodnotu vytváří transformace — SQL dotazy, které z raw tabulek udělají analytické modely.</p>
+
+      <p>Typické transformace, které stavím pro Shoptet e-shopy:</p>
+
+      <ul>
+        <li><strong>Denní souhrn tržeb a marže</strong> — objednávky × produkty × nákupní ceny = marže na každou objednávku a kategorii.</li>
+        <li><strong>Zákaznický model</strong> — první nákup, poslední nákup, počet objednávek, průměrná hodnota, RFM skóre. Tohle Shoptet neumí, BigQuery ano.</li>
+        <li><strong>Propojení s GA4</strong> — GA4 BigQuery export přidá session data, source/medium, kampaně. JOIN přes session_id nebo user_id odhalí, které kanály přivádějí zákazníky s nejvyšší LTV.</li>
+        <li><strong>Propojení s reklamními platformami</strong> — náklady z Google Ads a Meta Ads přes jejich API doplní ROAS na úrovni kampaně, setu a inzerátu. Ne agregovaný ROAS z GA4 — skutečný, s každou korunou nákladů.</li>
+      </ul>
+
+      <div class="highlight-box">
+        <p>Klíčový insight, který tento setup odhalí téměř vždy: zákazníci z Heuréky mají průměrně nižší LTV než zákazníci z organického vyhledávání nebo e-mailového marketingu — přestože ROAS Heuréky vypadá na první pohled dobře. BigQuery vám ukáže 12měsíční zákaznickou hodnotu podle zdroje. Shoptet statistiky ne.</p>
+      </div>
+
+      <h2>Dashboard v Looker Studiu</h2>
+
+      <p>Looker Studio (dříve Google Data Studio) se přímo připojuje k BigQuery jako zdroji dat. Výhodou je, že dotazy běží na BigQuery — Looker Studio jen vizualizuje výsledky. Žádný sampling, žádná omezená retence. SQL view v BigQuery je přesně ten report, který vidíte v dashboardu.</p>
+
+      <p>Pro Shoptet e-shopy stavím typicky tři obrazovky:</p>
+
+      <ul>
+        <li><strong>Obchodní přehled</strong> — tržby, marže, počet objednávek, průměrná hodnota košíku, trend vs. minulý měsíc a rok. Filtr na období.</li>
+        <li><strong>Zákaznická analytika</strong> — noví vs. vracející se zákazníci, RFM segmenty, top zákazníci, geografické rozložení.</li>
+        <li><strong>Marketingový výkon</strong> — výdaje, ROAS, CPA, PNO na úrovni kanálu a kampaně. Propojeno s Shoptet objednávkami, ne jen s GA4 konverzemi.</li>
+      </ul>
+
+      <h2>Technické požadavky a cena provozu</h2>
+
+      <p>Celý stack stojí na Google Cloud Platform. Konkrétně: Cloud Functions pro API volání (nebo Cloud Scheduler pro CSV), Cloud Storage jako dočasné úložiště, BigQuery pro data, Looker Studio pro vizualizaci — to je zdarma.</p>
+
+      <p>Náklady na BigQuery při typickém objemu Shoptet e-shopu (desítky tisíc objednávek ročně) jsou v řádu stokorun měsíčně. Cloud Functions jsou prakticky zdarma — platíte za compute, ne za data. Looker Studio je zdarma. Shoptet Premium tarif, pokud ho ještě nemáte, je nutný pro API přístup.</p>
+
+      <h2>Závěr</h2>
+
+      <p>Shoptet je skvělá platforma pro spuštění a provoz e-shopu. Ale jeho built-in reporting nestačí e-shopům, které chtějí růst na základě dat — ne odhadů. Napojení Shoptetu na BigQuery není složité technické cvičení. Je to investice do toho, abyste věděli, co ve vašem e-shopu skutečně funguje a co ne — a mohli se rozhodovat podle čísel, která sedí.</p>
+
+    </div>
+
+    <div class="related-articles">
+      <p class="related-title">Mohlo by vás zajímat</p>
+      <div class="related-grid">
+        <a href="pohoda-reporting-bigquery.html" class="related-card">
+          <div class="related-card-tag">Data Engineering</div>
+          <div class="related-card-title">Pohoda a BigQuery: reportingový základ pro e-shop, který přerostl Excel</div>
+        </a>
+        <a href="datovy-sklad-pro-eshop.html" class="related-card">
+          <div class="related-card-tag">Data Engineering</div>
+          <div class="related-card-title">Datový sklad pro e-shop: jeden zdroj pravdy místo 8 Excelů</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="article-cta">
+      <h3>Chcete napojit Shoptet na BigQuery?</h3>
+      <p>Stavím konektory a reportingové pipeline pro Shoptet e-shopy. Napište mi — projdu s vámi, co data máte, co potřebujete vidět a jak to nejrychleji zprovoznit.</p>
+      <form class="blog-contact-form" action="https://formspree.io/f/xaqvejza" method="POST">
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" />
+        <input type="text" name="name" placeholder="Jméno" required />
+        <input type="email" name="email" placeholder="E-mail" required />
+        <textarea name="message" placeholder="Čím vám mohu pomoci?" required></textarea>
+        <button type="submit" class="cta-btn">Odeslat zprávu</button>
+        <p class="form-error" hidden></p>
+        <p class="form-recaptcha-note">Chráněno reCAPTCHA (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy</a> &amp; <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Terms</a>).</p>
+      </form>
+    </div>
+  </article>
+
+  <footer>
+    <p>© 2025 Flowstack · Jan Veverka · Czech Republic</p>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/jan-veverka-39b24938" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="tel:+420602603423">+420 602 603 423</a>
+      <a href="mailto:jan.veverka@flowstack.cz">jan.veverka@flowstack.cz</a>
+    </div>
+  </footer>
+<script>var n=document.querySelector(".nav-wrap");window.addEventListener("scroll",function(){n.classList.toggle("scrolled",window.scrollY>10)},{passive:true});</script>
+<script>
+(function() {
+  var SITE_KEY = '6LevXNgsAAAAALh4ZbMWnXz73v20fOgPLx_3zlRK';
+  document.querySelectorAll('.blog-contact-form').forEach(function(form) {
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      var btn = form.querySelector('button');
+      var errEl = form.querySelector('.form-error');
+      btn.textContent = 'Odesílám…';
+      btn.disabled = true;
+      errEl.hidden = true;
+      try {
+        var token = await new Promise(function(resolve) {
+          grecaptcha.ready(function() { grecaptcha.execute(SITE_KEY, { action: 'contact' }).then(resolve); });
+        });
+        var fd = new FormData(form);
+        fd.append('g-recaptcha-response', token);
+        var res = await fetch(form.action, { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } });
+        if (res.ok) {
+          form.innerHTML = '<p class="form-success">Zpráva odeslána. Ozvu se brzy.</p>';
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({'event':'form_submit','form_name':'contact','form_location':'blog_article'});
+        } else {
+          btn.textContent = 'Odeslat zprávu'; btn.disabled = false;
+          errEl.textContent = 'Něco se nepovedlo. Zkuste to znovu.'; errEl.hidden = false;
+        }
+      } catch(_) {
+        btn.textContent = 'Odeslat zprávu'; btn.disabled = false;
+        errEl.textContent = 'Chyba sítě. Zkuste to znovu.'; errEl.hidden = false;
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>

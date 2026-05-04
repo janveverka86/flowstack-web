@@ -7,8 +7,26 @@
     <language>cs</language>
     <managingEditor>jan.veverka@flowstack.cz (Jan Veverka)</managingEditor>
     <webMaster>jan.veverka@flowstack.cz (Jan Veverka)</webMaster>
-    <lastBuildDate>Sun, 04 May 2026 00:00:00 +0100</lastBuildDate>
+    <lastBuildDate>Mon, 01 Jun 2026 00:00:00 +0200</lastBuildDate>
     <atom:link href="https://flowstack.cz/feed.xml" rel="self" type="application/rss+xml" />
+
+    <item>
+      <title>Shoptet reporting v Looker Studiu: jak dostat data z e-shopu do pořádného dashboardu</title>
+      <link>https://flowstack.cz/blog/shoptet-reporting-bigquery.html</link>
+      <description>Shoptet má základní přehledy, ale ne custom reporting. Jak napojit e-shop na BigQuery a postavit dashboardy přesně podle vašich potřeb.</description>
+      <pubDate>Mon, 01 Jun 2026 00:00:00 +0200</pubDate>
+      <guid isPermaLink="true">https://flowstack.cz/blog/shoptet-reporting-bigquery.html</guid>
+      <category>Data Engineering</category>
+    </item>
+
+    <item>
+      <title>Pohoda a BigQuery: jak automatizovat reporting z účetního systému</title>
+      <link>https://flowstack.cz/blog/pohoda-reporting-bigquery.html</link>
+      <description>Pohoda nemá API — ale má MS SQL databázi. Jak si postavit vlastní Python konektor, dostat data do BigQuery a přestat reportovat z Excelu.</description>
+      <pubDate>Mon, 01 Jun 2026 00:00:00 +0200</pubDate>
+      <guid isPermaLink="true">https://flowstack.cz/blog/pohoda-reporting-bigquery.html</guid>
+      <category>Data Engineering</category>
+    </item>
 
     <item>
       <title>BigQuery jako datový základ pro AI agenty: jak propojit e-shop s umělou inteligencí</title>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Pohoda a BigQuery: jak automatizovat reporting z účetního systému | Flowstack Blog</title>
+  <meta name="description" content="Pohoda uchovává kritická data o fakturách, marži a skladech — ale její reporty nestačí. Jak napojit Pohoda SQL na BigQuery přes Python a vizualizovat v Looker Studiu." />
+  <link rel="canonical" href="https://flowstack.cz/blog/pohoda-reporting-bigquery.html" />
+  <meta property="og:title" content="Pohoda a BigQuery: jak automatizovat reporting z účetního systému | Flowstack Blog" />
+  <meta property="og:description" content="Pohoda uchovává kritická data o fakturách, marži a skladech — ale její reporty nestačí. Jak napojit Pohoda SQL na BigQuery přes Python a vizualizovat v Looker Studiu." />
+  <meta property="og:url" content="https://flowstack.cz/blog/pohoda-reporting-bigquery.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://flowstack.cz/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Pohoda a BigQuery: jak automatizovat reporting z účetního systému | Flowstack Blog" />
+  <meta name="twitter:description" content="Pohoda uchovává kritická data o fakturách, marži a skladech — ale její reporty nestačí. Jak napojit Pohoda SQL na BigQuery přes Python a vizualizovat v Looker Studiu." />
+  <meta name="twitter:image" content="https://flowstack.cz/og-image.png" />
+  <meta property="article:published_time" content="2026-06-01T00:00:00+01:00" />
+  <meta property="article:author" content="Jan Veverka" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23f4f0e8'/><text x='6' y='24' font-family='serif' font-size='22' fill='%23d4920e'>F</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="blog.css" />
+  <link rel="alternate" type="application/rss+xml" title="Flowstack Blog RSS" href="https://flowstack.cz/feed.xml" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Pohoda a BigQuery: jak automatizovat reporting z účetního systému",
+    "description": "Pohoda uchovává kritická data o fakturách, marži a skladech — ale její reporty nestačí. Jak napojit Pohoda SQL na BigQuery přes Python a vizualizovat v Looker Studiu.",
+    "url": "https://flowstack.cz/blog/pohoda-reporting-bigquery.html",
+    "datePublished": "2026-06-01",
+    "author": { "@type": "Person", "name": "Jan Veverka", "url": "https://flowstack.cz" },
+    "publisher": { "@type": "Organization", "name": "Flowstack", "url": "https://flowstack.cz" },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://flowstack.cz/blog/pohoda-reporting-bigquery.html" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Flowstack", "item": "https://flowstack.cz/" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://flowstack.cz/blog/" },
+      { "@type": "ListItem", "position": 3, "name": "Pohoda a BigQuery", "item": "https://flowstack.cz/blog/pohoda-reporting-bigquery.html" }
+    ]
+  }
+  </script>
+  <script src="https://www.google.com/recaptcha/api.js?render=6LevXNgsAAAAALh4ZbMWnXz73v20fOgPLx_3zlRK" async defer></script>
+</head>
+<body>
+  <div class="nav-wrap">
+    <nav>
+      <a href="/" class="logo">Flow<span>stack</span><div class="logo-sub">Jan Veverka · Datová analytika</div></a>
+      <div class="nav-links">
+        <a href="/blog/">Blog</a>
+        <a href="/" class="hide-mobile">Zpět na web</a>
+      </div>
+    </nav>
+  </div>
+  <div class="nav-spacer"></div>
+
+  <article class="article-wrap">
+    <span class="article-tag">Data Engineering</span>
+    <h1 class="article-title">Pohoda a BigQuery: jak automatizovat reporting z účetního systému</h1>
+    <div class="article-meta">Jan Veverka &nbsp;·&nbsp; Červen 2026 &nbsp;·&nbsp; 7 min čtení</div>
+
+    <div class="article-illustration">
+      <div class="illus-header">
+        <span class="illus-dots"><i></i><i></i><i></i></span>
+        <span class="illus-title">Architektura: Pohoda SQL → Python → BigQuery → Looker Studio</span>
+      </div>
+<svg viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:auto">
+  <rect width="800" height="200" fill="#f8f8f8"/>
+  <!-- Pohoda SQL -->
+  <rect x="15" y="50" width="145" height="100" fill="#eeeeee" stroke="#ddd" stroke-width="1"/>
+  <text x="87" y="75" fill="#d4920e" font-family="'DM Mono',monospace" font-size="9" text-anchor="middle" font-weight="500">Pohoda SQL</text>
+  <text x="27" y="93" fill="#666" font-family="'DM Mono',monospace" font-size="6">▸ Faktury vydané</text>
+  <text x="27" y="106" fill="#666" font-family="'DM Mono',monospace" font-size="6">▸ Zásoby / sklady</text>
+  <text x="27" y="119" fill="#666" font-family="'DM Mono',monospace" font-size="6">▸ Objednávky</text>
+  <text x="27" y="132" fill="#666" font-family="'DM Mono',monospace" font-size="6">▸ Adresář</text>
+  <text x="27" y="145" fill="#999" font-family="'DM Mono',monospace" font-size="6">MS SQL Server</text>
+  <!-- Python connector -->
+  <rect x="178" y="75" width="100" height="50" fill="#f2f2f2" stroke="#d4920e" stroke-width="1.5"/>
+  <text x="228" y="97" fill="#d4920e" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle">Python</text>
+  <text x="228" y="112" fill="#666" font-family="'DM Mono',monospace" font-size="6" text-anchor="middle">pyodbc → BQ</text>
+  <line x1="160" y1="100" x2="178" y2="100" stroke="#d4920e" stroke-width="2"/>
+  <polygon points="178,100 170,96 170,104" fill="#d4920e"/>
+  <!-- Arrow to BQ -->
+  <line x1="278" y1="100" x2="318" y2="100" stroke="#d4920e" stroke-width="2"/>
+  <polygon points="318,100 310,96 310,104" fill="#d4920e"/>
+  <text x="297" y="92" fill="#999" font-family="'DM Mono',monospace" font-size="6" text-anchor="middle">denní sync</text>
+  <!-- BigQuery -->
+  <rect x="322" y="35" width="175" height="130" fill="#f2f2f2" stroke="#d4920e" stroke-width="1.5"/>
+  <text x="409" y="58" fill="#d4920e" font-family="'DM Mono',monospace" font-size="9" text-anchor="middle" font-weight="500">BigQuery</text>
+  <text x="334" y="76" fill="#3a3a3a" font-family="'DM Mono',monospace" font-size="6">▸ pohoda_faktury</text>
+  <text x="334" y="89" fill="#3a3a3a" font-family="'DM Mono',monospace" font-size="6">▸ pohoda_zasoby</text>
+  <text x="334" y="102" fill="#3a3a3a" font-family="'DM Mono',monospace" font-size="6">▸ pohoda_objednavky</text>
+  <text x="334" y="115" fill="#999" font-family="'DM Mono',monospace" font-size="6">▸ shoptet_orders</text>
+  <text x="334" y="128" fill="#999" font-family="'DM Mono',monospace" font-size="6">▸ ga4_sessions</text>
+  <text x="334" y="148" fill="#d4920e" font-family="'DM Mono',monospace" font-size="6">▸ view_marze_denni</text>
+  <text x="334" y="161" fill="#d4920e" font-family="'DM Mono',monospace" font-size="6">▸ view_sklady_kpi</text>
+  <!-- Arrow to Looker -->
+  <line x1="497" y1="100" x2="537" y2="100" stroke="#d4920e" stroke-width="2"/>
+  <polygon points="537,100 529,96 529,104" fill="#d4920e"/>
+  <!-- Looker Studio -->
+  <rect x="541" y="50" width="155" height="100" fill="#eeeeee" stroke="#ddd" stroke-width="1"/>
+  <text x="618" y="75" fill="#d4920e" font-family="'DM Mono',monospace" font-size="9" text-anchor="middle" font-weight="500">Looker Studio</text>
+  <text x="553" y="93" fill="#666" font-family="'DM Mono',monospace" font-size="6">📊 Marže dle kategorie</text>
+  <text x="553" y="106" fill="#666" font-family="'DM Mono',monospace" font-size="6">📦 Stav skladů</text>
+  <text x="553" y="119" fill="#666" font-family="'DM Mono',monospace" font-size="6">💰 Cash flow přehled</text>
+  <text x="553" y="132" fill="#666" font-family="'DM Mono',monospace" font-size="6">📈 Tržby vs. náklady</text>
+  <text x="553" y="145" fill="#666" font-family="'DM Mono',monospace" font-size="6">🔄 Obrat zásob</text>
+</svg></div>
+
+    <div class="article-body">
+
+      <p>Pohoda je pro české e-shopy de facto standard účetního softwaru. Zpracovávají v ní faktury, evidují zásoby, párují objednávky, spravují sklady. Jenže kdykoli majitel e-shopu chce vědět, která kategorie produktů má nejlepší marži, jak vypadá obrat zásob nebo kde ho tlačí náklady — skončí u ručního exportu do Excelu. A tam začíná každý měsíc nanovo.</p>
+
+      <p>Řešení, které stavím pro klienty používající Pohodu, je přímé napojení Pohoda SQL databáze na BigQuery přes vlastní Python konektory. Data se synchronizují automaticky, v BigQuery se propojí s dalšími zdroji a výsledek je Looker Studio dashboard, který se aktualizuje sám — bez Excelu, bez ručních exportů.</p>
+
+      <h2>Proč Pohoda nestačí sama o sobě</h2>
+
+      <p>Pohoda má vlastní reporty — výsledovku, přehled faktur, skladové karty. Jsou funkční pro účetní účely. Narazíte na ně hned, když chcete víc:</p>
+
+      <ul>
+        <li>Marže na konkrétní kategorii produktů za poslední kvartál, s porovnáním roku na rok? Ruční export + Excel.</li>
+        <li>Propojení faktur s daty o reklamě — co nás stál zákazník vs. co nám přinesl za rok? Pohoda to neumí.</li>
+        <li>Obrat zásob v reálném čase, s alertem když klesne pod threshold? Nutné řešit ručně.</li>
+        <li>Zákaznická hodnota (LTV) na základě historických faktur? Opět mimo možnosti Pohody.</li>
+      </ul>
+
+      <p>Všechna tato data v Pohodě jsou — v tabulkách SQL databáze, kde jsou uloženy faktury, zásoby, pohyby na skladě a adresář. Chybí jen automatizovaný přístup a analytická vrstva nad nimi.</p>
+
+      <h2>Jak konektor funguje technicky</h2>
+
+      <p>Pohoda SQL (edice E1 a výše) ukládá data do Microsoft SQL Serveru. To je zásadní výhoda — přistupovat k datům lze přes standardní SQL dotazy, bez závislosti na proprietárním API nebo exportních formátech.</p>
+
+      <p>Python konektor, který stavím, funguje takto:</p>
+
+      <ul>
+        <li><strong>Připojení přes pyodbc</strong> — Python se přes ODBC driver připojí přímo k MS SQL Serveru Pohody. Pohoda musí běžet na stroji dostupném ze sítě (nebo VPN), SQL Server musí mít povolené vzdálené připojení.</li>
+        <li><strong>Inkrementální extrakce</strong> — dotaz vytáhne jen záznamy nové nebo změněné od posledního běhu. Klíč bývá timestamp posledního záznamu nebo číslo dokladu. Díky tomu sync netrvá hodiny, ale sekundy.</li>
+        <li><strong>Transformace v Pythonu</strong> — typové konverze, čištění dat, normalizace kódů kategorií. Surová data z Pohody nejsou vždy v analyticky přívětivém formátu.</li>
+        <li><strong>Upload do BigQuery</strong> — přes google-cloud-bigquery Python knihovnu se data zapíšou do staging tabulky a přes MERGE statement sloučí s produkční tabulkou. Žádné duplikáty.</li>
+      </ul>
+
+      <p>Celý konektor běží jako Cloud Function nebo Cloud Run job spouštěný přes Cloud Scheduler — typicky jednou denně v noci, nebo každých 15 minut pro sklady a objednávky.</p>
+
+      <div class="highlight-box">
+        <p>Technická podmínka: Pohoda SQL musí být edice E1 nebo vyšší. Základní Pohoda (bez SQL) data do MS SQL Serveru neukládá — pracuje s proprietárními soubory, ke kterým přístup zvenčí není možný. Pokud máte Pohoda Standard nebo Mini, přechod na Pohoda SQL E1 je prvním krokem.</p>
+      </div>
+
+      <h2>Jaká data z Pohody vytáhnout</h2>
+
+      <p>Pohoda SQL databáze obsahuje desítky tabulek. Pro analytické účely jsou nejcennější tyto:</p>
+
+      <h3>Faktury vydané — základ výnosové analytiky</h3>
+
+      <p>Tabulka vydaných faktur je páteří reportingu. Obsahuje číslo dokladu, datum, odběratele, celkovou částku, DPH, způsob platby a stav úhrady. Každá faktura má položky — produkty s množstvím, cenou a — klíčová věc — nákupní cenou (pokud ji Pohoda eviduje). Z toho počítáte marži na faktuře i na produktu.</p>
+
+      <h3>Zásoby a pohyby na skladě</h3>
+
+      <p>Skladové karty obsahují aktuální stav zásob, průměrnou nákupní cenu, minimální zásobu a pohyby — příjemky, výdejky, přesuny mezi sklady. Z pohybů počítáte obrat zásob, identifikujete slow-movers a máte přehled o vázaném kapitálu. Tohle je reporting, který majitele e-shopů zajímá a Pohoda sama neukáže v přehledné formě.</p>
+
+      <h3>Adresář — zákaznická data</h3>
+
+      <p>Adresář firem a osob propojíte s fakturami přes ID zákazníka. Výsledek: celková hodnota každého zákazníka za libovolné období, počet nákupů, průměrná hodnota objednávky. Základ pro RFM analýzu nebo identifikaci VIP zákazníků, kteří přestali nakupovat.</p>
+
+      <h2>Transformace a datový model v BigQuery</h2>
+
+      <p>Surová data z Pohody nestačí rovnou do dashboardu. Hodnotu tvoří transformační vrstva — SQL views a materializované tabulky, které z raw dat dělají analytické modely.</p>
+
+      <p>Typické transformace pro Pohoda data:</p>
+
+      <ul>
+        <li><strong>view_marze_denni</strong> — denní agregát tržeb, nákladů a marže. JOIN faktur s položkami a nákupními cenami. Základ pro trend marže v čase.</li>
+        <li><strong>view_sklady_kpi</strong> — aktuální stav všech skladů s výpočtem obratu zásob (days inventory outstanding) a identifikací položek pod minimální zásobou.</li>
+        <li><strong>view_zakaznici_ltv</strong> — lifetime value zákazníka z fakturační historie. Propojitelné se Shoptet objednávkami a GA4 daty o kanálu akvizice.</li>
+      </ul>
+
+      <p>Zásadní výhoda BigQuery: Pohoda data jsou teprve jedním ze zdrojů. Ve stejném projektu mám tabulky ze Shoptetu, GA4 exportu, Google Ads a Meta Ads. SQL JOIN pak ukáže, co Pohoda sama nikdy neřekne — zákazníci akvírovaní přes jaký kanál mají po roce nejvyšší hodnotu z pohledu faktur.</p>
+
+      <h2>Dashboard v Looker Studiu</h2>
+
+      <p>Looker Studio se přímo napojí na BigQuery jako datový zdroj. Pro Pohoda e-shopy stavím typicky tyto obrazovky:</p>
+
+      <ul>
+        <li><strong>Výnosový přehled</strong> — tržby a marže dle dne, týdne, měsíce. Porovnání s minulým rokem. Filtr na kategorii produktů nebo zákazníka. Vše z Pohoda faktur, bez Excelu.</li>
+        <li><strong>Skladový dashboard</strong> — aktuální stav zásob, dny do vyprodání při průměrném výdeji, seznam položek pod minimem. Aktualizuje se denně ráno automaticky.</li>
+        <li><strong>Zákaznická analytika</strong> — top zákazníci podle fakturované hodnoty, nově získaní vs. vracející se, zákazníci s poklesem aktivity (churn risk).</li>
+        <li><strong>Propojený přehled</strong> — marže z Pohody + náklady na reklamu z Google/Meta = skutečná rentabilita každého kanálu. Tohle je ta kombinace, pro kterou celé napojení stojí za to.</li>
+      </ul>
+
+      <h2>Závěr</h2>
+
+      <p>Pohoda je dobrý účetní systém. Ale reportingový nástroj to není — a nikdy nebyl. Data, která v ní máte, jsou přitom cenná: faktury, marže, sklady, zákazníci. Propojit je s BigQuery a Looker Studiem znamená přestat exportovat do Excelu a začít se rozhodovat podle reportů, které se aktualizují samy. Pro e-shopy v určité velikosti to není luxus — je to základ pro řízení firmy podle čísel.</p>
+
+    </div>
+
+    <div class="related-articles">
+      <p class="related-title">Mohlo by vás zajímat</p>
+      <div class="related-grid">
+        <a href="shoptet-reporting-bigquery.html" class="related-card">
+          <div class="related-card-tag">Data Engineering</div>
+          <div class="related-card-title">Shoptet reporting v Looker Studiu: jak dostat data z e-shopu do pořádného dashboardu</div>
+        </a>
+        <a href="datovy-sklad-pro-eshop.html" class="related-card">
+          <div class="related-card-tag">Data Engineering</div>
+          <div class="related-card-title">Datový sklad pro e-shop: jeden zdroj pravdy místo 8 Excelů</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="article-cta">
+      <h3>Chcete napojit Pohodu na BigQuery?</h3>
+      <p>Stavím konektory pro Pohoda SQL — extrakce dat, synchronizace do BigQuery a Looker Studio dashboardy. Napište mi a projdeme, co z vaší Pohody vytáhnout jako první.</p>
+      <form class="blog-contact-form" action="https://formspree.io/f/xaqvejza" method="POST">
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" />
+        <input type="text" name="name" placeholder="Jméno" required />
+        <input type="email" name="email" placeholder="E-mail" required />
+        <textarea name="message" placeholder="Čím vám mohu pomoci?" required></textarea>
+        <button type="submit" class="cta-btn">Odeslat zprávu</button>
+        <p class="form-error" hidden></p>
+        <p class="form-recaptcha-note">Chráněno reCAPTCHA (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy</a> &amp; <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Terms</a>).</p>
+      </form>
+    </div>
+  </article>
+
+  <footer>
+    <p>© 2025 Flowstack · Jan Veverka · Czech Republic</p>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/jan-veverka-39b24938" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="tel:+420602603423">+420 602 603 423</a>
+      <a href="mailto:jan.veverka@flowstack.cz">jan.veverka@flowstack.cz</a>
+    </div>
+  </footer>
+<script>var n=document.querySelector(".nav-wrap");window.addEventListener("scroll",function(){n.classList.toggle("scrolled",window.scrollY>10)},{passive:true});</script>
+<script>
+(function() {
+  var SITE_KEY = '6LevXNgsAAAAALh4ZbMWnXz73v20fOgPLx_3zlRK';
+  document.querySelectorAll('.blog-contact-form').forEach(function(form) {
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      var btn = form.querySelector('button');
+      var errEl = form.querySelector('.form-error');
+      btn.textContent = 'Odesílám…';
+      btn.disabled = true;
+      errEl.hidden = true;
+      try {
+        var token = await new Promise(function(resolve) {
+          grecaptcha.ready(function() { grecaptcha.execute(SITE_KEY, { action: 'contact' }).then(resolve); });
+        });
+        var fd = new FormData(form);
+        fd.append('g-recaptcha-response', token);
+        var res = await fetch(form.action, { method: 'POST', body: fd, headers: { 'Accept': 'application/json' } });
+        if (res.ok) {
+          form.innerHTML = '<p class="form-success">Zpráva odeslána. Ozvu se brzy.</p>';
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({"event":"form_submit","form_name":"contact","form_location":"blog_article"});
+        } else {
+          btn.textContent = 'Odeslat zprávu'; btn.disabled = false;
+          errEl.textContent = 'Něco se nepovedlo. Zkuste to znovu.'; errEl.hidden = false;
+        }
+      } catch(_) {
+        btn.textContent = 'Odeslat zprávu'; btn.disabled = false;
+        errEl.textContent = 'Chyba sítě. Zkuste to znovu.'; errEl.hidden = false;
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>
