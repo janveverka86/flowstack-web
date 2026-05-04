@@ -24,7 +24,8 @@ nav a:hover { color:var(--accent); }
 .article-meta { font-family:'Inter',sans-serif; font-size:.72rem; font-weight:400; color:var(--muted); letter-spacing:.06em; margin-bottom:3rem; padding-bottom:2rem; border-bottom:1px solid var(--border); }
 
 /* ILLUSTRATIONS */
-.article-illustration { margin-bottom:2.5rem; border:1px solid var(--border); overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,.06); }
+.article-illustration { margin:0 2rem 2.5rem; border:1px solid var(--border); overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,.06); }
+@media(max-width:600px) { .article-illustration { margin-left:0; margin-right:0; } }
 .article-illustration svg { display:block; width:100%; height:auto; }
 .illus-header { display:flex; align-items:center; gap:.8rem; padding:.65rem 1rem; background:#ede8e0; border-bottom:1px solid var(--border); }
 .illus-dots { display:flex; gap:.35rem; flex-shrink:0; }
