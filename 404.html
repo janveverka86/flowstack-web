@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>404 – Stránka nenalezena | Flowstack</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23f4f0e8'/><text x='6' y='24' font-family='serif' font-size='22' fill='%23d4920e'>F</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root { --bg:#f4f0e8; --fg:#1c1814; --accent:#d4920e; --muted:#7a7269; --border:#ddd8d0; }
+    *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; background:#f4f0e8; }
+    body { background:radial-gradient(ellipse at 50% 0%, #ece6da 0%, var(--bg) 65%); color:var(--fg); font-family:'Inter',sans-serif; font-weight:400; min-height:100vh; overflow-x:clip; display:flex; flex-direction:column; }
+    body::after { content:''; position:fixed; inset:0; background-image:radial-gradient(circle, #c4bdb5 1px, transparent 1px); background-size:28px 28px; pointer-events:none; z-index:0; opacity:.35; }
+
+    .nav-wrap { position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(244,240,232,.88); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-bottom:1px solid var(--border); padding-top:env(safe-area-inset-top); }
+    nav { display:flex; justify-content:space-between; align-items:center; padding:1.2rem 2rem; max-width:1100px; margin:0 auto; }
+    .logo { font-family:'Playfair Display',serif; font-size:1.7rem; color:var(--fg); letter-spacing:-.02em; text-decoration:none; line-height:1; }
+    .logo span { color:var(--accent); }
+    .logo-sub { font-family:'Inter',sans-serif; font-size:.62rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-top:.35rem; font-weight:400; }
+    nav a { color:var(--muted); text-decoration:none; font-size:.82rem; transition:color .2s; }
+    nav a:hover { color:var(--accent); }
+    .nav-spacer { height:calc(68px + env(safe-area-inset-top, 0px)); }
+
+    main { position:relative; z-index:1; flex:1; display:flex; align-items:center; justify-content:center; padding:4rem 2rem 6rem; }
+
+    .error-wrap { max-width:700px; width:100%; }
+    .error-tag { display:inline-block; font-family:'DM Mono',monospace; font-size:.68rem; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:var(--accent); border:1px solid var(--accent); padding:.25rem .7rem; margin-bottom:1.5rem; }
+    h1 { font-family:'Playfair Display',serif; font-size:clamp(2.5rem,8vw,5rem); font-weight:400; letter-spacing:-.03em; line-height:1.05; margin-bottom:2rem; }
+    h1 em { font-style:italic; color:var(--accent); }
+
+    .terminal { background:#1c1814; border:1px solid #3a3028; padding:1.5rem 1.8rem; margin:2.5rem 0; font-family:'DM Mono',monospace; font-size:.78rem; line-height:1.8; color:#c4bdb5; overflow-x:auto; }
+    .terminal-bar { display:flex; gap:.5rem; margin-bottom:1.2rem; }
+    .terminal-dot { width:12px; height:12px; border-radius:50%; }
+    .terminal-dot:nth-child(1) { background:#ff5f57; }
+    .terminal-dot:nth-child(2) { background:#febc2e; }
+    .terminal-dot:nth-child(3) { background:#28c840; }
+    .t-comment { color:#7a7269; }
+    .t-keyword { color:#d4920e; }
+    .t-string { color:#a8c97f; }
+    .t-error { color:#e05252; }
+    .t-success { color:#5fad56; }
+    .t-dim { color:#5a5048; }
+    .t-prompt { color:#d4920e; margin-right:.5rem; }
+
+    .error-msg { font-size:1rem; color:#6a6258; line-height:1.85; margin-bottom:2.5rem; max-width:520px; }
+    .cta-btn { display:inline-block; background:var(--accent); color:#fff; font-family:'Inter',sans-serif; font-size:.75rem; font-weight:500; letter-spacing:.04em; text-decoration:none; padding:.9rem 2.2rem; transition:opacity .2s; }
+    .cta-btn:hover { opacity:.85; }
+    .secondary-links { margin-top:1.5rem; display:flex; gap:2rem; flex-wrap:wrap; }
+    .secondary-links a { color:var(--muted); font-size:.8rem; text-decoration:none; transition:color .2s; border-bottom:1px solid var(--border); padding-bottom:.1rem; }
+    .secondary-links a:hover { color:var(--accent); border-color:var(--accent); }
+
+    footer { position:relative; z-index:1; border-top:1px solid var(--border); padding:2rem; max-width:1100px; margin:0 auto; width:100%; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+    footer p { font-size:.72rem; color:var(--muted); letter-spacing:.04em; }
+    footer a { color:var(--muted); text-decoration:none; font-size:.72rem; letter-spacing:.04em; transition:color .2s; }
+    footer a:hover { color:var(--accent); }
+    .footer-links { display:flex; align-items:center; gap:2rem; flex-wrap:wrap; }
+
+    @media(max-width:600px) { nav { padding:1rem 1.2rem; } .logo { font-size:1.3rem; } .logo-sub { display:none; } .terminal { font-size:.7rem; padding:1.2rem; } }
+  </style>
+</head>
+<body>
+  <div class="nav-wrap">
+    <nav>
+      <a href="/" class="logo">Flow<span>stack</span><div class="logo-sub">Jan Veverka · Datová analytika</div></a>
+      <div style="display:flex;gap:2rem;">
+        <a href="/blog/">Blog</a>
+        <a href="/">Hlavní stránka</a>
+      </div>
+    </nav>
+  </div>
+  <div class="nav-spacer"></div>
+
+  <main>
+    <div class="error-wrap">
+      <span class="error-tag">Chyba 404</span>
+      <h1>Stránka<br><em>nenalezena.</em></h1>
+
+      <div class="terminal">
+        <div class="terminal-bar">
+          <div class="terminal-dot"></div>
+          <div class="terminal-dot"></div>
+          <div class="terminal-dot"></div>
+        </div>
+        <div><span class="t-prompt">$</span><span class="t-dim">bq query --use_legacy_sql=false \</span></div>
+        <div><span class="t-dim">&nbsp;&nbsp;"</span><span class="t-keyword">SELECT</span> <span class="t-string">*</span> <span class="t-keyword">FROM</span> <span class="t-string">`flowstack.pages`</span></div>
+        <div><span class="t-dim">&nbsp;&nbsp;&nbsp;</span><span class="t-keyword">WHERE</span> url = <span class="t-string" id="bad-url">'/tato-stranka'</span><span class="t-dim">"</span></div>
+        <br>
+        <div><span class="t-comment">-- Waiting for query to complete...</span></div>
+        <div><span class="t-comment">-- Job ID: flowstack-prod:EU.bq_404_xKd9m</span></div>
+        <br>
+        <div><span class="t-dim">+----------+</span></div>
+        <div><span class="t-dim">| (no rows) |</span></div>
+        <div><span class="t-dim">+----------+</span></div>
+        <div><span class="t-comment">-- 0 rows, 0 B processed. In 0.3s. (That's fast. Because nothing exists.)</span></div>
+        <br>
+        <div><span class="t-prompt">$</span><span class="t-dim"> bq query "SELECT * FROM </span><span class="t-string">google.internet</span></div>
+        <div><span class="t-dim">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="t-keyword">WHERE</span> makes_sense = <span class="t-keyword">TRUE</span><span class="t-dim">"</span></div>
+        <br>
+        <div><span class="t-error">ERROR: Not found: Table google:internet was not found</span></div>
+        <div><span class="t-error">ERROR: Column 'makes_sense' does not exist in any known schema</span></div>
+        <div><span class="t-error">ERROR: This URL returned HTTP 404. Obviously.</span></div>
+        <br>
+        <div><span class="t-comment">-- Diagnostika: URL pravděpodobně nikdy neexistovala,</span></div>
+        <div><span class="t-comment">--              nebo ji někdo smazal bez deployment plánu.</span></div>
+        <div><span class="t-comment">--              Každopádně: není to v datech, takže se to nestalo.</span></div>
+      </div>
+
+      <p class="error-msg">
+        Tato stránka neexistuje — ani v BigQuery, ani v GA4, ani v té záhadné tabulce plné NULL hodnot,
+        které tam nikdo nevíte jak přibyl. Zkuste se vrátit tam, kde data dávají smysl.
+      </p>
+
+      <a href="/" class="cta-btn">Zpět na hlavní stránku</a>
+      <div class="secondary-links">
+        <a href="/blog/">Blog</a>
+        <a href="mailto:jan.veverka@flowstack.cz">Napsat mi</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 Flowstack · Jan Veverka · Czech Republic</p>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/jan-veverka-39b24938" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="tel:+420602603423">+420 602 603 423</a>
+      <a href="mailto:jan.veverka@flowstack.cz">jan.veverka@flowstack.cz</a>
+    </div>
+  </footer>
+
+  <script>
+    var url = window.location.pathname;
+    var el = document.getElementById('bad-url');
+    if (el && url && url !== '/404.html') el.textContent = "'" + url + "'";
+  </script>
+</body>
+</html>
