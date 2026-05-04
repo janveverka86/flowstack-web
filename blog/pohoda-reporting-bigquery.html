@@ -146,7 +146,7 @@
         <li><strong>Upload do BigQuery</strong> — přes google-cloud-bigquery Python knihovnu se data zapíšou do staging tabulky a přes MERGE statement sloučí s produkční tabulkou. Žádné duplikáty.</li>
       </ul>
 
-      <p>Celý konektor běží jako Cloud Function nebo Cloud Run job spouštěný přes Cloud Scheduler — typicky jednou denně v noci, nebo každých 15 minut pro sklady a objednávky.</p>
+      <p>Celý konektor běží automatizovaně v cloudu — typicky jednou denně v noci, nebo každých 15 minut pro sklady a objednávky.</p>
 
       <div class="highlight-box">
         <p>Technická podmínka: Pohoda SQL musí být edice E1 nebo vyšší. Základní Pohoda (bez SQL) data do MS SQL Serveru neukládá — pracuje s proprietárními soubory, ke kterým přístup zvenčí není možný. Pokud máte Pohoda Standard nebo Mini, přechod na Pohoda SQL E1 je prvním krokem.</p>

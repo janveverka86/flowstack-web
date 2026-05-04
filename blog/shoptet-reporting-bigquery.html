@@ -142,11 +142,11 @@
 
       <p>Shoptet REST API je dostupné na tarifu Premium a výše. Přes API dostanete kompletní data v reálném čase: objednávky se všemi položkami, zákazníky, produkty se skladovými zásobami, kategorie, kupóny. Autentizace probíhá přes OAuth2 a dokumentace je na developer.shoptet.com dobře zpracovaná.</p>
 
-      <p>Konektor, který stavím pro klienty, volá API v pravidelných intervalech (typicky každých 15 minut nebo jednou denně pro historická data), výsledky zapisuje do BigQuery jako append-only tabulky a přes SQL views vytváří aktualizované pohledy na data. Celý pipeline běží v Google Cloud Functions — bez serveru, platíte jen za skutečné spuštění.</p>
+      <p>Konektor, který stavím pro klienty, volá API v pravidelných intervalech (typicky každých 15 minut nebo jednou denně pro historická data), výsledky zapisuje do BigQuery jako append-only tabulky a přes SQL views vytváří aktualizované pohledy na data. Pipeline běží automatizovaně v cloudu — bez serveru, platíte jen za skutečné spuštění.</p>
 
       <h3>CSV/XML export — funkční řešení pro nižší tarify</h3>
 
-      <p>Pokud nemáte Premium tarif, Shoptet umožňuje ruční nebo plánovaný CSV export objednávek a produktů. Automatizovat jde přes Shoptet Feed URL nebo plánovaný export do e-mailu. Data pak zpracujete Python skriptem nebo přes Make.com a nahrajete do BigQuery přes Cloud Storage.</p>
+      <p>Pokud nemáte Premium tarif, Shoptet umožňuje ruční nebo plánovaný CSV export objednávek a produktů. Automatizovat jde přes Shoptet Feed URL nebo plánovaný export do e-mailu. Data pak zpracujete Python skriptem nebo přes Make.com a nahrajete do BigQuery.</p>
 
       <p>Nevýhoda je jednoznačná: denní granularita a nutnost řešit inkrementální load — jak poznat, která data jsou nová a která se změnila (například stornovaná objednávka).</p>
 
@@ -185,9 +185,9 @@
 
       <h2>Technické požadavky a cena provozu</h2>
 
-      <p>Celý stack stojí na Google Cloud Platform. Konkrétně: Cloud Functions pro API volání (nebo Cloud Scheduler pro CSV), Cloud Storage jako dočasné úložiště, BigQuery pro data, Looker Studio pro vizualizaci — to je zdarma.</p>
+      <p>Celý stack stojí na Google Cloud Platform: BigQuery pro data, Looker Studio pro vizualizaci — to je zdarma. Automatizace pipeline běží v cloudu bez nutnosti vlastního serveru.</p>
 
-      <p>Náklady na BigQuery při typickém objemu Shoptet e-shopu (desítky tisíc objednávek ročně) jsou v řádu stokorun měsíčně. Cloud Functions jsou prakticky zdarma — platíte za compute, ne za data. Looker Studio je zdarma. Shoptet Premium tarif, pokud ho ještě nemáte, je nutný pro API přístup.</p>
+      <p>Náklady na BigQuery při typickém objemu Shoptet e-shopu (desítky tisíc objednávek ročně) jsou v řádu stokorun měsíčně. Provoz automatizace je prakticky zdarma — platíte za data, ne za compute. Looker Studio je zdarma. Shoptet Premium tarif, pokud ho ještě nemáte, je nutný pro API přístup.</p>
 
       <h2>Závěr</h2>
 
