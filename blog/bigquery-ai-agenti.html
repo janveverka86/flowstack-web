@@ -44,6 +44,7 @@
     }
   }
   </script>
+  <script src="https://www.google.com/recaptcha/api.js?render=6LevXNgsAAAAALh4ZbMWnXz73v20fOgPLx_3zlRK" async defer></script>
 </head>
 <body>
   <div class="nav-wrap">
@@ -172,7 +173,15 @@
     <div class="article-cta">
       <h3>Chcete postavit datový základ pro AI?</h3>
       <p>Pomáhám e-shopům navrhnout a postavit BigQuery datový sklad, který je připravený jak pro stávající reporting, tak pro napojení AI agentů. Pokud vás téma zajímá, rád si popovídáme o tom, co by dávalo smysl ve vašem konkrétním případě.</p>
-      <a href="mailto:jan.veverka@flowstack.cz" class="cta-btn">Napište mi</a>
+      <form class="blog-contact-form" action="https://formspree.io/f/xaqvejza" method="POST">
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" />
+        <input type="text" name="name" placeholder="Jméno" required />
+        <input type="email" name="email" placeholder="E-mail" required />
+        <textarea name="message" placeholder="Čím vám mohu pomoci?" required></textarea>
+        <button type="submit" class="cta-btn">Odeslat zprávu</button>
+        <p class="form-error" hidden></p>
+        <p class="form-recaptcha-note">Chráněno reCAPTCHA (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy</a> &amp; <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Terms</a>).</p>
+      </form>
     </div>
   </article>
 
@@ -185,5 +194,41 @@
     </div>
   </footer>
 <script>var n=document.querySelector(".nav-wrap");window.addEventListener("scroll",function(){n.classList.toggle("scrolled",window.scrollY>10)},{passive:true});</script>
+<script>
+(function() {
+  var SITE_KEY = '6LevXNgsAAAAALh4ZbMWnXz73v20fOgPLx_3zlRK';
+  document.querySelectorAll('.blog-contact-form').forEach(function(form) {
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      var btn = form.querySelector('button');
+      var errEl = form.querySelector('.form-error');
+      btn.textContent = 'Odesílám…';
+      btn.disabled = true;
+      errEl.hidden = true;
+      try {
+        var token = await new Promise(function(resolve) {
+          grecaptcha.ready(function() {
+            grecaptcha.execute(SITE_KEY, { action: 'contact' }).then(resolve);
+          });
+        });
+        var fd = new FormData(form);
+        fd.append('g-recaptcha-response', token);
+        var res = await fetch(form.action, {
+          method: 'POST', body: fd, headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          form.innerHTML = '<p class="form-success">Zpráva odeslána. Ozvu se brzy.</p>';
+        } else {
+          btn.textContent = 'Odeslat zprávu'; btn.disabled = false;
+          errEl.textContent = 'Něco se nepovedlo. Zkuste to znovu.'; errEl.hidden = false;
+        }
+      } catch(_) {
+        btn.textContent = 'Odeslat zprávu'; btn.disabled = false;
+        errEl.textContent = 'Chyba sítě. Zkuste to znovu.'; errEl.hidden = false;
+      }
+    });
+  });
+})();
+</script>
 </body>
 </html>
