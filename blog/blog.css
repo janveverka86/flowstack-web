@@ -50,7 +50,7 @@ nav a:hover { color:var(--accent); }
 .article-cta::before { content:''; position:absolute; top:0; left:0; width:40px; height:2px; background:var(--accent); }
 .article-cta h3 { font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:400; margin-bottom:.8rem; }
 .article-cta p { font-size:.82rem; color:#6a6258; line-height:1.75; margin-bottom:1.5rem; }
-.cta-btn { display:inline-block; background:var(--accent); color:#fff; font-family:'Inter',sans-serif; font-size:.75rem; font-weight:500; letter-spacing:.04em; text-transform:none; text-decoration:none; padding:.85rem 2rem; transition:opacity .2s; }
+.cta-btn { display:inline-block; background:var(--accent); color:#fff; font-family:'Inter',sans-serif; font-size:.75rem; font-weight:600; letter-spacing:.04em; text-transform:none; text-decoration:none; padding:.85rem 2rem; transition:opacity .2s; }
 .cta-btn:hover { opacity:.85; }
 
 /* BLOG CTA SECTION */
