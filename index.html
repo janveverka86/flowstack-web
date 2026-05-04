@@ -882,10 +882,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span data-lang="en">Whether you need measurement set up, a pipeline built, or your numbers to finally make sense — get in touch.</span>
     </p>
     <form id="contact-form" action="https://formspree.io/f/xaqvejza" method="POST" class="contact-form">
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" />
       <input type="text" name="name" placeholder="Jméno" required />
       <input type="email" name="email" placeholder="E-mail" required />
       <textarea name="message" placeholder="Čím vám mohu pomoci?" required></textarea>
-      <button type="submit" class="cta-btn">Odeslat zprávu</button>
+      <button type="submit" class="cta-btn" id="contact-submit">Odeslat zprávu</button>
       <p class="form-error" id="form-error" hidden></p>
     </form>
   </div>
