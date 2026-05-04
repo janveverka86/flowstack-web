@@ -1070,6 +1070,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           });
           if (res.ok) {
             form.innerHTML = '<p class="form-success">Zpráva odeslána. Ozvu se brzy.</p>';
+            dataLayer.push({'event':'form_submit','form_name':'contact','form_location':'homepage_cta'});
           } else {
             btn.textContent = 'Odeslat zprávu';
             btn.disabled = false;

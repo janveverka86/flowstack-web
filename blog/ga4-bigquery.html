@@ -15,6 +15,8 @@
   <meta name="twitter:description" content="GA4 UI nestačí na seriózní e-commerce analýzy. BigQuery export odstraní sampling, prodlouží retenci a umožní join s daty z Heuréky nebo Meta Ads." />
   <meta property="article:published_time" content="2026-02-01T00:00:00+01:00" />
   <meta property="article:author" content="Jan Veverka" />
+  <meta property="og:image" content="https://flowstack.cz/og-image.png" />
+  <meta name="twitter:image" content="https://flowstack.cz/og-image.png" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23f4f0e8'/><text x='6' y='24' font-family='serif' font-size='22' fill='%23d4920e'>F</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -45,6 +47,33 @@
   }
   </script>
   <script src="https://www.google.com/recaptcha/api.js?render=6LevXNgsAAAAALh4ZbMWnXz73v20fOgPLx_3zlRK" async defer></script>
+  <link rel="alternate" type="application/rss+xml" title="Flowstack Blog RSS" href="https://flowstack.cz/feed.xml" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Flowstack",
+      "item": "https://flowstack.cz/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://flowstack.cz/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "GA4 BigQuery export pro e-commerce: co s tím jde dělat",
+      "item": "https://flowstack.cz/blog/ga4-bigquery.html"
+    }
+  ]
+}
+  </script>
 </head>
 <body>
   <div class="nav-wrap">
@@ -179,6 +208,20 @@ ORDER BY
 
     </div>
 
+
+    <div class="related-articles">
+      <p class="related-title">Mohlo by vás zajímat</p>
+      <div class="related-grid">
+        <a href="bigquery-ai-agenti.html" class="related-card">
+          <div class="related-card-tag">AI & Data Engineering</div>
+          <div class="related-card-title">BigQuery jako datový základ pro AI agenty: jak propojit e-shop s umělou inteligencí</div>
+        </a>
+        <a href="datovy-sklad-pro-eshop.html" class="related-card">
+          <div class="related-card-tag">Data Engineering</div>
+          <div class="related-card-title">Datový sklad pro e-shop: jeden zdroj pravdy místo 8 Excelů</div>
+        </a>
+      </div>
+    </div>
     <div class="article-cta">
       <h3>Řešíte podobný problém?</h3>
       <p>Pokud chcete nastavit BigQuery export a začít s daty dělat víc než jen základní přehledy, rád vám pomůžu s celým procesem — od propojení GA4 až po první užitečné dotazy.</p>
@@ -227,6 +270,8 @@ ORDER BY
         });
         if (res.ok) {
           form.innerHTML = '<p class="form-success">Zpráva odeslána. Ozvu se brzy.</p>';
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({'event':'form_submit','form_name':'contact','form_location':'blog_article'});
         } else {
           btn.textContent = 'Odeslat zprávu'; btn.disabled = false;
           errEl.textContent = 'Něco se nepovedlo. Zkuste to znovu.'; errEl.hidden = false;

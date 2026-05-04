@@ -15,6 +15,8 @@
   <meta name="twitter:description" content="sGTM přesouvá měření na váš server a obchází blokátory reklam. E-shopy tak typicky zachrání 15–30 % konverzních dat. Praktický průvodce." />
   <meta property="article:published_time" content="2026-04-01T00:00:00+01:00" />
   <meta property="article:author" content="Jan Veverka" />
+  <meta property="og:image" content="https://flowstack.cz/og-image.png" />
+  <meta name="twitter:image" content="https://flowstack.cz/og-image.png" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23f4f0e8'/><text x='6' y='24' font-family='serif' font-size='22' fill='%23d4920e'>F</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -45,6 +47,33 @@
   }
   </script>
   <script src="https://www.google.com/recaptcha/api.js?render=6LevXNgsAAAAALh4ZbMWnXz73v20fOgPLx_3zlRK" async defer></script>
+  <link rel="alternate" type="application/rss+xml" title="Flowstack Blog RSS" href="https://flowstack.cz/feed.xml" />
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Flowstack",
+      "item": "https://flowstack.cz/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://flowstack.cz/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Server-side GTM pro e-shop: jak přestat ztrácet konverzní data",
+      "item": "https://flowstack.cz/blog/sgtm-pro-eshop.html"
+    }
+  ]
+}
+  </script>
 </head>
 <body>
   <div class="nav-wrap">
@@ -141,6 +170,20 @@
 
     </div>
 
+
+    <div class="related-articles">
+      <p class="related-title">Mohlo by vás zajímat</p>
+      <div class="related-grid">
+        <a href="consent-mode-v2.html" class="related-card">
+          <div class="related-card-tag">Měření dat</div>
+          <div class="related-card-title">Consent Mode v2: proč ho potřebujete a jak ho správně nastavit</div>
+        </a>
+        <a href="1st-party-data-ecommerce.html" class="related-card">
+          <div class="related-card-tag">Měření dat</div>
+          <div class="related-card-title">1st party data pro e-commerce: jak měřit v době, kdy cookies mizí</div>
+        </a>
+      </div>
+    </div>
     <div class="article-cta">
       <h3>Řešíte podobný problém?</h3>
       <p>Pokud vám nesedí konverzní data nebo chcete vědět, kolik měření skutečně ztrácíte, rád se na váš případ podívám a navrhnu konkrétní kroky.</p>
@@ -189,6 +232,8 @@
         });
         if (res.ok) {
           form.innerHTML = '<p class="form-success">Zpráva odeslána. Ozvu se brzy.</p>';
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({'event':'form_submit','form_name':'contact','form_location':'blog_article'});
         } else {
           btn.textContent = 'Odeslat zprávu'; btn.disabled = false;
           errEl.textContent = 'Něco se nepovedlo. Zkuste to znovu.'; errEl.hidden = false;
