@@ -10,11 +10,11 @@
   <meta property="og:description" content="GA4 UI nestačí na seriózní e-commerce analýzy. BigQuery export odstraní sampling, prodlouží retenci a umožní join s daty z Heuréky nebo Meta Ads." />
   <meta property="og:url" content="https://flowstack.cz/blog/ga4-bigquery.html" />
   <meta property="og:type" content="article" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230a0a0a'/><text x='6' y='24' font-family='serif' font-size='22' fill='%23c8f04a'>F</text></svg>" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23f4f0e8'/><text x='6' y='24' font-family='serif' font-size='22' fill='%23d4920e'>F</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="blog.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="blog-light.css" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -59,26 +59,26 @@
 
     <div class="article-illustration">
 <svg viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:auto">
-  <rect width="800" height="200" fill="#0d0d0d"/>
-  <text x="30" y="28" fill="#444" font-family="'DM Mono',monospace" font-size="8" letter-spacing="2">RETENCE DAT A MOŽNOSTI ANALÝZY</text>
-  <text x="30" y="65" fill="#555" font-family="'DM Mono',monospace" font-size="10">GA4 UI</text>
+  <rect width="800" height="200" fill="#f8f8f8"/>
+  <text x="30" y="28" fill="#999" font-family="'DM Mono',monospace" font-size="8" letter-spacing="2">RETENCE DAT A MOŽNOSTI ANALÝZY</text>
+  <text x="30" y="65" fill="#666" font-family="'DM Mono',monospace" font-size="10">GA4 UI</text>
   <rect x="140" y="50" width="280" height="26" fill="#252525" stroke="#333" stroke-width="1"/>
   <text x="280" y="68" fill="#666" font-family="'DM Mono',monospace" font-size="9" text-anchor="middle">14 měsíců</text>
-  <text x="435" y="67" fill="#555" font-family="'DM Mono',monospace" font-size="18">╳</text>
-  <text x="465" y="62" fill="#333" font-family="'DM Mono',monospace" font-size="8">sampling</text>
-  <text x="465" y="73" fill="#333" font-family="'DM Mono',monospace" font-size="8">žádné joiny</text>
-  <text x="570" y="62" fill="#333" font-family="'DM Mono',monospace" font-size="8">omezená segmentace</text>
-  <line x1="30" y1="98" x2="770" y2="98" stroke="#1e1e1e" stroke-width="1"/>
-  <text x="30" y="128" fill="#c8f04a" font-family="'DM Mono',monospace" font-size="10">BigQuery</text>
-  <rect x="140" y="113" width="560" height="26" fill="#111" stroke="#c8f04a" stroke-width="1.5"/>
-  <text x="380" y="131" fill="#c8f04a" font-family="'DM Mono',monospace" font-size="9" text-anchor="middle">neomezená retence →→→→</text>
-  <text x="140" y="155" fill="#555" font-family="'DM Mono',monospace" font-size="8">bez samplingu</text>
-  <text x="260" y="155" fill="#2c2c2c" font-family="'DM Mono',monospace" font-size="8">·</text>
-  <text x="272" y="155" fill="#555" font-family="'DM Mono',monospace" font-size="8">SQL joiny s Heurékou, Meta, CRM</text>
-  <text x="560" y="155" fill="#2c2c2c" font-family="'DM Mono',monospace" font-size="8">·</text>
-  <text x="572" y="155" fill="#555" font-family="'DM Mono',monospace" font-size="8">row-level security</text>
-  <line x1="140" y1="45" x2="140" y2="165" stroke="#2c2c2c" stroke-width="1"/>
-  <text x="400" y="185" fill="#2c2c2c" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle" letter-spacing="1">ČAS →</text>
+  <text x="435" y="67" fill="#666" font-family="'DM Mono',monospace" font-size="18">╳</text>
+  <text x="465" y="62" fill="#d4d4d4" font-family="'DM Mono',monospace" font-size="8">sampling</text>
+  <text x="465" y="73" fill="#d4d4d4" font-family="'DM Mono',monospace" font-size="8">žádné joiny</text>
+  <text x="570" y="62" fill="#d4d4d4" font-family="'DM Mono',monospace" font-size="8">omezená segmentace</text>
+  <line x1="30" y1="98" x2="770" y2="98" stroke="#eee" stroke-width="1"/>
+  <text x="30" y="128" fill="#d4920e" font-family="'DM Mono',monospace" font-size="10">BigQuery</text>
+  <rect x="140" y="113" width="560" height="26" fill="#eeeeee" stroke="#d4920e" stroke-width="1.5"/>
+  <text x="380" y="131" fill="#d4920e" font-family="'DM Mono',monospace" font-size="9" text-anchor="middle">neomezená retence →→→→</text>
+  <text x="140" y="155" fill="#666" font-family="'DM Mono',monospace" font-size="8">bez samplingu</text>
+  <text x="260" y="155" fill="#cccccc" font-family="'DM Mono',monospace" font-size="8">·</text>
+  <text x="272" y="155" fill="#666" font-family="'DM Mono',monospace" font-size="8">SQL joiny s Heurékou, Meta, CRM</text>
+  <text x="560" y="155" fill="#cccccc" font-family="'DM Mono',monospace" font-size="8">·</text>
+  <text x="572" y="155" fill="#666" font-family="'DM Mono',monospace" font-size="8">row-level security</text>
+  <line x1="140" y1="45" x2="140" y2="165" stroke="#ddd" stroke-width="1"/>
+  <text x="400" y="185" fill="#cccccc" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle" letter-spacing="1">ČAS →</text>
 </svg></div>
 
     <div class="article-body">

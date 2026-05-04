@@ -10,11 +10,11 @@
   <meta property="og:description" content="Google Consent Mode v2 je povinný od března 2024. Jak funguje Advanced Mode, co zachrání v měření konverzí a jak ho správně implementovat v GTM." />
   <meta property="og:url" content="https://flowstack.cz/blog/consent-mode-v2.html" />
   <meta property="og:type" content="article" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230a0a0a'/><text x='6' y='24' font-family='serif' font-size='22' fill='%23c8f04a'>F</text></svg>" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23f4f0e8'/><text x='6' y='24' font-family='serif' font-size='22' fill='%23d4920e'>F</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="blog.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="blog-light.css" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -59,27 +59,27 @@
 
     <div class="article-illustration">
 <svg viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:auto">
-  <rect width="800" height="200" fill="#0d0d0d"/>
-  <text x="30" y="28" fill="#444" font-family="'DM Mono',monospace" font-size="8" letter-spacing="2">ZACHYCENÁ DATA PŘI 35% MÍŘE ODMÍTNUTÍ COOKIES</text>
-  <text x="30" y="68" fill="#555" font-family="'DM Mono',monospace" font-size="10">Basic Mode</text>
-  <rect x="165" y="53" width="570" height="28" fill="#1a1a1a" stroke="#2c2c2c" stroke-width="1"/>
+  <rect width="800" height="200" fill="#f8f8f8"/>
+  <text x="30" y="28" fill="#999" font-family="'DM Mono',monospace" font-size="8" letter-spacing="2">ZACHYCENÁ DATA PŘI 35% MÍŘE ODMÍTNUTÍ COOKIES</text>
+  <text x="30" y="68" fill="#666" font-family="'DM Mono',monospace" font-size="10">Basic Mode</text>
+  <rect x="165" y="53" width="570" height="28" fill="#e4e4e4" stroke="#ddd" stroke-width="1"/>
   <rect x="165" y="53" width="370" height="28" fill="#3a3a3a"/>
   <text x="350" y="72" fill="#999" font-family="'DM Mono',monospace" font-size="9" text-anchor="middle">65 % reálná data</text>
-  <text x="555" y="72" fill="#333" font-family="'DM Mono',monospace" font-size="9" text-anchor="middle">35 % ztraceno</text>
-  <text x="30" y="125" fill="#c8f04a" font-family="'DM Mono',monospace" font-size="10">Advanced Mode</text>
-  <rect x="165" y="110" width="570" height="28" fill="#1a1a1a" stroke="#2c2c2c" stroke-width="1"/>
-  <rect x="165" y="110" width="370" height="28" fill="#c8f04a" opacity="0.8"/>
-  <rect x="535" y="110" width="115" height="28" fill="#c8f04a" opacity="0.28"/>
-  <text x="350" y="129" fill="#0a0a0a" font-family="'DM Mono',monospace" font-size="9" text-anchor="middle" font-weight="500">65 % reálná data</text>
-  <text x="594" y="129" fill="#c8f04a" font-family="'DM Mono',monospace" font-size="9" text-anchor="middle" opacity="0.9">+20 % model.</text>
-  <text x="698" y="129" fill="#444" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle">~15 %</text>
-  <line x1="30" y1="155" x2="770" y2="155" stroke="#1e1e1e" stroke-width="1"/>
+  <text x="555" y="72" fill="#d4d4d4" font-family="'DM Mono',monospace" font-size="9" text-anchor="middle">35 % ztraceno</text>
+  <text x="30" y="125" fill="#d4920e" font-family="'DM Mono',monospace" font-size="10">Advanced Mode</text>
+  <rect x="165" y="110" width="570" height="28" fill="#e4e4e4" stroke="#ddd" stroke-width="1"/>
+  <rect x="165" y="110" width="370" height="28" fill="#d4920e" opacity="0.8"/>
+  <rect x="535" y="110" width="115" height="28" fill="#d4920e" opacity="0.28"/>
+  <text x="350" y="129" fill="#fafafa" font-family="'DM Mono',monospace" font-size="9" text-anchor="middle" font-weight="500">65 % reálná data</text>
+  <text x="594" y="129" fill="#d4920e" font-family="'DM Mono',monospace" font-size="9" text-anchor="middle" opacity="0.9">+20 % model.</text>
+  <text x="698" y="129" fill="#999" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle">~15 %</text>
+  <line x1="30" y1="155" x2="770" y2="155" stroke="#eee" stroke-width="1"/>
   <rect x="30" y="165" width="10" height="10" fill="#3a3a3a"/>
-  <text x="46" y="175" fill="#555" font-family="'DM Mono',monospace" font-size="8">Reálná data (souhlas)</text>
-  <rect x="210" y="165" width="10" height="10" fill="#c8f04a" opacity="0.28"/>
-  <text x="226" y="175" fill="#555" font-family="'DM Mono',monospace" font-size="8">Modelovaná data</text>
-  <rect x="380" y="165" width="10" height="10" fill="#1a1a1a" stroke="#333"/>
-  <text x="396" y="175" fill="#444" font-family="'DM Mono',monospace" font-size="8">Ztraceno</text>
+  <text x="46" y="175" fill="#666" font-family="'DM Mono',monospace" font-size="8">Reálná data (souhlas)</text>
+  <rect x="210" y="165" width="10" height="10" fill="#d4920e" opacity="0.28"/>
+  <text x="226" y="175" fill="#666" font-family="'DM Mono',monospace" font-size="8">Modelovaná data</text>
+  <rect x="380" y="165" width="10" height="10" fill="#e4e4e4" stroke="#333"/>
+  <text x="396" y="175" fill="#999" font-family="'DM Mono',monospace" font-size="8">Ztraceno</text>
 </svg></div>
 
     <div class="article-body">

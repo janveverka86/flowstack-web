@@ -10,11 +10,11 @@
   <meta property="og:description" content="Jak datový sklad řeší chaos s daty v e-commerce. BigQuery, ETL, dbt — bez IT žargonu, s konkrétními příklady a cenami." />
   <meta property="og:url" content="https://flowstack.cz/blog/datovy-sklad-pro-eshop.html" />
   <meta property="og:type" content="article" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230a0a0a'/><text x='6' y='24' font-family='serif' font-size='22' fill='%23c8f04a'>F</text></svg>" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23f4f0e8'/><text x='6' y='24' font-family='serif' font-size='22' fill='%23d4920e'>F</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="blog.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="blog-light.css" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -59,40 +59,40 @@
 
     <div class="article-illustration">
 <svg viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:auto">
-  <rect width="800" height="200" fill="#0d0d0d"/>
-  <text x="120" y="18" fill="#444" font-family="'DM Mono',monospace" font-size="7" text-anchor="middle" letter-spacing="2">BEZ DATOVÉHO SKLADU</text>
-  <rect x="15" y="25" width="95" height="20" fill="none" stroke="#2c2c2c" stroke-width="1"/>
-  <text x="62" y="39" fill="#555" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle">Excel tržby.xlsx</text>
-  <rect x="120" y="25" width="95" height="20" fill="none" stroke="#2c2c2c" stroke-width="1"/>
-  <text x="167" y="39" fill="#555" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle">Meta export.csv</text>
-  <rect x="15" y="55" width="95" height="20" fill="none" stroke="#2c2c2c" stroke-width="1"/>
-  <text x="62" y="69" fill="#555" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle">Shoptet report</text>
-  <rect x="120" y="55" width="95" height="20" fill="none" stroke="#2c2c2c" stroke-width="1"/>
-  <text x="167" y="69" fill="#555" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle">GA4 stažení</text>
-  <rect x="15" y="85" width="95" height="20" fill="none" stroke="#2c2c2c" stroke-width="1"/>
-  <text x="62" y="99" fill="#555" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle">Google Ads report</text>
-  <rect x="120" y="85" width="95" height="20" fill="none" stroke="#2c2c2c" stroke-width="1"/>
-  <text x="167" y="99" fill="#555" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle">Účetnictví export</text>
-  <rect x="15" y="115" width="95" height="20" fill="none" stroke="#2c2c2c" stroke-width="1"/>
-  <text x="62" y="129" fill="#555" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle">Heuréka export</text>
-  <rect x="120" y="115" width="95" height="20" fill="none" stroke="#2c2c2c" stroke-width="1"/>
-  <text x="167" y="129" fill="#555" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle">CRM výstup</text>
-  <text x="120" y="160" fill="#333" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle">8 zdrojů, 0 propojení</text>
-  <line x1="260" y1="50" x2="305" y2="98" stroke="#2c2c2c" stroke-width="1"/>
-  <line x1="260" y1="80" x2="305" y2="98" stroke="#2c2c2c" stroke-width="1"/>
-  <line x1="260" y1="110" x2="305" y2="98" stroke="#2c2c2c" stroke-width="1"/>
-  <text x="283" y="72" fill="#c8f04a" font-family="'DM Mono',monospace" font-size="7" text-anchor="middle">ETL</text>
-  <text x="283" y="84" fill="#444" font-family="'DM Mono',monospace" font-size="7" text-anchor="middle">Dataform</text>
-  <text x="295" y="97" fill="#c8f04a" font-family="'DM Mono',monospace" font-size="12">→</text>
-  <text x="505" y="18" fill="#c8f04a" font-family="'DM Mono',monospace" font-size="7" text-anchor="middle" letter-spacing="2">DATOVÝ SKLAD — BIGQUERY</text>
-  <rect x="315" y="25" width="380" height="145" fill="#0f0f0f" stroke="#c8f04a" stroke-width="1.5"/>
-  <text x="335" y="48" fill="#c8f04a" font-family="'DM Mono',monospace" font-size="8">▸ orders</text>
+  <rect width="800" height="200" fill="#f8f8f8"/>
+  <text x="120" y="18" fill="#999" font-family="'DM Mono',monospace" font-size="7" text-anchor="middle" letter-spacing="2">BEZ DATOVÉHO SKLADU</text>
+  <rect x="15" y="25" width="95" height="20" fill="none" stroke="#ddd" stroke-width="1"/>
+  <text x="62" y="39" fill="#666" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle">Excel tržby.xlsx</text>
+  <rect x="120" y="25" width="95" height="20" fill="none" stroke="#ddd" stroke-width="1"/>
+  <text x="167" y="39" fill="#666" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle">Meta export.csv</text>
+  <rect x="15" y="55" width="95" height="20" fill="none" stroke="#ddd" stroke-width="1"/>
+  <text x="62" y="69" fill="#666" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle">Shoptet report</text>
+  <rect x="120" y="55" width="95" height="20" fill="none" stroke="#ddd" stroke-width="1"/>
+  <text x="167" y="69" fill="#666" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle">GA4 stažení</text>
+  <rect x="15" y="85" width="95" height="20" fill="none" stroke="#ddd" stroke-width="1"/>
+  <text x="62" y="99" fill="#666" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle">Google Ads report</text>
+  <rect x="120" y="85" width="95" height="20" fill="none" stroke="#ddd" stroke-width="1"/>
+  <text x="167" y="99" fill="#666" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle">Účetnictví export</text>
+  <rect x="15" y="115" width="95" height="20" fill="none" stroke="#ddd" stroke-width="1"/>
+  <text x="62" y="129" fill="#666" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle">Heuréka export</text>
+  <rect x="120" y="115" width="95" height="20" fill="none" stroke="#ddd" stroke-width="1"/>
+  <text x="167" y="129" fill="#666" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle">CRM výstup</text>
+  <text x="120" y="160" fill="#d4d4d4" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle">8 zdrojů, 0 propojení</text>
+  <line x1="260" y1="50" x2="305" y2="98" stroke="#ddd" stroke-width="1"/>
+  <line x1="260" y1="80" x2="305" y2="98" stroke="#ddd" stroke-width="1"/>
+  <line x1="260" y1="110" x2="305" y2="98" stroke="#ddd" stroke-width="1"/>
+  <text x="283" y="72" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7" text-anchor="middle">ETL</text>
+  <text x="283" y="84" fill="#999" font-family="'DM Mono',monospace" font-size="7" text-anchor="middle">Dataform</text>
+  <text x="295" y="97" fill="#d4920e" font-family="'DM Mono',monospace" font-size="12">→</text>
+  <text x="505" y="18" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7" text-anchor="middle" letter-spacing="2">DATOVÝ SKLAD — BIGQUERY</text>
+  <rect x="315" y="25" width="380" height="145" fill="#f2f2f2" stroke="#d4920e" stroke-width="1.5"/>
+  <text x="335" y="48" fill="#d4920e" font-family="'DM Mono',monospace" font-size="8">▸ orders</text>
   <text x="355" y="62" fill="#3a3a3a" font-family="'DM Mono',monospace" font-size="7">order_id · customer_id · revenue · date</text>
-  <text x="335" y="80" fill="#c8f04a" font-family="'DM Mono',monospace" font-size="8">▸ customers</text>
+  <text x="335" y="80" fill="#d4920e" font-family="'DM Mono',monospace" font-size="8">▸ customers</text>
   <text x="355" y="94" fill="#3a3a3a" font-family="'DM Mono',monospace" font-size="7">customer_id · ltv · segment · first_order</text>
-  <text x="335" y="112" fill="#c8f04a" font-family="'DM Mono',monospace" font-size="8">▸ marketing</text>
+  <text x="335" y="112" fill="#d4920e" font-family="'DM Mono',monospace" font-size="8">▸ marketing</text>
   <text x="355" y="126" fill="#3a3a3a" font-family="'DM Mono',monospace" font-size="7">date · channel · spend · roas · conversions</text>
-  <text x="335" y="144" fill="#c8f04a" font-family="'DM Mono',monospace" font-size="8">▸ products</text>
+  <text x="335" y="144" fill="#d4920e" font-family="'DM Mono',monospace" font-size="8">▸ products</text>
   <text x="355" y="158" fill="#3a3a3a" font-family="'DM Mono',monospace" font-size="7">product_id · margin · stock · category</text>
 </svg></div>
 
