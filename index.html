@@ -893,9 +893,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
     <form id="contact-form" action="https://formspree.io/f/xaqvejza" method="POST" class="contact-form">
       <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" />
-      <input type="text" name="name" placeholder="Jméno" required />
+      <input type="text" name="name" placeholder="Jméno" data-ph-cs="Jméno" data-ph-en="Name" required />
       <input type="email" name="email" placeholder="E-mail" required />
-      <textarea name="message" placeholder="Čím vám mohu pomoci?" required></textarea>
+      <textarea name="message" placeholder="Čím vám mohu pomoci?" data-ph-cs="Čím vám mohu pomoci?" data-ph-en="How can I help you?" required></textarea>
       <button type="submit" class="cta-btn" id="contact-submit">Odeslat zprávu</button>
       <p class="form-error" id="form-error" hidden></p>
       <p class="form-recaptcha-note">Stránka je chráněna reCAPTCHA (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy</a> &amp; <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Terms</a>).</p>
@@ -1001,6 +1001,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.classList.toggle('active', btn.textContent.toLowerCase() === lang || (lang === 'cs' && btn.textContent === 'CZ'));
       });
+      document.querySelectorAll('[data-ph-cs]').forEach(el => {
+        el.placeholder = lang === 'en' ? el.dataset.phEn : el.dataset.phCs;
+      });
+      var submitBtn = document.getElementById('contact-submit');
+      if (submitBtn && !submitBtn.disabled) {
+        submitBtn.textContent = lang === 'en' ? 'Send message' : 'Odeslat zprávu';
+      }
     }
 
     function hideBanner() {
