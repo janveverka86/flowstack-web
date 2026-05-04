@@ -162,16 +162,18 @@
     .mockups-section { position:relative; z-index:1; padding:3rem 2rem; max-width:1100px; margin:0 auto; overflow:hidden; }
     .mockups-track-wrap { position:relative; }
     .mockups-track { display:flex; gap:0; overflow:visible; padding:1rem 0 2.5rem; }
-    .mockup-card { flex-shrink:0; width:440px; border:1px solid var(--border); overflow:hidden; position:relative; transform:perspective(900px) rotateY(-24deg); margin-right:-150px; box-shadow:22px 0 60px rgba(0,0,0,.18); }
+    .mockup-card { flex-shrink:0; width:440px; border:1px solid var(--border); overflow:hidden; position:relative; transform:perspective(900px) rotateY(-24deg); margin-right:-150px; box-shadow:22px 0 60px rgba(0,0,0,.18); transition:transform .35s ease, box-shadow .35s ease; cursor:default; }
     .mockup-card:nth-child(1) { z-index:3; }
     .mockup-card:nth-child(2) { z-index:2; }
     .mockup-card:nth-child(3) { z-index:1; }
+    .mockup-card:hover { transform:perspective(900px) rotateY(-24deg) translateY(-16px); box-shadow:22px 18px 70px rgba(0,0,0,.28); z-index:10; }
     .mockup-card svg { display:block; width:100%; height:auto; }
     .mockups-fade { display:none; }
-    @media(max-width:860px) { .mockup-card { width:72vw; margin-right:-60px; transform:perspective(700px) rotateY(-18deg); } }
+    @media(max-width:860px) { .mockup-card { width:72vw; margin-right:-60px; transform:perspective(700px) rotateY(-18deg); } .mockup-card:hover { transform:perspective(700px) rotateY(-18deg) translateY(-14px); } }
     @media(max-width:600px) {
       .mockups-track { flex-direction:column; gap:1rem; overflow:visible; padding:1rem 0 1.5rem; }
       .mockup-card { width:100%; margin-right:0; transform:none; box-shadow:0 4px 24px rgba(0,0,0,.12); }
+      .mockup-card:hover { transform:translateY(-10px); box-shadow:0 16px 36px rgba(0,0,0,.18); }
       .mockups-section { overflow:visible; }
     }
 
