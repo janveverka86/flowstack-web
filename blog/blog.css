@@ -24,8 +24,13 @@ nav a:hover { color:var(--accent); }
 .article-meta { font-family:'Inter',sans-serif; font-size:.72rem; font-weight:400; color:var(--muted); letter-spacing:.06em; margin-bottom:3rem; padding-bottom:2rem; border-bottom:1px solid var(--border); }
 
 /* ILLUSTRATIONS */
-.article-illustration { margin-bottom:2.5rem; border:1px solid var(--border); overflow:hidden; }
+.article-illustration { margin-bottom:2.5rem; border:1px solid var(--border); overflow:hidden; box-shadow:0 2px 12px rgba(0,0,0,.06); }
 .article-illustration svg { display:block; width:100%; height:auto; }
+.illus-header { display:flex; align-items:center; gap:.8rem; padding:.65rem 1rem; background:#ede8e0; border-bottom:1px solid var(--border); }
+.illus-dots { display:flex; gap:.35rem; flex-shrink:0; }
+.illus-dots i { display:inline-block; width:9px; height:9px; border-radius:50%; background:var(--border); font-style:normal; }
+.illus-dots i:first-child { background:var(--accent); opacity:.75; }
+.illus-title { font-family:'DM Mono',monospace; font-size:.63rem; color:var(--muted); letter-spacing:.08em; text-transform:uppercase; }
 .card-art { margin:.8rem 0 1.2rem; border:1px solid var(--border); overflow:hidden; }
 .card-art svg { display:block; width:100%; height:auto; }
 
