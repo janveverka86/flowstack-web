@@ -187,7 +187,7 @@
       .logo { font-size:1.3rem; }
       .logo-sub { display:none; }
     }
-    (max-width:760px) {
+    @media(max-width:760px) {
       .nav-burger { display:flex; }
       .nav-links { display:none; flex-direction:column; align-items:flex-start; gap:0; }
       .nav-links.open { display:flex; position:fixed; top:calc(68px + env(safe-area-inset-top, 0px)); left:0; right:0; background:rgba(244,240,232,.97); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); padding:0 1.5rem; border-bottom:1px solid var(--border); z-index:99; }
