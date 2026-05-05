@@ -57,6 +57,7 @@
         <a href="/blog/">Blog</a>
         <a href="/" class="hide-mobile">Zpět na web</a>
       </div>
+      <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </nav>
   </div>
   <div class="nav-spacer"></div>
@@ -247,7 +248,7 @@
       <a href="mailto:jan.veverka@flowstack.cz">jan.veverka@flowstack.cz</a>
     </div>
   </footer>
-<script>var n=document.querySelector(".nav-wrap");window.addEventListener("scroll",function(){n.classList.toggle("scrolled",window.scrollY>10)},{passive:true});</script>
+<script>var n=document.querySelector(".nav-wrap");window.addEventListener("scroll",function(){n.classList.toggle("scrolled",window.scrollY>10)},{passive:true});var burger=document.getElementById("navBurger"),navLinks=document.querySelector(".nav-links");if(burger){burger.addEventListener("click",function(){var o=navLinks.classList.toggle("open");burger.classList.toggle("open",o);burger.setAttribute("aria-expanded",o)});}document.addEventListener("click",function(e){if(navLinks.classList.contains("open")&&!n.contains(e.target)){navLinks.classList.remove("open");burger&&burger.classList.remove("open");burger&&burger.setAttribute("aria-expanded","false");}});</script>
 <script>
 (function() {
   var SITE_KEY = '6LevXNgsAAAAALh4ZbMWnXz73v20fOgPLx_3zlRK';
