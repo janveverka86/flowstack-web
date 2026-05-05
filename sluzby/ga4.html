@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>GA4 a webová analytika pro e-shop | Flowstack</title>
+  <meta name="description" content="GA4 implementace, BigQuery export a správné měření konverzí pro e-commerce. Přesná data jako základ pro rozhodování." />
+  <link rel="canonical" href="https://flowstack.cz/sluzby/ga4.html" />
+  <link rel="alternate" hreflang="cs" href="https://flowstack.cz/sluzby/ga4.html" />
+  <link rel="alternate" hreflang="en" href="https://flowstack.cz/sluzby/ga4.html" />
+  <link rel="alternate" hreflang="x-default" href="https://flowstack.cz/sluzby/ga4.html" />
+  <meta property="og:title" content="GA4 a webová analytika pro e-shop | Flowstack" />
+  <meta property="og:description" content="GA4 implementace, BigQuery export a správné měření konverzí pro e-commerce. Přesná data jako základ pro rozhodování." />
+  <meta property="og:url" content="https://flowstack.cz/sluzby/ga4.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://flowstack.cz/og/ga4.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23f4f0e8'/><text x='6' y='24' font-family='serif' font-size='22' fill='%23d4920e'>F</text></svg>" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@graph":[
+    {"@type":"Service","name":"GA4 & webová analytika pro e-commerce","description":"GA4 implementace, BigQuery export a správné měření konverzí pro e-commerce. Přesná data jako základ pro rozhodování.","url":"https://flowstack.cz/sluzby/ga4.html","provider":{"@type":"Person","name":"Jan Veverka","url":"https://flowstack.cz"},"areaServed":{"@type":"Country","name":"Czech Republic"},"serviceType":"Web Analytics & GA4 Implementation"},
+    {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Flowstack","item":"https://flowstack.cz"},{"@type":"ListItem","position":2,"name":"Služby","item":"https://flowstack.cz/sluzby/"},{"@type":"ListItem","position":3,"name":"GA4 & analytika","item":"https://flowstack.cz/sluzby/ga4.html"}]}
+  ]}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <script src="https://www.google.com/recaptcha/api.js?render=6LevXNgsAAAAALh4ZbMWnXz73v20fOgPLx_3zlRK" async defer></script>
+  <style>
+    :root { --bg:#f4f0e8; --fg:#1c1814; --accent:#d4920e; --muted:#7a7269; --border:#ddd8d0; }
+    *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; background:#f4f0e8; }
+    body { background:radial-gradient(ellipse at 50% 0%, #ece6da 0%, var(--bg) 65%); color:var(--fg); font-family:'Inter',sans-serif; font-weight:400; min-height:100vh; overflow-x:clip; }
+    body::after { content:''; position:fixed; inset:0; background-image:radial-gradient(circle, #c4bdb5 1px, transparent 1px); background-size:28px 28px; pointer-events:none; z-index:0; opacity:.35; }
+
+    /* LANGUAGE SWITCHING */
+    [data-lang] { display:none; }
+    body.lang-en [data-lang="en"] { display:block; }
+    body.lang-cs [data-lang="cs"] { display:block; }
+    span[data-lang] { display:none; }
+    body.lang-en span[data-lang="en"] { display:inline; }
+    body.lang-cs span[data-lang="cs"] { display:inline; }
+    text[data-lang] { display:none; }
+    body.lang-en text[data-lang="en"] { display:inline; }
+    body.lang-cs text[data-lang="cs"] { display:inline; }
+
+    /* NAV */
+    .nav-wrap { position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(244,240,232,.88); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-bottom:1px solid transparent; transition:border-color .3s; padding-top:env(safe-area-inset-top); }
+    .nav-wrap.scrolled { border-bottom-color:var(--border); }
+    nav { display:flex; justify-content:space-between; align-items:center; padding:1.2rem 2rem; max-width:1100px; margin:0 auto; }
+    .logo { font-family:'Playfair Display',serif; font-size:1.7rem; color:var(--fg); letter-spacing:-.02em; text-decoration:none; line-height:1; }
+    .logo span { color:var(--accent); }
+    .logo-sub { font-family:'Inter',sans-serif; font-size:.62rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-top:.35rem; font-weight:400; }
+    .nav-links { display:flex; align-items:center; gap:2rem; }
+    .nav-sep { width:1px; height:14px; background:var(--border); align-self:center; }
+    nav a { color:var(--muted); text-decoration:none; font-size:.82rem; font-weight:400; letter-spacing:.01em; transition:color .2s; }
+    nav a:hover { color:var(--accent); }
+    .nav-spacer { height:calc(68px + env(safe-area-inset-top, 0px)); }
+    .lang-switcher { display:flex; gap:.4rem; margin-left:1rem; padding-left:1rem; border-left:1px solid var(--border); }
+    .lang-btn { background:none; border:1px solid transparent; color:var(--muted); font-family:'DM Mono',monospace; font-size:.7rem; letter-spacing:.12em; text-transform:uppercase; cursor:pointer; padding:.25rem .5rem; transition:color .2s,border-color .2s; }
+    .lang-btn:hover { color:var(--accent); }
+    .lang-btn.active { color:var(--accent); border-color:var(--accent); }
+
+    /* SHARED */
+    .rp-tag { display:inline-block; font-family:'Inter',sans-serif; font-size:.68rem; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:var(--accent); border:1px solid var(--accent); padding:.25rem .7rem; margin-bottom:1.5rem; }
+    .rp-label { font-family:'Inter',sans-serif; font-size:.68rem; font-weight:500; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); margin-bottom:1.5rem; display:block; }
+    .rp-h2 { font-family:'Playfair Display',serif; font-size:clamp(2rem,4vw,2.8rem); font-weight:400; letter-spacing:-.02em; line-height:1.1; }
+    .rp-h2 em { font-style:italic; color:var(--accent); }
+    .rp-lead { font-size:.95rem; color:#6a6258; line-height:1.85; max-width:540px; }
+    .divider { border:none; border-top:1px solid var(--border); margin:0; position:relative; z-index:1; }
+    .cta-btn { display:inline-block; background:var(--accent); color:#fff; font-family:'Inter',sans-serif; font-size:.78rem; font-weight:600; letter-spacing:.03em; text-decoration:none; padding:.9rem 2.2rem; transition:opacity .2s; cursor:pointer; border:none; }
+    .cta-btn:hover { opacity:.85; }
+
+    /* HERO */
+    .rp-hero { position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:4rem 2rem 5rem; display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
+    .rp-hero h1 { font-family:'Playfair Display',serif; font-size:clamp(2.6rem,5vw,3.8rem); font-weight:400; letter-spacing:-.03em; line-height:1.05; margin-bottom:1.2rem; }
+    .rp-hero h1 em { font-style:italic; color:var(--accent); }
+    .rp-hero-lead { font-size:1.05rem; color:#6a6258; line-height:1.8; margin-bottom:2rem; max-width:440px; }
+    .rp-pains { display:flex; flex-direction:column; gap:.75rem; margin-bottom:2.5rem; }
+    .rp-pain { display:flex; align-items:flex-start; gap:.85rem; font-size:.9rem; color:#6a6258; line-height:1.6; }
+    .rp-pain-dot { flex-shrink:0; width:18px; height:18px; margin-top:.1rem; }
+
+    /* OUTCOMES */
+    .rp-section { position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:5rem 2rem; }
+    .rp-section-narrow { position:relative; z-index:1; max-width:900px; margin:0 auto; padding:5rem 2rem; }
+    .rp-outcomes-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border); margin-top:2.5rem; }
+    .rp-outcome { background:var(--bg); padding:2.5rem 2rem; }
+    .rp-outcome-icon { width:44px; height:44px; margin-bottom:1.4rem; }
+    .rp-outcome h3 { font-family:'Playfair Display',serif; font-size:1.2rem; font-weight:400; letter-spacing:-.01em; margin-bottom:.7rem; }
+    .rp-outcome p { font-size:.87rem; color:#6a6258; line-height:1.78; }
+
+    /* PROCESS */
+    .rp-process { position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:5rem 2rem; }
+    .rp-steps-wrap { position:relative; margin-top:3.5rem; }
+    .rp-steps-line { position:absolute; top:28px; left:calc(10% + 28px); right:calc(10% + 28px); height:1px; background:repeating-linear-gradient(90deg, var(--accent) 0, var(--accent) 8px, transparent 8px, transparent 18px); opacity:.35; }
+    .rp-steps { display:grid; grid-template-columns:repeat(5,1fr); gap:0; position:relative; z-index:1; }
+    .rp-step { display:flex; flex-direction:column; align-items:center; text-align:center; padding:0 .8rem; }
+    .rp-step-circle { width:56px; height:56px; border-radius:50%; border:1.5px solid var(--accent); background:var(--bg); display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-size:1.05rem; color:var(--accent); margin-bottom:1.5rem; flex-shrink:0; }
+    .rp-step-title { font-family:'Inter',sans-serif; font-size:.8rem; font-weight:600; color:var(--fg); margin-bottom:.6rem; letter-spacing:.01em; }
+    .rp-step-desc { font-size:.8rem; color:#6a6258; line-height:1.72; }
+
+    /* PREVIEW */
+    .rp-preview-frame { border:1px solid var(--border); overflow:hidden; box-shadow:0 6px 48px rgba(0,0,0,.1); margin-top:2.5rem; position:relative; z-index:1; }
+    .rp-preview-bar { display:flex; align-items:center; gap:.8rem; padding:.65rem 1rem; background:#ede8e0; border-bottom:1px solid var(--border); }
+    .rp-preview-dots { display:flex; gap:.35rem; }
+    .rp-preview-dots i { display:inline-block; width:9px; height:9px; border-radius:50%; background:var(--border); font-style:normal; }
+    .rp-preview-dots i:first-child { background:var(--accent); opacity:.75; }
+    .rp-preview-label { font-family:'DM Mono',monospace; font-size:.63rem; color:var(--muted); letter-spacing:.08em; text-transform:uppercase; }
+    .rp-highlight { background:#ede8e0; border:1px solid var(--border); border-left:3px solid var(--accent); padding:1.4rem 2rem; margin-top:2rem; position:relative; z-index:1; }
+    .rp-highlight p { font-size:.88rem; color:#6a6258; line-height:1.8; margin:0; }
+
+    /* DELIVERABLES */
+    .rp-delivers { display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--border); border:1px solid var(--border); margin-top:2.5rem; }
+    .rp-deliver { background:var(--bg); padding:2rem 2rem; display:flex; gap:1.2rem; align-items:flex-start; }
+    .rp-deliver-icon { flex-shrink:0; margin-top:.05rem; }
+    .rp-deliver h4 { font-family:'Inter',sans-serif; font-size:.88rem; font-weight:600; color:var(--fg); margin-bottom:.35rem; }
+    .rp-deliver p { font-size:.83rem; color:#6a6258; line-height:1.75; }
+
+    /* CTA / FORM */
+    .rp-cta { position:relative; z-index:1; border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:5rem 2rem; }
+    .rp-cta-inner { display:flex; align-items:flex-start; gap:5rem; max-width:1100px; margin:0 auto; }
+    .rp-cta-text { flex:1; padding-top:.5rem; }
+    .rp-cta-text h2 { font-family:'Playfair Display',serif; font-size:clamp(2rem,4vw,3.2rem); font-weight:400; letter-spacing:-.03em; line-height:1.1; margin-bottom:1.2rem; }
+    .rp-cta-text h2 em { font-style:italic; color:var(--accent); }
+    .rp-cta-text p { font-size:.95rem; color:#6a6258; line-height:1.85; }
+    .rp-form { flex:0 0 420px; max-width:420px; }
+    .rp-form input, .rp-form textarea { width:100%; background:#ede8e0; border:1px solid var(--border); padding:.75rem 1rem; font-family:'Inter',sans-serif; font-size:.88rem; color:var(--fg); outline:none; transition:border-color .2s; margin-bottom:.6rem; display:block; border-radius:0; appearance:none; }
+    .rp-form input:focus, .rp-form textarea:focus { border-color:var(--accent); }
+    .rp-form textarea { min-height:110px; resize:vertical; }
+    .rp-form button.cta-btn { width:100%; cursor:pointer; display:block; }
+    .form-success { font-family:'DM Mono',monospace; font-size:.82rem; color:var(--accent); letter-spacing:.05em; text-align:center; padding:1.5rem; border:1px solid var(--accent); }
+    .form-error { font-family:'DM Mono',monospace; font-size:.75rem; color:#c0392b; letter-spacing:.03em; margin-top:.5rem; }
+    .form-recaptcha-note { font-size:.48rem; color:var(--border); margin-top:.5rem; line-height:1.6; }
+    .form-recaptcha-note a { color:inherit; text-decoration:none; }
+    .form-recaptcha-note a:hover { color:var(--muted); }
+    .grecaptcha-badge { visibility:hidden !important; }
+
+    /* FOOTER */
+    footer { position:relative; z-index:1; border-top:1px solid var(--border); padding:2rem; max-width:1100px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+    footer p { font-family:'Inter',sans-serif; font-size:.72rem; color:var(--muted); letter-spacing:.04em; }
+    footer a { font-family:'Inter',sans-serif; color:var(--muted); text-decoration:none; font-size:.72rem; letter-spacing:.04em; transition:color .2s; }
+    footer a:hover { color:var(--accent); }
+    .footer-links { display:flex; align-items:center; gap:2rem; flex-wrap:wrap; }
+
+    /* LONG-TERM */
+    .rp-phases { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border); margin-top:2.5rem; }
+    .rp-phase { background:var(--bg); padding:2rem 1.8rem; }
+    .rp-phase-num { font-family:'DM Mono',monospace; font-size:.63rem; color:var(--accent); letter-spacing:.14em; text-transform:uppercase; margin-bottom:.8rem; }
+    .rp-phase-title { font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:400; letter-spacing:-.01em; margin-bottom:.6rem; color:var(--fg); }
+    .rp-phase p { font-size:.85rem; color:#6a6258; line-height:1.72; }
+    @media(max-width:640px) { .rp-phases { grid-template-columns:1fr; } }
+
+    /* DROPDOWN */
+    .nav-dropdown { position:relative; display:flex; align-items:center; }
+    .nav-dropdown-menu { position:absolute; top:calc(100% + 10px); left:50%; transform:translateX(-50%); background:rgba(244,240,232,.97); border:1px solid var(--border); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); box-shadow:0 8px 32px rgba(0,0,0,.1); padding:.4rem 0; min-width:210px; opacity:0; pointer-events:none; transition:opacity .18s; z-index:200; }
+    .nav-dropdown.open .nav-dropdown-menu { opacity:1; pointer-events:auto; }
+    .nav-dropdown-menu a { display:block; padding:.55rem 1.2rem; font-size:.78rem; color:var(--muted); white-space:nowrap; }
+    .nav-dropdown-menu a:hover { color:var(--accent); background:#f0ece4; }
+
+    /* BLOG LINKS */
+    .rp-blog-links { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1px; background:var(--border); border:1px solid var(--border); margin-top:1.8rem; }
+    .rp-blog-link { background:var(--bg); padding:1.6rem 1.8rem; text-decoration:none; transition:background .2s; display:block; }
+    .rp-blog-link:hover { background:#ece7de; }
+    .rp-blog-link-tag { font-family:'Inter',sans-serif; font-size:.63rem; font-weight:500; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); margin-bottom:.6rem; }
+    .rp-blog-link-title { font-family:'Playfair Display',serif; font-size:1rem; font-weight:400; letter-spacing:-.01em; line-height:1.3; color:var(--fg); }
+
+    /* RESPONSIVE */
+    @media(max-width:900px) {
+      .rp-hero { grid-template-columns:1fr; gap:3rem; }
+      .rp-outcomes-grid { grid-template-columns:1fr; }
+      .rp-steps { grid-template-columns:1fr 1fr; gap:2.5rem 1rem; }
+      .rp-steps-line { display:none; }
+      .rp-delivers { grid-template-columns:1fr; }
+      .rp-cta-inner { flex-direction:column; gap:2.5rem; }
+      .rp-form { flex:none; max-width:100%; width:100%; }
+    }
+    @media(max-width:600px) {
+      .rp-hero { padding:3rem 1.5rem 4rem; }
+      .rp-section, .rp-process, .rp-section-narrow { padding:4rem 1.5rem; }
+      .rp-steps { grid-template-columns:1fr; }
+      nav { padding:1rem 1.2rem; }
+      .logo { font-size:1.3rem; }
+      .logo-sub { display:none; }
+      .nav-links { gap:1rem; }
+      .nav-sep { display:none; }
+      .lang-switcher { margin-left:.5rem; padding-left:.5rem; }
+    }
+  </style>
+</head>
+<body class="lang-cs" id="navWrap-body">
+
+  <div class="nav-wrap" id="navWrap">
+    <nav>
+      <a href="/" class="logo">Flow<span>stack</span><div class="logo-sub">Jan Veverka · <span data-lang="cs">Datová analytika</span><span data-lang="en">Data Analytics</span></div></a>
+      <div class="nav-links">
+        <a href="/#reference"><span data-lang="cs">Reference</span><span data-lang="en">Clients</span></a>
+        <div class="nav-dropdown">
+          <a href="/sluzby/" aria-haspopup="true" aria-expanded="false"><span data-lang="cs">Služby</span><span data-lang="en">Services</span></a>
+          <div class="nav-dropdown-menu">
+            <a href="/sluzby/reporting.html"><span data-lang="cs">Reporting &amp; dashboardy</span><span data-lang="en">Reporting &amp; dashboards</span></a>
+            <a href="/sluzby/sgtm.html"><span data-lang="cs">Server-side GTM</span><span data-lang="en">Server-side GTM</span></a>
+            <a href="/sluzby/datovy-sklad.html"><span data-lang="cs">Datový sklad</span><span data-lang="en">Data warehouse</span></a>
+            <a href="/sluzby/ga4.html"><span data-lang="cs">GA4 &amp; analytika</span><span data-lang="en">GA4 &amp; analytics</span></a>
+          </div>
+        </div>
+        <a href="/#o-mne"><span data-lang="cs">O mně</span><span data-lang="en">About</span></a>
+        <a href="/#kontakt"><span data-lang="cs">Kontakt</span><span data-lang="en">Contact</span></a>
+        <span class="nav-sep"></span>
+        <a href="/blog/">Blog</a>
+        <div class="lang-switcher">
+          <button class="lang-btn" onclick="setLang('en')">EN</button>
+          <button class="lang-btn active" onclick="setLang('cs')">CZ</button>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="nav-spacer"></div>
+
+  <!-- HERO -->
+  <div class="rp-hero">
+    <div>
+      <span class="rp-tag">GA4 &amp; Webová analytika</span>
+      <h1 data-lang="cs">GA4 běží.<br><em>Ale věříte těm číslům?</em></h1>
+      <h1 data-lang="en">GA4 is running.<br><em>But do you trust the numbers?</em></h1>
+      <p class="rp-hero-lead" data-lang="cs">Většina e-shopů má GA4 spuštěné. Málokterý ho má správně — se všemi konverzemi, custom dimenzemi a propojením na BigQuery.</p>
+      <p class="rp-hero-lead" data-lang="en">Most e-shops have GA4 running. Few have it set up correctly — with all conversions, custom dimensions, and BigQuery integration.</p>
+      <div class="rp-pains">
+        <div class="rp-pain">
+          <svg class="rp-pain-dot" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="#ddd8d0" stroke-width="1"/><line x1="9" y1="5" x2="9" y2="10" stroke="#d4920e" stroke-width="1.5" stroke-linecap="round"/><circle cx="9" cy="13" r=".9" fill="#d4920e"/></svg>
+          <span data-lang="cs">GA4 hlásí jiné konverze než Google Ads — v každém nástroji jiné číslo, nikdo neví co věřit</span>
+          <span data-lang="en">GA4 reports different conversions than Google Ads — a different number in every tool, nobody knows what to trust</span>
+        </div>
+        <div class="rp-pain">
+          <svg class="rp-pain-dot" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="#ddd8d0" stroke-width="1"/><line x1="9" y1="5" x2="9" y2="10" stroke="#d4920e" stroke-width="1.5" stroke-linecap="round"/><circle cx="9" cy="13" r=".9" fill="#d4920e"/></svg>
+          <span data-lang="cs">Retence dat jen 14 měsíců, sampling v reportech, žádná možnost propojit s externími daty</span>
+          <span data-lang="en">Only 14 months data retention, sampling in reports, no way to join with external data</span>
+        </div>
+        <div class="rp-pain">
+          <svg class="rp-pain-dot" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="#ddd8d0" stroke-width="1"/><line x1="9" y1="5" x2="9" y2="10" stroke="#d4920e" stroke-width="1.5" stroke-linecap="round"/><circle cx="9" cy="13" r=".9" fill="#d4920e"/></svg>
+          <span data-lang="cs">Chybějící custom dimenze a metriky — GA4 neví co pro vás jsou klíčové akce a události</span>
+          <span data-lang="en">Missing custom dimensions and metrics — GA4 doesn't know what the key actions and events are for you</span>
+        </div>
+      </div>
+      <a href="#kontakt" class="cta-btn"><span data-lang="cs">Audit GA4 zdarma</span><span data-lang="en">Free GA4 audit</span></a>
+    </div>
+
+    <!-- Hero infographic: E-shop → GA4 → BigQuery / GA4 UI -->
+    <div>
+      <svg viewBox="0 0 500 310" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
+
+        <!-- E-SHOP box -->
+        <rect x="0" y="100" width="116" height="60" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="10" y="118" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" letter-spacing="1">E-SHOP</text>
+        <text x="10" y="133" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" data-lang="cs">návštěvníci</text>
+        <text x="10" y="133" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" data-lang="en">visitors</text>
+        <text x="78" y="133" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" data-lang="cs"> / visitors</text>
+        <text x="78" y="133" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" data-lang="en"></text>
+
+        <!-- Arrow E-SHOP → GA4 -->
+        <line x1="116" y1="130" x2="178" y2="130" stroke="#d4920e" stroke-width="1.5"/>
+        <polygon points="178,126 188,130 178,134" fill="#d4920e"/>
+
+        <!-- GA4 box -->
+        <rect x="182" y="80" width="112" height="100" fill="#f4f2ee" stroke="#d4920e" stroke-width="1.5"/>
+        <text x="238" y="102" fill="#d4920e" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle" letter-spacing="1.5">GA4</text>
+        <line x1="194" y1="108" x2="282" y2="108" stroke="#ddd8d0" stroke-width=".5"/>
+        <text x="194" y="122" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5">events</text>
+        <text x="194" y="136" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5">conversions</text>
+        <text x="194" y="150" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5">sessions</text>
+        <text x="194" y="164" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5">users</text>
+
+        <!-- Arrow GA4 → GA4 UI (down-left) -->
+        <line x1="238" y1="180" x2="238" y2="206" stroke="#7a7269" stroke-width="1" stroke-dasharray="4,3"/>
+        <polygon points="234,204 238,212 242,204" fill="#7a7269"/>
+
+        <!-- GA4 UI box (sampling / retention limit) -->
+        <rect x="182" y="210" width="112" height="40" fill="#f0eee9" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="238" y="226" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" text-anchor="middle" letter-spacing=".8">GA4 UI</text>
+        <text x="238" y="240" fill="#b0a898" font-family="'DM Mono',monospace" font-size="5.5" text-anchor="middle">sampling · retence 14m</text>
+
+        <!-- Arrow GA4 → BigQuery (right) -->
+        <line x1="294" y1="130" x2="340" y2="130" stroke="#d4920e" stroke-width="1.5"/>
+        <polygon points="340,126 350,130 340,134" fill="#d4920e"/>
+
+        <!-- BigQuery box -->
+        <rect x="344" y="80" width="140" height="100" fill="#f4f2ee" stroke="#d4920e" stroke-width="1.5"/>
+        <text x="414" y="102" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7" text-anchor="middle" letter-spacing="1.5">BIGQUERY</text>
+        <line x1="356" y1="108" x2="472" y2="108" stroke="#ddd8d0" stroke-width=".5"/>
+        <text x="356" y="122" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5.5" data-lang="cs">plná data</text>
+        <text x="356" y="122" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5.5" data-lang="en">full data</text>
+        <text x="356" y="135" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5.5" data-lang="cs">neomezená retence</text>
+        <text x="356" y="135" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5.5" data-lang="en">unlimited retention</text>
+        <text x="356" y="150" fill="#d4920e" font-family="'DM Mono',monospace" font-size="5">SELECT user_id,</text>
+        <text x="356" y="162" fill="#d4920e" font-family="'DM Mono',monospace" font-size="5">  event_name...</text>
+
+        <!-- Arrow BigQuery → Looker Studio -->
+        <line x1="414" y1="180" x2="414" y2="206" stroke="#ddd8d0" stroke-width="1" stroke-dasharray="4,3"/>
+        <polygon points="410,204 414,212 418,204" fill="#ddd8d0"/>
+
+        <!-- Looker Studio box -->
+        <rect x="344" y="210" width="140" height="40" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="414" y="226" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" text-anchor="middle" letter-spacing=".8">LOOKER STUDIO</text>
+        <text x="414" y="240" fill="#5a5048" font-family="'DM Mono',monospace" font-size="5.5" text-anchor="middle">reports · dashboards</text>
+
+        <!-- Bottom annotation -->
+        <text x="250" y="278" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" text-anchor="middle" letter-spacing=".3" data-lang="cs">žádný sampling · neomezená retence · vlastní SQL dotazy</text>
+        <text x="250" y="278" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" text-anchor="middle" letter-spacing=".3" data-lang="en">no sampling · unlimited retention · custom SQL queries</text>
+      </svg>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- OUTCOMES -->
+  <div class="rp-section">
+    <span class="rp-label"><span data-lang="cs">Co získáte</span><span data-lang="en">What you get</span></span>
+    <h2 class="rp-h2" data-lang="cs">Měření, která<br><em>skutečně fungují.</em></h2>
+    <h2 class="rp-h2" data-lang="en">Measurement that<br><em>actually works.</em></h2>
+    <div class="rp-outcomes-grid">
+
+      <div class="rp-outcome">
+        <svg class="rp-outcome-icon" viewBox="0 0 44 44" fill="none">
+          <circle cx="22" cy="22" r="18" stroke="#ddd8d0" stroke-width="1.5"/>
+          <polyline points="13,22 19,28 31,15" stroke="#d4920e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h3 data-lang="cs">Správně implementované GA4</h3>
+        <h3 data-lang="en">Correctly implemented GA4</h3>
+        <p data-lang="cs">Enhanced ecommerce, správné konverze, custom dimenze — GA4 bude sbírat data, která skutečně potřebujete. Žádné mezery, žádné duplicity.</p>
+        <p data-lang="en">Enhanced ecommerce, correct conversions, custom dimensions — GA4 will collect the data you actually need. No gaps, no duplicates.</p>
+      </div>
+
+      <div class="rp-outcome">
+        <svg class="rp-outcome-icon" viewBox="0 0 44 44" fill="none">
+          <ellipse cx="22" cy="14" rx="16" ry="6" stroke="#ddd8d0" stroke-width="1.5"/>
+          <path d="M6 14 v16 c0 3.3 7.2 6 16 6s16-2.7 16-6V14" stroke="#ddd8d0" stroke-width="1.5" fill="none"/>
+          <path d="M6 22 c0 3.3 7.2 6 16 6s16-2.7 16-6" stroke="#ddd8d0" stroke-width="1" fill="none" stroke-dasharray="3,2"/>
+          <text x="22" y="17" fill="#d4920e" font-family="'DM Mono',monospace" font-size="5" text-anchor="middle">BQ</text>
+          <polyline points="16,27 22,21 28,27" stroke="#d4920e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h3 data-lang="cs">BigQuery export — plná data</h3>
+        <h3 data-lang="en">BigQuery export — full data</h3>
+        <p data-lang="cs">Žádný sampling, žádná 14měsíční retence. Všechna raw GA4 data v BigQuery — propojíte s reklamními náklady, objednávkami i zákaznickými daty.</p>
+        <p data-lang="en">No sampling, no 14-month retention limit. All raw GA4 data in BigQuery — join with ad costs, orders, and customer data.</p>
+      </div>
+
+      <div class="rp-outcome">
+        <svg class="rp-outcome-icon" viewBox="0 0 44 44" fill="none">
+          <line x1="8" y1="22" x2="36" y2="22" stroke="#ddd8d0" stroke-width="1.5"/>
+          <line x1="14" y1="14" x2="14" y2="30" stroke="#ddd8d0" stroke-width="1.5"/>
+          <rect x="10" y="18" width="8" height="8" fill="#f4f0e8" stroke="#d4920e" stroke-width="1"/>
+          <line x1="24" y1="11" x2="24" y2="33" stroke="#ddd8d0" stroke-width="1.5"/>
+          <rect x="20" y="15" width="8" height="8" fill="#f4f0e8" stroke="#d4920e" stroke-width="1"/>
+          <line x1="34" y1="16" x2="34" y2="32" stroke="#ddd8d0" stroke-width="1.5"/>
+          <rect x="30" y="22" width="8" height="8" fill="#f4f0e8" stroke="#d4920e" stroke-width="1"/>
+        </svg>
+        <h3 data-lang="cs">Metriky přesně pro váš byznys</h3>
+        <h3 data-lang="en">Metrics tailored to your business</h3>
+        <p data-lang="cs">Custom dimenze a metriky pro váš e-shop — kategorie produktů, typy zákazníků, marže. GA4 bude mluvit vaším jazykem.</p>
+        <p data-lang="en">Custom dimensions and metrics for your e-shop — product categories, customer types, margins. GA4 will speak your language.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- PROCESS -->
+  <div class="rp-process">
+    <span class="rp-label"><span data-lang="cs">Jak spolupráce probíhá</span><span data-lang="en">How we work together</span></span>
+    <h2 class="rp-h2" style="margin-bottom:.9rem" data-lang="cs">Od auditu<br><em>po plná data.</em></h2>
+    <h2 class="rp-h2" style="margin-bottom:.9rem" data-lang="en">From audit<br><em>to full data.</em></h2>
+    <p class="rp-lead" data-lang="cs">Strukturovaný proces v pěti krocích — od prověření stávajícího stavu po validaci a dokumentaci hotového řešení.</p>
+    <p class="rp-lead" data-lang="en">A structured five-step process — from reviewing the current state to validating and documenting the finished solution.</p>
+
+    <div class="rp-steps-wrap">
+      <div class="rp-steps-line"></div>
+      <div class="rp-steps">
+
+        <div class="rp-step">
+          <div class="rp-step-circle">01</div>
+          <svg width="38" height="38" viewBox="0 0 38 38" fill="none" style="margin-bottom:.9rem">
+            <rect x="4" y="9" width="30" height="22" rx="1" stroke="#ddd8d0" stroke-width="1.5"/>
+            <circle cx="14" cy="20" r="4" stroke="#d4920e" stroke-width="1.5"/>
+            <line x1="20" y1="20" x2="30" y2="20" stroke="#ddd8d0" stroke-width="1"/>
+            <line x1="20" y1="16" x2="28" y2="16" stroke="#ddd8d0" stroke-width="1"/>
+            <line x1="20" y1="24" x2="26" y2="24" stroke="#ddd8d0" stroke-width="1"/>
+          </svg>
+          <div class="rp-step-title"><span data-lang="cs">Audit stávajícího měření</span><span data-lang="en">Current measurement audit</span></div>
+          <div class="rp-step-desc" data-lang="cs">Projdu vaše GA4, GTM a konverze. Najdu mezery, duplicity a špatně nastavené události. Dostanete konkrétní seznam problémů.</div>
+          <div class="rp-step-desc" data-lang="en">I'll go through your GA4, GTM, and conversions. I'll find gaps, duplicates, and misconfigured events. You'll get a concrete list of issues.</div>
+        </div>
+
+        <div class="rp-step">
+          <div class="rp-step-circle">02</div>
+          <svg width="38" height="38" viewBox="0 0 38 38" fill="none" style="margin-bottom:.9rem">
+            <rect x="5" y="7" width="28" height="22" stroke="#ddd8d0" stroke-width="1.5"/>
+            <line x1="10" y1="14" x2="28" y2="14" stroke="#ddd8d0" stroke-width="1"/>
+            <line x1="10" y1="20" x2="22" y2="20" stroke="#ddd8d0" stroke-width="1"/>
+            <circle cx="28" cy="25" r="5" stroke="#d4920e" stroke-width="1.5" fill="none"/>
+            <line x1="28" y1="22" x2="28" y2="25" stroke="#d4920e" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="28" cy="25" r="1" fill="#d4920e"/>
+          </svg>
+          <div class="rp-step-title"><span data-lang="cs">Návrh měřicí strategie</span><span data-lang="en">Measurement strategy design</span></div>
+          <div class="rp-step-desc" data-lang="cs">Co chcete měřit a proč. Definujeme klíčové konverze, custom dimenze a metriky relevantní pro váš e-shop.</div>
+          <div class="rp-step-desc" data-lang="en">What you want to measure and why. We define key conversions, custom dimensions, and metrics relevant to your e-shop.</div>
+        </div>
+
+        <div class="rp-step">
+          <div class="rp-step-circle">03</div>
+          <svg width="38" height="38" viewBox="0 0 38 38" fill="none" style="margin-bottom:.9rem">
+            <rect x="4" y="8" width="12" height="10" stroke="#ddd8d0" stroke-width="1.5"/>
+            <rect x="22" y="8" width="12" height="10" stroke="#d4920e" stroke-width="1.5"/>
+            <rect x="4" y="24" width="12" height="10" stroke="#ddd8d0" stroke-width="1.5"/>
+            <rect x="22" y="24" width="12" height="10" stroke="#ddd8d0" stroke-width="1.5"/>
+            <line x1="16" y1="13" x2="22" y2="13" stroke="#d4920e" stroke-width="1.5"/>
+            <polygon points="20,11 22,13 20,15" fill="#d4920e"/>
+            <text x="28" y="22" fill="#d4920e" font-family="'DM Mono',monospace" font-size="5" text-anchor="middle">GTM</text>
+          </svg>
+          <div class="rp-step-title"><span data-lang="cs">Implementace přes GTM</span><span data-lang="en">Implementation via GTM</span></div>
+          <div class="rp-step-desc" data-lang="cs">Všechny tagy, triggery a proměnné v Google Tag Manageru. Enhanced ecommerce, form tracking, scroll, custom events.</div>
+          <div class="rp-step-desc" data-lang="en">All tags, triggers, and variables in Google Tag Manager. Enhanced ecommerce, form tracking, scroll, custom events.</div>
+        </div>
+
+        <div class="rp-step">
+          <div class="rp-step-circle">04</div>
+          <svg width="38" height="38" viewBox="0 0 38 38" fill="none" style="margin-bottom:.9rem">
+            <ellipse cx="19" cy="12" rx="11" ry="4" stroke="#ddd8d0" stroke-width="1.5"/>
+            <path d="M8 12 v14 c0 2.2 4.9 4 11 4s11-1.8 11-4V12" stroke="#ddd8d0" stroke-width="1.5" fill="none"/>
+            <path d="M8 19 c0 2.2 4.9 4 11 4s11-1.8 11-4" stroke="#d4920e" stroke-width="1" fill="none" stroke-dasharray="3,2"/>
+            <text x="19" y="15" fill="#d4920e" font-family="'DM Mono',monospace" font-size="4.5" text-anchor="middle">SQL</text>
+          </svg>
+          <div class="rp-step-title"><span data-lang="cs">BigQuery export a modely</span><span data-lang="en">BigQuery export &amp; data models</span></div>
+          <div class="rp-step-desc" data-lang="cs">Aktivace GA4 BigQuery exportu, setup projektu, první SQL modely pro vaše nejdůležitější reporty.</div>
+          <div class="rp-step-desc" data-lang="en">GA4 BigQuery export activation, project setup, first SQL models for your most important reports.</div>
+        </div>
+
+        <div class="rp-step">
+          <div class="rp-step-circle">05</div>
+          <svg width="38" height="38" viewBox="0 0 38 38" fill="none" style="margin-bottom:.9rem">
+            <circle cx="19" cy="19" r="14" stroke="#ddd8d0" stroke-width="1.5"/>
+            <polyline points="12,19 17,24 26,13" stroke="#d4920e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div class="rp-step-title"><span data-lang="cs">Validace a dokumentace</span><span data-lang="en">Validation &amp; documentation</span></div>
+          <div class="rp-step-desc" data-lang="cs">Ověření dat v GA4 Debug View a BigQuery. Dokumentace co se měří a proč. Zaškolení vašeho týmu.</div>
+          <div class="rp-step-desc" data-lang="en">Data validation in GA4 Debug View and BigQuery. Documentation of what's measured and why. Training for your team.</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- BIGQUERY PREVIEW -->
+  <div class="rp-section">
+    <span class="rp-label"><span data-lang="cs">Ukázka BigQuery exportu</span><span data-lang="en">BigQuery export overview</span></span>
+    <h2 class="rp-h2" style="margin-bottom:.9rem" data-lang="cs">Co GA4 ukládá<br><em>do BigQuery.</em></h2>
+    <h2 class="rp-h2" style="margin-bottom:.9rem" data-lang="en">What GA4 stores<br><em>in BigQuery.</em></h2>
+    <p class="rp-lead" style="margin-bottom:0" data-lang="cs">GA4 exportuje do BigQuery surová event-level data. Z nich pak stavíme reporty bez omezení samplingem nebo retenčními limity.</p>
+    <p class="rp-lead" style="margin-bottom:0" data-lang="en">GA4 exports raw event-level data to BigQuery. From these we build reports without sampling or retention limits.</p>
+
+    <div class="rp-preview-frame">
+      <div class="rp-preview-bar">
+        <span class="rp-preview-dots"><i></i><i></i><i></i></span>
+        <span class="rp-preview-label">BigQuery · analytics_XXXXXXXX · events_*</span>
+      </div>
+      <svg viewBox="0 0 1060 530" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:auto">
+        <rect width="1060" height="530" fill="#f8f7f4"/>
+
+        <!-- Top bar -->
+        <rect width="1060" height="46" fill="#ede8e0"/>
+        <text x="22" y="18" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7.5" letter-spacing="1.5">BIGQUERY</text>
+        <text x="22" y="34" fill="#1c1814" font-family="'DM Mono',monospace" font-size="9">analytics_XXXXXXXX · events_*</text>
+
+        <!-- LEFT PANEL: Table schema -->
+        <rect x="22" y="60" width="480" height="450" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="34" y="80" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" letter-spacing="1" data-lang="cs">SCHÉMA TABULKY / TABLE SCHEMA</text>
+        <text x="34" y="80" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" letter-spacing="1" data-lang="en">TABLE SCHEMA</text>
+
+        <!-- Schema table header -->
+        <rect x="22" y="86" width="480" height="18" fill="#f4f0e8"/>
+        <text x="34" y="99" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" letter-spacing=".5">FIELD NAME</text>
+        <text x="320" y="99" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" letter-spacing=".5">TYPE</text>
+        <text x="420" y="99" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" letter-spacing=".5">MODE</text>
+        <line x1="22" y1="104" x2="502" y2="104" stroke="#ddd8d0" stroke-width=".5"/>
+
+        <!-- Row 1 -->
+        <text x="34" y="120" fill="#1c1814" font-family="'DM Mono',monospace" font-size="7">event_date</text>
+        <text x="320" y="120" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">DATE</text>
+        <text x="420" y="120" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">NULLABLE</text>
+        <line x1="22" y1="126" x2="502" y2="126" stroke="#ddd8d0" stroke-width=".5"/>
+
+        <!-- Row 2 -->
+        <text x="34" y="142" fill="#1c1814" font-family="'DM Mono',monospace" font-size="7">event_name</text>
+        <text x="320" y="142" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">STRING</text>
+        <text x="420" y="142" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">NULLABLE</text>
+        <line x1="22" y1="148" x2="502" y2="148" stroke="#ddd8d0" stroke-width=".5"/>
+
+        <!-- Row 3 -->
+        <text x="34" y="164" fill="#1c1814" font-family="'DM Mono',monospace" font-size="7">event_timestamp</text>
+        <text x="320" y="164" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">INT64</text>
+        <text x="420" y="164" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">NULLABLE</text>
+        <line x1="22" y1="170" x2="502" y2="170" stroke="#ddd8d0" stroke-width=".5"/>
+
+        <!-- Row 4 -->
+        <text x="34" y="186" fill="#1c1814" font-family="'DM Mono',monospace" font-size="7">user_pseudo_id</text>
+        <text x="320" y="186" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">STRING</text>
+        <text x="420" y="186" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">NULLABLE</text>
+        <line x1="22" y1="192" x2="502" y2="192" stroke="#ddd8d0" stroke-width=".5"/>
+
+        <!-- Row 5 -->
+        <text x="34" y="208" fill="#1c1814" font-family="'DM Mono',monospace" font-size="7">device.category</text>
+        <text x="320" y="208" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">STRING</text>
+        <text x="420" y="208" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">NULLABLE</text>
+        <line x1="22" y1="214" x2="502" y2="214" stroke="#ddd8d0" stroke-width=".5"/>
+
+        <!-- Row 6 -->
+        <text x="34" y="230" fill="#1c1814" font-family="'DM Mono',monospace" font-size="7">geo.country</text>
+        <text x="320" y="230" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">STRING</text>
+        <text x="420" y="230" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">NULLABLE</text>
+        <line x1="22" y1="236" x2="502" y2="236" stroke="#ddd8d0" stroke-width=".5"/>
+
+        <!-- Row 7 -->
+        <text x="34" y="252" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7">ecommerce.purchase_revenue</text>
+        <text x="320" y="252" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">FLOAT64</text>
+        <text x="420" y="252" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">NULLABLE</text>
+        <line x1="22" y1="258" x2="502" y2="258" stroke="#ddd8d0" stroke-width=".5"/>
+
+        <!-- Row 8 -->
+        <text x="34" y="274" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7">ecommerce.transaction_id</text>
+        <text x="320" y="274" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">STRING</text>
+        <text x="420" y="274" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">NULLABLE</text>
+        <line x1="22" y1="280" x2="502" y2="280" stroke="#ddd8d0" stroke-width=".5"/>
+
+        <!-- Row 9 -->
+        <text x="34" y="296" fill="#1c1814" font-family="'DM Mono',monospace" font-size="7">items</text>
+        <text x="320" y="296" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">RECORD</text>
+        <text x="420" y="296" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">REPEATED</text>
+        <line x1="22" y1="302" x2="502" y2="302" stroke="#ddd8d0" stroke-width=".5"/>
+
+        <!-- Row 10 -->
+        <text x="34" y="318" fill="#1c1814" font-family="'DM Mono',monospace" font-size="7">traffic_source.medium</text>
+        <text x="320" y="318" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">STRING</text>
+        <text x="420" y="318" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">NULLABLE</text>
+        <line x1="22" y1="324" x2="502" y2="324" stroke="#ddd8d0" stroke-width=".5"/>
+
+        <!-- Row 11 -->
+        <text x="34" y="340" fill="#1c1814" font-family="'DM Mono',monospace" font-size="7">traffic_source.source</text>
+        <text x="320" y="340" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">STRING</text>
+        <text x="420" y="340" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">NULLABLE</text>
+        <line x1="22" y1="346" x2="502" y2="346" stroke="#ddd8d0" stroke-width=".5"/>
+
+        <!-- Ellipsis -->
+        <text x="34" y="365" fill="#7a7269" font-family="'DM Mono',monospace" font-size="8">· · ·</text>
+        <text x="34" y="383" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" data-lang="cs">+ další parametry událostí a uživatelských vlastností</text>
+        <text x="34" y="383" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" data-lang="en">+ additional event parameters and user properties</text>
+
+        <!-- RIGHT PANEL TOP: SQL Query -->
+        <rect x="546" y="60" width="492" height="200" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="558" y="80" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" letter-spacing="1" data-lang="cs">PŘÍKLAD SQL DOTAZU / EXAMPLE SQL QUERY</text>
+        <text x="558" y="80" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" letter-spacing="1" data-lang="en">EXAMPLE SQL QUERY</text>
+
+        <!-- Code block background -->
+        <rect x="558" y="88" width="468" height="158" fill="#f4f2ee" stroke="#ddd8d0" stroke-width=".5"/>
+
+        <!-- SQL with syntax highlighting -->
+        <text x="570" y="108" font-family="'DM Mono',monospace" font-size="7.5">
+          <tspan fill="#d4920e">SELECT</tspan>
+          <tspan fill="#1c1814"> event_date,</tspan>
+        </text>
+        <text x="570" y="124" font-family="'DM Mono',monospace" font-size="7.5">
+          <tspan fill="#1c1814">  </tspan>
+          <tspan fill="#d4920e">COUNT</tspan>
+          <tspan fill="#1c1814">(*) </tspan>
+          <tspan fill="#d4920e">AS</tspan>
+          <tspan fill="#1c1814"> purchases,</tspan>
+        </text>
+        <text x="570" y="140" font-family="'DM Mono',monospace" font-size="7.5">
+          <tspan fill="#1c1814">  </tspan>
+          <tspan fill="#d4920e">SUM</tspan>
+          <tspan fill="#1c1814">(ecommerce.purchase_revenue) </tspan>
+          <tspan fill="#d4920e">AS</tspan>
+          <tspan fill="#1c1814"> revenue</tspan>
+        </text>
+        <text x="570" y="156" font-family="'DM Mono',monospace" font-size="7.5">
+          <tspan fill="#d4920e">FROM</tspan>
+          <tspan fill="#7a7269"> `projekt.analytics.events_*`</tspan>
+        </text>
+        <text x="570" y="172" font-family="'DM Mono',monospace" font-size="7.5">
+          <tspan fill="#d4920e">WHERE</tspan>
+          <tspan fill="#1c1814"> event_name = </tspan>
+          <tspan fill="#7a7269">'purchase'</tspan>
+        </text>
+        <text x="570" y="188" font-family="'DM Mono',monospace" font-size="7.5">
+          <tspan fill="#d4920e">  AND</tspan>
+          <tspan fill="#1c1814"> _TABLE_SUFFIX </tspan>
+          <tspan fill="#d4920e">BETWEEN</tspan>
+          <tspan fill="#7a7269"> '20260101' </tspan>
+          <tspan fill="#d4920e">AND</tspan>
+          <tspan fill="#7a7269"> '20260531'</tspan>
+        </text>
+        <text x="570" y="204" font-family="'DM Mono',monospace" font-size="7.5">
+          <tspan fill="#d4920e">GROUP BY</tspan>
+          <tspan fill="#1c1814"> 1 </tspan>
+          <tspan fill="#d4920e">ORDER BY</tspan>
+          <tspan fill="#1c1814"> 1</tspan>
+        </text>
+        <text x="570" y="236" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" data-lang="cs">Zpracováno za 1,2 s · 0,4 GB prohledáno</text>
+        <text x="570" y="236" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" data-lang="en">Processed in 1.2 s · 0.4 GB scanned</text>
+
+        <!-- RIGHT PANEL BOTTOM: Result table -->
+        <rect x="546" y="280" width="492" height="230" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="558" y="300" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" letter-spacing="1" data-lang="cs">VÝSLEDEK / RESULT</text>
+        <text x="558" y="300" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" letter-spacing="1" data-lang="en">RESULT</text>
+
+        <!-- Result table header -->
+        <rect x="546" y="306" width="492" height="18" fill="#f4f0e8"/>
+        <text x="558" y="319" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5">event_date</text>
+        <text x="720" y="319" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5">purchases</text>
+        <text x="870" y="319" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5">revenue</text>
+        <line x1="546" y1="324" x2="1038" y2="324" stroke="#ddd8d0" stroke-width=".5"/>
+
+        <!-- Result rows -->
+        <text x="558" y="342" fill="#1c1814" font-family="'DM Mono',monospace" font-size="7">20260101</text>
+        <text x="720" y="342" fill="#1c1814" font-family="'DM Mono',monospace" font-size="7">47</text>
+        <text x="870" y="342" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7">182 430.00</text>
+        <line x1="546" y1="348" x2="1038" y2="348" stroke="#ddd8d0" stroke-width=".5"/>
+
+        <text x="558" y="366" fill="#1c1814" font-family="'DM Mono',monospace" font-size="7">20260102</text>
+        <text x="720" y="366" fill="#1c1814" font-family="'DM Mono',monospace" font-size="7">53</text>
+        <text x="870" y="366" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7">214 870.00</text>
+        <line x1="546" y1="372" x2="1038" y2="372" stroke="#ddd8d0" stroke-width=".5"/>
+
+        <text x="558" y="390" fill="#1c1814" font-family="'DM Mono',monospace" font-size="7">20260103</text>
+        <text x="720" y="390" fill="#1c1814" font-family="'DM Mono',monospace" font-size="7">61</text>
+        <text x="870" y="390" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7">248 120.00</text>
+        <line x1="546" y1="396" x2="1038" y2="396" stroke="#ddd8d0" stroke-width=".5"/>
+
+        <text x="558" y="414" fill="#1c1814" font-family="'DM Mono',monospace" font-size="7">20260104</text>
+        <text x="720" y="414" fill="#1c1814" font-family="'DM Mono',monospace" font-size="7">38</text>
+        <text x="870" y="414" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7">149 650.00</text>
+        <line x1="546" y1="420" x2="1038" y2="420" stroke="#ddd8d0" stroke-width=".5"/>
+
+        <text x="558" y="438" fill="#1c1814" font-family="'DM Mono',monospace" font-size="7">20260105</text>
+        <text x="720" y="438" fill="#1c1814" font-family="'DM Mono',monospace" font-size="7">72</text>
+        <text x="870" y="438" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7">291 380.00</text>
+        <line x1="546" y1="444" x2="1038" y2="444" stroke="#ddd8d0" stroke-width=".5"/>
+
+        <text x="558" y="462" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" data-lang="cs">· · · (151 řádků celkem)</text>
+        <text x="558" y="462" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" data-lang="en">· · · (151 rows total)</text>
+
+        <text x="558" y="498" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" data-lang="cs">Žádný sampling. Žádný retenční limit. Všechna data od prvního dne.</text>
+        <text x="558" y="498" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" data-lang="en">No sampling. No retention limit. All data from day one.</text>
+      </svg>
+    </div>
+
+    <div class="rp-highlight">
+      <p data-lang="cs">GA4 BigQuery export je zdarma pro všechny GA4 properties. Platíte jen za úložiště a dotazy v BigQuery — prvních 10 GB dat a 1 TB dotazů každý měsíc zdarma.</p>
+      <p data-lang="en">GA4 BigQuery export is free for all GA4 properties. You only pay for storage and queries in BigQuery — the first 10 GB of data and 1 TB of queries are free each month.</p>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- DELIVERABLES -->
+  <div class="rp-section-narrow">
+    <span class="rp-label"><span data-lang="cs">Co je součástí</span><span data-lang="en">What's included</span></span>
+    <h2 class="rp-h2" style="margin-bottom:2.5rem" data-lang="cs">Vše co potřebujete<br><em>k přesnému měření.</em></h2>
+    <h2 class="rp-h2" style="margin-bottom:2.5rem" data-lang="en">Everything you need<br><em>for accurate measurement.</em></h2>
+    <div class="rp-delivers">
+
+      <div class="rp-deliver">
+        <svg class="rp-deliver-icon" width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <circle cx="11" cy="11" r="10" stroke="#d4920e" stroke-width="1.5"/>
+          <polyline points="7,11 10,14 15,8" stroke="#d4920e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div>
+          <h4 data-lang="cs">GA4 audit a implementace</h4>
+          <h4 data-lang="en">GA4 audit &amp; implementation</h4>
+          <p data-lang="cs">Kompletní přehled co funguje a co ne. Oprava problémů, správné nastavení konverzí a enhanced ecommerce.</p>
+          <p data-lang="en">Complete overview of what works and what doesn't. Fixing issues, correct conversion setup, and enhanced ecommerce.</p>
+        </div>
+      </div>
+
+      <div class="rp-deliver">
+        <svg class="rp-deliver-icon" width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <circle cx="11" cy="11" r="10" stroke="#d4920e" stroke-width="1.5"/>
+          <polyline points="7,11 10,14 15,8" stroke="#d4920e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div>
+          <h4 data-lang="cs">GTM konfigurace</h4>
+          <h4 data-lang="en">GTM configuration</h4>
+          <p data-lang="cs">Čistý GTM kontejner s dokumentovanými tagy. Každý tag má jasný účel a owner — žádné zombie tagy ze starých agentur.</p>
+          <p data-lang="en">Clean GTM container with documented tags. Every tag has a clear purpose and owner — no zombie tags from old agencies.</p>
+        </div>
+      </div>
+
+      <div class="rp-deliver">
+        <svg class="rp-deliver-icon" width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <circle cx="11" cy="11" r="10" stroke="#d4920e" stroke-width="1.5"/>
+          <polyline points="7,11 10,14 15,8" stroke="#d4920e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div>
+          <h4 data-lang="cs">BigQuery export a setup</h4>
+          <h4 data-lang="en">BigQuery export &amp; setup</h4>
+          <p data-lang="cs">Aktivace exportu, nastavení projektu, správná oprávnění. Data v BigQuery okamžitě dostupná pro analýzy.</p>
+          <p data-lang="en">Export activation, project setup, correct permissions. Data in BigQuery immediately available for analysis.</p>
+        </div>
+      </div>
+
+      <div class="rp-deliver">
+        <svg class="rp-deliver-icon" width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <circle cx="11" cy="11" r="10" stroke="#d4920e" stroke-width="1.5"/>
+          <polyline points="7,11 10,14 15,8" stroke="#d4920e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div>
+          <h4 data-lang="cs">Custom dimenze a metriky</h4>
+          <h4 data-lang="en">Custom dimensions &amp; metrics</h4>
+          <p data-lang="cs">Definice a implementace custom dimenzí pro váš e-shop — kategorie, zákazníci, marže. GA4 bude sbírat co potřebujete.</p>
+          <p data-lang="en">Definition and implementation of custom dimensions for your e-shop — categories, customers, margins. GA4 collects what you need.</p>
+        </div>
+      </div>
+
+      <div class="rp-deliver">
+        <svg class="rp-deliver-icon" width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <circle cx="11" cy="11" r="10" stroke="#d4920e" stroke-width="1.5"/>
+          <polyline points="7,11 10,14 15,8" stroke="#d4920e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div>
+          <h4 data-lang="cs">Základní SQL modely</h4>
+          <h4 data-lang="en">Basic SQL models</h4>
+          <p data-lang="cs">První sada SQL dotazů pro vaše klíčové reporty — sessions, konverze, ROAS, retence. Základ pro Looker Studio nebo vlastní analýzy.</p>
+          <p data-lang="en">First set of SQL queries for your key reports — sessions, conversions, ROAS, retention. Foundation for Looker Studio or custom analyses.</p>
+        </div>
+      </div>
+
+      <div class="rp-deliver">
+        <svg class="rp-deliver-icon" width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <circle cx="11" cy="11" r="10" stroke="#d4920e" stroke-width="1.5"/>
+          <polyline points="7,11 10,14 15,8" stroke="#d4920e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div>
+          <h4 data-lang="cs">Dokumentace a zaškolení</h4>
+          <h4 data-lang="en">Documentation &amp; training</h4>
+          <p data-lang="cs">Co se měří, proč a jak. Váš tým bude rozumět datům, ne je jen bezmyšlenkovitě kopírovat do prezentace.</p>
+          <p data-lang="en">What's measured, why, and how. Your team will understand the data, not just mindlessly copy it into presentations.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- LONG-TERM -->
+  <div class="rp-section-narrow">
+    <span class="rp-label"><span data-lang="cs">Dlouhodobá spolupráce</span><span data-lang="en">Long-term partnership</span></span>
+    <h2 class="rp-h2" data-lang="cs">Měření se vyvíjí<br><em>s e-shopem.</em></h2>
+    <h2 class="rp-h2" data-lang="en">Measurement evolves<br><em>with the e-shop.</em></h2>
+    <p class="rp-lead" style="margin-top:.9rem" data-lang="cs">E-shop se mění — nové produktové kategorie, nové marketingové kanály, nové funkce webu. Správné měření vyžaduje průběžnou údržbu.</p>
+    <p class="rp-lead" style="margin-top:.9rem" data-lang="en">The e-shop changes — new product categories, new marketing channels, new website features. Correct measurement requires ongoing maintenance.</p>
+
+    <div class="rp-phases">
+      <div class="rp-phase">
+        <div class="rp-phase-num"><span data-lang="cs">Fáze 01</span><span data-lang="en">Phase 01</span></div>
+        <div class="rp-phase-title"><span data-lang="cs">Týdny 1–3: základ</span><span data-lang="en">Weeks 1–3: foundation</span></div>
+        <p data-lang="cs">GA4 správně nastaveno, BigQuery export běží, první SQL modely hotové.</p>
+        <p data-lang="en">GA4 correctly set up, BigQuery export running, first SQL models done.</p>
+      </div>
+      <div class="rp-phase">
+        <div class="rp-phase-num"><span data-lang="cs">Fáze 02</span><span data-lang="en">Phase 02</span></div>
+        <div class="rp-phase-title"><span data-lang="cs">Měsíce 2–4: rozšíření</span><span data-lang="en">Months 2–4: expansion</span></div>
+        <p data-lang="cs">Nové konverzní události, custom dimenze, rozšíření BigQuery modelů o vaše specifické potřeby.</p>
+        <p data-lang="en">New conversion events, custom dimensions, BigQuery model expansion for your specific needs.</p>
+      </div>
+      <div class="rp-phase">
+        <div class="rp-phase-num"><span data-lang="cs">Průběžně</span><span data-lang="en">Ongoing</span></div>
+        <div class="rp-phase-title"><span data-lang="cs">Průběžně: údržba</span><span data-lang="en">Ongoing: maintenance</span></div>
+        <p data-lang="cs">GA4 aktualizace, nové funkce webu, změny v ecommerce — měření drží krok s vaším byznysem.</p>
+        <p data-lang="en">GA4 updates, new website features, ecommerce changes — measurement keeps pace with your business.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- Z BLOGU -->
+  <div class="rp-section-narrow">
+    <span class="rp-label" data-lang="cs">Z blogu</span>
+    <span class="rp-label" data-lang="en">From the blog</span>
+    <div class="rp-blog-links">
+      <a href="/blog/ga4-bigquery.html" class="rp-blog-link">
+        <div class="rp-blog-link-tag">Datová analytika</div>
+        <div class="rp-blog-link-title">GA4 BigQuery export: jak dostat z analytiky víc než základní přehledy →</div>
+      </a>
+      <a href="/blog/consent-mode-v2.html" class="rp-blog-link">
+        <div class="rp-blog-link-tag">Měření dat</div>
+        <div class="rp-blog-link-title">Consent Mode v2: proč ho potřebujete a jak ho správně nastavit →</div>
+      </a>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- CTA / FORM -->
+  <div class="rp-cta" id="kontakt">
+    <div class="rp-cta-inner">
+      <div class="rp-cta-text">
+        <span class="rp-tag"><span data-lang="cs">Pojďme začít</span><span data-lang="en">Let's get started</span></span>
+        <h2 data-lang="cs">Jak přesně měříte<br><em>váš e-shop?</em></h2>
+        <h2 data-lang="en">How accurately are you measuring<br><em>your e-shop?</em></h2>
+        <p data-lang="cs">Napište mi a udělám bezplatný audit vašeho GA4. Ukážu co chybí, co je špatně a co byste mohli měřit navíc.</p>
+        <p data-lang="en">Write to me and I'll do a free GA4 audit. I'll show what's missing, what's wrong, and what you could additionally measure.</p>
+      </div>
+      <form class="rp-form" id="rp-form" action="https://formspree.io/f/xaqvejza" method="POST">
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" />
+        <input type="text" name="name"
+          data-ph-cs="Jméno" data-ph-en="Name"
+          placeholder="Jméno" required />
+        <input type="email" name="email"
+          data-ph-cs="E-mail" data-ph-en="E-mail"
+          placeholder="E-mail" required />
+        <input type="text" name="company"
+          data-ph-cs="Firma / e-shop (volitelné)" data-ph-en="Company / e-shop (optional)"
+          placeholder="Firma / e-shop (volitelné)" />
+        <textarea name="message"
+          data-ph-cs="Jaký e-shop máte? Jaké problémy s měřením řešíte?"
+          data-ph-en="What e-shop do you have? What measurement issues are you dealing with?"
+          placeholder="Jaký e-shop máte? Jaké problémy s měřením řešíte?"
+          required></textarea>
+        <button type="submit" class="cta-btn" id="rp-submit"><span data-lang="cs">Odeslat zprávu</span><span data-lang="en">Send message</span></button>
+        <p class="form-error" hidden></p>
+        <p class="form-recaptcha-note">Chráněno reCAPTCHA (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy</a> &amp; <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Terms</a>).</p>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Flowstack · Jan Veverka · Czech Republic</p>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/jan-veverka-39b24938" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="tel:+420602603423">+420 602 603 423</a>
+      <a href="/">&#8592; <span data-lang="cs">Hlavní stránka</span><span data-lang="en">Homepage</span></a>
+      <a href="/blog/">Blog</a>
+    </div>
+  </footer>
+
+  <script>
+    /* Nav scroll */
+    var nav = document.getElementById('navWrap');
+    window.addEventListener('scroll', function() {
+      nav.classList.toggle('scrolled', window.scrollY > 10);
+    }, {passive:true});
+
+    /* Language switching */
+    function setLang(lang) {
+      document.documentElement.lang = lang === 'cs' ? 'cs' : 'en';
+      document.body.className = 'lang-' + lang;
+      document.querySelectorAll('.lang-btn').forEach(function(btn) {
+        btn.classList.toggle('active', btn.textContent.toLowerCase() === lang || (lang === 'cs' && btn.textContent === 'CZ'));
+      });
+      document.querySelectorAll('[data-ph-cs]').forEach(function(el) {
+        el.placeholder = lang === 'en' ? el.dataset.phEn : el.dataset.phCs;
+      });
+      localStorage.setItem('lang', lang);
+    }
+    (function() {
+      var saved = localStorage.getItem('lang') || 'cs';
+      setLang(saved);
+    })();
+
+    /* Form */
+    (function() {
+      var form = document.getElementById('rp-form');
+      var btn  = document.getElementById('rp-submit');
+      var err  = form.querySelector('.form-error');
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        btn.disabled = true;
+        btn.textContent = document.body.classList.contains('lang-en') ? 'Sending…' : 'Odesílám…';
+        grecaptcha.ready(function() {
+          grecaptcha.execute('6LevXNgsAAAAALh4ZbMWnXz73v20fOgPLx_3zlRK', {action:'submit'}).then(function(token) {
+            var data = new FormData(form);
+            data.append('g-recaptcha-response', token);
+            fetch(form.action, {method:'POST', body:data, headers:{Accept:'application/json'}})
+              .then(function(r) { return r.json(); })
+              .then(function(r) {
+                if (r.ok) {
+                  var isEn = document.body.classList.contains('lang-en');
+                  form.innerHTML = '<p class="form-success">' + (isEn ? 'Message sent. I\'ll get back to you within 24 hours.' : 'Zpráva odeslána. Ozvu se do 24 hodin.') + '</p>';
+                  window.dataLayer = window.dataLayer || [];
+                  window.dataLayer.push({event:'form_submit', form_name:'contact', form_location:'ga4_cta'});
+                } else {
+                  var isEn = document.body.classList.contains('lang-en');
+                  err.textContent = isEn ? 'Failed to send. Please try again.' : 'Nepodařilo se odeslat. Zkuste to znovu.';
+                  err.hidden = false; btn.disabled = false;
+                  btn.textContent = isEn ? 'Send message' : 'Odeslat zprávu';
+                }
+              })
+              .catch(function() {
+                var isEn = document.body.classList.contains('lang-en');
+                err.textContent = isEn ? 'Network error. Please try again.' : 'Nepodařilo se odeslat. Zkuste to znovu.';
+                err.hidden = false; btn.disabled = false;
+                btn.textContent = isEn ? 'Send message' : 'Odeslat zprávu';
+              });
+          });
+        });
+      });
+    document.querySelectorAll('.nav-dropdown').forEach(function(dd) {
+      var menu = dd.querySelector('.nav-dropdown-menu');
+      var trigger = dd.querySelector(':scope > a');
+      var closeTimer;
+      function openMenu() { clearTimeout(closeTimer); dd.classList.add('open'); trigger.setAttribute('aria-expanded','true'); }
+      function closeMenu() { dd.classList.remove('open'); trigger.setAttribute('aria-expanded','false'); }
+      dd.addEventListener('mouseenter', openMenu);
+      dd.addEventListener('mouseleave', function() { closeTimer = setTimeout(closeMenu, 300); });
+      trigger.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowDown') { e.preventDefault(); openMenu(); var f = menu.querySelector('a'); if (f) f.focus(); }
+        else if (e.key === 'Escape') { closeMenu(); }
+      });
+      var items = Array.from(menu.querySelectorAll('a'));
+      items.forEach(function(item, i) {
+        item.addEventListener('keydown', function(e) {
+          if (e.key === 'ArrowDown') { e.preventDefault(); if (items[i+1]) items[i+1].focus(); }
+          else if (e.key === 'ArrowUp') { e.preventDefault(); if (i===0) { closeMenu(); trigger.focus(); } else items[i-1].focus(); }
+          else if (e.key === 'Escape') { closeMenu(); trigger.focus(); }
+          else if (e.key === 'Tab') { setTimeout(closeMenu, 50); }
+        });
+      });
+    });
+
+    })();
+  </script>
+</body>
+</html>

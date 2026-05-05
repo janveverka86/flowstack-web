@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Reporting a dashboardy pro e-commerce | Flowstack</title>
+  <meta name="description" content="Živé dashboardy místo Excelu. Propojím vaše datové zdroje do BigQuery a postavím reporting, který ušetří hodiny práce každý měsíc." />
+  <link rel="canonical" href="https://flowstack.cz/sluzby/reporting.html" />
+  <link rel="alternate" hreflang="cs" href="https://flowstack.cz/sluzby/reporting.html" />
+  <link rel="alternate" hreflang="en" href="https://flowstack.cz/sluzby/reporting.html" />
+  <link rel="alternate" hreflang="x-default" href="https://flowstack.cz/sluzby/reporting.html" />
+  <meta property="og:title" content="Reporting a dashboardy pro e-commerce | Flowstack" />
+  <meta property="og:description" content="Živé dashboardy místo Excelu. Propojím vaše datové zdroje do BigQuery a postavím reporting, který ušetří hodiny práce každý měsíc." />
+  <meta property="og:url" content="https://flowstack.cz/sluzby/reporting.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://flowstack.cz/og/reporting.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23f4f0e8'/><text x='6' y='24' font-family='serif' font-size='22' fill='%23d4920e'>F</text></svg>" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@graph":[
+    {"@type":"Service","name":"Reporting & dashboardy pro e-commerce","description":"Živé dashboardy místo Excelu. Propojím vaše datové zdroje do BigQuery a postavím reporting, který ušetří hodiny práce každý měsíc.","url":"https://flowstack.cz/sluzby/reporting.html","provider":{"@type":"Person","name":"Jan Veverka","url":"https://flowstack.cz"},"areaServed":{"@type":"Country","name":"Czech Republic"},"serviceType":"Business Intelligence & Data Visualization"},
+    {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Flowstack","item":"https://flowstack.cz"},{"@type":"ListItem","position":2,"name":"Služby","item":"https://flowstack.cz/sluzby/"},{"@type":"ListItem","position":3,"name":"Reporting & dashboardy","item":"https://flowstack.cz/sluzby/reporting.html"}]}
+  ]}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <script src="https://www.google.com/recaptcha/api.js?render=6LevXNgsAAAAALh4ZbMWnXz73v20fOgPLx_3zlRK" async defer></script>
+  <style>
+    :root { --bg:#f4f0e8; --fg:#1c1814; --accent:#d4920e; --muted:#7a7269; --border:#ddd8d0; }
+    *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; background:#f4f0e8; }
+    body { background:radial-gradient(ellipse at 50% 0%, #ece6da 0%, var(--bg) 65%); color:var(--fg); font-family:'Inter',sans-serif; font-weight:400; min-height:100vh; overflow-x:clip; }
+    body::after { content:''; position:fixed; inset:0; background-image:radial-gradient(circle, #c4bdb5 1px, transparent 1px); background-size:28px 28px; pointer-events:none; z-index:0; opacity:.35; }
+
+    /* LANGUAGE SWITCHING */
+    [data-lang] { display:none; }
+    body.lang-en [data-lang="en"] { display:block; }
+    body.lang-cs [data-lang="cs"] { display:block; }
+    span[data-lang] { display:none; }
+    body.lang-en span[data-lang="en"] { display:inline; }
+    body.lang-cs span[data-lang="cs"] { display:inline; }
+    text[data-lang] { display:none; }
+    body.lang-en text[data-lang="en"] { display:inline; }
+    body.lang-cs text[data-lang="cs"] { display:inline; }
+
+    /* NAV */
+    .nav-wrap { position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(244,240,232,.88); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-bottom:1px solid transparent; transition:border-color .3s; padding-top:env(safe-area-inset-top); }
+    .nav-wrap.scrolled { border-bottom-color:var(--border); }
+    nav { display:flex; justify-content:space-between; align-items:center; padding:1.2rem 2rem; max-width:1100px; margin:0 auto; }
+    .logo { font-family:'Playfair Display',serif; font-size:1.7rem; color:var(--fg); letter-spacing:-.02em; text-decoration:none; line-height:1; }
+    .logo span { color:var(--accent); }
+    .logo-sub { font-family:'Inter',sans-serif; font-size:.62rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-top:.35rem; font-weight:400; }
+    .nav-links { display:flex; align-items:center; gap:2rem; }
+    .nav-sep { width:1px; height:14px; background:var(--border); align-self:center; }
+    nav a { color:var(--muted); text-decoration:none; font-size:.82rem; font-weight:400; letter-spacing:.01em; transition:color .2s; }
+    nav a:hover { color:var(--accent); }
+    .nav-spacer { height:calc(68px + env(safe-area-inset-top, 0px)); }
+    .lang-switcher { display:flex; gap:.4rem; margin-left:1rem; padding-left:1rem; border-left:1px solid var(--border); }
+    .lang-btn { background:none; border:1px solid transparent; color:var(--muted); font-family:'DM Mono',monospace; font-size:.7rem; letter-spacing:.12em; text-transform:uppercase; cursor:pointer; padding:.25rem .5rem; transition:color .2s,border-color .2s; }
+    .lang-btn:hover { color:var(--accent); }
+    .lang-btn.active { color:var(--accent); border-color:var(--accent); }
+
+    /* SHARED */
+    .rp-tag { display:inline-block; font-family:'Inter',sans-serif; font-size:.68rem; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:var(--accent); border:1px solid var(--accent); padding:.25rem .7rem; margin-bottom:1.5rem; }
+    .rp-label { font-family:'Inter',sans-serif; font-size:.68rem; font-weight:500; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); margin-bottom:1.5rem; display:block; }
+    .rp-h2 { font-family:'Playfair Display',serif; font-size:clamp(2rem,4vw,2.8rem); font-weight:400; letter-spacing:-.02em; line-height:1.1; }
+    .rp-h2 em { font-style:italic; color:var(--accent); }
+    .rp-lead { font-size:.95rem; color:#6a6258; line-height:1.85; max-width:540px; }
+    .divider { border:none; border-top:1px solid var(--border); margin:0; position:relative; z-index:1; }
+    .cta-btn { display:inline-block; background:var(--accent); color:#fff; font-family:'Inter',sans-serif; font-size:.78rem; font-weight:600; letter-spacing:.03em; text-decoration:none; padding:.9rem 2.2rem; transition:opacity .2s; cursor:pointer; border:none; }
+    .cta-btn:hover { opacity:.85; }
+
+    /* HERO */
+    .rp-hero { position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:4rem 2rem 5rem; display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
+    .rp-hero h1 { font-family:'Playfair Display',serif; font-size:clamp(2.6rem,5vw,3.8rem); font-weight:400; letter-spacing:-.03em; line-height:1.05; margin-bottom:1.2rem; }
+    .rp-hero h1 em { font-style:italic; color:var(--accent); }
+    .rp-hero-lead { font-size:1.05rem; color:#6a6258; line-height:1.8; margin-bottom:2rem; max-width:440px; }
+    .rp-pains { display:flex; flex-direction:column; gap:.75rem; margin-bottom:2.5rem; }
+    .rp-pain { display:flex; align-items:flex-start; gap:.85rem; font-size:.9rem; color:#6a6258; line-height:1.6; }
+    .rp-pain-dot { flex-shrink:0; width:18px; height:18px; margin-top:.1rem; }
+
+    /* OUTCOMES */
+    .rp-section { position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:5rem 2rem; }
+    .rp-section-narrow { position:relative; z-index:1; max-width:900px; margin:0 auto; padding:5rem 2rem; }
+    .rp-outcomes-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border); margin-top:2.5rem; }
+    .rp-outcome { background:var(--bg); padding:2.5rem 2rem; }
+    .rp-outcome-icon { width:44px; height:44px; margin-bottom:1.4rem; }
+    .rp-outcome h3 { font-family:'Playfair Display',serif; font-size:1.2rem; font-weight:400; letter-spacing:-.01em; margin-bottom:.7rem; }
+    .rp-outcome p { font-size:.87rem; color:#6a6258; line-height:1.78; }
+
+    /* PROCESS */
+    .rp-process { position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:5rem 2rem; }
+    .rp-steps-wrap { position:relative; margin-top:3.5rem; }
+    .rp-steps-line { position:absolute; top:28px; left:calc(10% + 28px); right:calc(10% + 28px); height:1px; background:repeating-linear-gradient(90deg, var(--accent) 0, var(--accent) 8px, transparent 8px, transparent 18px); opacity:.35; }
+    .rp-steps { display:grid; grid-template-columns:repeat(5,1fr); gap:0; position:relative; z-index:1; }
+    .rp-step { display:flex; flex-direction:column; align-items:center; text-align:center; padding:0 .8rem; }
+    .rp-step-circle { width:56px; height:56px; border-radius:50%; border:1.5px solid var(--accent); background:var(--bg); display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-size:1.05rem; color:var(--accent); margin-bottom:1.5rem; flex-shrink:0; }
+    .rp-step-title { font-family:'Inter',sans-serif; font-size:.8rem; font-weight:600; color:var(--fg); margin-bottom:.6rem; letter-spacing:.01em; }
+    .rp-step-desc { font-size:.8rem; color:#6a6258; line-height:1.72; }
+
+    /* PREVIEW */
+    .rp-preview-frame { border:1px solid var(--border); overflow:hidden; box-shadow:0 6px 48px rgba(0,0,0,.1); margin-top:2.5rem; position:relative; z-index:1; }
+    .rp-preview-bar { display:flex; align-items:center; gap:.8rem; padding:.65rem 1rem; background:#ede8e0; border-bottom:1px solid var(--border); }
+    .rp-preview-dots { display:flex; gap:.35rem; }
+    .rp-preview-dots i { display:inline-block; width:9px; height:9px; border-radius:50%; background:var(--border); font-style:normal; }
+    .rp-preview-dots i:first-child { background:var(--accent); opacity:.75; }
+    .rp-preview-label { font-family:'DM Mono',monospace; font-size:.63rem; color:var(--muted); letter-spacing:.08em; text-transform:uppercase; }
+    .rp-highlight { background:#ede8e0; border:1px solid var(--border); border-left:3px solid var(--accent); padding:1.4rem 2rem; margin-top:2rem; position:relative; z-index:1; }
+    .rp-highlight p { font-size:.88rem; color:#6a6258; line-height:1.8; margin:0; }
+
+    /* DELIVERABLES */
+    .rp-delivers { display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--border); border:1px solid var(--border); margin-top:2.5rem; }
+    .rp-deliver { background:var(--bg); padding:2rem 2rem; display:flex; gap:1.2rem; align-items:flex-start; }
+    .rp-deliver-icon { flex-shrink:0; margin-top:.05rem; }
+    .rp-deliver h4 { font-family:'Inter',sans-serif; font-size:.88rem; font-weight:600; color:var(--fg); margin-bottom:.35rem; }
+    .rp-deliver p { font-size:.83rem; color:#6a6258; line-height:1.75; }
+
+    /* CTA / FORM */
+    .rp-cta { position:relative; z-index:1; border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:5rem 2rem; }
+    .rp-cta-inner { display:flex; align-items:flex-start; gap:5rem; max-width:1100px; margin:0 auto; }
+    .rp-cta-text { flex:1; padding-top:.5rem; }
+    .rp-cta-text h2 { font-family:'Playfair Display',serif; font-size:clamp(2rem,4vw,3.2rem); font-weight:400; letter-spacing:-.03em; line-height:1.1; margin-bottom:1.2rem; }
+    .rp-cta-text h2 em { font-style:italic; color:var(--accent); }
+    .rp-cta-text p { font-size:.95rem; color:#6a6258; line-height:1.85; }
+    .rp-form { flex:0 0 420px; max-width:420px; }
+    .rp-form input, .rp-form textarea { width:100%; background:#ede8e0; border:1px solid var(--border); padding:.75rem 1rem; font-family:'Inter',sans-serif; font-size:.88rem; color:var(--fg); outline:none; transition:border-color .2s; margin-bottom:.6rem; display:block; border-radius:0; appearance:none; }
+    .rp-form input:focus, .rp-form textarea:focus { border-color:var(--accent); }
+    .rp-form textarea { min-height:110px; resize:vertical; }
+    .rp-form button.cta-btn { width:100%; cursor:pointer; display:block; }
+    .form-success { font-family:'DM Mono',monospace; font-size:.82rem; color:var(--accent); letter-spacing:.05em; text-align:center; padding:1.5rem; border:1px solid var(--accent); }
+    .form-error { font-family:'DM Mono',monospace; font-size:.75rem; color:#c0392b; letter-spacing:.03em; margin-top:.5rem; }
+    .form-recaptcha-note { font-size:.48rem; color:var(--border); margin-top:.5rem; line-height:1.6; }
+    .form-recaptcha-note a { color:inherit; text-decoration:none; }
+    .form-recaptcha-note a:hover { color:var(--muted); }
+    .grecaptcha-badge { visibility:hidden !important; }
+
+    /* FOOTER */
+    footer { position:relative; z-index:1; border-top:1px solid var(--border); padding:2rem; max-width:1100px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+    footer p { font-family:'Inter',sans-serif; font-size:.72rem; color:var(--muted); letter-spacing:.04em; }
+    footer a { font-family:'Inter',sans-serif; color:var(--muted); text-decoration:none; font-size:.72rem; letter-spacing:.04em; transition:color .2s; }
+    footer a:hover { color:var(--accent); }
+    .footer-links { display:flex; align-items:center; gap:2rem; flex-wrap:wrap; }
+
+    /* LONG-TERM */
+    .rp-phases { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border); margin-top:2.5rem; }
+    .rp-phase { background:var(--bg); padding:2rem 1.8rem; }
+    .rp-phase-num { font-family:'DM Mono',monospace; font-size:.63rem; color:var(--accent); letter-spacing:.14em; text-transform:uppercase; margin-bottom:.8rem; }
+    .rp-phase-title { font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:400; letter-spacing:-.01em; margin-bottom:.6rem; color:var(--fg); }
+    .rp-phase p { font-size:.85rem; color:#6a6258; line-height:1.72; }
+    @media(max-width:640px) { .rp-phases { grid-template-columns:1fr; } }
+
+    /* DROPDOWN */
+    .nav-dropdown { position:relative; display:flex; align-items:center; }
+    .nav-dropdown-menu { position:absolute; top:calc(100% + 10px); left:50%; transform:translateX(-50%); background:rgba(244,240,232,.97); border:1px solid var(--border); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); box-shadow:0 8px 32px rgba(0,0,0,.1); padding:.4rem 0; min-width:210px; opacity:0; pointer-events:none; transition:opacity .18s; z-index:200; }
+    .nav-dropdown.open .nav-dropdown-menu { opacity:1; pointer-events:auto; }
+    .nav-dropdown-menu a { display:block; padding:.55rem 1.2rem; font-size:.78rem; color:var(--muted); white-space:nowrap; }
+    .nav-dropdown-menu a:hover { color:var(--accent); background:#f0ece4; }
+
+    /* BLOG LINKS */
+    .rp-blog-links { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1px; background:var(--border); border:1px solid var(--border); margin-top:1.8rem; }
+    .rp-blog-link { background:var(--bg); padding:1.6rem 1.8rem; text-decoration:none; transition:background .2s; display:block; }
+    .rp-blog-link:hover { background:#ece7de; }
+    .rp-blog-link-tag { font-family:'Inter',sans-serif; font-size:.63rem; font-weight:500; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); margin-bottom:.6rem; }
+    .rp-blog-link-title { font-family:'Playfair Display',serif; font-size:1rem; font-weight:400; letter-spacing:-.01em; line-height:1.3; color:var(--fg); }
+
+    /* RESPONSIVE */
+    @media(max-width:900px) {
+      .rp-hero { grid-template-columns:1fr; gap:3rem; }
+      .rp-outcomes-grid { grid-template-columns:1fr; }
+      .rp-steps { grid-template-columns:1fr 1fr; gap:2.5rem 1rem; }
+      .rp-steps-line { display:none; }
+      .rp-delivers { grid-template-columns:1fr; }
+      .rp-cta-inner { flex-direction:column; gap:2.5rem; }
+      .rp-form { flex:none; max-width:100%; width:100%; }
+    }
+    @media(max-width:600px) {
+      .rp-hero { padding:3rem 1.5rem 4rem; }
+      .rp-section, .rp-process, .rp-section-narrow { padding:4rem 1.5rem; }
+      .rp-steps { grid-template-columns:1fr; }
+      nav { padding:1rem 1.2rem; }
+      .logo { font-size:1.3rem; }
+      .logo-sub { display:none; }
+      .nav-links { gap:1rem; }
+      .nav-sep { display:none; }
+      .lang-switcher { margin-left:.5rem; padding-left:.5rem; }
+    }
+  </style>
+</head>
+<body class="lang-cs" id="navWrap-body">
+
+  <div class="nav-wrap" id="navWrap">
+    <nav>
+      <a href="/" class="logo">Flow<span>stack</span><div class="logo-sub">Jan Veverka · <span data-lang="cs">Datová analytika</span><span data-lang="en">Data Analytics</span></div></a>
+      <div class="nav-links">
+        <a href="/#reference"><span data-lang="cs">Reference</span><span data-lang="en">Clients</span></a>
+        <div class="nav-dropdown">
+          <a href="/sluzby/" aria-haspopup="true" aria-expanded="false"><span data-lang="cs">Služby</span><span data-lang="en">Services</span></a>
+          <div class="nav-dropdown-menu">
+            <a href="/sluzby/reporting.html"><span data-lang="cs">Reporting &amp; dashboardy</span><span data-lang="en">Reporting &amp; dashboards</span></a>
+            <a href="/sluzby/sgtm.html"><span data-lang="cs">Server-side GTM</span><span data-lang="en">Server-side GTM</span></a>
+            <a href="/sluzby/datovy-sklad.html"><span data-lang="cs">Datový sklad</span><span data-lang="en">Data warehouse</span></a>
+            <a href="/sluzby/ga4.html"><span data-lang="cs">GA4 &amp; analytika</span><span data-lang="en">GA4 &amp; analytics</span></a>
+          </div>
+        </div>
+        <a href="/#o-mne"><span data-lang="cs">O mně</span><span data-lang="en">About</span></a>
+        <a href="/#kontakt"><span data-lang="cs">Kontakt</span><span data-lang="en">Contact</span></a>
+        <span class="nav-sep"></span>
+        <a href="/blog/">Blog</a>
+        <div class="lang-switcher">
+          <button class="lang-btn" onclick="setLang('en')">EN</button>
+          <button class="lang-btn active" onclick="setLang('cs')">CZ</button>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="nav-spacer"></div>
+
+  <!-- HERO -->
+  <div class="rp-hero">
+    <div>
+      <span class="rp-tag"><span data-lang="cs">Reporting &amp; Dashboardy</span><span data-lang="en">Reporting &amp; Dashboards</span></span>
+      <h1 data-lang="cs">Místo tabulek<br><em>živý dashboard.</em></h1>
+      <h1 data-lang="en">Replace spreadsheets<br><em>with a live dashboard.</em></h1>
+      <p class="rp-hero-lead" data-lang="cs">Každé ráno víte přesně, kde stojí váš e-shop — bez manuální práce v Excelu, bez čekání na kohokoli.</p>
+      <p class="rp-hero-lead" data-lang="en">Every morning you know exactly where your e-shop stands — no manual Excel work, no waiting for anyone.</p>
+      <div class="rp-pains">
+        <div class="rp-pain">
+          <svg class="rp-pain-dot" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="#ddd8d0" stroke-width="1"/><line x1="9" y1="5" x2="9" y2="10" stroke="#d4920e" stroke-width="1.5" stroke-linecap="round"/><circle cx="9" cy="13" r=".9" fill="#d4920e"/></svg>
+          <span data-lang="cs">Reporting zabere hodiny každý měsíc, přesto nikdo číslům nevěří</span>
+          <span data-lang="en">Reporting takes hours every month, yet nobody trusts the numbers</span>
+        </div>
+        <div class="rp-pain">
+          <svg class="rp-pain-dot" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="#ddd8d0" stroke-width="1"/><line x1="9" y1="5" x2="9" y2="10" stroke="#d4920e" stroke-width="1.5" stroke-linecap="round"/><circle cx="9" cy="13" r=".9" fill="#d4920e"/></svg>
+          <span data-lang="cs">Data jsou v pěti systémech a nikde pohromadě</span>
+          <span data-lang="en">Data is scattered across five systems, never in one place</span>
+        </div>
+        <div class="rp-pain">
+          <svg class="rp-pain-dot" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="#ddd8d0" stroke-width="1"/><line x1="9" y1="5" x2="9" y2="10" stroke="#d4920e" stroke-width="1.5" stroke-linecap="round"/><circle cx="9" cy="13" r=".9" fill="#d4920e"/></svg>
+          <span data-lang="cs">Vedení se ptá na čísla — vy je teprve hledáte</span>
+          <span data-lang="en">Management asks for numbers — you're still looking for them</span>
+        </div>
+      </div>
+      <a href="#kontakt" class="cta-btn"><span data-lang="cs">Nezávazná konzultace zdarma</span><span data-lang="en">Free consultation, no commitment</span></a>
+    </div>
+
+    <!-- Hero infographic: data sources → BigQuery → Dashboard -->
+    <div>
+      <svg viewBox="0 0 500 310" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
+        <!-- DATA SOURCES -->
+        <rect x="0" y="24" width="116" height="34" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="10" y="37" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" letter-spacing="1">E-SHOP</text>
+        <text x="10" y="51" fill="#1c1814" font-family="'Inter',sans-serif" font-size="9" font-weight="500">Shoptet / WooCommerce</text>
+
+        <rect x="0" y="70" width="116" height="34" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="10" y="83" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" letter-spacing="1" data-lang="cs">ÚČETNICTVÍ</text>
+        <text x="10" y="83" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" letter-spacing="1" data-lang="en">ACCOUNTING</text>
+        <text x="10" y="97" fill="#1c1814" font-family="'Inter',sans-serif" font-size="9" font-weight="500">Pohoda / Fakturoid</text>
+
+        <rect x="0" y="116" width="116" height="34" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="10" y="129" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" letter-spacing="1" data-lang="cs">ANALYTIKA</text>
+        <text x="10" y="129" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" letter-spacing="1" data-lang="en">ANALYTICS</text>
+        <text x="10" y="143" fill="#1c1814" font-family="'Inter',sans-serif" font-size="9" font-weight="500">GA4 / BigQuery Export</text>
+
+        <rect x="0" y="162" width="116" height="34" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="10" y="175" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" letter-spacing="1" data-lang="cs">REKLAMA</text>
+        <text x="10" y="175" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" letter-spacing="1" data-lang="en">ADVERTISING</text>
+        <text x="10" y="189" fill="#1c1814" font-family="'Inter',sans-serif" font-size="9" font-weight="500">Meta &amp; Google Ads</text>
+
+        <rect x="0" y="208" width="116" height="34" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="10" y="221" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" letter-spacing="1" data-lang="cs">SROVNÁVAČ</text>
+        <text x="10" y="221" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" letter-spacing="1" data-lang="en">COMPARISON</text>
+        <text x="10" y="235" fill="#1c1814" font-family="'Inter',sans-serif" font-size="9" font-weight="500">Heuréka / Zboží.cz</text>
+
+        <!-- Connector lines -->
+        <line x1="116" y1="41"  x2="182" y2="147" stroke="#ddd8d0" stroke-width="1" stroke-dasharray="4,3"/>
+        <line x1="116" y1="87"  x2="182" y2="147" stroke="#ddd8d0" stroke-width="1" stroke-dasharray="4,3"/>
+        <line x1="116" y1="133" x2="182" y2="147" stroke="#ddd8d0" stroke-width="1" stroke-dasharray="4,3"/>
+        <line x1="116" y1="179" x2="182" y2="147" stroke="#ddd8d0" stroke-width="1" stroke-dasharray="4,3"/>
+        <line x1="116" y1="225" x2="182" y2="147" stroke="#ddd8d0" stroke-width="1" stroke-dasharray="4,3"/>
+
+        <!-- BIGQUERY -->
+        <rect x="182" y="108" width="112" height="78" fill="#f4f2ee" stroke="#d4920e" stroke-width="1.5"/>
+        <text x="238" y="127" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7" text-anchor="middle" letter-spacing="1.5">BIGQUERY</text>
+        <line x1="194" y1="133" x2="282" y2="133" stroke="#ddd8d0" stroke-width=".5"/>
+        <text x="194" y="145" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6">SELECT revenue,</text>
+        <text x="194" y="156" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6">  roas, margin</text>
+        <text x="194" y="167" fill="#d4920e" font-family="'DM Mono',monospace" font-size="6" data-lang="cs">→ 94 820 řádků</text>
+        <text x="194" y="167" fill="#d4920e" font-family="'DM Mono',monospace" font-size="6" data-lang="en">→ 94,820 rows</text>
+
+        <!-- Arrow -->
+        <line x1="294" y1="147" x2="332" y2="147" stroke="#d4920e" stroke-width="1.5"/>
+        <polygon points="332,143 342,147 332,151" fill="#d4920e"/>
+
+        <!-- DASHBOARD -->
+        <rect x="344" y="32" width="156" height="240" fill="#f8f7f4" stroke="#ddd8d0" stroke-width="1"/>
+        <rect x="344" y="32" width="156" height="20" fill="#ede8e0"/>
+        <text x="354" y="46" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" letter-spacing=".5">LOOKER STUDIO</text>
+        <rect x="352" y="60" width="66" height="30" fill="#ede8e0" stroke="#ddd8d0" stroke-width=".5"/>
+        <text x="357" y="71" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5" data-lang="cs">TRŽBY</text>
+        <text x="357" y="71" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5" data-lang="en">REVENUE</text>
+        <text x="357" y="83" fill="#1c1814" font-family="'Inter',sans-serif" font-size="9" font-weight="600">12,4 M</text>
+        <rect x="426" y="60" width="66" height="30" fill="#ede8e0" stroke="#ddd8d0" stroke-width=".5"/>
+        <text x="431" y="71" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5">ROAS</text>
+        <text x="431" y="83" fill="#d4920e" font-family="'Inter',sans-serif" font-size="9" font-weight="600">4,2 ×</text>
+        <rect x="352" y="100" width="140" height="60" fill="#ede8e0" stroke="#ddd8d0" stroke-width=".5"/>
+        <text x="357" y="111" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5" data-lang="cs">TRŽBY / MĚSÍC</text>
+        <text x="357" y="111" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5" data-lang="en">REVENUE / MONTH</text>
+        <rect x="360" y="137" width="12" height="14" fill="#d4d0c8"/>
+        <rect x="376" y="130" width="12" height="21" fill="#d4d0c8"/>
+        <rect x="392" y="124" width="12" height="27" fill="#d4920e" opacity=".5"/>
+        <rect x="408" y="118" width="12" height="33" fill="#d4920e" opacity=".75"/>
+        <rect x="424" y="112" width="12" height="39" fill="#d4920e"/>
+        <rect x="440" y="115" width="12" height="36" fill="#d4920e" opacity=".85"/>
+        <rect x="352" y="170" width="140" height="56" fill="#ede8e0" stroke="#ddd8d0" stroke-width=".5"/>
+        <text x="357" y="181" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5" data-lang="cs">ROAS PO KANÁLECH</text>
+        <text x="357" y="181" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5" data-lang="en">ROAS BY CHANNEL</text>
+        <text x="357" y="194" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5">Google</text>
+        <rect x="390" y="187" width="94" height="8" fill="#f4f0e8" stroke="#ddd8d0" stroke-width=".5"/>
+        <rect x="390" y="187" width="66" height="8" fill="#d4920e" opacity=".75"/>
+        <text x="357" y="208" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5">Meta</text>
+        <rect x="390" y="201" width="94" height="8" fill="#f4f0e8" stroke="#ddd8d0" stroke-width=".5"/>
+        <rect x="390" y="201" width="48" height="8" fill="#d4920e" opacity=".55"/>
+        <text x="357" y="222" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5">Email</text>
+        <rect x="390" y="215" width="94" height="8" fill="#f4f0e8" stroke="#ddd8d0" stroke-width=".5"/>
+        <rect x="390" y="215" width="82" height="8" fill="#d4920e" opacity=".9"/>
+        <rect x="352" y="234" width="140" height="30" fill="#ede8e0" stroke="#ddd8d0" stroke-width=".5"/>
+        <text x="357" y="246" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5" data-lang="cs">TOP PRODUKTY</text>
+        <text x="357" y="246" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5" data-lang="en">TOP PRODUCTS</text>
+        <text x="357" y="257" fill="#5a5048" font-family="'Inter',sans-serif" font-size="6" data-lang="cs">Produkt A</text>
+        <text x="357" y="257" fill="#5a5048" font-family="'Inter',sans-serif" font-size="6" data-lang="en">Product A</text>
+        <text x="484" y="257" fill="#d4920e" font-family="'DM Mono',monospace" font-size="6" text-anchor="end">124 300 Kč</text>
+
+        <!-- Annotation -->
+        <text x="238" y="280" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" text-anchor="middle" letter-spacing=".5" data-lang="cs">automatická aktualizace každý den</text>
+        <text x="238" y="280" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" text-anchor="middle" letter-spacing=".5" data-lang="en">automatic daily update</text>
+      </svg>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- OUTCOMES -->
+  <div class="rp-section">
+    <span class="rp-label"><span data-lang="cs">Co získáte</span><span data-lang="en">What you get</span></span>
+    <h2 class="rp-h2" data-lang="cs">Reporting, který funguje<br><em>bez vás.</em></h2>
+    <h2 class="rp-h2" data-lang="en">Reporting that works<br><em>without you.</em></h2>
+    <div class="rp-outcomes-grid">
+
+      <div class="rp-outcome">
+        <svg class="rp-outcome-icon" viewBox="0 0 44 44" fill="none">
+          <rect x="2" y="6" width="14" height="12" stroke="#ddd8d0" stroke-width="1.5"/>
+          <rect x="2" y="24" width="14" height="12" stroke="#ddd8d0" stroke-width="1.5"/>
+          <rect x="20" y="6" width="14" height="12" stroke="#ddd8d0" stroke-width="1.5"/>
+          <rect x="20" y="24" width="14" height="12" stroke="#ddd8d0" stroke-width="1.5"/>
+          <path d="M36 14 L42 14 L42 30 L36 30" stroke="#d4920e" stroke-width="1.5" fill="none"/>
+          <rect x="34" y="18" width="10" height="8" fill="#f8f5f0" stroke="#d4920e" stroke-width="1"/>
+          <text x="39" y="25" fill="#d4920e" font-family="monospace" font-size="7" text-anchor="middle" font-weight="bold">1</text>
+        </svg>
+        <h3 data-lang="cs">Jeden zdroj pravdy</h3>
+        <h3 data-lang="en">Single source of truth</h3>
+        <p data-lang="cs">Shoptet, Pohoda, GA4, Meta Ads — vše propojené na jednom místě. Žádné ruční kopírování, žádné nesrovnalosti mezi tabulkami.</p>
+        <p data-lang="en">Shoptet, Pohoda, GA4, Meta Ads — all connected in one place. No manual copying, no discrepancies between spreadsheets.</p>
+      </div>
+
+      <div class="rp-outcome">
+        <svg class="rp-outcome-icon" viewBox="0 0 44 44" fill="none">
+          <circle cx="22" cy="22" r="18" stroke="#ddd8d0" stroke-width="1.5"/>
+          <polyline points="22,10 22,22 30,28" stroke="#d4920e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="22" cy="22" r="2" fill="#d4920e"/>
+          <circle cx="22" cy="8" r="1.5" fill="#d4920e" opacity=".4"/>
+          <circle cx="36" cy="22" r="1.5" fill="#d4920e" opacity=".4"/>
+        </svg>
+        <h3 data-lang="cs">Aktuální čísla každé ráno</h3>
+        <h3 data-lang="en">Fresh numbers every morning</h3>
+        <p data-lang="cs">Dashboard se aktualizuje automaticky. Přijdete do práce a víte, jak se dařilo včera — bez exportů, bez čekání, bez „pošli mi report".</p>
+        <p data-lang="en">Dashboard updates automatically. You come to work knowing how yesterday went — no exports, no waiting, no "send me the report".</p>
+      </div>
+
+      <div class="rp-outcome">
+        <svg class="rp-outcome-icon" viewBox="0 0 44 44" fill="none">
+          <rect x="6" y="8" width="24" height="30" stroke="#ddd8d0" stroke-width="1.5"/>
+          <line x1="12" y1="17" x2="24" y2="17" stroke="#ddd8d0" stroke-width="1"/>
+          <line x1="12" y1="22" x2="24" y2="22" stroke="#ddd8d0" stroke-width="1"/>
+          <line x1="12" y1="27" x2="20" y2="27" stroke="#ddd8d0" stroke-width="1"/>
+          <circle cx="34" cy="32" r="9" fill="#f4f0e8" stroke="#d4920e" stroke-width="1.5"/>
+          <polyline points="30,32 33,35 38,28" stroke="#d4920e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h3 data-lang="cs">Jste nezávislí</h3>
+        <h3 data-lang="en">You own it</h3>
+        <p data-lang="cs">Dashboard předávám s dokumentací a zaškolením. Váš tým si ho umí číst a filtrovat sám — žádná závislost na externistovi.</p>
+        <p data-lang="en">I hand over the dashboard with documentation and training. Your team can read and filter it independently — no dependency on a consultant.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- PROCESS -->
+  <div class="rp-process">
+    <span class="rp-label"><span data-lang="cs">Jak spolupráce probíhá</span><span data-lang="en">How we work together</span></span>
+    <h2 class="rp-h2" style="margin-bottom:.9rem" data-lang="cs">Žádná černá skříňka.<br><em>Víte co se děje.</em></h2>
+    <h2 class="rp-h2" style="margin-bottom:.9rem" data-lang="en">No black box.<br><em>You know what's happening.</em></h2>
+    <p class="rp-lead" data-lang="cs">Od prvního hovoru po předání — transparentní proces, ve kterém máte přehled v každém kroku.</p>
+    <p class="rp-lead" data-lang="en">From the first call to handover — a transparent process where you're informed at every step.</p>
+
+    <div class="rp-steps-wrap">
+      <div class="rp-steps-line"></div>
+      <div class="rp-steps">
+
+        <div class="rp-step">
+          <div class="rp-step-circle">01</div>
+          <svg width="38" height="38" viewBox="0 0 38 38" fill="none" style="margin-bottom:.9rem">
+            <rect x="4" y="9" width="30" height="22" rx="1" stroke="#ddd8d0" stroke-width="1.5"/>
+            <circle cx="14" cy="20" r="4" stroke="#d4920e" stroke-width="1.5"/>
+            <line x1="20" y1="20" x2="30" y2="20" stroke="#ddd8d0" stroke-width="1"/>
+            <line x1="20" y1="16" x2="28" y2="16" stroke="#ddd8d0" stroke-width="1"/>
+            <line x1="20" y1="24" x2="26" y2="24" stroke="#ddd8d0" stroke-width="1"/>
+          </svg>
+          <div class="rp-step-title"><span data-lang="cs">Úvodní hovor</span><span data-lang="en">Discovery call</span></div>
+          <div class="rp-step-desc" data-lang="cs">30 minut, zdarma. Zjistím vaše KPIs, datové zdroje a co chcete v dashboardu vidět. Žádný technický výslech.</div>
+          <div class="rp-step-desc" data-lang="en">30 minutes, free. I'll learn your KPIs, data sources, and what you want to see in the dashboard. No technical interrogation.</div>
+        </div>
+
+        <div class="rp-step">
+          <div class="rp-step-circle">02</div>
+          <svg width="38" height="38" viewBox="0 0 38 38" fill="none" style="margin-bottom:.9rem">
+            <rect x="5" y="7" width="28" height="22" stroke="#ddd8d0" stroke-width="1.5"/>
+            <rect x="9" y="12" width="20" height="3" fill="#ddd8d0"/>
+            <rect x="9" y="18" width="12" height="6" fill="#d4920e" opacity=".3"/>
+            <rect x="23" y="18" width="6" height="6" fill="#d4920e" opacity=".7"/>
+            <polyline points="9,19 13,16 17,18 21,14 25,16" stroke="#d4920e" stroke-width="1" fill="none"/>
+            <text x="19" y="37" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5" text-anchor="middle">DEMO</text>
+          </svg>
+          <div class="rp-step-title"><span data-lang="cs">Ukázka na demo datech</span><span data-lang="en">Demo prototype</span></div>
+          <div class="rp-step-desc" data-lang="cs">Připravím prototyp dashboardu. Uvidíte přesně co dostanete ještě před zahájením.</div>
+          <div class="rp-step-desc" data-lang="en">I'll build a dashboard prototype. You'll see exactly what you're getting before we start.</div>
+        </div>
+
+        <div class="rp-step">
+          <div class="rp-step-circle">03</div>
+          <svg width="38" height="38" viewBox="0 0 38 38" fill="none" style="margin-bottom:.9rem">
+            <rect x="4" y="10" width="12" height="10" stroke="#ddd8d0" stroke-width="1.5"/>
+            <rect x="22" y="10" width="12" height="10" stroke="#ddd8d0" stroke-width="1.5"/>
+            <rect x="4" y="26" width="12" height="10" stroke="#ddd8d0" stroke-width="1.5"/>
+            <rect x="22" y="26" width="12" height="10" stroke="#ddd8d0" stroke-width="1.5"/>
+            <line x1="16" y1="15" x2="22" y2="15" stroke="#d4920e" stroke-width="1.5"/>
+            <line x1="16" y1="31" x2="22" y2="31" stroke="#d4920e" stroke-width="1.5"/>
+            <polygon points="20,13 22,15 20,17" fill="#d4920e"/>
+            <polygon points="20,29 22,31 20,33" fill="#d4920e"/>
+          </svg>
+          <div class="rp-step-title"><span data-lang="cs">Návrh řešení</span><span data-lang="en">Solution design</span></div>
+          <div class="rp-step-desc" data-lang="cs">Konkrétní návrh — co propojím, jak to bude fungovat a kdy to bude hotové. Bez překvapení.</div>
+          <div class="rp-step-desc" data-lang="en">A concrete proposal — what I'll connect, how it'll work, and when it'll be done. No surprises.</div>
+        </div>
+
+        <div class="rp-step">
+          <div class="rp-step-circle">04</div>
+          <svg width="38" height="38" viewBox="0 0 38 38" fill="none" style="margin-bottom:.9rem">
+            <rect x="7" y="5" width="10" height="8" stroke="#ddd8d0" stroke-width="1.5"/>
+            <rect x="21" y="5" width="10" height="8" stroke="#ddd8d0" stroke-width="1.5"/>
+            <rect x="14" y="17" width="10" height="8" stroke="#d4920e" stroke-width="1.5"/>
+            <line x1="12" y1="13" x2="17" y2="17" stroke="#ddd8d0" stroke-width="1"/>
+            <line x1="26" y1="13" x2="21" y2="17" stroke="#ddd8d0" stroke-width="1"/>
+            <line x1="19" y1="25" x2="19" y2="30" stroke="#d4920e" stroke-width="1.5"/>
+            <rect x="11" y="30" width="16" height="6" stroke="#d4920e" stroke-width="1.5"/>
+          </svg>
+          <div class="rp-step-title"><span data-lang="cs">Realizace</span><span data-lang="en">Implementation</span></div>
+          <div class="rp-step-desc" data-lang="cs">Napojení zdrojů do BigQuery, transformační vrstva, finální dashboard. Průběžně vás informuji.</div>
+          <div class="rp-step-desc" data-lang="en">Connecting sources to BigQuery, transformation layer, final dashboard. I keep you updated throughout.</div>
+        </div>
+
+        <div class="rp-step">
+          <div class="rp-step-circle">05</div>
+          <svg width="38" height="38" viewBox="0 0 38 38" fill="none" style="margin-bottom:.9rem">
+            <circle cx="19" cy="19" r="14" stroke="#ddd8d0" stroke-width="1.5"/>
+            <polyline points="12,19 17,24 26,13" stroke="#d4920e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div class="rp-step-title"><span data-lang="cs">Předání a zaškolení</span><span data-lang="en">Handover &amp; training</span></div>
+          <div class="rp-step-desc" data-lang="cs">Dashboard je váš. Dokumentace, zaškolení týmu, 30 dní podpory. Odcházím až když víte, jak to používat.</div>
+          <div class="rp-step-desc" data-lang="en">The dashboard is yours. Documentation, team training, 30 days of support. I leave only when you know how to use it.</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- DASHBOARD PREVIEW -->
+  <div class="rp-section">
+    <span class="rp-label"><span data-lang="cs">Ukázka výsledku</span><span data-lang="en">Sample output</span></span>
+    <h2 class="rp-h2" style="margin-bottom:.9rem" data-lang="cs">Jak to vypadá<br><em>v praxi.</em></h2>
+    <h2 class="rp-h2" style="margin-bottom:.9rem" data-lang="en">What it looks like<br><em>in practice.</em></h2>
+    <p class="rp-lead" style="margin-bottom:0" data-lang="cs">Typický e-commerce dashboard: přehled tržeb, marže, výkonnost kanálů a zákaznická analytika — vše na jedné obrazovce.</p>
+    <p class="rp-lead" style="margin-bottom:0" data-lang="en">A typical e-commerce dashboard: revenue overview, margins, channel performance, and customer analytics — all on one screen.</p>
+
+    <div class="rp-preview-frame">
+      <div class="rp-preview-bar">
+        <span class="rp-preview-dots"><i></i><i></i><i></i></span>
+        <span class="rp-preview-label">E-commerce reporting · Looker Studio · demo data</span>
+      </div>
+      <svg viewBox="0 0 1060 530" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:auto">
+        <rect width="1060" height="530" fill="#f8f7f4"/>
+
+        <!-- Top bar -->
+        <rect width="1060" height="46" fill="#ede8e0"/>
+        <text x="22" y="18" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7.5" letter-spacing="1.5">FLOWSTACK</text>
+        <text x="22" y="34" fill="#1c1814" font-family="'Playfair Display',serif" font-size="11" data-lang="cs">E-commerce přehled</text>
+        <text x="22" y="34" fill="#1c1814" font-family="'Playfair Display',serif" font-size="11" data-lang="en">E-commerce overview</text>
+        <rect x="680" y="14" width="160" height="18" fill="#f4f0e8" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="688" y="27" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" data-lang="cs">1. 1. – 31. 5. 2026</text>
+        <text x="688" y="27" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" data-lang="en">Jan 1 – May 31, 2026</text>
+        <text x="868" y="27" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" data-lang="cs">Přehled</text>
+        <text x="868" y="27" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" data-lang="en">Overview</text>
+        <text x="930" y="27" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7" font-weight="bold" data-lang="cs">Produkty</text>
+        <text x="930" y="27" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7" font-weight="bold" data-lang="en">Products</text>
+        <text x="992" y="27" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" data-lang="cs">Zákazníci</text>
+        <text x="992" y="27" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" data-lang="en">Customers</text>
+
+        <!-- KPI row -->
+        <rect x="22" y="60" width="242" height="82" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="34" y="79" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" letter-spacing="1" data-lang="cs">CELKOVÉ TRŽBY</text>
+        <text x="34" y="79" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" letter-spacing="1" data-lang="en">TOTAL REVENUE</text>
+        <text x="34" y="116" fill="#1c1814" font-family="'Playfair Display',serif" font-size="28">12,4 M Kč</text>
+        <text x="34" y="134" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7" data-lang="cs">▲ +18 % vs. loňský rok</text>
+        <text x="34" y="134" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7" data-lang="en">▲ +18 % vs. last year</text>
+
+        <rect x="278" y="60" width="242" height="82" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="290" y="79" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" letter-spacing="1" data-lang="cs">OBJEDNÁVKY</text>
+        <text x="290" y="79" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" letter-spacing="1" data-lang="en">ORDERS</text>
+        <text x="290" y="116" fill="#1c1814" font-family="'Playfair Display',serif" font-size="28">3 847</text>
+        <text x="290" y="134" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7" data-lang="cs">▲ +12 % vs. loňský rok</text>
+        <text x="290" y="134" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7" data-lang="en">▲ +12 % vs. last year</text>
+
+        <rect x="534" y="60" width="242" height="82" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="546" y="79" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" letter-spacing="1" data-lang="cs">PRŮMĚRNÝ ROAS</text>
+        <text x="546" y="79" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" letter-spacing="1" data-lang="en">AVG. ROAS</text>
+        <text x="546" y="116" fill="#d4920e" font-family="'Playfair Display',serif" font-size="28">4,2 ×</text>
+        <text x="546" y="134" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" data-lang="cs">▼ −0,3 vs. loňský rok</text>
+        <text x="546" y="134" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" data-lang="en">▼ −0.3 vs. last year</text>
+
+        <rect x="790" y="60" width="248" height="82" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="802" y="79" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" letter-spacing="1" data-lang="cs">PRŮM. HODNOTA OBJEDNÁVKY</text>
+        <text x="802" y="79" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" letter-spacing="1" data-lang="en">AVG. ORDER VALUE</text>
+        <text x="802" y="116" fill="#1c1814" font-family="'Playfair Display',serif" font-size="28">3 224 Kč</text>
+        <text x="802" y="134" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7" data-lang="cs">▲ +5 % vs. loňský rok</text>
+        <text x="802" y="134" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7" data-lang="en">▲ +5 % vs. last year</text>
+
+        <!-- Bar chart -->
+        <rect x="22" y="158" width="500" height="180" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="34" y="177" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" letter-spacing="1" data-lang="cs">TRŽBY PODLE MĚSÍCE (Kč)</text>
+        <text x="34" y="177" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" letter-spacing="1" data-lang="en">REVENUE BY MONTH (CZK)</text>
+        <line x1="60" y1="196" x2="508" y2="196" stroke="#ddd8d0" stroke-width=".5"/>
+        <line x1="60" y1="216" x2="508" y2="216" stroke="#ddd8d0" stroke-width=".5"/>
+        <line x1="60" y1="236" x2="508" y2="236" stroke="#ddd8d0" stroke-width=".5"/>
+        <line x1="60" y1="256" x2="508" y2="256" stroke="#ddd8d0" stroke-width=".5"/>
+        <line x1="60" y1="276" x2="508" y2="276" stroke="#ddd8d0" stroke-width=".5"/>
+        <line x1="60" y1="294" x2="508" y2="294" stroke="#ddd8d0" stroke-width=".5"/>
+        <rect x="78"  y="248" width="54" height="46" fill="#d4d0c8"/>
+        <rect x="154" y="236" width="54" height="58" fill="#d4d0c8"/>
+        <rect x="230" y="228" width="54" height="66" fill="#d4920e" opacity=".45"/>
+        <rect x="306" y="214" width="54" height="80" fill="#d4920e" opacity=".7"/>
+        <rect x="382" y="196" width="54" height="98" fill="#d4920e"/>
+        <text x="105" y="244" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" text-anchor="middle">1,8 M</text>
+        <text x="181" y="232" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" text-anchor="middle">2,1 M</text>
+        <text x="257" y="224" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" text-anchor="middle">2,3 M</text>
+        <text x="333" y="210" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" text-anchor="middle">2,8 M</text>
+        <text x="409" y="192" fill="#d4920e" font-family="'DM Mono',monospace" font-size="6" text-anchor="middle" font-weight="bold">3,4 M</text>
+        <!-- Month labels -->
+        <text x="105" y="308" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" text-anchor="middle" data-lang="cs">Leden</text>
+        <text x="105" y="308" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" text-anchor="middle" data-lang="en">Jan</text>
+        <text x="181" y="308" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" text-anchor="middle" data-lang="cs">Únor</text>
+        <text x="181" y="308" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" text-anchor="middle" data-lang="en">Feb</text>
+        <text x="257" y="308" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" text-anchor="middle" data-lang="cs">Březen</text>
+        <text x="257" y="308" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" text-anchor="middle" data-lang="en">Mar</text>
+        <text x="333" y="308" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" text-anchor="middle" data-lang="cs">Duben</text>
+        <text x="333" y="308" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" text-anchor="middle" data-lang="en">Apr</text>
+        <text x="409" y="308" fill="#d4920e" font-family="'DM Mono',monospace" font-size="6.5" text-anchor="middle" data-lang="cs">Květen</text>
+        <text x="409" y="308" fill="#d4920e" font-family="'DM Mono',monospace" font-size="6.5" text-anchor="middle" data-lang="en">May</text>
+
+        <!-- Channel ROAS -->
+        <rect x="534" y="158" width="504" height="180" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="546" y="177" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" letter-spacing="1" data-lang="cs">ROAS PODLE KANÁLU</text>
+        <text x="546" y="177" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" letter-spacing="1" data-lang="en">ROAS BY CHANNEL</text>
+        <line x1="546" y1="183" x2="1026" y2="183" stroke="#ddd8d0" stroke-width=".5"/>
+        <text x="546" y="202" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8">Google Ads</text>
+        <rect x="660" y="191" width="340" height="14" fill="#f4f0e8" stroke="#ddd8d0" stroke-width=".5"/>
+        <rect x="660" y="191" width="231" height="14" fill="#d4920e" opacity=".75"/>
+        <text x="900" y="202" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7">4,8 ×</text>
+        <text x="546" y="224" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8">Meta Ads</text>
+        <rect x="660" y="213" width="340" height="14" fill="#f4f0e8" stroke="#ddd8d0" stroke-width=".5"/>
+        <rect x="660" y="213" width="177" height="14" fill="#d4920e" opacity=".55"/>
+        <text x="846" y="224" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">3,7 ×</text>
+        <text x="546" y="246" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8">Heuréka</text>
+        <rect x="660" y="235" width="340" height="14" fill="#f4f0e8" stroke="#ddd8d0" stroke-width=".5"/>
+        <rect x="660" y="235" width="134" height="14" fill="#d4920e" opacity=".4"/>
+        <text x="802" y="246" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">2,8 ×</text>
+        <text x="546" y="268" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8">E-mail marketing</text>
+        <rect x="660" y="257" width="340" height="14" fill="#f4f0e8" stroke="#ddd8d0" stroke-width=".5"/>
+        <rect x="660" y="257" width="268" height="14" fill="#d4920e" opacity=".88"/>
+        <text x="938" y="268" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7" font-weight="bold">5,6 ×</text>
+        <text x="546" y="290" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8" data-lang="cs">Organické vyhledávání</text>
+        <text x="546" y="290" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8" data-lang="en">Organic search</text>
+        <rect x="660" y="279" width="340" height="14" fill="#f4f0e8" stroke="#ddd8d0" stroke-width=".5"/>
+        <rect x="660" y="279" width="306" height="14" fill="#d4920e" opacity=".95"/>
+        <text x="976" y="290" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7" font-weight="bold">6,4 ×</text>
+
+        <!-- Product table -->
+        <rect x="22" y="354" width="660" height="158" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="34" y="373" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" letter-spacing="1" data-lang="cs">TOP PRODUKTY DLE TRŽEB</text>
+        <text x="34" y="373" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" letter-spacing="1" data-lang="en">TOP PRODUCTS BY REVENUE</text>
+        <rect x="22" y="377" width="660" height="18" fill="#f4f0e8"/>
+        <text x="34" y="390" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" data-lang="cs">PRODUKT</text>
+        <text x="34" y="390" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" data-lang="en">PRODUCT</text>
+        <text x="400" y="390" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" data-lang="cs">TRŽBY</text>
+        <text x="400" y="390" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" data-lang="en">REVENUE</text>
+        <text x="498" y="390" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" data-lang="cs">KS</text>
+        <text x="498" y="390" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" data-lang="en">PCS</text>
+        <text x="570" y="390" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" data-lang="cs">MARŽE</text>
+        <text x="570" y="390" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" data-lang="en">MARGIN</text>
+        <text x="636" y="390" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5">TREND</text>
+
+        <line x1="22" y1="395" x2="682" y2="395" stroke="#ddd8d0" stroke-width=".5"/>
+        <text x="34" y="412" fill="#1c1814" font-family="'Inter',sans-serif" font-size="8" data-lang="cs">Produkt A – Premium varianta</text>
+        <text x="34" y="412" fill="#1c1814" font-family="'Inter',sans-serif" font-size="8" data-lang="en">Product A – Premium variant</text>
+        <text x="400" y="412" fill="#1c1814" font-family="'DM Mono',monospace" font-size="7">1 240 000 Kč</text>
+        <text x="498" y="412" fill="#1c1814" font-family="'DM Mono',monospace" font-size="7">387</text>
+        <text x="570" y="412" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7">42 %</text>
+        <text x="636" y="412" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7">▲ +24 %</text>
+
+        <line x1="22" y1="418" x2="682" y2="418" stroke="#ddd8d0" stroke-width=".5"/>
+        <text x="34" y="435" fill="#1c1814" font-family="'Inter',sans-serif" font-size="8" data-lang="cs">Produkt B – Základní varianta</text>
+        <text x="34" y="435" fill="#1c1814" font-family="'Inter',sans-serif" font-size="8" data-lang="en">Product B – Basic variant</text>
+        <text x="400" y="435" fill="#1c1814" font-family="'DM Mono',monospace" font-size="7">987 000 Kč</text>
+        <text x="498" y="435" fill="#1c1814" font-family="'DM Mono',monospace" font-size="7">654</text>
+        <text x="570" y="435" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">28 %</text>
+        <text x="636" y="435" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7">▲ +8 %</text>
+
+        <line x1="22" y1="441" x2="682" y2="441" stroke="#ddd8d0" stroke-width=".5"/>
+        <text x="34" y="458" fill="#1c1814" font-family="'Inter',sans-serif" font-size="8" data-lang="cs">Produkt C – Příslušenství</text>
+        <text x="34" y="458" fill="#1c1814" font-family="'Inter',sans-serif" font-size="8" data-lang="en">Product C – Accessories</text>
+        <text x="400" y="458" fill="#1c1814" font-family="'DM Mono',monospace" font-size="7">672 000 Kč</text>
+        <text x="498" y="458" fill="#1c1814" font-family="'DM Mono',monospace" font-size="7">1 203</text>
+        <text x="570" y="458" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">35 %</text>
+        <text x="636" y="458" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">— 0 %</text>
+
+        <line x1="22" y1="464" x2="682" y2="464" stroke="#ddd8d0" stroke-width=".5"/>
+        <text x="34" y="481" fill="#1c1814" font-family="'Inter',sans-serif" font-size="8" data-lang="cs">Produkt D – Sezónní edice</text>
+        <text x="34" y="481" fill="#1c1814" font-family="'Inter',sans-serif" font-size="8" data-lang="en">Product D – Seasonal edition</text>
+        <text x="400" y="481" fill="#1c1814" font-family="'DM Mono',monospace" font-size="7">451 000 Kč</text>
+        <text x="498" y="481" fill="#1c1814" font-family="'DM Mono',monospace" font-size="7">298</text>
+        <text x="570" y="481" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">51 %</text>
+        <text x="636" y="481" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">▼ −5 %</text>
+
+        <!-- Retention donut -->
+        <rect x="696" y="354" width="342" height="158" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="708" y="373" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" letter-spacing="1" data-lang="cs">ZÁKAZNICKÁ RETENCE</text>
+        <text x="708" y="373" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" letter-spacing="1" data-lang="en">CUSTOMER RETENTION</text>
+        <circle cx="794" cy="446" r="52" fill="none" stroke="#f4f0e8" stroke-width="24"/>
+        <circle cx="794" cy="446" r="52" fill="none" stroke="#d4920e" stroke-width="24" stroke-dasharray="163 164" stroke-dashoffset="163" transform="rotate(-90 794 446)" opacity=".25"/>
+        <circle cx="794" cy="446" r="52" fill="none" stroke="#d4920e" stroke-width="24" stroke-dasharray="114 213" stroke-dashoffset="163" transform="rotate(-90 794 446)"/>
+        <text x="794" y="441" fill="#1c1814" font-family="'Playfair Display',serif" font-size="20" text-anchor="middle">54 %</text>
+        <text x="794" y="458" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" text-anchor="middle" data-lang="cs">opakovaný nákup</text>
+        <text x="794" y="458" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" text-anchor="middle" data-lang="en">repeat purchase</text>
+        <rect x="866" y="418" width="10" height="10" fill="#d4920e"/>
+        <text x="882" y="427" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8" data-lang="cs">Vracející se</text>
+        <text x="882" y="427" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8" data-lang="en">Returning</text>
+        <rect x="866" y="436" width="10" height="10" fill="#d4920e" opacity=".25"/>
+        <text x="882" y="445" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8" data-lang="cs">Noví zákazníci</text>
+        <text x="882" y="445" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8" data-lang="en">New customers</text>
+        <text x="866" y="468" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7">▲ +6 % YoY</text>
+        <text x="866" y="482" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" data-lang="cs">3 847 zákazníků</text>
+        <text x="866" y="482" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" data-lang="en">3,847 customers</text>
+      </svg>
+    </div>
+
+    <div class="rp-highlight">
+      <p data-lang="cs">Toto je ilustrační ukázka na demo datech. Váš dashboard bude přesně podle vašich potřeb — od jednoduchého denního přehledu tržeb po komplexní zákaznickou analytiku s RFM segmentací a propojením reklamních nákladů.</p>
+      <p data-lang="en">This is an illustrative mockup using demo data. Your dashboard will be tailored to your needs — from a simple daily revenue overview to complex customer analytics with RFM segmentation and ad cost integration.</p>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- DELIVERABLES -->
+  <div class="rp-section-narrow">
+    <span class="rp-label"><span data-lang="cs">Co je součástí</span><span data-lang="en">What's included</span></span>
+    <h2 class="rp-h2" style="margin-bottom:2.5rem" data-lang="cs">Vše co potřebujete<br><em>k fungování.</em></h2>
+    <h2 class="rp-h2" style="margin-bottom:2.5rem" data-lang="en">Everything you need<br><em>to get running.</em></h2>
+    <div class="rp-delivers">
+
+      <div class="rp-deliver">
+        <svg class="rp-deliver-icon" width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <circle cx="11" cy="11" r="10" stroke="#d4920e" stroke-width="1.5"/>
+          <polyline points="7,11 10,14 15,8" stroke="#d4920e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div>
+          <h4 data-lang="cs">Datový pipeline v BigQuery</h4>
+          <h4 data-lang="en">Data pipeline in BigQuery</h4>
+          <p data-lang="cs">Napojení vašich datových zdrojů, automatická synchronizace, transformační vrstva. Data jsou vždy čerstvá a konzistentní.</p>
+          <p data-lang="en">Connecting your data sources, automatic sync, transformation layer. Data is always fresh and consistent.</p>
+        </div>
+      </div>
+
+      <div class="rp-deliver">
+        <svg class="rp-deliver-icon" width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <circle cx="11" cy="11" r="10" stroke="#d4920e" stroke-width="1.5"/>
+          <polyline points="7,11 10,14 15,8" stroke="#d4920e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div>
+          <h4 data-lang="cs">Dashboard v Looker Studiu</h4>
+          <h4 data-lang="en">Looker Studio dashboard</h4>
+          <p data-lang="cs">Interaktivní dashboard přesně podle vašich potřeb. Filtry, porovnání období, mobilní verze. Sdílíte přes odkaz.</p>
+          <p data-lang="en">Interactive dashboard tailored to your needs. Filters, period comparison, mobile-friendly. Shared via a link.</p>
+        </div>
+      </div>
+
+      <div class="rp-deliver">
+        <svg class="rp-deliver-icon" width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <circle cx="11" cy="11" r="10" stroke="#d4920e" stroke-width="1.5"/>
+          <polyline points="7,11 10,14 15,8" stroke="#d4920e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div>
+          <h4 data-lang="cs">Dokumentace datového modelu</h4>
+          <h4 data-lang="en">Data model documentation</h4>
+          <p data-lang="cs">Popis odkud přichází která čísla a jak se počítají metriky. Dashboard nebude černá skříňka.</p>
+          <p data-lang="en">A description of where each number comes from and how metrics are calculated. No black box.</p>
+        </div>
+      </div>
+
+      <div class="rp-deliver">
+        <svg class="rp-deliver-icon" width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <circle cx="11" cy="11" r="10" stroke="#d4920e" stroke-width="1.5"/>
+          <polyline points="7,11 10,14 15,8" stroke="#d4920e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div>
+          <h4 data-lang="cs">Zaškolení vašeho týmu</h4>
+          <h4 data-lang="en">Team training</h4>
+          <p data-lang="cs">Ukážu jak dashboard číst, filtrovat a upravovat. Odcházím až když víte co děláte.</p>
+          <p data-lang="en">I'll show you how to read, filter, and update the dashboard. I leave when you know what you're doing.</p>
+        </div>
+      </div>
+
+      <div class="rp-deliver">
+        <svg class="rp-deliver-icon" width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <circle cx="11" cy="11" r="10" stroke="#d4920e" stroke-width="1.5"/>
+          <polyline points="7,11 10,14 15,8" stroke="#d4920e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div>
+          <h4 data-lang="cs">30 dní podpory po předání</h4>
+          <h4 data-lang="en">30 days of post-handover support</h4>
+          <p data-lang="cs">Otázky a drobné úpravy řeším ještě měsíc po předání. Bez příplatku, bez hodinových sazeb.</p>
+          <p data-lang="en">Questions and minor adjustments handled for a month after delivery. No surcharge, no hourly rates.</p>
+        </div>
+      </div>
+
+      <div class="rp-deliver">
+        <svg class="rp-deliver-icon" width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <circle cx="11" cy="11" r="10" stroke="#d4920e" stroke-width="1.5"/>
+          <polyline points="7,11 10,14 15,8" stroke="#d4920e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div>
+          <h4 data-lang="cs">Zdrojový kód a přístupy</h4>
+          <h4 data-lang="en">Source code &amp; access rights</h4>
+          <p data-lang="cs">Vše co postavím je vaše — kód v repozitáři, přístupy k BigQuery i Looker Studiu. Žádný vendor lock-in.</p>
+          <p data-lang="en">Everything I build is yours — code in a repository, access to BigQuery and Looker Studio. No vendor lock-in.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- LONG-TERM -->
+  <div class="rp-section-narrow">
+    <span class="rp-label"><span data-lang="cs">Dlouhodobá spolupráce</span><span data-lang="en">Long-term partnership</span></span>
+    <h2 class="rp-h2" data-lang="cs">Reporting se rozvíjí<br><em>s vaším byznysem.</em></h2>
+    <h2 class="rp-h2" data-lang="en">Reporting that grows<br><em>with your business.</em></h2>
+    <p class="rp-lead" style="margin-top:.9rem" data-lang="cs">Spuštění dashboardu je začátek, ne konec. Většina klientů spolupracuje se mnou průběžně — přicházejí s novými požadavky, novými datovými zdroji a novými otázkami, které potřebují zodpovědět v datech.</p>
+    <p class="rp-lead" style="margin-top:.9rem" data-lang="en">Launching the dashboard is the beginning, not the end. Most clients work with me on an ongoing basis — bringing new requirements, new data sources, and new questions that need data-driven answers.</p>
+
+    <div class="rp-phases">
+      <div class="rp-phase">
+        <div class="rp-phase-num"><span data-lang="cs">Fáze 01</span><span data-lang="en">Phase 01</span></div>
+        <div class="rp-phase-title"><span data-lang="cs">Měsíce 1–2: základ</span><span data-lang="en">Months 1–2: foundation</span></div>
+        <p data-lang="cs">Napojíme klíčové zdroje a spustíme první dashboard. Vidíte svůj byznys v číslech — přehledně a na jednom místě.</p>
+        <p data-lang="en">We connect the key sources and launch the first dashboard. You see your business in numbers — clearly and in one place.</p>
+      </div>
+      <div class="rp-phase">
+        <div class="rp-phase-num"><span data-lang="cs">Fáze 02</span><span data-lang="en">Phase 02</span></div>
+        <div class="rp-phase-title"><span data-lang="cs">Měsíce 3–6: vývoj</span><span data-lang="en">Months 3–6: evolution</span></div>
+        <p data-lang="cs">Přibývají nové metriky a pohledy. Přijdete na to, co vám chybí a co chcete vidět líp. Reporting se přizpůsobuje.</p>
+        <p data-lang="en">New metrics and views appear. You discover what you were missing and what you want to see differently. Reporting adapts.</p>
+      </div>
+      <div class="rp-phase">
+        <div class="rp-phase-num"><span data-lang="cs">Průběžně</span><span data-lang="en">Ongoing</span></div>
+        <div class="rp-phase-title"><span data-lang="cs">Partnerství</span><span data-lang="en">Partnership</span></div>
+        <p data-lang="cs">Váš byznys roste a mění se, reporting roste s ním. Přicházíte s novými otázkami, já nacházím odpovědi v datech.</p>
+        <p data-lang="en">Your business grows and changes, reporting grows with it. You bring new questions, I find answers in the data.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- Z BLOGU -->
+  <div class="rp-section-narrow">
+    <span class="rp-label" data-lang="cs">Z blogu</span>
+    <span class="rp-label" data-lang="en">From the blog</span>
+    <div class="rp-blog-links">
+      <a href="/blog/shoptet-reporting-bigquery.html" class="rp-blog-link">
+        <div class="rp-blog-link-tag">Reporting</div>
+        <div class="rp-blog-link-title">Shoptet reporting v Looker Studiu: jak dostat data z e-shopu do pořádného dashboardu →</div>
+      </a>
+      <a href="/blog/pohoda-reporting-bigquery.html" class="rp-blog-link">
+        <div class="rp-blog-link-tag">Data Engineering</div>
+        <div class="rp-blog-link-title">Pohoda a BigQuery: jak automatizovat reporting z účetního systému →</div>
+      </a>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- CTA / FORM -->
+  <div class="rp-cta" id="kontakt">
+    <div class="rp-cta-inner">
+      <div class="rp-cta-text">
+        <span class="rp-tag"><span data-lang="cs">Pojďme začít</span><span data-lang="en">Let's get started</span></span>
+        <h2 data-lang="cs">Pojďme se pobavit<br>o vašem <em>reportingu.</em></h2>
+        <h2 data-lang="en">Let's talk about<br>your <em>reporting.</em></h2>
+        <p data-lang="cs">Napište mi z jakých systémů máte data a co byste chtěli v dashboardu vidět. Odpovím do 24 hodin a domluvíme úvodní hovor — zdarma, bez závazku.</p>
+        <p data-lang="en">Tell me which systems your data lives in and what you'd like to see in a dashboard. I'll reply within 24 hours and we'll arrange a free call — no commitment.</p>
+      </div>
+      <form class="rp-form" id="rp-form" action="https://formspree.io/f/xaqvejza" method="POST">
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" />
+        <input type="text" name="name"
+          data-ph-cs="Jméno" data-ph-en="Name"
+          placeholder="Jméno" required />
+        <input type="email" name="email"
+          data-ph-cs="E-mail" data-ph-en="E-mail"
+          placeholder="E-mail" required />
+        <input type="text" name="company"
+          data-ph-cs="Firma / e-shop (volitelné)" data-ph-en="Company / e-shop (optional)"
+          placeholder="Firma / e-shop (volitelné)" />
+        <textarea name="message"
+          data-ph-cs="Z jakých systémů máte data? Co byste chtěli sledovat?"
+          data-ph-en="Which systems do you use? What would you like to track?"
+          placeholder="Z jakých systémů máte data? Co byste chtěli sledovat?"
+          required></textarea>
+        <button type="submit" class="cta-btn" id="rp-submit"><span data-lang="cs">Odeslat zprávu</span><span data-lang="en">Send message</span></button>
+        <p class="form-error" hidden></p>
+        <p class="form-recaptcha-note">Chráněno reCAPTCHA (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy</a> &amp; <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Terms</a>).</p>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Flowstack · Jan Veverka · Czech Republic</p>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/jan-veverka-39b24938" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="tel:+420602603423">+420 602 603 423</a>
+      <a href="/">&#8592; <span data-lang="cs">Hlavní stránka</span><span data-lang="en">Homepage</span></a>
+      <a href="/blog/">Blog</a>
+    </div>
+  </footer>
+
+  <script>
+    /* Nav scroll */
+    var nav = document.getElementById('navWrap');
+    window.addEventListener('scroll', function() {
+      nav.classList.toggle('scrolled', window.scrollY > 10);
+    }, {passive:true});
+
+    /* Language switching */
+    function setLang(lang) {
+      document.documentElement.lang = lang === 'cs' ? 'cs' : 'en';
+      document.body.className = 'lang-' + lang;
+      document.querySelectorAll('.lang-btn').forEach(function(btn) {
+        btn.classList.toggle('active', btn.textContent.toLowerCase() === lang || (lang === 'cs' && btn.textContent === 'CZ'));
+      });
+      document.querySelectorAll('[data-ph-cs]').forEach(function(el) {
+        el.placeholder = lang === 'en' ? el.dataset.phEn : el.dataset.phCs;
+      });
+      localStorage.setItem('lang', lang);
+    }
+    (function() {
+      var saved = localStorage.getItem('lang') || 'cs';
+      setLang(saved);
+    })();
+
+    /* Form */
+    (function() {
+      var form = document.getElementById('rp-form');
+      var btn  = document.getElementById('rp-submit');
+      var err  = form.querySelector('.form-error');
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        btn.disabled = true;
+        btn.textContent = document.body.classList.contains('lang-en') ? 'Sending…' : 'Odesílám…';
+        grecaptcha.ready(function() {
+          grecaptcha.execute('6LevXNgsAAAAALh4ZbMWnXz73v20fOgPLx_3zlRK', {action:'submit'}).then(function(token) {
+            var data = new FormData(form);
+            data.append('g-recaptcha-response', token);
+            fetch(form.action, {method:'POST', body:data, headers:{Accept:'application/json'}})
+              .then(function(r) { return r.json(); })
+              .then(function(r) {
+                if (r.ok) {
+                  var isEn = document.body.classList.contains('lang-en');
+                  form.innerHTML = '<p class="form-success">' + (isEn ? 'Message sent. I\'ll get back to you within 24 hours.' : 'Zpráva odeslána. Ozvu se do 24 hodin.') + '</p>';
+                  window.dataLayer = window.dataLayer || [];
+                  window.dataLayer.push({event:'form_submit', form_name:'contact', form_location:'reporting_cta'});
+                } else {
+                  var isEn = document.body.classList.contains('lang-en');
+                  err.textContent = isEn ? 'Failed to send. Please try again.' : 'Nepodařilo se odeslat. Zkuste to znovu.';
+                  err.hidden = false; btn.disabled = false;
+                  btn.textContent = isEn ? 'Send message' : 'Odeslat zprávu';
+                }
+              })
+              .catch(function() {
+                var isEn = document.body.classList.contains('lang-en');
+                err.textContent = isEn ? 'Network error. Please try again.' : 'Nepodařilo se odeslat. Zkuste to znovu.';
+                err.hidden = false; btn.disabled = false;
+                btn.textContent = isEn ? 'Send message' : 'Odeslat zprávu';
+              });
+          });
+        });
+      });
+    document.querySelectorAll('.nav-dropdown').forEach(function(dd) {
+      var menu = dd.querySelector('.nav-dropdown-menu');
+      var trigger = dd.querySelector(':scope > a');
+      var closeTimer;
+      function openMenu() { clearTimeout(closeTimer); dd.classList.add('open'); trigger.setAttribute('aria-expanded','true'); }
+      function closeMenu() { dd.classList.remove('open'); trigger.setAttribute('aria-expanded','false'); }
+      dd.addEventListener('mouseenter', openMenu);
+      dd.addEventListener('mouseleave', function() { closeTimer = setTimeout(closeMenu, 300); });
+      trigger.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowDown') { e.preventDefault(); openMenu(); var f = menu.querySelector('a'); if (f) f.focus(); }
+        else if (e.key === 'Escape') { closeMenu(); }
+      });
+      var items = Array.from(menu.querySelectorAll('a'));
+      items.forEach(function(item, i) {
+        item.addEventListener('keydown', function(e) {
+          if (e.key === 'ArrowDown') { e.preventDefault(); if (items[i+1]) items[i+1].focus(); }
+          else if (e.key === 'ArrowUp') { e.preventDefault(); if (i===0) { closeMenu(); trigger.focus(); } else items[i-1].focus(); }
+          else if (e.key === 'Escape') { closeMenu(); trigger.focus(); }
+          else if (e.key === 'Tab') { setTimeout(closeMenu, 50); }
+        });
+      });
+    });
+
+    })();
+  </script>
+</body>
+</html>

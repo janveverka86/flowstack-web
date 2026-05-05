@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>AI agenti a BigQuery pro e-shop | Flowstack</title>
+  <meta name="description" content="Propojím váš e-shop s umělou inteligencí. BigQuery jako datový základ pro AI agenty, automatizaci a prediktivní analýzy." />
+  <link rel="canonical" href="https://flowstack.cz/sluzby/ai-data.html" />
+  <link rel="alternate" hreflang="cs" href="https://flowstack.cz/sluzby/ai-data.html" />
+  <link rel="alternate" hreflang="en" href="https://flowstack.cz/sluzby/ai-data.html" />
+  <link rel="alternate" hreflang="x-default" href="https://flowstack.cz/sluzby/ai-data.html" />
+  <meta property="og:title" content="AI agenti a BigQuery pro e-shop | Flowstack" />
+  <meta property="og:description" content="Propojím váš e-shop s umělou inteligencí. BigQuery jako datový základ pro AI agenty, automatizaci a prediktivní analýzy." />
+  <meta property="og:url" content="https://flowstack.cz/sluzby/ai-data.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://flowstack.cz/og/ai-data.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23f4f0e8'/><text x='6' y='24' font-family='serif' font-size='22' fill='%23d4920e'>F</text></svg>" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@graph":[
+    {"@type":"Service","name":"AI & data engineering pro e-commerce","description":"Propojím váš e-shop s umělou inteligencí. BigQuery jako datový základ pro AI agenty, automatizaci a prediktivní analýzy.","url":"https://flowstack.cz/sluzby/ai-data.html","provider":{"@type":"Person","name":"Jan Veverka","url":"https://flowstack.cz"},"areaServed":{"@type":"Country","name":"Czech Republic"},"serviceType":"AI & Machine Learning Data Engineering"},
+    {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Flowstack","item":"https://flowstack.cz"},{"@type":"ListItem","position":2,"name":"Služby","item":"https://flowstack.cz/sluzby/"},{"@type":"ListItem","position":3,"name":"AI & data","item":"https://flowstack.cz/sluzby/ai-data.html"}]}
+  ]}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <script src="https://www.google.com/recaptcha/api.js?render=6LevXNgsAAAAALh4ZbMWnXz73v20fOgPLx_3zlRK" async defer></script>
+  <style>
+    :root { --bg:#f4f0e8; --fg:#1c1814; --accent:#d4920e; --muted:#7a7269; --border:#ddd8d0; }
+    *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; background:#f4f0e8; }
+    body { background:radial-gradient(ellipse at 50% 0%, #ece6da 0%, var(--bg) 65%); color:var(--fg); font-family:'Inter',sans-serif; font-weight:400; min-height:100vh; overflow-x:clip; }
+    body::after { content:''; position:fixed; inset:0; background-image:radial-gradient(circle, #c4bdb5 1px, transparent 1px); background-size:28px 28px; pointer-events:none; z-index:0; opacity:.35; }
+
+    /* LANGUAGE SWITCHING */
+    [data-lang] { display:none; }
+    body.lang-en [data-lang="en"] { display:block; }
+    body.lang-cs [data-lang="cs"] { display:block; }
+    span[data-lang] { display:none; }
+    body.lang-en span[data-lang="en"] { display:inline; }
+    body.lang-cs span[data-lang="cs"] { display:inline; }
+    text[data-lang] { display:none; }
+    body.lang-en text[data-lang="en"] { display:inline; }
+    body.lang-cs text[data-lang="cs"] { display:inline; }
+
+    /* NAV */
+    .nav-wrap { position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(244,240,232,.88); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-bottom:1px solid transparent; transition:border-color .3s; padding-top:env(safe-area-inset-top); }
+    .nav-wrap.scrolled { border-bottom-color:var(--border); }
+    nav { display:flex; justify-content:space-between; align-items:center; padding:1.2rem 2rem; max-width:1100px; margin:0 auto; }
+    .logo { font-family:'Playfair Display',serif; font-size:1.7rem; color:var(--fg); letter-spacing:-.02em; text-decoration:none; line-height:1; }
+    .logo span { color:var(--accent); }
+    .logo-sub { font-family:'Inter',sans-serif; font-size:.62rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-top:.35rem; font-weight:400; }
+    .nav-links { display:flex; align-items:center; gap:2rem; }
+    .nav-sep { width:1px; height:14px; background:var(--border); align-self:center; }
+    nav a { color:var(--muted); text-decoration:none; font-size:.82rem; font-weight:400; letter-spacing:.01em; transition:color .2s; }
+    nav a:hover { color:var(--accent); }
+    .nav-spacer { height:calc(68px + env(safe-area-inset-top, 0px)); }
+    .lang-switcher { display:flex; gap:.4rem; margin-left:1rem; padding-left:1rem; border-left:1px solid var(--border); }
+    .lang-btn { background:none; border:1px solid transparent; color:var(--muted); font-family:'DM Mono',monospace; font-size:.7rem; letter-spacing:.12em; text-transform:uppercase; cursor:pointer; padding:.25rem .5rem; transition:color .2s,border-color .2s; }
+    .lang-btn:hover { color:var(--accent); }
+    .lang-btn.active { color:var(--accent); border-color:var(--accent); }
+
+    /* SHARED */
+    .rp-tag { display:inline-block; font-family:'Inter',sans-serif; font-size:.68rem; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:var(--accent); border:1px solid var(--accent); padding:.25rem .7rem; margin-bottom:1.5rem; }
+    .rp-label { font-family:'Inter',sans-serif; font-size:.68rem; font-weight:500; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); margin-bottom:1.5rem; display:block; }
+    .rp-h2 { font-family:'Playfair Display',serif; font-size:clamp(2rem,4vw,2.8rem); font-weight:400; letter-spacing:-.02em; line-height:1.1; }
+    .rp-h2 em { font-style:italic; color:var(--accent); }
+    .rp-lead { font-size:.95rem; color:#6a6258; line-height:1.85; max-width:540px; }
+    .divider { border:none; border-top:1px solid var(--border); margin:0; position:relative; z-index:1; }
+    .cta-btn { display:inline-block; background:var(--accent); color:#fff; font-family:'Inter',sans-serif; font-size:.78rem; font-weight:600; letter-spacing:.03em; text-decoration:none; padding:.9rem 2.2rem; transition:opacity .2s; cursor:pointer; border:none; }
+    .cta-btn:hover { opacity:.85; }
+
+    /* HERO */
+    .rp-hero { position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:4rem 2rem 5rem; display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
+    .rp-hero h1 { font-family:'Playfair Display',serif; font-size:clamp(2.6rem,5vw,3.8rem); font-weight:400; letter-spacing:-.03em; line-height:1.05; margin-bottom:1.2rem; }
+    .rp-hero h1 em { font-style:italic; color:var(--accent); }
+    .rp-hero-lead { font-size:1.05rem; color:#6a6258; line-height:1.8; margin-bottom:2rem; max-width:440px; }
+    .rp-pains { display:flex; flex-direction:column; gap:.75rem; margin-bottom:2.5rem; }
+    .rp-pain { display:flex; align-items:flex-start; gap:.85rem; font-size:.9rem; color:#6a6258; line-height:1.6; }
+    .rp-pain-dot { flex-shrink:0; width:18px; height:18px; margin-top:.1rem; }
+
+    /* OUTCOMES */
+    .rp-section { position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:5rem 2rem; }
+    .rp-section-narrow { position:relative; z-index:1; max-width:900px; margin:0 auto; padding:5rem 2rem; }
+    .rp-outcomes-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border); margin-top:2.5rem; }
+    .rp-outcome { background:var(--bg); padding:2.5rem 2rem; }
+    .rp-outcome-icon { width:44px; height:44px; margin-bottom:1.4rem; }
+    .rp-outcome h3 { font-family:'Playfair Display',serif; font-size:1.2rem; font-weight:400; letter-spacing:-.01em; margin-bottom:.7rem; }
+    .rp-outcome p { font-size:.87rem; color:#6a6258; line-height:1.78; }
+
+    /* PROCESS */
+    .rp-process { position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:5rem 2rem; }
+    .rp-steps-wrap { position:relative; margin-top:3.5rem; }
+    .rp-steps-line { position:absolute; top:28px; left:calc(10% + 28px); right:calc(10% + 28px); height:1px; background:repeating-linear-gradient(90deg, var(--accent) 0, var(--accent) 8px, transparent 8px, transparent 18px); opacity:.35; }
+    .rp-steps { display:grid; grid-template-columns:repeat(5,1fr); gap:0; position:relative; z-index:1; }
+    .rp-step { display:flex; flex-direction:column; align-items:center; text-align:center; padding:0 .8rem; }
+    .rp-step-circle { width:56px; height:56px; border-radius:50%; border:1.5px solid var(--accent); background:var(--bg); display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-size:1.05rem; color:var(--accent); margin-bottom:1.5rem; flex-shrink:0; }
+    .rp-step-title { font-family:'Inter',sans-serif; font-size:.8rem; font-weight:600; color:var(--fg); margin-bottom:.6rem; letter-spacing:.01em; }
+    .rp-step-desc { font-size:.8rem; color:#6a6258; line-height:1.72; }
+
+    /* PREVIEW */
+    .rp-preview-frame { border:1px solid var(--border); overflow:hidden; box-shadow:0 6px 48px rgba(0,0,0,.1); margin-top:2.5rem; position:relative; z-index:1; }
+    .rp-preview-bar { display:flex; align-items:center; gap:.8rem; padding:.65rem 1rem; background:#ede8e0; border-bottom:1px solid var(--border); }
+    .rp-preview-dots { display:flex; gap:.35rem; }
+    .rp-preview-dots i { display:inline-block; width:9px; height:9px; border-radius:50%; background:var(--border); font-style:normal; }
+    .rp-preview-dots i:first-child { background:var(--accent); opacity:.75; }
+    .rp-preview-label { font-family:'DM Mono',monospace; font-size:.63rem; color:var(--muted); letter-spacing:.08em; text-transform:uppercase; }
+    .rp-highlight { background:#ede8e0; border:1px solid var(--border); border-left:3px solid var(--accent); padding:1.4rem 2rem; margin-top:2rem; position:relative; z-index:1; }
+    .rp-highlight p { font-size:.88rem; color:#6a6258; line-height:1.8; margin:0; }
+
+    /* DELIVERABLES */
+    .rp-delivers { display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--border); border:1px solid var(--border); margin-top:2.5rem; }
+    .rp-deliver { background:var(--bg); padding:2rem 2rem; display:flex; gap:1.2rem; align-items:flex-start; }
+    .rp-deliver-icon { flex-shrink:0; margin-top:.05rem; }
+    .rp-deliver h4 { font-family:'Inter',sans-serif; font-size:.88rem; font-weight:600; color:var(--fg); margin-bottom:.35rem; }
+    .rp-deliver p { font-size:.83rem; color:#6a6258; line-height:1.75; }
+
+    /* CTA / FORM */
+    .rp-cta { position:relative; z-index:1; border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:5rem 2rem; }
+    .rp-cta-inner { display:flex; align-items:flex-start; gap:5rem; max-width:1100px; margin:0 auto; }
+    .rp-cta-text { flex:1; padding-top:.5rem; }
+    .rp-cta-text h2 { font-family:'Playfair Display',serif; font-size:clamp(2rem,4vw,3.2rem); font-weight:400; letter-spacing:-.03em; line-height:1.1; margin-bottom:1.2rem; }
+    .rp-cta-text h2 em { font-style:italic; color:var(--accent); }
+    .rp-cta-text p { font-size:.95rem; color:#6a6258; line-height:1.85; }
+    .rp-form { flex:0 0 420px; max-width:420px; }
+    .rp-form input, .rp-form textarea { width:100%; background:#ede8e0; border:1px solid var(--border); padding:.75rem 1rem; font-family:'Inter',sans-serif; font-size:.88rem; color:var(--fg); outline:none; transition:border-color .2s; margin-bottom:.6rem; display:block; border-radius:0; appearance:none; }
+    .rp-form input:focus, .rp-form textarea:focus { border-color:var(--accent); }
+    .rp-form textarea { min-height:110px; resize:vertical; }
+    .rp-form button.cta-btn { width:100%; cursor:pointer; display:block; }
+    .form-success { font-family:'DM Mono',monospace; font-size:.82rem; color:var(--accent); letter-spacing:.05em; text-align:center; padding:1.5rem; border:1px solid var(--accent); }
+    .form-error { font-family:'DM Mono',monospace; font-size:.75rem; color:#c0392b; letter-spacing:.03em; margin-top:.5rem; }
+    .form-recaptcha-note { font-size:.48rem; color:var(--border); margin-top:.5rem; line-height:1.6; }
+    .form-recaptcha-note a { color:inherit; text-decoration:none; }
+    .form-recaptcha-note a:hover { color:var(--muted); }
+    .grecaptcha-badge { visibility:hidden !important; }
+
+    /* FOOTER */
+    footer { position:relative; z-index:1; border-top:1px solid var(--border); padding:2rem; max-width:1100px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+    footer p { font-family:'Inter',sans-serif; font-size:.72rem; color:var(--muted); letter-spacing:.04em; }
+    footer a { font-family:'Inter',sans-serif; color:var(--muted); text-decoration:none; font-size:.72rem; letter-spacing:.04em; transition:color .2s; }
+    footer a:hover { color:var(--accent); }
+    .footer-links { display:flex; align-items:center; gap:2rem; flex-wrap:wrap; }
+
+    /* LONG-TERM */
+    .rp-phases { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border); margin-top:2.5rem; }
+    .rp-phase { background:var(--bg); padding:2rem 1.8rem; }
+    .rp-phase-num { font-family:'DM Mono',monospace; font-size:.63rem; color:var(--accent); letter-spacing:.14em; text-transform:uppercase; margin-bottom:.8rem; }
+    .rp-phase-title { font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:400; letter-spacing:-.01em; margin-bottom:.6rem; color:var(--fg); }
+    .rp-phase p { font-size:.85rem; color:#6a6258; line-height:1.72; }
+    @media(max-width:640px) { .rp-phases { grid-template-columns:1fr; } }
+
+    /* DROPDOWN */
+    .nav-dropdown { position:relative; display:flex; align-items:center; }
+    .nav-dropdown-menu { position:absolute; top:calc(100% + 10px); left:50%; transform:translateX(-50%); background:rgba(244,240,232,.97); border:1px solid var(--border); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); box-shadow:0 8px 32px rgba(0,0,0,.1); padding:.4rem 0; min-width:210px; opacity:0; pointer-events:none; transition:opacity .18s; z-index:200; }
+    .nav-dropdown.open .nav-dropdown-menu { opacity:1; pointer-events:auto; }
+    .nav-dropdown-menu a { display:block; padding:.55rem 1.2rem; font-size:.78rem; color:var(--muted); white-space:nowrap; }
+    .nav-dropdown-menu a:hover { color:var(--accent); background:#f0ece4; }
+
+    /* BLOG LINKS */
+    .rp-blog-links { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1px; background:var(--border); border:1px solid var(--border); margin-top:1.8rem; }
+    .rp-blog-link { background:var(--bg); padding:1.6rem 1.8rem; text-decoration:none; transition:background .2s; display:block; }
+    .rp-blog-link:hover { background:#ece7de; }
+    .rp-blog-link-tag { font-family:'Inter',sans-serif; font-size:.63rem; font-weight:500; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); margin-bottom:.6rem; }
+    .rp-blog-link-title { font-family:'Playfair Display',serif; font-size:1rem; font-weight:400; letter-spacing:-.01em; line-height:1.3; color:var(--fg); }
+
+    /* RESPONSIVE */
+    @media(max-width:900px) {
+      .rp-hero { grid-template-columns:1fr; gap:3rem; }
+      .rp-outcomes-grid { grid-template-columns:1fr; }
+      .rp-steps { grid-template-columns:1fr 1fr; gap:2.5rem 1rem; }
+      .rp-steps-line { display:none; }
+      .rp-delivers { grid-template-columns:1fr; }
+      .rp-cta-inner { flex-direction:column; gap:2.5rem; }
+      .rp-form { flex:none; max-width:100%; width:100%; }
+    }
+    @media(max-width:600px) {
+      .rp-hero { padding:3rem 1.5rem 4rem; }
+      .rp-section, .rp-process, .rp-section-narrow { padding:4rem 1.5rem; }
+      .rp-steps { grid-template-columns:1fr; }
+      nav { padding:1rem 1.2rem; }
+      .logo { font-size:1.3rem; }
+      .logo-sub { display:none; }
+      .nav-links { gap:1rem; }
+      .nav-sep { display:none; }
+      .lang-switcher { margin-left:.5rem; padding-left:.5rem; }
+    }
+  </style>
+</head>
+<body class="lang-cs" id="navWrap-body">
+
+  <div class="nav-wrap" id="navWrap">
+    <nav>
+      <a href="/" class="logo">Flow<span>stack</span><div class="logo-sub">Jan Veverka · <span data-lang="cs">Datová analytika</span><span data-lang="en">Data Analytics</span></div></a>
+      <div class="nav-links">
+        <a href="/#reference"><span data-lang="cs">Reference</span><span data-lang="en">Clients</span></a>
+        <div class="nav-dropdown">
+          <a href="/sluzby/" aria-haspopup="true" aria-expanded="false"><span data-lang="cs">Služby</span><span data-lang="en">Services</span></a>
+          <div class="nav-dropdown-menu">
+            <a href="/sluzby/reporting.html"><span data-lang="cs">Reporting &amp; dashboardy</span><span data-lang="en">Reporting &amp; dashboards</span></a>
+            <a href="/sluzby/sgtm.html"><span data-lang="cs">Server-side GTM</span><span data-lang="en">Server-side GTM</span></a>
+            <a href="/sluzby/datovy-sklad.html"><span data-lang="cs">Datový sklad</span><span data-lang="en">Data warehouse</span></a>
+            <a href="/sluzby/ga4.html"><span data-lang="cs">GA4 &amp; analytika</span><span data-lang="en">GA4 &amp; analytics</span></a>
+          </div>
+        </div>
+        <a href="/#o-mne"><span data-lang="cs">O mně</span><span data-lang="en">About</span></a>
+        <a href="/#kontakt"><span data-lang="cs">Kontakt</span><span data-lang="en">Contact</span></a>
+        <span class="nav-sep"></span>
+        <a href="/blog/">Blog</a>
+        <div class="lang-switcher">
+          <button class="lang-btn" onclick="setLang('en')">EN</button>
+          <button class="lang-btn active" onclick="setLang('cs')">CZ</button>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="nav-spacer"></div>
+
+  <!-- HERO -->
+  <div class="rp-hero">
+    <div>
+      <span class="rp-tag">AI &amp; Data engineering</span>
+      <h1 data-lang="cs">Vaše data jsou připravena<br><em>pro umělou inteligenci.</em></h1>
+      <h1 data-lang="en">Your data, ready<br><em>for artificial intelligence.</em></h1>
+      <p class="rp-hero-lead" data-lang="cs">AI agenti pro e-commerce nejsou sci-fi — jsou to konkrétní nástroje, které dnes ušetří hodiny práce. Podmínkou jsou čistá, strukturovaná data.</p>
+      <p class="rp-hero-lead" data-lang="en">AI agents for e-commerce aren't sci-fi — they're concrete tools that save hours of work today. The prerequisite is clean, structured data.</p>
+      <div class="rp-pains">
+        <div class="rp-pain">
+          <svg class="rp-pain-dot" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="#ddd8d0" stroke-width="1"/><line x1="9" y1="5" x2="9" y2="10" stroke="#d4920e" stroke-width="1.5" stroke-linecap="round"/><circle cx="9" cy="13" r=".9" fill="#d4920e"/></svg>
+          <span data-lang="cs">Chcete využít AI, ale data máte roztříštěná v deseti systémech a AI neví s čím pracovat</span>
+          <span data-lang="en">You want to use AI, but your data is scattered across ten systems and AI doesn't know what to work with</span>
+        </div>
+        <div class="rp-pain">
+          <svg class="rp-pain-dot" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="#ddd8d0" stroke-width="1"/><line x1="9" y1="5" x2="9" y2="10" stroke="#d4920e" stroke-width="1.5" stroke-linecap="round"/><circle cx="9" cy="13" r=".9" fill="#d4920e"/></svg>
+          <span data-lang="cs">Generické AI nástroje dávají generické odpovědi — nevědí nic o vašich produktech, zákaznících ani cenách</span>
+          <span data-lang="en">Generic AI tools give generic answers — they know nothing about your products, customers, or prices</span>
+        </div>
+        <div class="rp-pain">
+          <svg class="rp-pain-dot" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="#ddd8d0" stroke-width="1"/><line x1="9" y1="5" x2="9" y2="10" stroke="#d4920e" stroke-width="1.5" stroke-linecap="round"/><circle cx="9" cy="13" r=".9" fill="#d4920e"/></svg>
+          <span data-lang="cs">Manuální analýzy, reporty a rozhodnutí, které by AI zvládla automaticky — stojí vás hodiny každý týden</span>
+          <span data-lang="en">Manual analyses, reports, and decisions that AI could handle automatically — costing you hours every week</span>
+        </div>
+      </div>
+      <a href="#kontakt" class="cta-btn"><span data-lang="cs">Nezávazná konzultace zdarma</span><span data-lang="en">Free consultation, no commitment</span></a>
+    </div>
+
+    <!-- Hero infographic: data sources → BigQuery → AI Agent -->
+    <div>
+      <svg viewBox="0 0 500 310" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
+        <!-- DATA SOURCES - left column -->
+        <rect x="0" y="24" width="116" height="30" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="8" y="36" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5.5" letter-spacing=".8" data-lang="cs">OBJEDNÁVKY</text>
+        <text x="8" y="36" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5.5" letter-spacing=".8" data-lang="en">ORDERS</text>
+        <text x="8" y="48" fill="#1c1814" font-family="'Inter',sans-serif" font-size="8.5" font-weight="500">Shoptet / WooCommerce</text>
+
+        <rect x="0" y="64" width="116" height="30" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="8" y="76" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5.5" letter-spacing=".8" data-lang="cs">ZÁKAZNÍCI</text>
+        <text x="8" y="76" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5.5" letter-spacing=".8" data-lang="en">CUSTOMERS</text>
+        <text x="8" y="88" fill="#1c1814" font-family="'Inter',sans-serif" font-size="8.5" font-weight="500">CRM / e-mail list</text>
+
+        <rect x="0" y="104" width="116" height="30" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="8" y="116" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5.5" letter-spacing=".8" data-lang="cs">PRODUKTY</text>
+        <text x="8" y="116" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5.5" letter-spacing=".8" data-lang="en">PRODUCTS</text>
+        <text x="8" y="128" fill="#1c1814" font-family="'Inter',sans-serif" font-size="8.5" font-weight="500">Katalog / sklad</text>
+
+        <rect x="0" y="144" width="116" height="30" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="8" y="156" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5.5" letter-spacing=".8">MARKETING</text>
+        <text x="8" y="168" fill="#1c1814" font-family="'Inter',sans-serif" font-size="8.5" font-weight="500">Ads &amp; GA4</text>
+
+        <!-- Dashed connector lines to BigQuery -->
+        <line x1="116" y1="39"  x2="182" y2="145" stroke="#ddd8d0" stroke-width="1" stroke-dasharray="4,3"/>
+        <line x1="116" y1="79"  x2="182" y2="145" stroke="#ddd8d0" stroke-width="1" stroke-dasharray="4,3"/>
+        <line x1="116" y1="119" x2="182" y2="145" stroke="#ddd8d0" stroke-width="1" stroke-dasharray="4,3"/>
+        <line x1="116" y1="159" x2="182" y2="145" stroke="#ddd8d0" stroke-width="1" stroke-dasharray="4,3"/>
+
+        <!-- BIGQUERY center box -->
+        <rect x="182" y="100" width="112" height="90" fill="#f4f2ee" stroke="#d4920e" stroke-width="1.5"/>
+        <text x="238" y="118" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7" text-anchor="middle" letter-spacing="1.5">BIGQUERY</text>
+        <line x1="194" y1="124" x2="282" y2="124" stroke="#ddd8d0" stroke-width=".5"/>
+        <!-- Data icon: small cylinder -->
+        <ellipse cx="238" cy="138" rx="14" ry="5" fill="none" stroke="#ddd8d0" stroke-width="1"/>
+        <line x1="224" y1="138" x2="224" y2="152" stroke="#ddd8d0" stroke-width="1"/>
+        <line x1="252" y1="138" x2="252" y2="152" stroke="#ddd8d0" stroke-width="1"/>
+        <ellipse cx="238" cy="152" rx="14" ry="5" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="238" y="166" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5.5" text-anchor="middle" data-lang="cs">čistá data · automaticky</text>
+        <text x="238" y="166" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5.5" text-anchor="middle" data-lang="en">clean data · automated</text>
+        <text x="238" y="176" fill="#d4920e" font-family="'DM Mono',monospace" font-size="5" text-anchor="middle">● ● ●</text>
+
+        <!-- Arrow right: BigQuery → AI Agent, labeled API / Python -->
+        <line x1="294" y1="145" x2="334" y2="145" stroke="#d4920e" stroke-width="1.5"/>
+        <polygon points="334,141 344,145 334,149" fill="#d4920e"/>
+        <text x="314" y="140" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5.5" text-anchor="middle">API / Python</text>
+
+        <!-- AI AGENT right box -->
+        <rect x="344" y="60" width="140" height="180" fill="#f4f2ee" stroke="#d4920e" stroke-width="1.5"/>
+        <text x="414" y="80" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7.5" text-anchor="middle" letter-spacing="1.5">AI AGENT</text>
+        <line x1="356" y1="86" x2="472" y2="86" stroke="#ddd8d0" stroke-width=".5"/>
+        <!-- Brain/network icon -->
+        <circle cx="414" cy="106" r="14" fill="none" stroke="#ddd8d0" stroke-width="1"/>
+        <circle cx="406" cy="102" r="3.5" fill="none" stroke="#d4920e" stroke-width="1"/>
+        <circle cx="422" cy="102" r="3.5" fill="none" stroke="#d4920e" stroke-width="1"/>
+        <circle cx="414" cy="114" r="3.5" fill="none" stroke="#d4920e" stroke-width="1"/>
+        <line x1="409" y1="102" x2="419" y2="102" stroke="#d4920e" stroke-width=".75"/>
+        <line x1="408" y1="105" x2="412" y2="110" stroke="#d4920e" stroke-width=".75"/>
+        <line x1="420" y1="105" x2="416" y2="110" stroke="#d4920e" stroke-width=".75"/>
+        <text x="414" y="130" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" text-anchor="middle">Claude / GPT</text>
+        <line x1="356" y1="136" x2="472" y2="136" stroke="#ddd8d0" stroke-width=".5"/>
+        <!-- Output items -->
+        <text x="364" y="152" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5.5">▸</text>
+        <text x="374" y="152" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8" data-lang="cs">reporty</text>
+        <text x="374" y="152" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8" data-lang="en">reports</text>
+        <text x="364" y="168" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5.5">▸</text>
+        <text x="374" y="168" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8" data-lang="cs">predikce</text>
+        <text x="374" y="168" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8" data-lang="en">predictions</text>
+        <text x="364" y="184" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5.5">▸</text>
+        <text x="374" y="184" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8" data-lang="cs">doporučení</text>
+        <text x="374" y="184" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8" data-lang="en">recommendations</text>
+        <text x="364" y="200" fill="#d4920e" font-family="'DM Mono',monospace" font-size="5.5">▸</text>
+        <text x="374" y="200" fill="#d4920e" font-family="'DM Mono',monospace" font-size="8" font-weight="500">auto</text>
+
+        <!-- Arrow down to notification -->
+        <line x1="414" y1="240" x2="414" y2="256" stroke="#d4920e" stroke-width="1.5"/>
+        <polygon points="410,256 414,264 418,256" fill="#d4920e"/>
+
+        <!-- SLACK / EMAIL / DASHBOARD output box -->
+        <rect x="344" y="264" width="140" height="30" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="414" y="276" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5.5" text-anchor="middle" letter-spacing=".8">SLACK / EMAIL</text>
+        <text x="414" y="287" fill="#1c1814" font-family="'DM Mono',monospace" font-size="5.5" text-anchor="middle" letter-spacing=".8">DASHBOARD</text>
+
+        <!-- Bottom annotation -->
+        <text x="238" y="298" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" text-anchor="middle" letter-spacing=".5" data-lang="cs">automatické rozhodování na základě vašich dat</text>
+        <text x="238" y="298" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" text-anchor="middle" letter-spacing=".5" data-lang="en">automated decisions based on your data</text>
+      </svg>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- OUTCOMES -->
+  <div class="rp-section">
+    <span class="rp-label"><span data-lang="cs">Co získáte</span><span data-lang="en">What you get</span></span>
+    <h2 class="rp-h2" data-lang="cs">Výsledky, které<br><em>skutečně pocítíte.</em></h2>
+    <h2 class="rp-h2" data-lang="en">Results you will<br><em>actually feel.</em></h2>
+    <div class="rp-outcomes-grid">
+
+      <div class="rp-outcome">
+        <!-- Neural network / brain icon -->
+        <svg class="rp-outcome-icon" viewBox="0 0 44 44" fill="none">
+          <circle cx="22" cy="22" r="18" stroke="#ddd8d0" stroke-width="1.5"/>
+          <circle cx="14" cy="16" r="4" stroke="#d4920e" stroke-width="1.5"/>
+          <circle cx="30" cy="16" r="4" stroke="#d4920e" stroke-width="1.5"/>
+          <circle cx="22" cy="30" r="4" stroke="#d4920e" stroke-width="1.5"/>
+          <line x1="18" y1="16" x2="26" y2="16" stroke="#d4920e" stroke-width="1"/>
+          <line x1="16" y1="20" x2="20" y2="26" stroke="#d4920e" stroke-width="1"/>
+          <line x1="28" y1="20" x2="24" y2="26" stroke="#d4920e" stroke-width="1"/>
+          <circle cx="22" cy="8" r="2" fill="#d4920e" opacity=".3"/>
+          <circle cx="36" cy="28" r="2" fill="#d4920e" opacity=".3"/>
+          <circle cx="8" cy="28" r="2" fill="#d4920e" opacity=".3"/>
+        </svg>
+        <h3 data-lang="cs">AI s kontextem vašeho byznysu</h3>
+        <h3 data-lang="en">AI with your business context</h3>
+        <p data-lang="cs">AI agent ví o vašich produktech, zákaznících a cenách — odpovídá konkrétně, ne genericky. Trénovaný na vašich datech z BigQuery.</p>
+        <p data-lang="en">The AI agent knows your products, customers, and prices — it answers specifically, not generically. Trained on your data from BigQuery.</p>
+      </div>
+
+      <div class="rp-outcome">
+        <!-- Lightning / automation icon -->
+        <svg class="rp-outcome-icon" viewBox="0 0 44 44" fill="none">
+          <polygon points="24,4 10,24 21,24 18,40 34,20 23,20" stroke="#d4920e" stroke-width="1.5" stroke-linejoin="round" fill="#f8f5f0"/>
+          <line x1="6" y1="14" x2="10" y2="14" stroke="#ddd8d0" stroke-width="1" stroke-linecap="round"/>
+          <line x1="38" y1="30" x2="34" y2="30" stroke="#ddd8d0" stroke-width="1" stroke-linecap="round"/>
+          <line x1="6" y1="30" x2="8" y2="30" stroke="#ddd8d0" stroke-width="1" stroke-linecap="round"/>
+        </svg>
+        <h3 data-lang="cs">Automatizace rutinních úloh</h3>
+        <h3 data-lang="en">Automation of routine tasks</h3>
+        <p data-lang="cs">Denní reporty, zákaznické segmentace, kategorizace produktů, predikce poptávky — věci, které vás každý týden stojí hodiny.</p>
+        <p data-lang="en">Daily reports, customer segmentation, product categorisation, demand forecasting — things that cost you hours every week.</p>
+      </div>
+
+      <div class="rp-outcome">
+        <!-- Trending up / growth icon -->
+        <svg class="rp-outcome-icon" viewBox="0 0 44 44" fill="none">
+          <polyline points="4,36 14,22 22,28 34,12 40,12" stroke="#d4920e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline points="34,6 40,12 34,18" stroke="#d4920e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="4" y1="38" x2="40" y2="38" stroke="#ddd8d0" stroke-width="1"/>
+          <line x1="4" y1="10" x2="4" y2="38" stroke="#ddd8d0" stroke-width="1"/>
+        </svg>
+        <h3 data-lang="cs">Predikce a doporučení</h3>
+        <h3 data-lang="en">Predictions and recommendations</h3>
+        <p data-lang="cs">Které produkty dojdou? Kteří zákazníci odejdou? Které kampaně vypnout? AI agent dá odpověď dřív, než problém nastane.</p>
+        <p data-lang="en">Which products will run out? Which customers will churn? Which campaigns to pause? The AI agent answers before the problem occurs.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- PROCESS -->
+  <div class="rp-process">
+    <span class="rp-label"><span data-lang="cs">Jak spolupráce probíhá</span><span data-lang="en">How we work together</span></span>
+    <h2 class="rp-h2" style="margin-bottom:.9rem" data-lang="cs">Od dat k fungujícímu<br><em>AI agentovi.</em></h2>
+    <h2 class="rp-h2" style="margin-bottom:.9rem" data-lang="en">From data to a working<br><em>AI agent.</em></h2>
+    <p class="rp-lead" data-lang="cs">Transparentní proces v pěti krocích — od první konzultace po předání funkčního agenta s dokumentací.</p>
+    <p class="rp-lead" data-lang="en">A transparent five-step process — from the first consultation to handover of a working agent with documentation.</p>
+
+    <div class="rp-steps-wrap">
+      <div class="rp-steps-line"></div>
+      <div class="rp-steps">
+
+        <div class="rp-step">
+          <div class="rp-step-circle">01</div>
+          <svg width="38" height="38" viewBox="0 0 38 38" fill="none" style="margin-bottom:.9rem">
+            <rect x="4" y="9" width="30" height="22" rx="1" stroke="#ddd8d0" stroke-width="1.5"/>
+            <circle cx="14" cy="20" r="4" stroke="#d4920e" stroke-width="1.5"/>
+            <line x1="20" y1="20" x2="30" y2="20" stroke="#ddd8d0" stroke-width="1"/>
+            <line x1="20" y1="16" x2="28" y2="16" stroke="#ddd8d0" stroke-width="1"/>
+            <line x1="20" y1="24" x2="26" y2="24" stroke="#ddd8d0" stroke-width="1"/>
+          </svg>
+          <div class="rp-step-title"><span data-lang="cs">Definice use case</span><span data-lang="en">Use case definition</span></div>
+          <div class="rp-step-desc" data-lang="cs">Zjistím co chcete automatizovat nebo zlepšit. Vybereme use case s největším dopadem a nejreálnější implementací.</div>
+          <div class="rp-step-desc" data-lang="en">I'll find out what you want to automate or improve. We'll pick the use case with the biggest impact and most realistic implementation.</div>
+        </div>
+
+        <div class="rp-step">
+          <div class="rp-step-circle">02</div>
+          <svg width="38" height="38" viewBox="0 0 38 38" fill="none" style="margin-bottom:.9rem">
+            <rect x="5" y="7" width="28" height="22" stroke="#ddd8d0" stroke-width="1.5"/>
+            <ellipse cx="19" cy="18" rx="8" ry="3" fill="none" stroke="#d4920e" stroke-width="1.5"/>
+            <line x1="11" y1="18" x2="11" y2="24" stroke="#ddd8d0" stroke-width="1"/>
+            <line x1="27" y1="18" x2="27" y2="24" stroke="#ddd8d0" stroke-width="1"/>
+            <ellipse cx="19" cy="24" rx="8" ry="3" fill="#f4f0e8" stroke="#ddd8d0" stroke-width="1"/>
+            <text x="19" y="36" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5" text-anchor="middle">BQ</text>
+          </svg>
+          <div class="rp-step-title"><span data-lang="cs">Datový základ v BigQuery</span><span data-lang="en">Data foundation in BigQuery</span></div>
+          <div class="rp-step-desc" data-lang="cs">Připravím data pro AI — čistění, strukturování, obohacení. AI agent potřebuje správná data, ne jen raw export.</div>
+          <div class="rp-step-desc" data-lang="en">I'll prepare data for AI — cleaning, structuring, enrichment. An AI agent needs correct data, not just a raw export.</div>
+        </div>
+
+        <div class="rp-step">
+          <div class="rp-step-circle">03</div>
+          <svg width="38" height="38" viewBox="0 0 38 38" fill="none" style="margin-bottom:.9rem">
+            <circle cx="19" cy="16" r="9" stroke="#ddd8d0" stroke-width="1.5"/>
+            <circle cx="13" cy="13" r="2.5" stroke="#d4920e" stroke-width="1"/>
+            <circle cx="25" cy="13" r="2.5" stroke="#d4920e" stroke-width="1"/>
+            <circle cx="19" cy="22" r="2.5" stroke="#d4920e" stroke-width="1"/>
+            <line x1="15.5" y1="13" x2="22.5" y2="13" stroke="#d4920e" stroke-width=".75"/>
+            <line x1="14.5" y1="15.5" x2="17.5" y2="19.5" stroke="#d4920e" stroke-width=".75"/>
+            <line x1="23.5" y1="15.5" x2="20.5" y2="19.5" stroke="#d4920e" stroke-width=".75"/>
+            <text x="19" y="35" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5" text-anchor="middle">Python</text>
+          </svg>
+          <div class="rp-step-title"><span data-lang="cs">Vývoj AI agenta</span><span data-lang="en">AI agent development</span></div>
+          <div class="rp-step-desc" data-lang="cs">Python agent s přístupem do BigQuery, definovanými nástroji a systémovým promptem znalosti vašeho byznysu.</div>
+          <div class="rp-step-desc" data-lang="en">Python agent with BigQuery access, defined tools, and a system prompt with knowledge of your business.</div>
+        </div>
+
+        <div class="rp-step">
+          <div class="rp-step-circle">04</div>
+          <svg width="38" height="38" viewBox="0 0 38 38" fill="none" style="margin-bottom:.9rem">
+            <rect x="4" y="5" width="12" height="10" stroke="#ddd8d0" stroke-width="1.5"/>
+            <rect x="22" y="5" width="12" height="10" stroke="#ddd8d0" stroke-width="1.5"/>
+            <rect x="13" y="18" width="12" height="10" stroke="#d4920e" stroke-width="1.5"/>
+            <line x1="10" y1="15" x2="17" y2="18" stroke="#ddd8d0" stroke-width="1"/>
+            <line x1="28" y1="15" x2="21" y2="18" stroke="#ddd8d0" stroke-width="1"/>
+            <line x1="19" y1="28" x2="19" y2="33" stroke="#d4920e" stroke-width="1.5"/>
+            <rect x="13" y="33" width="12" height="5" stroke="#d4920e" stroke-width="1"/>
+          </svg>
+          <div class="rp-step-title"><span data-lang="cs">Integrace a testování</span><span data-lang="en">Integration &amp; testing</span></div>
+          <div class="rp-step-desc" data-lang="cs">Napojení na vaše nástroje — Slack, e-mail, dashboard. Testování na reálných datech, ladění přesnosti odpovědí.</div>
+          <div class="rp-step-desc" data-lang="en">Integration with your tools — Slack, email, dashboard. Testing on real data, tuning response accuracy.</div>
+        </div>
+
+        <div class="rp-step">
+          <div class="rp-step-circle">05</div>
+          <svg width="38" height="38" viewBox="0 0 38 38" fill="none" style="margin-bottom:.9rem">
+            <circle cx="19" cy="19" r="14" stroke="#ddd8d0" stroke-width="1.5"/>
+            <polyline points="12,19 17,24 26,13" stroke="#d4920e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div class="rp-step-title"><span data-lang="cs">Předání a zaškolení</span><span data-lang="en">Handover &amp; training</span></div>
+          <div class="rp-step-desc" data-lang="cs">Dokumentace, zaškolení — váš tým umí agenta používat a rozumí jeho limitům. 30 dní podpory po předání.</div>
+          <div class="rp-step-desc" data-lang="en">Documentation, training — your team can use the agent and understands its limits. 30 days of post-handover support.</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- USE CASES PREVIEW -->
+  <div class="rp-section">
+    <span class="rp-label"><span data-lang="cs">Příklady use cases</span><span data-lang="en">Example use cases</span></span>
+    <h2 class="rp-h2" style="margin-bottom:.9rem" data-lang="cs">Co AI agent<br><em>zvládne za vás.</em></h2>
+    <h2 class="rp-h2" style="margin-bottom:.9rem" data-lang="en">What an AI agent<br><em>can handle for you.</em></h2>
+    <p class="rp-lead" style="margin-bottom:0" data-lang="cs">Konkrétní příklady nasazení AI agentů pro e-commerce — od automatického reportingu po predikci poptávky.</p>
+    <p class="rp-lead" style="margin-bottom:0" data-lang="en">Concrete examples of AI agent deployments for e-commerce — from automated reporting to demand forecasting.</p>
+
+    <div class="rp-preview-frame">
+      <div class="rp-preview-bar">
+        <span class="rp-preview-dots"><i></i><i></i><i></i></span>
+        <span class="rp-preview-label">AI Agent Flowstack · e-commerce use cases</span>
+      </div>
+      <svg viewBox="0 0 1060 530" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:auto">
+        <rect width="1060" height="530" fill="#f8f7f4"/>
+
+        <!-- Top bar -->
+        <rect width="1060" height="46" fill="#ede8e0"/>
+        <text x="22" y="18" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7.5" letter-spacing="1.5">AI AGENT FLOWSTACK</text>
+        <text x="22" y="34" fill="#7a7269" font-family="'DM Mono',monospace" font-size="8" letter-spacing="1">e-commerce use cases</text>
+
+        <!-- Card 1: DENNÍ REPORT -->
+        <rect x="22" y="60" width="330" height="140" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="34" y="80" fill="#d4920e" font-family="'DM Mono',monospace" font-size="8" letter-spacing="1">01</text>
+        <!-- chart icon -->
+        <rect x="282" y="68" width="8" height="16" fill="#d4920e" opacity=".5"/>
+        <rect x="293" y="63" width="8" height="21" fill="#d4920e" opacity=".75"/>
+        <rect x="304" y="57" width="8" height="27" fill="#d4920e"/>
+        <text x="34" y="96" fill="#1c1814" font-family="'DM Mono',monospace" font-size="8.5" letter-spacing=".5" data-lang="cs">DENNÍ REPORT</text>
+        <text x="34" y="96" fill="#1c1814" font-family="'DM Mono',monospace" font-size="8.5" letter-spacing=".5" data-lang="en">DAILY REPORT</text>
+        <line x1="34" y1="102" x2="340" y2="102" stroke="#ddd8d0" stroke-width=".5"/>
+        <text x="34" y="118" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="cs">Každé ráno pošle e-mail s výsledky</text>
+        <text x="34" y="118" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="en">Every morning sends an email with</text>
+        <text x="34" y="131" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="cs">předchozího dne</text>
+        <text x="34" y="131" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="en">the previous day's results</text>
+        <text x="34" y="148" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">→ tržby · objednávky · ROAS</text>
+        <text x="34" y="162" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7">● automaticky každý den v 7:00</text>
+
+        <!-- Card 2: ZÁKAZNICKÁ SEGMENTACE -->
+        <rect x="366" y="60" width="330" height="140" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="378" y="80" fill="#d4920e" font-family="'DM Mono',monospace" font-size="8" letter-spacing="1">02</text>
+        <!-- people groups icon -->
+        <circle cx="670" cy="75" r="7" fill="none" stroke="#d4920e" stroke-width="1.5"/>
+        <circle cx="683" cy="75" r="7" fill="none" stroke="#ddd8d0" stroke-width="1"/>
+        <circle cx="657" cy="75" r="7" fill="none" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="378" y="96" fill="#1c1814" font-family="'DM Mono',monospace" font-size="8.5" letter-spacing=".5" data-lang="cs">ZÁKAZNICKÁ SEGMENTACE</text>
+        <text x="378" y="96" fill="#1c1814" font-family="'DM Mono',monospace" font-size="8.5" letter-spacing=".5" data-lang="en">CUSTOMER SEGMENTATION</text>
+        <line x1="378" y1="102" x2="684" y2="102" stroke="#ddd8d0" stroke-width=".5"/>
+        <text x="378" y="118" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="cs">RFM analýza a segmentace zákazníků</text>
+        <text x="378" y="118" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="en">RFM analysis and customer segmentation</text>
+        <text x="378" y="131" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="cs">pro e-mailové kampaně</text>
+        <text x="378" y="131" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="en">for email campaigns</text>
+        <text x="378" y="148" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">→ VIP · aktivní · ohrožení churn</text>
+        <text x="378" y="162" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7">● týdenní update segmentů</text>
+
+        <!-- Card 3: PREDIKCE SKLADU -->
+        <rect x="710" y="60" width="330" height="140" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="722" y="80" fill="#d4920e" font-family="'DM Mono',monospace" font-size="8" letter-spacing="1">03</text>
+        <!-- warehouse/boxes icon -->
+        <rect x="992" y="62" width="16" height="12" fill="none" stroke="#d4920e" stroke-width="1.5"/>
+        <rect x="1010" y="66" width="12" height="8" fill="none" stroke="#ddd8d0" stroke-width="1"/>
+        <rect x="992" y="76" width="16" height="10" fill="none" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="722" y="96" fill="#1c1814" font-family="'DM Mono',monospace" font-size="8.5" letter-spacing=".5" data-lang="cs">PREDIKCE SKLADU</text>
+        <text x="722" y="96" fill="#1c1814" font-family="'DM Mono',monospace" font-size="8.5" letter-spacing=".5" data-lang="en">INVENTORY PREDICTION</text>
+        <line x1="722" y1="102" x2="1028" y2="102" stroke="#ddd8d0" stroke-width=".5"/>
+        <text x="722" y="118" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="cs">Upozorní na produkty, které dojdou</text>
+        <text x="722" y="118" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="en">Alerts about products running out</text>
+        <text x="722" y="131" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="cs">za 2 týdny</text>
+        <text x="722" y="131" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="en">in 2 weeks</text>
+        <text x="722" y="148" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">→ počty dní · průměrný prodej</text>
+        <text x="722" y="162" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7">● alert do Slacku při riziku</text>
+
+        <!-- Card 4: ANALÝZA PRODUKTŮ -->
+        <rect x="22" y="220" width="330" height="140" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="34" y="240" fill="#d4920e" font-family="'DM Mono',monospace" font-size="8" letter-spacing="1">04</text>
+        <!-- bar chart icon -->
+        <rect x="286" y="228" width="8" height="20" fill="#d4920e" opacity=".4"/>
+        <rect x="297" y="222" width="8" height="26" fill="#d4920e" opacity=".7"/>
+        <rect x="308" y="218" width="8" height="30" fill="#d4920e"/>
+        <text x="34" y="256" fill="#1c1814" font-family="'DM Mono',monospace" font-size="8.5" letter-spacing=".5" data-lang="cs">ANALÝZA PRODUKTŮ</text>
+        <text x="34" y="256" fill="#1c1814" font-family="'DM Mono',monospace" font-size="8.5" letter-spacing=".5" data-lang="en">PRODUCT ANALYSIS</text>
+        <line x1="34" y1="262" x2="340" y2="262" stroke="#ddd8d0" stroke-width=".5"/>
+        <text x="34" y="278" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="cs">Automaticky najde produkty</text>
+        <text x="34" y="278" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="en">Automatically finds products</text>
+        <text x="34" y="291" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="cs">s klesající marží</text>
+        <text x="34" y="291" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="en">with declining margin</text>
+        <text x="34" y="308" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">→ marže · trend · srovnání</text>
+        <text x="34" y="322" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7">● týdenní report do e-mailu</text>
+
+        <!-- Card 5: ATTRIBUTION REPORTING -->
+        <rect x="366" y="220" width="330" height="140" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="378" y="240" fill="#d4920e" font-family="'DM Mono',monospace" font-size="8" letter-spacing="1">05</text>
+        <!-- funnel icon -->
+        <polygon points="660,228 692,228 682,244 670,244" fill="none" stroke="#d4920e" stroke-width="1.5"/>
+        <rect x="670" y="244" width="12" height="8" fill="none" stroke="#ddd8d0" stroke-width="1"/>
+        <rect x="673" y="252" width="6" height="6" fill="none" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="378" y="256" fill="#1c1814" font-family="'DM Mono',monospace" font-size="8.5" letter-spacing=".5">ATTRIBUTION REPORTING</text>
+        <line x1="378" y1="262" x2="684" y2="262" stroke="#ddd8d0" stroke-width=".5"/>
+        <text x="378" y="278" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="cs">Přiřadí objednávky ke kampaním</text>
+        <text x="378" y="278" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="en">Attributes orders to campaigns</text>
+        <text x="378" y="291" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="cs">napříč kanály</text>
+        <text x="378" y="291" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="en">across channels</text>
+        <text x="378" y="308" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">→ Google · Meta · e-mail · organic</text>
+        <text x="378" y="322" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7">● na vyžádání nebo plánovaně</text>
+
+        <!-- Card 6: ANOMALY DETECTION -->
+        <rect x="710" y="220" width="330" height="140" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="722" y="240" fill="#d4920e" font-family="'DM Mono',monospace" font-size="8" letter-spacing="1">06</text>
+        <!-- alert/bell icon -->
+        <path d="M1020,228 Q1030,228 1030,238 L1030,248 L1012,248 L1012,238 Q1012,228 1020,228 Z" fill="none" stroke="#d4920e" stroke-width="1.5"/>
+        <line x1="1020" y1="226" x2="1020" y2="230" stroke="#d4920e" stroke-width="1.5"/>
+        <line x1="1016" y1="248" x2="1024" y2="248" stroke="#d4920e" stroke-width="1.5"/>
+        <line x1="1018" y1="250" x2="1022" y2="253" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="722" y="256" fill="#1c1814" font-family="'DM Mono',monospace" font-size="8.5" letter-spacing=".5">ANOMALY DETECTION</text>
+        <line x1="722" y1="262" x2="1028" y2="262" stroke="#ddd8d0" stroke-width=".5"/>
+        <text x="722" y="278" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="cs">Upozorní na neobvyklé výkyvy</text>
+        <text x="722" y="278" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="en">Alerts about unusual data spikes</text>
+        <text x="722" y="291" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="cs">v datech</text>
+        <text x="722" y="291" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="en">in the data</text>
+        <text x="722" y="308" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">→ tržby · konverze · náklady</text>
+        <text x="722" y="322" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7">● real-time alert do Slacku</text>
+
+        <!-- EXAMPLE CONVERSATION section -->
+        <rect x="22" y="380" width="1016" height="130" fill="#f4f2ee" stroke="#ddd8d0" stroke-width="1"/>
+        <rect x="22" y="380" width="1016" height="22" fill="#ede8e0"/>
+        <text x="34" y="396" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7.5" letter-spacing="1" data-lang="cs">PŘÍKLAD KONVERZACE</text>
+        <text x="34" y="396" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7.5" letter-spacing="1" data-lang="en">EXAMPLE CONVERSATION</text>
+        <!-- User bubble -->
+        <rect x="34" y="412" width="220" height="26" rx="4" fill="#ddd8d0"/>
+        <text x="46" y="422" fill="#1c1814" font-family="'Inter',sans-serif" font-size="8" data-lang="cs">Jak se dařilo posledních 7 dní?</text>
+        <text x="46" y="422" fill="#1c1814" font-family="'Inter',sans-serif" font-size="8" data-lang="en">How did the last 7 days go?</text>
+        <text x="46" y="433" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6">Vy / You</text>
+        <!-- AI bubble -->
+        <rect x="34" y="450" width="980" height="48" rx="4" fill="#f8f5f0" stroke="#d4920e" stroke-width="1"/>
+        <text x="46" y="464" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7" letter-spacing=".5">AI AGENT</text>
+        <text x="46" y="479" fill="#1c1814" font-family="'Inter',sans-serif" font-size="8" data-lang="cs">Tržby 284 000 Kč (+12 % vs. předchozí týden). Nejlepší produkt: Produkt A (47 obj.). ROAS Google Ads: 4,3 ×. ⚠ Produkt B: zásoby na 8 dní.</text>
+        <text x="46" y="479" fill="#1c1814" font-family="'Inter',sans-serif" font-size="8" data-lang="en">Revenue 284,000 CZK (+12% vs. previous week). Top product: Product A (47 orders). Google Ads ROAS: 4.3×. ⚠ Product B has 8 days of stock left.</text>
+        <text x="46" y="492" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" data-lang="cs">na základě dat z BigQuery · právě teď</text>
+        <text x="46" y="492" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" data-lang="en">based on BigQuery data · right now</text>
+      </svg>
+    </div>
+
+    <div class="rp-highlight">
+      <p data-lang="cs">Každý use case je jiný — záleží na vašich datech, systémech a procesech. Začínáme vždy diskusí o tom, co by vám nejvíce ušetřilo čas.</p>
+      <p data-lang="en">Every use case is different — it depends on your data, systems, and processes. We always start with a discussion about what would save you the most time.</p>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- DELIVERABLES -->
+  <div class="rp-section-narrow">
+    <span class="rp-label"><span data-lang="cs">Co je součástí</span><span data-lang="en">What's included</span></span>
+    <h2 class="rp-h2" style="margin-bottom:2.5rem" data-lang="cs">Vše co potřebujete<br><em>k fungování.</em></h2>
+    <h2 class="rp-h2" style="margin-bottom:2.5rem" data-lang="en">Everything you need<br><em>to get running.</em></h2>
+    <div class="rp-delivers">
+
+      <div class="rp-deliver">
+        <svg class="rp-deliver-icon" width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <circle cx="11" cy="11" r="10" stroke="#d4920e" stroke-width="1.5"/>
+          <polyline points="7,11 10,14 15,8" stroke="#d4920e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div>
+          <h4 data-lang="cs">Datový základ v BigQuery</h4>
+          <h4 data-lang="en">Data foundation in BigQuery</h4>
+          <p data-lang="cs">Čistá, strukturovaná data připravená pro AI — z vašich systémů, automaticky aktualizovaná.</p>
+          <p data-lang="en">Clean, structured data ready for AI — from your systems, automatically updated.</p>
+        </div>
+      </div>
+
+      <div class="rp-deliver">
+        <svg class="rp-deliver-icon" width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <circle cx="11" cy="11" r="10" stroke="#d4920e" stroke-width="1.5"/>
+          <polyline points="7,11 10,14 15,8" stroke="#d4920e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div>
+          <h4 data-lang="cs">Python AI agent</h4>
+          <h4 data-lang="en">Python AI agent</h4>
+          <p data-lang="cs">Funkční agent napojený na BigQuery s definovanými nástroji a systémovým promptem pro váš e-shop.</p>
+          <p data-lang="en">Working agent connected to BigQuery with defined tools and a system prompt for your e-shop.</p>
+        </div>
+      </div>
+
+      <div class="rp-deliver">
+        <svg class="rp-deliver-icon" width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <circle cx="11" cy="11" r="10" stroke="#d4920e" stroke-width="1.5"/>
+          <polyline points="7,11 10,14 15,8" stroke="#d4920e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div>
+          <h4 data-lang="cs">Integrace s vašimi nástroji</h4>
+          <h4 data-lang="en">Integration with your tools</h4>
+          <p data-lang="cs">Napojení na Slack, e-mail nebo dashboard. Agent posílá výstupy tam, kde je skutečně uvidíte.</p>
+          <p data-lang="en">Connected to Slack, email, or dashboard. The agent sends outputs where you'll actually see them.</p>
+        </div>
+      </div>
+
+      <div class="rp-deliver">
+        <svg class="rp-deliver-icon" width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <circle cx="11" cy="11" r="10" stroke="#d4920e" stroke-width="1.5"/>
+          <polyline points="7,11 10,14 15,8" stroke="#d4920e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div>
+          <h4 data-lang="cs">Automatizovaný pipeline</h4>
+          <h4 data-lang="en">Automated pipeline</h4>
+          <p data-lang="cs">Agent běží automaticky — denně, týdně nebo na požadavek. Bez manuálního spouštění.</p>
+          <p data-lang="en">The agent runs automatically — daily, weekly, or on demand. No manual triggering.</p>
+        </div>
+      </div>
+
+      <div class="rp-deliver">
+        <svg class="rp-deliver-icon" width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <circle cx="11" cy="11" r="10" stroke="#d4920e" stroke-width="1.5"/>
+          <polyline points="7,11 10,14 15,8" stroke="#d4920e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div>
+          <h4 data-lang="cs">Dokumentace a zdrojový kód</h4>
+          <h4 data-lang="en">Documentation &amp; source code</h4>
+          <p data-lang="cs">Veškerý kód v Git repozitáři, dokumentace promptů a nástrojů. Nic není black box.</p>
+          <p data-lang="en">All code in a Git repository, documentation of prompts and tools. Nothing is a black box.</p>
+        </div>
+      </div>
+
+      <div class="rp-deliver">
+        <svg class="rp-deliver-icon" width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <circle cx="11" cy="11" r="10" stroke="#d4920e" stroke-width="1.5"/>
+          <polyline points="7,11 10,14 15,8" stroke="#d4920e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div>
+          <h4 data-lang="cs">30 dní podpory po předání</h4>
+          <h4 data-lang="en">30 days of post-handover support</h4>
+          <p data-lang="cs">Ladění přesnosti, nové dotazy, rozšíření schopností. Prvních 30 dní bez příplatku.</p>
+          <p data-lang="en">Accuracy tuning, new queries, capability expansion. First 30 days at no extra charge.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- LONG-TERM -->
+  <div class="rp-section-narrow">
+    <span class="rp-label"><span data-lang="cs">Dlouhodobá spolupráce</span><span data-lang="en">Long-term partnership</span></span>
+    <h2 class="rp-h2" data-lang="cs">AI se učí<br><em>s vaším byznysem.</em></h2>
+    <h2 class="rp-h2" data-lang="en">AI learns<br><em>with your business.</em></h2>
+    <p class="rp-lead" style="margin-top:.9rem" data-lang="cs">Jeden AI agent je začátek. Většina klientů postupně rozšiřuje schopnosti agenta, přidává nové use cases a automatizuje stále více procesů.</p>
+    <p class="rp-lead" style="margin-top:.9rem" data-lang="en">One AI agent is a starting point. Most clients gradually expand the agent's capabilities, add new use cases, and automate more and more processes.</p>
+
+    <div class="rp-phases">
+      <div class="rp-phase">
+        <div class="rp-phase-num">Phase 01</div>
+        <div class="rp-phase-title"><span data-lang="cs">Měsíce 1–2: první agent</span><span data-lang="en">Months 1–2: first agent</span></div>
+        <p data-lang="cs">Datový základ, první use case, první automatizace. Vidíte konkrétní výsledek.</p>
+        <p data-lang="en">Data foundation, first use case, first automation. You see a concrete result.</p>
+      </div>
+      <div class="rp-phase">
+        <div class="rp-phase-num">Phase 02</div>
+        <div class="rp-phase-title"><span data-lang="cs">Měsíce 3–6: rozšíření</span><span data-lang="en">Months 3–6: expansion</span></div>
+        <p data-lang="cs">Nové use cases, propojení s dalšími systémy, větší autonomie agenta.</p>
+        <p data-lang="en">New use cases, integration with more systems, greater agent autonomy.</p>
+      </div>
+      <div class="rp-phase">
+        <div class="rp-phase-num"><span data-lang="cs">Průběžně</span><span data-lang="en">Ongoing</span></div>
+        <div class="rp-phase-title"><span data-lang="cs">Průběžně: evoluce</span><span data-lang="en">Ongoing: evolution</span></div>
+        <p data-lang="cs">Nové modely, nové schopnosti, nové procesy k automatizaci. AI roste s byznysem.</p>
+        <p data-lang="en">New models, new capabilities, new processes to automate. AI grows with the business.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- Z BLOGU -->
+  <div class="rp-section-narrow">
+    <span class="rp-label" data-lang="cs">Z blogu</span>
+    <span class="rp-label" data-lang="en">From the blog</span>
+    <div class="rp-blog-links">
+      <a href="/blog/bigquery-ai-agenti.html" class="rp-blog-link">
+        <div class="rp-blog-link-tag">AI &amp; Data Engineering</div>
+        <div class="rp-blog-link-title">BigQuery jako datový základ pro AI agenty →</div>
+      </a>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- CTA / FORM -->
+  <div class="rp-cta" id="kontakt">
+    <div class="rp-cta-inner">
+      <div class="rp-cta-text">
+        <span class="rp-tag"><span data-lang="cs">Pojďme začít</span><span data-lang="en">Let's get started</span></span>
+        <h2 data-lang="cs">Co chcete<br><em>automatizovat?</em></h2>
+        <h2 data-lang="en">What do you want<br><em>to automate?</em></h2>
+        <p data-lang="cs">Napište mi jaké rutinní úlohy vás stojí nejvíc času — společně najdeme use case kde AI přinese největší hodnotu.</p>
+        <p data-lang="en">Tell me which routine tasks cost you the most time — together we'll find the use case where AI delivers the greatest value.</p>
+      </div>
+      <form class="rp-form" id="rp-form" action="https://formspree.io/f/xaqvejza" method="POST">
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" />
+        <input type="text" name="name"
+          data-ph-cs="Jméno" data-ph-en="Name"
+          placeholder="Jméno" required />
+        <input type="email" name="email"
+          data-ph-cs="E-mail" data-ph-en="E-mail"
+          placeholder="E-mail" required />
+        <input type="text" name="company"
+          data-ph-cs="Firma / e-shop (volitelné)" data-ph-en="Company / e-shop (optional)"
+          placeholder="Firma / e-shop (volitelné)" />
+        <textarea name="message"
+          data-ph-cs="Jaké rutinní úlohy vás stojí čas? Co byste chtěli automatizovat?"
+          data-ph-en="Which routine tasks cost you time? What would you like to automate?"
+          placeholder="Jaké rutinní úlohy vás stojí čas? Co byste chtěli automatizovat?"
+          required></textarea>
+        <button type="submit" class="cta-btn" id="rp-submit"><span data-lang="cs">Odeslat zprávu</span><span data-lang="en">Send message</span></button>
+        <p class="form-error" hidden></p>
+        <p class="form-recaptcha-note">Chráněno reCAPTCHA (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy</a> &amp; <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Terms</a>).</p>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Flowstack · Jan Veverka · Czech Republic</p>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/jan-veverka-39b24938" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="tel:+420602603423">+420 602 603 423</a>
+      <a href="/">&#8592; <span data-lang="cs">Hlavní stránka</span><span data-lang="en">Homepage</span></a>
+      <a href="/blog/">Blog</a>
+    </div>
+  </footer>
+
+  <script>
+    /* Nav scroll */
+    var nav = document.getElementById('navWrap');
+    window.addEventListener('scroll', function() {
+      nav.classList.toggle('scrolled', window.scrollY > 10);
+    }, {passive:true});
+
+    /* Language switching */
+    function setLang(lang) {
+      document.documentElement.lang = lang === 'cs' ? 'cs' : 'en';
+      document.body.className = 'lang-' + lang;
+      document.querySelectorAll('.lang-btn').forEach(function(btn) {
+        btn.classList.toggle('active', btn.textContent.toLowerCase() === lang || (lang === 'cs' && btn.textContent === 'CZ'));
+      });
+      document.querySelectorAll('[data-ph-cs]').forEach(function(el) {
+        el.placeholder = lang === 'en' ? el.dataset.phEn : el.dataset.phCs;
+      });
+      localStorage.setItem('lang', lang);
+    }
+    (function() {
+      var saved = localStorage.getItem('lang') || 'cs';
+      setLang(saved);
+    })();
+
+    /* Form */
+    (function() {
+      var form = document.getElementById('rp-form');
+      var btn  = document.getElementById('rp-submit');
+      var err  = form.querySelector('.form-error');
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        btn.disabled = true;
+        btn.textContent = document.body.classList.contains('lang-en') ? 'Sending…' : 'Odesílám…';
+        grecaptcha.ready(function() {
+          grecaptcha.execute('6LevXNgsAAAAALh4ZbMWnXz73v20fOgPLx_3zlRK', {action:'submit'}).then(function(token) {
+            var data = new FormData(form);
+            data.append('g-recaptcha-response', token);
+            fetch(form.action, {method:'POST', body:data, headers:{Accept:'application/json'}})
+              .then(function(r) { return r.json(); })
+              .then(function(r) {
+                if (r.ok) {
+                  var isEn = document.body.classList.contains('lang-en');
+                  form.innerHTML = '<p class="form-success">' + (isEn ? 'Message sent. I\'ll get back to you within 24 hours.' : 'Zpráva odeslána. Ozvu se do 24 hodin.') + '</p>';
+                  window.dataLayer = window.dataLayer || [];
+                  window.dataLayer.push({event:'form_submit', form_name:'contact', form_location:'ai_data_cta'});
+                } else {
+                  var isEn = document.body.classList.contains('lang-en');
+                  err.textContent = isEn ? 'Failed to send. Please try again.' : 'Nepodařilo se odeslat. Zkuste to znovu.';
+                  err.hidden = false; btn.disabled = false;
+                  btn.textContent = isEn ? 'Send message' : 'Odeslat zprávu';
+                }
+              })
+              .catch(function() {
+                var isEn = document.body.classList.contains('lang-en');
+                err.textContent = isEn ? 'Network error. Please try again.' : 'Nepodařilo se odeslat. Zkuste to znovu.';
+                err.hidden = false; btn.disabled = false;
+                btn.textContent = isEn ? 'Send message' : 'Odeslat zprávu';
+              });
+          });
+        });
+      });
+    document.querySelectorAll('.nav-dropdown').forEach(function(dd) {
+      var menu = dd.querySelector('.nav-dropdown-menu');
+      var trigger = dd.querySelector(':scope > a');
+      var closeTimer;
+      function openMenu() { clearTimeout(closeTimer); dd.classList.add('open'); trigger.setAttribute('aria-expanded','true'); }
+      function closeMenu() { dd.classList.remove('open'); trigger.setAttribute('aria-expanded','false'); }
+      dd.addEventListener('mouseenter', openMenu);
+      dd.addEventListener('mouseleave', function() { closeTimer = setTimeout(closeMenu, 300); });
+      trigger.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowDown') { e.preventDefault(); openMenu(); var f = menu.querySelector('a'); if (f) f.focus(); }
+        else if (e.key === 'Escape') { closeMenu(); }
+      });
+      var items = Array.from(menu.querySelectorAll('a'));
+      items.forEach(function(item, i) {
+        item.addEventListener('keydown', function(e) {
+          if (e.key === 'ArrowDown') { e.preventDefault(); if (items[i+1]) items[i+1].focus(); }
+          else if (e.key === 'ArrowUp') { e.preventDefault(); if (i===0) { closeMenu(); trigger.focus(); } else items[i-1].focus(); }
+          else if (e.key === 'Escape') { closeMenu(); trigger.focus(); }
+          else if (e.key === 'Tab') { setTimeout(closeMenu, 50); }
+        });
+      });
+    });
+
+    })();
+  </script>
+</body>
+</html>

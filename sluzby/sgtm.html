@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Server-side GTM pro e-shop | Flowstack</title>
+  <meta name="description" content="Zachraňte 20–40 % konverzních dat, která dnes ztrácíte. Server-side GTM, Consent Mode v2 a Meta CAPI pro e-commerce." />
+  <link rel="canonical" href="https://flowstack.cz/sluzby/sgtm.html" />
+  <link rel="alternate" hreflang="cs" href="https://flowstack.cz/sluzby/sgtm.html" />
+  <link rel="alternate" hreflang="en" href="https://flowstack.cz/sluzby/sgtm.html" />
+  <link rel="alternate" hreflang="x-default" href="https://flowstack.cz/sluzby/sgtm.html" />
+  <meta property="og:title" content="Server-side GTM pro e-shop | Flowstack" />
+  <meta property="og:description" content="Zachraňte 20–40 % konverzních dat, která dnes ztrácíte. Server-side GTM, Consent Mode v2 a Meta CAPI pro e-commerce." />
+  <meta property="og:url" content="https://flowstack.cz/sluzby/sgtm.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://flowstack.cz/og/sgtm.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23f4f0e8'/><text x='6' y='24' font-family='serif' font-size='22' fill='%23d4920e'>F</text></svg>" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@graph":[
+    {"@type":"Service","name":"Server-side GTM & tracking pro e-commerce","description":"Zachraňte 20–40 % konverzních dat, která dnes ztrácíte. Server-side GTM, Consent Mode v2 a Meta CAPI pro e-commerce.","url":"https://flowstack.cz/sluzby/sgtm.html","provider":{"@type":"Person","name":"Jan Veverka","url":"https://flowstack.cz"},"areaServed":{"@type":"Country","name":"Czech Republic"},"serviceType":"Server-side Tracking & Tag Management"},
+    {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Flowstack","item":"https://flowstack.cz"},{"@type":"ListItem","position":2,"name":"Služby","item":"https://flowstack.cz/sluzby/"},{"@type":"ListItem","position":3,"name":"Server-side GTM","item":"https://flowstack.cz/sluzby/sgtm.html"}]}
+  ]}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <script src="https://www.google.com/recaptcha/api.js?render=6LevXNgsAAAAALh4ZbMWnXz73v20fOgPLx_3zlRK" async defer></script>
+  <style>
+    :root { --bg:#f4f0e8; --fg:#1c1814; --accent:#d4920e; --muted:#7a7269; --border:#ddd8d0; }
+    *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; background:#f4f0e8; }
+    body { background:radial-gradient(ellipse at 50% 0%, #ece6da 0%, var(--bg) 65%); color:var(--fg); font-family:'Inter',sans-serif; font-weight:400; min-height:100vh; overflow-x:clip; }
+    body::after { content:''; position:fixed; inset:0; background-image:radial-gradient(circle, #c4bdb5 1px, transparent 1px); background-size:28px 28px; pointer-events:none; z-index:0; opacity:.35; }
+
+    /* LANGUAGE SWITCHING */
+    [data-lang] { display:none; }
+    body.lang-en [data-lang="en"] { display:block; }
+    body.lang-cs [data-lang="cs"] { display:block; }
+    span[data-lang] { display:none; }
+    body.lang-en span[data-lang="en"] { display:inline; }
+    body.lang-cs span[data-lang="cs"] { display:inline; }
+    text[data-lang] { display:none; }
+    body.lang-en text[data-lang="en"] { display:inline; }
+    body.lang-cs text[data-lang="cs"] { display:inline; }
+
+    /* NAV */
+    .nav-wrap { position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(244,240,232,.88); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-bottom:1px solid transparent; transition:border-color .3s; padding-top:env(safe-area-inset-top); }
+    .nav-wrap.scrolled { border-bottom-color:var(--border); }
+    nav { display:flex; justify-content:space-between; align-items:center; padding:1.2rem 2rem; max-width:1100px; margin:0 auto; }
+    .logo { font-family:'Playfair Display',serif; font-size:1.7rem; color:var(--fg); letter-spacing:-.02em; text-decoration:none; line-height:1; }
+    .logo span { color:var(--accent); }
+    .logo-sub { font-family:'Inter',sans-serif; font-size:.62rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-top:.35rem; font-weight:400; }
+    .nav-links { display:flex; align-items:center; gap:2rem; }
+    .nav-sep { width:1px; height:14px; background:var(--border); align-self:center; }
+    nav a { color:var(--muted); text-decoration:none; font-size:.82rem; font-weight:400; letter-spacing:.01em; transition:color .2s; }
+    nav a:hover { color:var(--accent); }
+    .nav-spacer { height:calc(68px + env(safe-area-inset-top, 0px)); }
+    .lang-switcher { display:flex; gap:.4rem; margin-left:1rem; padding-left:1rem; border-left:1px solid var(--border); }
+    .lang-btn { background:none; border:1px solid transparent; color:var(--muted); font-family:'DM Mono',monospace; font-size:.7rem; letter-spacing:.12em; text-transform:uppercase; cursor:pointer; padding:.25rem .5rem; transition:color .2s,border-color .2s; }
+    .lang-btn:hover { color:var(--accent); }
+    .lang-btn.active { color:var(--accent); border-color:var(--accent); }
+
+    /* SHARED */
+    .rp-tag { display:inline-block; font-family:'Inter',sans-serif; font-size:.68rem; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:var(--accent); border:1px solid var(--accent); padding:.25rem .7rem; margin-bottom:1.5rem; }
+    .rp-label { font-family:'Inter',sans-serif; font-size:.68rem; font-weight:500; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); margin-bottom:1.5rem; display:block; }
+    .rp-h2 { font-family:'Playfair Display',serif; font-size:clamp(2rem,4vw,2.8rem); font-weight:400; letter-spacing:-.02em; line-height:1.1; }
+    .rp-h2 em { font-style:italic; color:var(--accent); }
+    .rp-lead { font-size:.95rem; color:#6a6258; line-height:1.85; max-width:540px; }
+    .divider { border:none; border-top:1px solid var(--border); margin:0; position:relative; z-index:1; }
+    .cta-btn { display:inline-block; background:var(--accent); color:#fff; font-family:'Inter',sans-serif; font-size:.78rem; font-weight:600; letter-spacing:.03em; text-decoration:none; padding:.9rem 2.2rem; transition:opacity .2s; cursor:pointer; border:none; }
+    .cta-btn:hover { opacity:.85; }
+
+    /* HERO */
+    .rp-hero { position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:4rem 2rem 5rem; display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
+    .rp-hero h1 { font-family:'Playfair Display',serif; font-size:clamp(2.6rem,5vw,3.8rem); font-weight:400; letter-spacing:-.03em; line-height:1.05; margin-bottom:1.2rem; }
+    .rp-hero h1 em { font-style:italic; color:var(--accent); }
+    .rp-hero-lead { font-size:1.05rem; color:#6a6258; line-height:1.8; margin-bottom:2rem; max-width:440px; }
+    .rp-pains { display:flex; flex-direction:column; gap:.75rem; margin-bottom:2.5rem; }
+    .rp-pain { display:flex; align-items:flex-start; gap:.85rem; font-size:.9rem; color:#6a6258; line-height:1.6; }
+    .rp-pain-dot { flex-shrink:0; width:18px; height:18px; margin-top:.1rem; }
+
+    /* OUTCOMES */
+    .rp-section { position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:5rem 2rem; }
+    .rp-section-narrow { position:relative; z-index:1; max-width:900px; margin:0 auto; padding:5rem 2rem; }
+    .rp-outcomes-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border); margin-top:2.5rem; }
+    .rp-outcome { background:var(--bg); padding:2.5rem 2rem; }
+    .rp-outcome-icon { width:44px; height:44px; margin-bottom:1.4rem; }
+    .rp-outcome h3 { font-family:'Playfair Display',serif; font-size:1.2rem; font-weight:400; letter-spacing:-.01em; margin-bottom:.7rem; }
+    .rp-outcome p { font-size:.87rem; color:#6a6258; line-height:1.78; }
+
+    /* PROCESS */
+    .rp-process { position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:5rem 2rem; }
+    .rp-steps-wrap { position:relative; margin-top:3.5rem; }
+    .rp-steps-line { position:absolute; top:28px; left:calc(10% + 28px); right:calc(10% + 28px); height:1px; background:repeating-linear-gradient(90deg, var(--accent) 0, var(--accent) 8px, transparent 8px, transparent 18px); opacity:.35; }
+    .rp-steps { display:grid; grid-template-columns:repeat(5,1fr); gap:0; position:relative; z-index:1; }
+    .rp-step { display:flex; flex-direction:column; align-items:center; text-align:center; padding:0 .8rem; }
+    .rp-step-circle { width:56px; height:56px; border-radius:50%; border:1.5px solid var(--accent); background:var(--bg); display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-size:1.05rem; color:var(--accent); margin-bottom:1.5rem; flex-shrink:0; }
+    .rp-step-title { font-family:'Inter',sans-serif; font-size:.8rem; font-weight:600; color:var(--fg); margin-bottom:.6rem; letter-spacing:.01em; }
+    .rp-step-desc { font-size:.8rem; color:#6a6258; line-height:1.72; }
+
+    /* PREVIEW */
+    .rp-preview-frame { border:1px solid var(--border); overflow:hidden; box-shadow:0 6px 48px rgba(0,0,0,.1); margin-top:2.5rem; position:relative; z-index:1; }
+    .rp-preview-bar { display:flex; align-items:center; gap:.8rem; padding:.65rem 1rem; background:#ede8e0; border-bottom:1px solid var(--border); }
+    .rp-preview-dots { display:flex; gap:.35rem; }
+    .rp-preview-dots i { display:inline-block; width:9px; height:9px; border-radius:50%; background:var(--border); font-style:normal; }
+    .rp-preview-dots i:first-child { background:var(--accent); opacity:.75; }
+    .rp-preview-label { font-family:'DM Mono',monospace; font-size:.63rem; color:var(--muted); letter-spacing:.08em; text-transform:uppercase; }
+    .rp-highlight { background:#ede8e0; border:1px solid var(--border); border-left:3px solid var(--accent); padding:1.4rem 2rem; margin-top:2rem; position:relative; z-index:1; }
+    .rp-highlight p { font-size:.88rem; color:#6a6258; line-height:1.8; margin:0; }
+
+    /* DELIVERABLES */
+    .rp-delivers { display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--border); border:1px solid var(--border); margin-top:2.5rem; }
+    .rp-deliver { background:var(--bg); padding:2rem 2rem; display:flex; gap:1.2rem; align-items:flex-start; }
+    .rp-deliver-icon { flex-shrink:0; margin-top:.05rem; }
+    .rp-deliver h4 { font-family:'Inter',sans-serif; font-size:.88rem; font-weight:600; color:var(--fg); margin-bottom:.35rem; }
+    .rp-deliver p { font-size:.83rem; color:#6a6258; line-height:1.75; }
+
+    /* CTA / FORM */
+    .rp-cta { position:relative; z-index:1; border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:5rem 2rem; }
+    .rp-cta-inner { display:flex; align-items:flex-start; gap:5rem; max-width:1100px; margin:0 auto; }
+    .rp-cta-text { flex:1; padding-top:.5rem; }
+    .rp-cta-text h2 { font-family:'Playfair Display',serif; font-size:clamp(2rem,4vw,3.2rem); font-weight:400; letter-spacing:-.03em; line-height:1.1; margin-bottom:1.2rem; }
+    .rp-cta-text h2 em { font-style:italic; color:var(--accent); }
+    .rp-cta-text p { font-size:.95rem; color:#6a6258; line-height:1.85; }
+    .rp-form { flex:0 0 420px; max-width:420px; }
+    .rp-form input, .rp-form textarea { width:100%; background:#ede8e0; border:1px solid var(--border); padding:.75rem 1rem; font-family:'Inter',sans-serif; font-size:.88rem; color:var(--fg); outline:none; transition:border-color .2s; margin-bottom:.6rem; display:block; border-radius:0; appearance:none; }
+    .rp-form input:focus, .rp-form textarea:focus { border-color:var(--accent); }
+    .rp-form textarea { min-height:110px; resize:vertical; }
+    .rp-form button.cta-btn { width:100%; cursor:pointer; display:block; }
+    .form-success { font-family:'DM Mono',monospace; font-size:.82rem; color:var(--accent); letter-spacing:.05em; text-align:center; padding:1.5rem; border:1px solid var(--accent); }
+    .form-error { font-family:'DM Mono',monospace; font-size:.75rem; color:#c0392b; letter-spacing:.03em; margin-top:.5rem; }
+    .form-recaptcha-note { font-size:.48rem; color:var(--border); margin-top:.5rem; line-height:1.6; }
+    .form-recaptcha-note a { color:inherit; text-decoration:none; }
+    .form-recaptcha-note a:hover { color:var(--muted); }
+    .grecaptcha-badge { visibility:hidden !important; }
+
+    /* FOOTER */
+    footer { position:relative; z-index:1; border-top:1px solid var(--border); padding:2rem; max-width:1100px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+    footer p { font-family:'Inter',sans-serif; font-size:.72rem; color:var(--muted); letter-spacing:.04em; }
+    footer a { font-family:'Inter',sans-serif; color:var(--muted); text-decoration:none; font-size:.72rem; letter-spacing:.04em; transition:color .2s; }
+    footer a:hover { color:var(--accent); }
+    .footer-links { display:flex; align-items:center; gap:2rem; flex-wrap:wrap; }
+
+    /* LONG-TERM */
+    .rp-phases { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border); margin-top:2.5rem; }
+    .rp-phase { background:var(--bg); padding:2rem 1.8rem; }
+    .rp-phase-num { font-family:'DM Mono',monospace; font-size:.63rem; color:var(--accent); letter-spacing:.14em; text-transform:uppercase; margin-bottom:.8rem; }
+    .rp-phase-title { font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:400; letter-spacing:-.01em; margin-bottom:.6rem; color:var(--fg); }
+    .rp-phase p { font-size:.85rem; color:#6a6258; line-height:1.72; }
+    @media(max-width:640px) { .rp-phases { grid-template-columns:1fr; } }
+
+    /* DROPDOWN */
+    .nav-dropdown { position:relative; display:flex; align-items:center; }
+    .nav-dropdown-menu { position:absolute; top:calc(100% + 10px); left:50%; transform:translateX(-50%); background:rgba(244,240,232,.97); border:1px solid var(--border); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); box-shadow:0 8px 32px rgba(0,0,0,.1); padding:.4rem 0; min-width:210px; opacity:0; pointer-events:none; transition:opacity .18s; z-index:200; }
+    .nav-dropdown.open .nav-dropdown-menu { opacity:1; pointer-events:auto; }
+    .nav-dropdown-menu a { display:block; padding:.55rem 1.2rem; font-size:.78rem; color:var(--muted); white-space:nowrap; }
+    .nav-dropdown-menu a:hover { color:var(--accent); background:#f0ece4; }
+
+    /* BLOG LINKS */
+    .rp-blog-links { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1px; background:var(--border); border:1px solid var(--border); margin-top:1.8rem; }
+    .rp-blog-link { background:var(--bg); padding:1.6rem 1.8rem; text-decoration:none; transition:background .2s; display:block; }
+    .rp-blog-link:hover { background:#ece7de; }
+    .rp-blog-link-tag { font-family:'Inter',sans-serif; font-size:.63rem; font-weight:500; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); margin-bottom:.6rem; }
+    .rp-blog-link-title { font-family:'Playfair Display',serif; font-size:1rem; font-weight:400; letter-spacing:-.01em; line-height:1.3; color:var(--fg); }
+
+    /* RESPONSIVE */
+    @media(max-width:900px) {
+      .rp-hero { grid-template-columns:1fr; gap:3rem; }
+      .rp-outcomes-grid { grid-template-columns:1fr; }
+      .rp-steps { grid-template-columns:1fr 1fr; gap:2.5rem 1rem; }
+      .rp-steps-line { display:none; }
+      .rp-delivers { grid-template-columns:1fr; }
+      .rp-cta-inner { flex-direction:column; gap:2.5rem; }
+      .rp-form { flex:none; max-width:100%; width:100%; }
+    }
+    @media(max-width:600px) {
+      .rp-hero { padding:3rem 1.5rem 4rem; }
+      .rp-section, .rp-process, .rp-section-narrow { padding:4rem 1.5rem; }
+      .rp-steps { grid-template-columns:1fr; }
+      nav { padding:1rem 1.2rem; }
+      .logo { font-size:1.3rem; }
+      .logo-sub { display:none; }
+      .nav-links { gap:1rem; }
+      .nav-sep { display:none; }
+      .lang-switcher { margin-left:.5rem; padding-left:.5rem; }
+    }
+  </style>
+</head>
+<body class="lang-cs" id="navWrap-body">
+
+  <div class="nav-wrap" id="navWrap">
+    <nav>
+      <a href="/" class="logo">Flow<span>stack</span><div class="logo-sub">Jan Veverka · <span data-lang="cs">Datová analytika</span><span data-lang="en">Data Analytics</span></div></a>
+      <div class="nav-links">
+        <a href="/#reference"><span data-lang="cs">Reference</span><span data-lang="en">Clients</span></a>
+        <div class="nav-dropdown">
+          <a href="/sluzby/" aria-haspopup="true" aria-expanded="false"><span data-lang="cs">Služby</span><span data-lang="en">Services</span></a>
+          <div class="nav-dropdown-menu">
+            <a href="/sluzby/reporting.html"><span data-lang="cs">Reporting &amp; dashboardy</span><span data-lang="en">Reporting &amp; dashboards</span></a>
+            <a href="/sluzby/sgtm.html"><span data-lang="cs">Server-side GTM</span><span data-lang="en">Server-side GTM</span></a>
+            <a href="/sluzby/datovy-sklad.html"><span data-lang="cs">Datový sklad</span><span data-lang="en">Data warehouse</span></a>
+            <a href="/sluzby/ga4.html"><span data-lang="cs">GA4 &amp; analytika</span><span data-lang="en">GA4 &amp; analytics</span></a>
+          </div>
+        </div>
+        <a href="/#o-mne"><span data-lang="cs">O mně</span><span data-lang="en">About</span></a>
+        <a href="/#kontakt"><span data-lang="cs">Kontakt</span><span data-lang="en">Contact</span></a>
+        <span class="nav-sep"></span>
+        <a href="/blog/">Blog</a>
+        <div class="lang-switcher">
+          <button class="lang-btn" onclick="setLang('en')">EN</button>
+          <button class="lang-btn active" onclick="setLang('cs')">CZ</button>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="nav-spacer"></div>
+
+  <!-- HERO -->
+  <div class="rp-hero">
+    <div>
+      <span class="rp-tag">Server-side GTM &amp; Tracking</span>
+      <h1 data-lang="cs">Měříte méně,<br><em>než si myslíte.</em></h1>
+      <h1 data-lang="en">You're measuring less<br><em>than you think.</em></h1>
+      <p class="rp-hero-lead" data-lang="cs">Blokátory reklam, iOS omezení a mizení cookies připravují váš e-shop o 20–40 % konverzních dat. Google Ads a Meta pak optimalizují na lžích.</p>
+      <p class="rp-hero-lead" data-lang="en">Ad blockers, iOS restrictions, and disappearing cookies rob your e-shop of 20–40% of conversion data. Google Ads and Meta then optimise on lies.</p>
+      <div class="rp-pains">
+        <div class="rp-pain">
+          <svg class="rp-pain-dot" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="#ddd8d0" stroke-width="1"/><line x1="9" y1="5" x2="9" y2="10" stroke="#d4920e" stroke-width="1.5" stroke-linecap="round"/><circle cx="9" cy="13" r=".9" fill="#d4920e"/></svg>
+          <span data-lang="cs">Google Ads hlásí 68 konverzí, Shoptet má 120 objednávek — kde je zbytek?</span>
+          <span data-lang="en">Google Ads reports 68 conversions, Shoptet has 120 orders — where's the rest?</span>
+        </div>
+        <div class="rp-pain">
+          <svg class="rp-pain-dot" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="#ddd8d0" stroke-width="1"/><line x1="9" y1="5" x2="9" y2="10" stroke="#d4920e" stroke-width="1.5" stroke-linecap="round"/><circle cx="9" cy="13" r=".9" fill="#d4920e"/></svg>
+          <span data-lang="cs">Blokátory reklam a ITP ničí přesnost kampaní — plýtváte rozpočtem bez vědomí</span>
+          <span data-lang="en">Ad blockers and ITP destroy campaign accuracy — you're wasting budget without knowing it</span>
+        </div>
+        <div class="rp-pain">
+          <svg class="rp-pain-dot" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="#ddd8d0" stroke-width="1"/><line x1="9" y1="5" x2="9" y2="10" stroke="#d4920e" stroke-width="1.5" stroke-linecap="round"/><circle cx="9" cy="13" r=".9" fill="#d4920e"/></svg>
+          <span data-lang="cs">Consent Mode bez server-side GTM zachrání jen část dat — zbytek se prostě ztratí</span>
+          <span data-lang="en">Consent Mode without server-side GTM saves only part of the data — the rest is simply lost</span>
+        </div>
+      </div>
+      <a href="#kontakt" class="cta-btn"><span data-lang="cs">Nezávazná konzultace zdarma</span><span data-lang="en">Free consultation, no commitment</span></a>
+    </div>
+
+    <!-- Hero infographic: Browser → sGTM server → GA4 / Google Ads / Meta CAPI -->
+    <div>
+      <svg viewBox="0 0 500 310" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
+
+        <!-- BROWSER / LEFT BOX -->
+        <rect x="0" y="50" width="116" height="34" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="10" y="63" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5.5" letter-spacing="1">PROHLÍŽEČ / BROWSER</text>
+        <text x="10" y="77" fill="#1c1814" font-family="'Inter',sans-serif" font-size="8" font-weight="500" data-lang="cs">e-shop návštěvník</text>
+        <text x="10" y="77" fill="#1c1814" font-family="'Inter',sans-serif" font-size="8" font-weight="500" data-lang="en">e-shop visitor</text>
+
+        <!-- Blocked tags (with red X / strikethrough) -->
+        <rect x="4" y="98" width="108" height="18" fill="#fdf0f0" stroke="#e8c0c0" stroke-width="1"/>
+        <text x="14" y="111" fill="#b06060" font-family="'DM Mono',monospace" font-size="7" text-decoration="line-through">GA4 tag</text>
+        <line x1="4" y1="98" x2="112" y2="116" stroke="#c0392b" stroke-width="1" opacity=".5"/>
+        <text x="96" y="111" fill="#c0392b" font-family="'DM Mono',monospace" font-size="9" text-anchor="middle" font-weight="bold">✕</text>
+
+        <rect x="4" y="120" width="108" height="18" fill="#fdf0f0" stroke="#e8c0c0" stroke-width="1"/>
+        <text x="14" y="133" fill="#b06060" font-family="'DM Mono',monospace" font-size="7" text-decoration="line-through">Meta pixel</text>
+        <line x1="4" y1="120" x2="112" y2="138" stroke="#c0392b" stroke-width="1" opacity=".5"/>
+        <text x="96" y="133" fill="#c0392b" font-family="'DM Mono',monospace" font-size="9" text-anchor="middle" font-weight="bold">✕</text>
+
+        <rect x="4" y="142" width="108" height="18" fill="#fdf0f0" stroke="#e8c0c0" stroke-width="1"/>
+        <text x="14" y="155" fill="#b06060" font-family="'DM Mono',monospace" font-size="7" text-decoration="line-through">Google Ads tag</text>
+        <line x1="4" y1="142" x2="112" y2="160" stroke="#c0392b" stroke-width="1" opacity=".5"/>
+        <text x="96" y="155" fill="#c0392b" font-family="'DM Mono',monospace" font-size="9" text-anchor="middle" font-weight="bold">✕</text>
+
+        <!-- Dashed arrow from browser to sGTM -->
+        <line x1="116" y1="120" x2="180" y2="148" stroke="#d4920e" stroke-width="1.5" stroke-dasharray="5,3"/>
+        <polygon points="178,143 183,150 172,151" fill="#d4920e"/>
+        <text x="138" y="124" fill="#d4920e" font-family="'DM Mono',monospace" font-size="5.5" letter-spacing=".5">server-side</text>
+
+        <!-- sGTM SERVER CENTER BOX -->
+        <rect x="182" y="108" width="112" height="78" fill="#f4f2ee" stroke="#d4920e" stroke-width="1.5"/>
+        <text x="238" y="126" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7.5" text-anchor="middle" letter-spacing="1.5">sGTM SERVER</text>
+        <!-- Server icon: stacked rects -->
+        <rect x="214" y="132" width="48" height="9" fill="#ede8e0" stroke="#d4920e" stroke-width=".8"/>
+        <rect x="217" y="134" width="4" height="5" fill="#d4920e" opacity=".5"/>
+        <circle cx="252" cy="136.5" r="2" fill="#d4920e" opacity=".6"/>
+        <rect x="214" y="144" width="48" height="9" fill="#ede8e0" stroke="#d4920e" stroke-width=".8"/>
+        <rect x="217" y="146" width="4" height="5" fill="#d4920e" opacity=".5"/>
+        <circle cx="252" cy="148.5" r="2" fill="#d4920e" opacity=".6"/>
+        <rect x="214" y="156" width="48" height="9" fill="#ede8e0" stroke="#d4920e" stroke-width=".8"/>
+        <rect x="217" y="158" width="4" height="5" fill="#d4920e" opacity=".5"/>
+        <circle cx="252" cy="160.5" r="2" fill="#d4920e" opacity=".6"/>
+
+        <!-- Lines from sGTM to right column -->
+        <line x1="294" y1="130" x2="342" y2="108" stroke="#d4920e" stroke-width="1"/>
+        <line x1="294" y1="147" x2="342" y2="147" stroke="#d4920e" stroke-width="1"/>
+        <line x1="294" y1="164" x2="342" y2="186" stroke="#d4920e" stroke-width="1"/>
+        <polygon points="340,104 346,108 340,112" fill="#d4920e"/>
+        <polygon points="340,143 346,147 340,151" fill="#d4920e"/>
+        <polygon points="340,182 346,186 340,190" fill="#d4920e"/>
+
+        <!-- RIGHT COLUMN: GA4, GOOGLE ADS, META CAPI -->
+        <rect x="344" y="92" width="88" height="32" fill="#f4f2ee" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="388" y="106" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" letter-spacing=".8" text-anchor="middle">GA4</text>
+        <text x="388" y="118" fill="#1c1814" font-family="'Inter',sans-serif" font-size="7.5" text-anchor="middle" font-weight="500">Google Analytics 4</text>
+
+        <rect x="344" y="131" width="88" height="32" fill="#f4f2ee" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="388" y="145" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" letter-spacing=".8" text-anchor="middle">GOOGLE ADS</text>
+        <text x="388" y="157" fill="#1c1814" font-family="'Inter',sans-serif" font-size="7.5" text-anchor="middle" font-weight="500">Enhanced Conv.</text>
+
+        <rect x="344" y="170" width="88" height="32" fill="#f4f2ee" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="388" y="184" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" letter-spacing=".8" text-anchor="middle">META CAPI</text>
+        <text x="388" y="196" fill="#1c1814" font-family="'Inter',sans-serif" font-size="7.5" text-anchor="middle" font-weight="500">Conversions API</text>
+
+        <!-- Annotation -->
+        <text x="238" y="278" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" text-anchor="middle" letter-spacing=".5" data-lang="cs">všechna data zachycena na serveru</text>
+        <text x="238" y="278" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" text-anchor="middle" letter-spacing=".5" data-lang="en">all data captured server-side</text>
+      </svg>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- OUTCOMES -->
+  <div class="rp-section">
+    <span class="rp-label"><span data-lang="cs">Co získáte</span><span data-lang="en">What you get</span></span>
+    <h2 class="rp-h2" data-lang="cs">Kompletní data,<br><em>lepší kampaně.</em></h2>
+    <h2 class="rp-h2" data-lang="en">Complete data,<br><em>better campaigns.</em></h2>
+    <div class="rp-outcomes-grid">
+
+      <div class="rp-outcome">
+        <!-- Upward arrow chart icon -->
+        <svg class="rp-outcome-icon" viewBox="0 0 44 44" fill="none">
+          <polyline points="4,36 14,24 22,28 34,12 40,16" stroke="#ddd8d0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline points="4,30 14,18 22,22 34,6" stroke="#d4920e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <polygon points="30,4 38,4 38,12" fill="#d4920e"/>
+          <line x1="4" y1="38" x2="40" y2="38" stroke="#ddd8d0" stroke-width="1"/>
+        </svg>
+        <h3 data-lang="cs">Až 40 % víc dat</h3>
+        <h3 data-lang="en">Up to 40% more data</h3>
+        <p data-lang="cs">Zachytíte konverze, které dnes mizí v blokátorech a iOS omezeních. Algoritmy Google Ads a Meta dostanou kompletní obraz — ne jen zlomek.</p>
+        <p data-lang="en">You capture conversions that currently vanish in blockers and iOS restrictions. Google Ads and Meta algorithms get the full picture — not just a fraction.</p>
+      </div>
+
+      <div class="rp-outcome">
+        <!-- Target / bullseye icon -->
+        <svg class="rp-outcome-icon" viewBox="0 0 44 44" fill="none">
+          <circle cx="22" cy="22" r="18" stroke="#ddd8d0" stroke-width="1.5"/>
+          <circle cx="22" cy="22" r="11" stroke="#ddd8d0" stroke-width="1.5"/>
+          <circle cx="22" cy="22" r="5" stroke="#d4920e" stroke-width="1.5"/>
+          <circle cx="22" cy="22" r="2" fill="#d4920e"/>
+          <line x1="22" y1="4" x2="22" y2="10" stroke="#d4920e" stroke-width="1" opacity=".4"/>
+          <line x1="40" y1="22" x2="34" y2="22" stroke="#d4920e" stroke-width="1" opacity=".4"/>
+        </svg>
+        <h3 data-lang="cs">Lepší optimalizace kampaní</h3>
+        <h3 data-lang="en">Better campaign optimisation</h3>
+        <p data-lang="cs">Přesnější data znamenají přesnější bidding. ROAS roste, CPA klesá — ne proto, že by se trh změnil, ale proto, že algoritmy konečně vidí co se děje.</p>
+        <p data-lang="en">More accurate data means more accurate bidding. ROAS rises, CPA falls — not because the market changed, but because algorithms finally see what's happening.</p>
+      </div>
+
+      <div class="rp-outcome">
+        <!-- Shield / lock icon -->
+        <svg class="rp-outcome-icon" viewBox="0 0 44 44" fill="none">
+          <path d="M22 4 L38 10 L38 24 C38 33 22 40 22 40 C22 40 6 33 6 24 L6 10 Z" stroke="#ddd8d0" stroke-width="1.5" fill="none"/>
+          <path d="M22 8 L34 13 L34 24 C34 31 22 37 22 37 C22 37 10 31 10 24 L10 13 Z" stroke="#d4920e" stroke-width="1" fill="none" opacity=".4"/>
+          <rect x="17" y="20" width="10" height="8" rx="1" stroke="#d4920e" stroke-width="1.5"/>
+          <path d="M19 20 L19 17 C19 15 25 15 25 17 L25 20" stroke="#d4920e" stroke-width="1.5" fill="none"/>
+        </svg>
+        <h3 data-lang="cs">GDPR a first-party data</h3>
+        <h3 data-lang="en">GDPR and first-party data</h3>
+        <p data-lang="cs">Data zpracováváte na vlastním serveru pod vlastní doménou. Méně závislosti na třetích stranách, plná kontrola, plný soulad s legislativou.</p>
+        <p data-lang="en">Data is processed on your own server under your own domain. Less dependency on third parties, full control, full regulatory compliance.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- PROCESS -->
+  <div class="rp-process">
+    <span class="rp-label"><span data-lang="cs">Jak spolupráce probíhá</span><span data-lang="en">How we work together</span></span>
+    <h2 class="rp-h2" style="margin-bottom:.9rem" data-lang="cs">Od auditu po<br><em>fungující tracking.</em></h2>
+    <h2 class="rp-h2" style="margin-bottom:.9rem" data-lang="en">From audit to<br><em>working tracking.</em></h2>
+    <p class="rp-lead" data-lang="cs">Pět kroků, žádná černá skříňka. V každé fázi víte co se děje a co bude následovat.</p>
+    <p class="rp-lead" data-lang="en">Five steps, no black box. At every stage you know what's happening and what comes next.</p>
+
+    <div class="rp-steps-wrap">
+      <div class="rp-steps-line"></div>
+      <div class="rp-steps">
+
+        <div class="rp-step">
+          <div class="rp-step-circle">01</div>
+          <svg width="38" height="38" viewBox="0 0 38 38" fill="none" style="margin-bottom:.9rem">
+            <rect x="4" y="9" width="30" height="22" rx="1" stroke="#ddd8d0" stroke-width="1.5"/>
+            <circle cx="14" cy="20" r="4" stroke="#d4920e" stroke-width="1.5"/>
+            <line x1="20" y1="20" x2="30" y2="20" stroke="#ddd8d0" stroke-width="1"/>
+            <line x1="20" y1="16" x2="28" y2="16" stroke="#ddd8d0" stroke-width="1"/>
+            <line x1="20" y1="24" x2="26" y2="24" stroke="#ddd8d0" stroke-width="1"/>
+          </svg>
+          <div class="rp-step-title"><span data-lang="cs">Audit měření</span><span data-lang="en">Measurement audit</span></div>
+          <div class="rp-step-desc" data-lang="cs">Zjistím kolik dat ztrácíte a proč. Porovnám čísla v GA4, Google Ads, Meta a vašem e-shopu. Ukážu konkrétní díry.</div>
+          <div class="rp-step-desc" data-lang="en">I'll find out how much data you're losing and why. I'll compare numbers in GA4, Google Ads, Meta, and your e-shop. I'll show specific gaps.</div>
+        </div>
+
+        <div class="rp-step">
+          <div class="rp-step-circle">02</div>
+          <svg width="38" height="38" viewBox="0 0 38 38" fill="none" style="margin-bottom:.9rem">
+            <rect x="5" y="8" width="28" height="22" stroke="#ddd8d0" stroke-width="1.5"/>
+            <rect x="9" y="13" width="6" height="4" fill="#ede8e0" stroke="#d4920e" stroke-width=".8"/>
+            <rect x="9" y="20" width="6" height="4" fill="#ede8e0" stroke="#ddd8d0" stroke-width=".8"/>
+            <rect x="9" y="27" width="6" height="4" fill="#ede8e0" stroke="#ddd8d0" stroke-width=".8"/>
+            <line x1="19" y1="15" x2="29" y2="15" stroke="#ddd8d0" stroke-width="1"/>
+            <line x1="19" y1="22" x2="27" y2="22" stroke="#ddd8d0" stroke-width="1"/>
+            <line x1="19" y1="29" x2="25" y2="29" stroke="#ddd8d0" stroke-width="1"/>
+            <text x="19" y="37" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5" text-anchor="middle">SERVER</text>
+          </svg>
+          <div class="rp-step-title"><span data-lang="cs">Setup sGTM serveru</span><span data-lang="en">sGTM server setup</span></div>
+          <div class="rp-step-desc" data-lang="cs">Nasadím server-side GTM kontejner. Doménu, SSL, škálování — vše připraveno, aniž byste museli řešit infrastrukturu.</div>
+          <div class="rp-step-desc" data-lang="en">I'll deploy the server-side GTM container. Domain, SSL, scaling — all set up without you having to deal with infrastructure.</div>
+        </div>
+
+        <div class="rp-step">
+          <div class="rp-step-circle">03</div>
+          <svg width="38" height="38" viewBox="0 0 38 38" fill="none" style="margin-bottom:.9rem">
+            <rect x="3" y="8" width="13" height="10" stroke="#ddd8d0" stroke-width="1.5"/>
+            <rect x="22" y="8" width="13" height="10" stroke="#d4920e" stroke-width="1.5"/>
+            <rect x="3" y="24" width="13" height="10" stroke="#ddd8d0" stroke-width="1.5"/>
+            <rect x="22" y="24" width="13" height="10" stroke="#d4920e" stroke-width="1.5"/>
+            <line x1="16" y1="13" x2="22" y2="13" stroke="#d4920e" stroke-width="1.5"/>
+            <line x1="16" y1="29" x2="22" y2="29" stroke="#d4920e" stroke-width="1.5"/>
+            <polygon points="20,11 22,13 20,15" fill="#d4920e"/>
+            <polygon points="20,27 22,29 20,31" fill="#d4920e"/>
+          </svg>
+          <div class="rp-step-title"><span data-lang="cs">Migrace tagů</span><span data-lang="en">Tag migration</span></div>
+          <div class="rp-step-desc" data-lang="cs">Přesunu GA4, Google Ads a Meta tagy na server. Klientský kontejner se ztenčí, serverový přebere práci.</div>
+          <div class="rp-step-desc" data-lang="en">I'll move GA4, Google Ads, and Meta tags to the server. The client-side container thins out, the server-side one takes over.</div>
+        </div>
+
+        <div class="rp-step">
+          <div class="rp-step-circle">04</div>
+          <svg width="38" height="38" viewBox="0 0 38 38" fill="none" style="margin-bottom:.9rem">
+            <path d="M8 19 C8 13 14 9 19 9 C24 9 30 13 30 19" stroke="#ddd8d0" stroke-width="1.5" fill="none"/>
+            <path d="M10 22 C10 28 14 31 19 31 C24 31 28 28 28 22" stroke="#d4920e" stroke-width="1.5" fill="none"/>
+            <circle cx="19" cy="19" r="3" fill="#d4920e"/>
+            <line x1="19" y1="4" x2="19" y2="9" stroke="#ddd8d0" stroke-width="1"/>
+            <line x1="8" y1="8" x2="12" y2="11" stroke="#ddd8d0" stroke-width="1"/>
+            <line x1="30" y1="8" x2="26" y2="11" stroke="#ddd8d0" stroke-width="1"/>
+          </svg>
+          <div class="rp-step-title"><span data-lang="cs">Consent Mode v2 a CAPI</span><span data-lang="en">Consent Mode v2 &amp; CAPI</span></div>
+          <div class="rp-step-desc" data-lang="cs">Nastavím Consent Mode v2 a Meta Conversions API. Modelování dat vyplní mezery tam, kde uživatel odmítl souhlas.</div>
+          <div class="rp-step-desc" data-lang="en">I'll configure Consent Mode v2 and Meta Conversions API. Data modelling fills in gaps where a user declined consent.</div>
+        </div>
+
+        <div class="rp-step">
+          <div class="rp-step-circle">05</div>
+          <svg width="38" height="38" viewBox="0 0 38 38" fill="none" style="margin-bottom:.9rem">
+            <circle cx="19" cy="19" r="14" stroke="#ddd8d0" stroke-width="1.5"/>
+            <polyline points="12,19 17,24 26,13" stroke="#d4920e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div class="rp-step-title"><span data-lang="cs">Monitoring a validace</span><span data-lang="en">Monitoring &amp; validation</span></div>
+          <div class="rp-step-desc" data-lang="cs">Ověřím, že data sedí. Nastavím alerting pro případ výpadku. Vy dostanete report s přehledem co se zachránilo.</div>
+          <div class="rp-step-desc" data-lang="en">I'll verify the data matches. I'll set up alerting in case of failure. You'll receive a report showing what was recovered.</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- PREVIEW / IMPACT -->
+  <div class="rp-section">
+    <span class="rp-label"><span data-lang="cs">Ukázka dopadu</span><span data-lang="en">Impact overview</span></span>
+    <h2 class="rp-h2" style="margin-bottom:.9rem" data-lang="cs">Co se změní<br><em>po nasazení.</em></h2>
+    <h2 class="rp-h2" style="margin-bottom:.9rem" data-lang="en">What changes<br><em>after deployment.</em></h2>
+    <p class="rp-lead" style="margin-bottom:0" data-lang="cs">Typické výsledky e-shopu po přechodu na server-side GTM — porovnání zachycených konverzí před a po.</p>
+    <p class="rp-lead" style="margin-bottom:0" data-lang="en">Typical e-shop results after switching to server-side GTM — comparison of captured conversions before and after.</p>
+
+    <div class="rp-preview-frame">
+      <div class="rp-preview-bar">
+        <span class="rp-preview-dots"><i></i><i></i><i></i></span>
+        <span class="rp-preview-label" data-lang="cs">sGTM impact · před a po nasazení · demo data</span>
+        <span class="rp-preview-label" data-lang="en">sGTM impact · before &amp; after deployment · demo data</span>
+      </div>
+      <svg viewBox="0 0 1060 530" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:auto">
+        <rect width="1060" height="530" fill="#f8f7f4"/>
+
+        <!-- LEFT PANEL: PŘED sGTM -->
+        <rect x="22" y="60" width="490" height="440" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
+        <rect x="22" y="60" width="490" height="36" fill="#e8e2d8"/>
+        <text x="267" y="84" fill="#7a7269" font-family="'DM Mono',monospace" font-size="9" text-anchor="middle" letter-spacing="1.5" data-lang="cs">PŘED sGTM</text>
+        <text x="267" y="84" fill="#7a7269" font-family="'DM Mono',monospace" font-size="9" text-anchor="middle" letter-spacing="1.5" data-lang="en">BEFORE sGTM</text>
+
+        <!-- Metric 1: Captured conversions bar -->
+        <text x="44" y="128" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7.5" letter-spacing="1" data-lang="cs">ZACHYCENÉ KONVERZE</text>
+        <text x="44" y="128" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7.5" letter-spacing="1" data-lang="en">CAPTURED CONVERSIONS</text>
+        <rect x="44" y="136" width="440" height="22" fill="#f4f0e8" stroke="#ddd8d0" stroke-width=".5"/>
+        <rect x="44" y="136" width="268" height="22" fill="#b0aca6"/>
+        <text x="322" y="152" fill="#fff" font-family="'Playfair Display',serif" font-size="13" font-weight="700">61 %</text>
+        <text x="44" y="172" fill="#9a8f85" font-family="'DM Mono',monospace" font-size="7" data-lang="cs">▼ blokátory, ITP, odmítnutý consent</text>
+        <text x="44" y="172" fill="#9a8f85" font-family="'DM Mono',monospace" font-size="7" data-lang="en">▼ blockers, ITP, declined consent</text>
+
+        <!-- Metric 2: ROAS Google Ads -->
+        <text x="44" y="200" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7.5" letter-spacing="1">ROAS — GOOGLE ADS</text>
+        <rect x="44" y="208" width="440" height="22" fill="#f4f0e8" stroke="#ddd8d0" stroke-width=".5"/>
+        <rect x="44" y="208" width="183" height="22" fill="#b0aca6"/>
+        <text x="237" y="224" fill="#fff" font-family="'Playfair Display',serif" font-size="13" font-weight="700">3,2 ×</text>
+        <text x="44" y="244" fill="#9a8f85" font-family="'DM Mono',monospace" font-size="7" data-lang="cs">▼ neúplná data kazí optimalizaci</text>
+        <text x="44" y="244" fill="#9a8f85" font-family="'DM Mono',monospace" font-size="7" data-lang="en">▼ incomplete data hurts optimisation</text>
+
+        <!-- Metric 3: ROAS Meta -->
+        <text x="44" y="272" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7.5" letter-spacing="1">ROAS — META ADS</text>
+        <rect x="44" y="280" width="440" height="22" fill="#f4f0e8" stroke="#ddd8d0" stroke-width=".5"/>
+        <rect x="44" y="280" width="160" height="22" fill="#b0aca6"/>
+        <text x="214" y="296" fill="#fff" font-family="'Playfair Display',serif" font-size="13" font-weight="700">2,8 ×</text>
+        <text x="44" y="316" fill="#9a8f85" font-family="'DM Mono',monospace" font-size="7" data-lang="cs">▼ pixel blokován, CAPI chybí</text>
+        <text x="44" y="316" fill="#9a8f85" font-family="'DM Mono',monospace" font-size="7" data-lang="en">▼ pixel blocked, CAPI missing</text>
+
+        <!-- Metric 4: GA4 match -->
+        <text x="44" y="344" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7.5" letter-spacing="1" data-lang="cs">SHODA GA4 VS. E-SHOP</text>
+        <text x="44" y="344" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7.5" letter-spacing="1" data-lang="en">GA4 VS. E-SHOP MATCH</text>
+        <rect x="44" y="352" width="440" height="22" fill="#f4f0e8" stroke="#ddd8d0" stroke-width=".5"/>
+        <rect x="44" y="352" width="282" height="22" fill="#b0aca6"/>
+        <text x="336" y="368" fill="#fff" font-family="'Playfair Display',serif" font-size="13" font-weight="700">64 %</text>
+        <text x="44" y="388" fill="#9a8f85" font-family="'DM Mono',monospace" font-size="7" data-lang="cs">▼ 36 % transakcí chybí v analytice</text>
+        <text x="44" y="388" fill="#9a8f85" font-family="'DM Mono',monospace" font-size="7" data-lang="en">▼ 36% of transactions missing in analytics</text>
+
+        <!-- Left summary box -->
+        <rect x="44" y="420" width="440" height="64" fill="#f4f0e8" stroke="#ddd8d0" stroke-width=".5"/>
+        <text x="264" y="445" fill="#c0392b" font-family="'Playfair Display',serif" font-size="22" text-anchor="middle" font-weight="400">− 39 %</text>
+        <text x="264" y="468" fill="#9a8f85" font-family="'DM Mono',monospace" font-size="7" text-anchor="middle" data-lang="cs">ztracená data = plýtvaný rozpočet</text>
+        <text x="264" y="468" fill="#9a8f85" font-family="'DM Mono',monospace" font-size="7" text-anchor="middle" data-lang="en">lost data = wasted budget</text>
+
+        <!-- CENTER DIVIDER -->
+        <line x1="530" y1="60" x2="530" y2="500" stroke="#ddd8d0" stroke-width="1.5"/>
+        <rect x="516" y="268" width="28" height="28" fill="#f4f0e8" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="530" y="287" fill="#d4920e" font-family="'DM Mono',monospace" font-size="11" text-anchor="middle" font-weight="bold">→</text>
+
+        <!-- RIGHT PANEL: PO sGTM -->
+        <rect x="548" y="60" width="490" height="440" fill="#f4f2ee" stroke="#d4920e" stroke-width="1"/>
+        <rect x="548" y="60" width="490" height="36" fill="#ede8e0"/>
+        <text x="793" y="84" fill="#d4920e" font-family="'DM Mono',monospace" font-size="9" text-anchor="middle" letter-spacing="1.5" data-lang="cs">PO sGTM</text>
+        <text x="793" y="84" fill="#d4920e" font-family="'DM Mono',monospace" font-size="9" text-anchor="middle" letter-spacing="1.5" data-lang="en">AFTER sGTM</text>
+
+        <!-- Metric 1: Captured conversions bar -->
+        <text x="570" y="128" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7.5" letter-spacing="1" data-lang="cs">ZACHYCENÉ KONVERZE</text>
+        <text x="570" y="128" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7.5" letter-spacing="1" data-lang="en">CAPTURED CONVERSIONS</text>
+        <rect x="570" y="136" width="440" height="22" fill="#f4f0e8" stroke="#ddd8d0" stroke-width=".5"/>
+        <rect x="570" y="136" width="414" height="22" fill="#d4920e"/>
+        <text x="994" y="152" fill="#fff" font-family="'Playfair Display',serif" font-size="13" font-weight="700">94 %</text>
+        <text x="570" y="172" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7" data-lang="cs">▲ server-side zachytí blokované konverze</text>
+        <text x="570" y="172" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7" data-lang="en">▲ server-side captures blocked conversions</text>
+
+        <!-- Metric 2: ROAS Google Ads -->
+        <text x="570" y="200" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7.5" letter-spacing="1">ROAS — GOOGLE ADS</text>
+        <rect x="570" y="208" width="440" height="22" fill="#f4f0e8" stroke="#ddd8d0" stroke-width=".5"/>
+        <rect x="570" y="208" width="235" height="22" fill="#d4920e"/>
+        <text x="815" y="224" fill="#fff" font-family="'Playfair Display',serif" font-size="13" font-weight="700">4,1 ×</text>
+        <text x="570" y="244" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7" data-lang="cs">▲ kompletní konverzní signál pro Smart Bidding</text>
+        <text x="570" y="244" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7" data-lang="en">▲ complete conversion signal for Smart Bidding</text>
+
+        <!-- Metric 3: ROAS Meta -->
+        <text x="570" y="272" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7.5" letter-spacing="1">ROAS — META ADS</text>
+        <rect x="570" y="280" width="440" height="22" fill="#f4f0e8" stroke="#ddd8d0" stroke-width=".5"/>
+        <rect x="570" y="280" width="206" height="22" fill="#d4920e"/>
+        <text x="786" y="296" fill="#fff" font-family="'Playfair Display',serif" font-size="13" font-weight="700">3,6 ×</text>
+        <text x="570" y="316" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7" data-lang="cs">▲ CAPI dodává chybějící konverze přímo</text>
+        <text x="570" y="316" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7" data-lang="en">▲ CAPI delivers missing conversions directly</text>
+
+        <!-- Metric 4: GA4 match -->
+        <text x="570" y="344" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7.5" letter-spacing="1" data-lang="cs">SHODA GA4 VS. E-SHOP</text>
+        <text x="570" y="344" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7.5" letter-spacing="1" data-lang="en">GA4 VS. E-SHOP MATCH</text>
+        <rect x="570" y="352" width="440" height="22" fill="#f4f0e8" stroke="#ddd8d0" stroke-width=".5"/>
+        <rect x="570" y="352" width="427" height="22" fill="#d4920e"/>
+        <text x="1007" y="368" fill="#fff" font-family="'Playfair Display',serif" font-size="13" font-weight="700">97 %</text>
+        <text x="570" y="388" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7" data-lang="cs">▲ GA4 konečně odpovídá realitě e-shopu</text>
+        <text x="570" y="388" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7" data-lang="en">▲ GA4 finally matches e-shop reality</text>
+
+        <!-- Right summary box -->
+        <rect x="570" y="420" width="440" height="64" fill="#f4f0e8" stroke="#d4920e" stroke-width="1"/>
+        <text x="790" y="445" fill="#d4920e" font-family="'Playfair Display',serif" font-size="22" text-anchor="middle" font-weight="400">+ 54 %</text>
+        <text x="790" y="468" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" text-anchor="middle" data-lang="cs">více zachycených konverzí</text>
+        <text x="790" y="468" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" text-anchor="middle" data-lang="en">more captured conversions</text>
+
+        <!-- Bottom annotation -->
+        <text x="530" y="520" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" text-anchor="middle" letter-spacing=".5" data-lang="cs">průměrné výsledky z reálných implementací</text>
+        <text x="530" y="520" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" text-anchor="middle" letter-spacing=".5" data-lang="en">average results from real implementations</text>
+      </svg>
+    </div>
+
+    <div class="rp-highlight">
+      <p data-lang="cs">Výsledky se liší podle e-shopu, kategorie produktů a podílu uživatelů, kteří odmítají cookies. Audit zdarma ukáže kolik dat ztrácí konkrétně váš e-shop.</p>
+      <p data-lang="en">Results vary by e-shop, product category, and the share of users who decline cookies. A free audit will show exactly how much data your specific e-shop is losing.</p>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- DELIVERABLES -->
+  <div class="rp-section-narrow">
+    <span class="rp-label"><span data-lang="cs">Co je součástí</span><span data-lang="en">What's included</span></span>
+    <h2 class="rp-h2" style="margin-bottom:2.5rem" data-lang="cs">Vše co potřebujete<br><em>k fungování.</em></h2>
+    <h2 class="rp-h2" style="margin-bottom:2.5rem" data-lang="en">Everything you need<br><em>to get running.</em></h2>
+    <div class="rp-delivers">
+
+      <div class="rp-deliver">
+        <svg class="rp-deliver-icon" width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <circle cx="11" cy="11" r="10" stroke="#d4920e" stroke-width="1.5"/>
+          <polyline points="7,11 10,14 15,8" stroke="#d4920e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div>
+          <h4 data-lang="cs">sGTM kontejner na vašem serveru</h4>
+          <h4 data-lang="en">sGTM container on your server</h4>
+          <p data-lang="cs">Nasazení a konfigurace server-side GTM. Vaše doména, vaše data, vaše infrastruktura.</p>
+          <p data-lang="en">Deployment and configuration of server-side GTM. Your domain, your data, your infrastructure.</p>
+        </div>
+      </div>
+
+      <div class="rp-deliver">
+        <svg class="rp-deliver-icon" width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <circle cx="11" cy="11" r="10" stroke="#d4920e" stroke-width="1.5"/>
+          <polyline points="7,11 10,14 15,8" stroke="#d4920e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div>
+          <h4 data-lang="cs">Consent Mode v2</h4>
+          <h4 data-lang="en">Consent Mode v2</h4>
+          <p data-lang="cs">Správná implementace Basic nebo Advanced Consent Mode. Modelování zachrání data i od uživatelů, kteří odmítli souhlas.</p>
+          <p data-lang="en">Correct implementation of Basic or Advanced Consent Mode. Modelling recovers data even from users who declined consent.</p>
+        </div>
+      </div>
+
+      <div class="rp-deliver">
+        <svg class="rp-deliver-icon" width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <circle cx="11" cy="11" r="10" stroke="#d4920e" stroke-width="1.5"/>
+          <polyline points="7,11 10,14 15,8" stroke="#d4920e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div>
+          <h4 data-lang="cs">GA4 server-side tagy</h4>
+          <h4 data-lang="en">GA4 server-side tags</h4>
+          <p data-lang="cs">Přesun GA4 měření na server. Přesnost dat, první cookies z vaší domény, delší životnost.</p>
+          <p data-lang="en">Moving GA4 measurement to the server. Data accuracy, first-party cookies from your domain, extended lifespan.</p>
+        </div>
+      </div>
+
+      <div class="rp-deliver">
+        <svg class="rp-deliver-icon" width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <circle cx="11" cy="11" r="10" stroke="#d4920e" stroke-width="1.5"/>
+          <polyline points="7,11 10,14 15,8" stroke="#d4920e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div>
+          <h4 data-lang="cs">Meta Conversions API (CAPI)</h4>
+          <h4 data-lang="en">Meta Conversions API (CAPI)</h4>
+          <p data-lang="cs">Přímé odesílání konverzí do Meta — bez závislosti na pixelu v prohlížeči. Duplicity odstraní event deduplication.</p>
+          <p data-lang="en">Direct conversion sending to Meta — without relying on the browser pixel. Duplicates removed via event deduplication.</p>
+        </div>
+      </div>
+
+      <div class="rp-deliver">
+        <svg class="rp-deliver-icon" width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <circle cx="11" cy="11" r="10" stroke="#d4920e" stroke-width="1.5"/>
+          <polyline points="7,11 10,14 15,8" stroke="#d4920e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div>
+          <h4 data-lang="cs">Google Ads Enhanced Conversions</h4>
+          <h4 data-lang="en">Google Ads Enhanced Conversions</h4>
+          <p data-lang="cs">Hashovná zákaznická data doplní mezery v konverzním měření. Google Ads dostane přesnější signál pro optimalizaci.</p>
+          <p data-lang="en">Hashed customer data fills gaps in conversion measurement. Google Ads gets a more accurate signal for optimisation.</p>
+        </div>
+      </div>
+
+      <div class="rp-deliver">
+        <svg class="rp-deliver-icon" width="22" height="22" viewBox="0 0 22 22" fill="none">
+          <circle cx="11" cy="11" r="10" stroke="#d4920e" stroke-width="1.5"/>
+          <polyline points="7,11 10,14 15,8" stroke="#d4920e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div>
+          <h4 data-lang="cs">Monitoring a alerting</h4>
+          <h4 data-lang="en">Monitoring &amp; alerting</h4>
+          <p data-lang="cs">Nastavím sledování klíčových metrik. Při výpadku tagging serveru dostanete upozornění dřív, než si všimnete v datech.</p>
+          <p data-lang="en">I'll set up monitoring for key metrics. If the tagging server fails, you'll be notified before you notice it in the data.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- LONG-TERM -->
+  <div class="rp-section-narrow">
+    <span class="rp-label"><span data-lang="cs">Dlouhodobá spolupráce</span><span data-lang="en">Long-term partnership</span></span>
+    <h2 class="rp-h2" data-lang="cs">Tracking se vyvíjí<br><em>s regulacemi.</em></h2>
+    <h2 class="rp-h2" data-lang="en">Tracking evolves<br><em>with regulations.</em></h2>
+    <p class="rp-lead" style="margin-top:.9rem" data-lang="cs">Svět bez third-party cookies se stále mění. iOS aktualizace, nové regulace, nové prohlížeče — vždy bude co ladit. Většina klientů se mnou spolupracuje průběžně, aby tracking držel krok.</p>
+    <p class="rp-lead" style="margin-top:.9rem" data-lang="en">The cookieless world keeps changing. iOS updates, new regulations, new browsers — there's always something to tune. Most clients work with me on an ongoing basis to keep tracking up to date.</p>
+
+    <div class="rp-phases">
+      <div class="rp-phase">
+        <div class="rp-phase-num"><span data-lang="cs">Fáze 01</span><span data-lang="en">Phase 01</span></div>
+        <div class="rp-phase-title"><span data-lang="cs">Týdny 1–3: nasazení</span><span data-lang="en">Weeks 1–3: deployment</span></div>
+        <p data-lang="cs">sGTM server běží, tagy migrovány, Consent Mode aktivní. Vidíte první nárůst dat.</p>
+        <p data-lang="en">sGTM server running, tags migrated, Consent Mode active. You see the first data increase.</p>
+      </div>
+      <div class="rp-phase">
+        <div class="rp-phase-num"><span data-lang="cs">Fáze 02</span><span data-lang="en">Phase 02</span></div>
+        <div class="rp-phase-title"><span data-lang="cs">Měsíce 2–4: optimalizace</span><span data-lang="en">Months 2–4: optimisation</span></div>
+        <p data-lang="cs">Doladění na základě reálných dat. Nové tagy, nové platformy, ověření kvality konverzních signálů.</p>
+        <p data-lang="en">Fine-tuning based on real data. New tags, new platforms, conversion signal quality verification.</p>
+      </div>
+      <div class="rp-phase">
+        <div class="rp-phase-num"><span data-lang="cs">Průběžně</span><span data-lang="en">Ongoing</span></div>
+        <div class="rp-phase-title"><span data-lang="cs">Průběžně: adaptace</span><span data-lang="en">Ongoing: adaptation</span></div>
+        <p data-lang="cs">Regulace se mění, prohlížeče aktualizují. Tracking zůstává funkční, vy se nemusíte starat.</p>
+        <p data-lang="en">Regulations change, browsers update. Tracking stays functional, you don't have to worry.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- Z BLOGU -->
+  <div class="rp-section-narrow">
+    <span class="rp-label" data-lang="cs">Z blogu</span>
+    <span class="rp-label" data-lang="en">From the blog</span>
+    <div class="rp-blog-links">
+      <a href="/blog/sgtm-pro-eshop.html" class="rp-blog-link">
+        <div class="rp-blog-link-tag">Měření dat</div>
+        <div class="rp-blog-link-title">Server-side GTM pro e-shop: jak přestat ztrácet konverzní data →</div>
+      </a>
+      <a href="/blog/1st-party-data-ecommerce.html" class="rp-blog-link">
+        <div class="rp-blog-link-tag">Měření dat</div>
+        <div class="rp-blog-link-title">1st party data pro e-commerce: jak měřit v době, kdy cookies mizí →</div>
+      </a>
+      <a href="/blog/consent-mode-v2.html" class="rp-blog-link">
+        <div class="rp-blog-link-tag">Měření dat</div>
+        <div class="rp-blog-link-title">Consent Mode v2: proč ho potřebujete a jak ho správně nastavit →</div>
+      </a>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- CTA / FORM -->
+  <div class="rp-cta" id="kontakt">
+    <div class="rp-cta-inner">
+      <div class="rp-cta-text">
+        <span class="rp-tag"><span data-lang="cs">Pojďme začít</span><span data-lang="en">Let's get started</span></span>
+        <h2 data-lang="cs">Zjistěte kolik dat<br><em>ztrácíte.</em></h2>
+        <h2 data-lang="en">Find out how much data<br><em>you're losing.</em></h2>
+        <p data-lang="cs">Napište mi a udělám bezplatný audit vašeho měření. Ukážu přesně kolik konverzí mizí a co to stojí vaše kampaně.</p>
+        <p data-lang="en">Write to me and I'll do a free measurement audit. I'll show exactly how many conversions are disappearing and what it's costing your campaigns.</p>
+      </div>
+      <form class="rp-form" id="rp-form" action="https://formspree.io/f/xaqvejza" method="POST">
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none" />
+        <input type="text" name="name"
+          data-ph-cs="Jméno" data-ph-en="Name"
+          placeholder="Jméno" required />
+        <input type="email" name="email"
+          data-ph-cs="E-mail" data-ph-en="E-mail"
+          placeholder="E-mail" required />
+        <input type="text" name="company"
+          data-ph-cs="Firma / e-shop (volitelné)" data-ph-en="Company / e-shop (optional)"
+          placeholder="Firma / e-shop (volitelné)" />
+        <textarea name="message"
+          data-ph-cs="Jaký e-shop máte a jaké reklamní platformy používáte?"
+          data-ph-en="What e-shop do you have and which ad platforms do you use?"
+          placeholder="Jaký e-shop máte a jaké reklamní platformy používáte?"
+          required></textarea>
+        <button type="submit" class="cta-btn" id="rp-submit"><span data-lang="cs">Odeslat zprávu</span><span data-lang="en">Send message</span></button>
+        <p class="form-error" hidden></p>
+        <p class="form-recaptcha-note">Chráněno reCAPTCHA (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy</a> &amp; <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Terms</a>).</p>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Flowstack · Jan Veverka · Czech Republic</p>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/jan-veverka-39b24938" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="tel:+420602603423">+420 602 603 423</a>
+      <a href="/">&#8592; <span data-lang="cs">Hlavní stránka</span><span data-lang="en">Homepage</span></a>
+      <a href="/blog/">Blog</a>
+    </div>
+  </footer>
+
+  <script>
+    /* Nav scroll */
+    var nav = document.getElementById('navWrap');
+    window.addEventListener('scroll', function() {
+      nav.classList.toggle('scrolled', window.scrollY > 10);
+    }, {passive:true});
+
+    /* Language switching */
+    function setLang(lang) {
+      document.documentElement.lang = lang === 'cs' ? 'cs' : 'en';
+      document.body.className = 'lang-' + lang;
+      document.querySelectorAll('.lang-btn').forEach(function(btn) {
+        btn.classList.toggle('active', btn.textContent.toLowerCase() === lang || (lang === 'cs' && btn.textContent === 'CZ'));
+      });
+      document.querySelectorAll('[data-ph-cs]').forEach(function(el) {
+        el.placeholder = lang === 'en' ? el.dataset.phEn : el.dataset.phCs;
+      });
+      localStorage.setItem('lang', lang);
+    }
+    (function() {
+      var saved = localStorage.getItem('lang') || 'cs';
+      setLang(saved);
+    })();
+
+    /* Form */
+    (function() {
+      var form = document.getElementById('rp-form');
+      var btn  = document.getElementById('rp-submit');
+      var err  = form.querySelector('.form-error');
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        btn.disabled = true;
+        btn.textContent = document.body.classList.contains('lang-en') ? 'Sending…' : 'Odesílám…';
+        grecaptcha.ready(function() {
+          grecaptcha.execute('6LevXNgsAAAAALh4ZbMWnXz73v20fOgPLx_3zlRK', {action:'submit'}).then(function(token) {
+            var data = new FormData(form);
+            data.append('g-recaptcha-response', token);
+            fetch(form.action, {method:'POST', body:data, headers:{Accept:'application/json'}})
+              .then(function(r) { return r.json(); })
+              .then(function(r) {
+                if (r.ok) {
+                  var isEn = document.body.classList.contains('lang-en');
+                  form.innerHTML = '<p class="form-success">' + (isEn ? 'Message sent. I\'ll get back to you within 24 hours.' : 'Zpráva odeslána. Ozvu se do 24 hodin.') + '</p>';
+                  window.dataLayer = window.dataLayer || [];
+                  window.dataLayer.push({event:'form_submit', form_name:'contact', form_location:'sgtm_cta'});
+                } else {
+                  var isEn = document.body.classList.contains('lang-en');
+                  err.textContent = isEn ? 'Failed to send. Please try again.' : 'Nepodařilo se odeslat. Zkuste to znovu.';
+                  err.hidden = false; btn.disabled = false;
+                  btn.textContent = isEn ? 'Send message' : 'Odeslat zprávu';
+                }
+              })
+              .catch(function() {
+                var isEn = document.body.classList.contains('lang-en');
+                err.textContent = isEn ? 'Network error. Please try again.' : 'Nepodařilo se odeslat. Zkuste to znovu.';
+                err.hidden = false; btn.disabled = false;
+                btn.textContent = isEn ? 'Send message' : 'Odeslat zprávu';
+              });
+          });
+        });
+      });
+    document.querySelectorAll('.nav-dropdown').forEach(function(dd) {
+      var menu = dd.querySelector('.nav-dropdown-menu');
+      var trigger = dd.querySelector(':scope > a');
+      var closeTimer;
+      function openMenu() { clearTimeout(closeTimer); dd.classList.add('open'); trigger.setAttribute('aria-expanded','true'); }
+      function closeMenu() { dd.classList.remove('open'); trigger.setAttribute('aria-expanded','false'); }
+      dd.addEventListener('mouseenter', openMenu);
+      dd.addEventListener('mouseleave', function() { closeTimer = setTimeout(closeMenu, 300); });
+      trigger.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowDown') { e.preventDefault(); openMenu(); var f = menu.querySelector('a'); if (f) f.focus(); }
+        else if (e.key === 'Escape') { closeMenu(); }
+      });
+      var items = Array.from(menu.querySelectorAll('a'));
+      items.forEach(function(item, i) {
+        item.addEventListener('keydown', function(e) {
+          if (e.key === 'ArrowDown') { e.preventDefault(); if (items[i+1]) items[i+1].focus(); }
+          else if (e.key === 'ArrowUp') { e.preventDefault(); if (i===0) { closeMenu(); trigger.focus(); } else items[i-1].focus(); }
+          else if (e.key === 'Escape') { closeMenu(); trigger.focus(); }
+          else if (e.key === 'Tab') { setTimeout(closeMenu, 50); }
+        });
+      });
+    });
+
+    })();
+  </script>
+</body>
+</html>
