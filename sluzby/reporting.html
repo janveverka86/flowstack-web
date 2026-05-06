@@ -77,7 +77,9 @@
     .cta-btn:hover { opacity:.85; }
 
     /* HERO */
-    .rp-hero { position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:4rem 2rem 5rem; display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; }
+    .rp-hero { position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:4rem 2rem 3rem; }
+    .rp-visual { position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:0 2rem 4rem; }
+    .rp-visual svg { display:block; width:100%; height:auto; }
     .rp-hero h1 { font-family:'Playfair Display',serif; font-size:clamp(2.6rem,5vw,3.8rem); font-weight:400; letter-spacing:-.03em; line-height:1.05; margin-bottom:1.2rem; }
     .rp-hero h1 em { font-style:italic; color:var(--accent); }
     .rp-hero-lead { font-size:1.05rem; color:#6a6258; line-height:1.8; margin-bottom:2rem; max-width:440px; }
@@ -171,7 +173,6 @@
 
     /* RESPONSIVE */
     @media(max-width:900px) {
-      .rp-hero { grid-template-columns:1fr; gap:3rem; }
       .rp-outcomes-grid { grid-template-columns:1fr; }
       .rp-steps { grid-template-columns:1fr 1fr; gap:2.5rem 1rem; }
       .rp-steps-line { display:none; }
@@ -181,6 +182,7 @@
     }
     @media(max-width:600px) {
       .rp-hero { padding:3rem 1.5rem 4rem; }
+      .rp-visual { display:none; }
       .rp-section, .rp-process, .rp-section-narrow { padding:4rem 1.5rem; }
       .rp-steps { grid-template-columns:1fr; }
       nav { padding:1rem 1.2rem; }
@@ -259,98 +261,95 @@
       <a href="#kontakt" class="cta-btn"><span data-lang="cs">Nezávazná konzultace zdarma</span><span data-lang="en">Free consultation, no commitment</span></a>
     </div>
 
-    <!-- Hero infographic: data sources → BigQuery → Dashboard -->
-    <div>
-      <svg viewBox="0 0 500 310" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
-        <!-- DATA SOURCES -->
-        <rect x="0" y="24" width="116" height="34" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
-        <text x="10" y="37" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" letter-spacing="1">E-SHOP</text>
-        <text x="10" y="51" fill="#1c1814" font-family="'Inter',sans-serif" font-size="9" font-weight="500">Shoptet / WooCommerce</text>
+  </div>
 
-        <rect x="0" y="70" width="116" height="34" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
-        <text x="10" y="83" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" letter-spacing="1" data-lang="cs">ÚČETNICTVÍ</text>
-        <text x="10" y="83" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" letter-spacing="1" data-lang="en">ACCOUNTING</text>
-        <text x="10" y="97" fill="#1c1814" font-family="'Inter',sans-serif" font-size="9" font-weight="500">Pohoda / Fakturoid</text>
+  <div class="rp-visual">
+    <svg viewBox="0 0 1060 290" xmlns="http://www.w3.org/2000/svg">
+        <rect width="1060" height="290" fill="#f8f7f4"/>
 
-        <rect x="0" y="116" width="116" height="34" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
-        <text x="10" y="129" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" letter-spacing="1" data-lang="cs">ANALYTIKA</text>
-        <text x="10" y="129" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" letter-spacing="1" data-lang="en">ANALYTICS</text>
-        <text x="10" y="143" fill="#1c1814" font-family="'Inter',sans-serif" font-size="9" font-weight="500">GA4 / BigQuery Export</text>
+        <!-- KPI 1: TRŽBY -->
+        <rect x="20" y="24" width="224" height="100" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="32" y="42" fill="#7a7269" font-family="'DM Mono',monospace" font-size="8" letter-spacing="1.5" data-lang="cs">CELKOVÉ TRŽBY</text>
+        <text x="32" y="42" fill="#7a7269" font-family="'DM Mono',monospace" font-size="8" letter-spacing="1.5" data-lang="en">TOTAL REVENUE</text>
+        <text x="32" y="86" fill="#1c1814" font-family="'Playfair Display',serif" font-size="26">12,4 M Kč</text>
+        <text x="32" y="106" fill="#d4920e" font-family="'DM Mono',monospace" font-size="8" data-lang="cs">▲ +18 % vs. loňský rok</text>
+        <text x="32" y="106" fill="#d4920e" font-family="'DM Mono',monospace" font-size="8" data-lang="en">▲ +18 % vs. last year</text>
 
-        <rect x="0" y="162" width="116" height="34" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
-        <text x="10" y="175" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" letter-spacing="1" data-lang="cs">REKLAMA</text>
-        <text x="10" y="175" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" letter-spacing="1" data-lang="en">ADVERTISING</text>
-        <text x="10" y="189" fill="#1c1814" font-family="'Inter',sans-serif" font-size="9" font-weight="500">Meta &amp; Google Ads</text>
+        <!-- KPI 2: OBJEDNÁVKY -->
+        <rect x="256" y="24" width="224" height="100" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="268" y="42" fill="#7a7269" font-family="'DM Mono',monospace" font-size="8" letter-spacing="1.5" data-lang="cs">OBJEDNÁVKY</text>
+        <text x="268" y="42" fill="#7a7269" font-family="'DM Mono',monospace" font-size="8" letter-spacing="1.5" data-lang="en">ORDERS</text>
+        <text x="268" y="86" fill="#1c1814" font-family="'Playfair Display',serif" font-size="26">3 847</text>
+        <text x="268" y="106" fill="#d4920e" font-family="'DM Mono',monospace" font-size="8" data-lang="cs">▲ +12 % vs. loňský rok</text>
+        <text x="268" y="106" fill="#d4920e" font-family="'DM Mono',monospace" font-size="8" data-lang="en">▲ +12 % vs. last year</text>
 
-        <rect x="0" y="208" width="116" height="34" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
-        <text x="10" y="221" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" letter-spacing="1" data-lang="cs">SROVNÁVAČ</text>
-        <text x="10" y="221" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" letter-spacing="1" data-lang="en">COMPARISON</text>
-        <text x="10" y="235" fill="#1c1814" font-family="'Inter',sans-serif" font-size="9" font-weight="500">Heuréka / Zboží.cz</text>
+        <!-- KPI 3: ROAS (accent left border) -->
+        <rect x="20" y="136" width="3" height="100" fill="#d4920e"/>
+        <rect x="23" y="136" width="221" height="100" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="35" y="154" fill="#7a7269" font-family="'DM Mono',monospace" font-size="8" letter-spacing="1.5" data-lang="cs">PRŮMĚRNÝ ROAS</text>
+        <text x="35" y="154" fill="#7a7269" font-family="'DM Mono',monospace" font-size="8" letter-spacing="1.5" data-lang="en">AVG. ROAS</text>
+        <text x="35" y="198" fill="#d4920e" font-family="'Playfair Display',serif" font-size="26">4,2 ×</text>
+        <text x="35" y="218" fill="#7a7269" font-family="'DM Mono',monospace" font-size="8" data-lang="cs">▼ −0,3 vs. loňský rok</text>
+        <text x="35" y="218" fill="#7a7269" font-family="'DM Mono',monospace" font-size="8" data-lang="en">▼ −0.3 vs. last year</text>
 
-        <!-- Connector lines -->
-        <line x1="116" y1="41"  x2="182" y2="147" stroke="#ddd8d0" stroke-width="1" stroke-dasharray="4,3"/>
-        <line x1="116" y1="87"  x2="182" y2="147" stroke="#ddd8d0" stroke-width="1" stroke-dasharray="4,3"/>
-        <line x1="116" y1="133" x2="182" y2="147" stroke="#ddd8d0" stroke-width="1" stroke-dasharray="4,3"/>
-        <line x1="116" y1="179" x2="182" y2="147" stroke="#ddd8d0" stroke-width="1" stroke-dasharray="4,3"/>
-        <line x1="116" y1="225" x2="182" y2="147" stroke="#ddd8d0" stroke-width="1" stroke-dasharray="4,3"/>
+        <!-- KPI 4: AOV -->
+        <rect x="256" y="136" width="224" height="100" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="268" y="154" fill="#7a7269" font-family="'DM Mono',monospace" font-size="8" letter-spacing="1.5" data-lang="cs">PRŮM. OBJEDNÁVKA</text>
+        <text x="268" y="154" fill="#7a7269" font-family="'DM Mono',monospace" font-size="8" letter-spacing="1.5" data-lang="en">AVG. ORDER VALUE</text>
+        <text x="268" y="198" fill="#1c1814" font-family="'Playfair Display',serif" font-size="26">3 224 Kč</text>
+        <text x="268" y="218" fill="#d4920e" font-family="'DM Mono',monospace" font-size="8" data-lang="cs">▲ +5 % vs. loňský rok</text>
+        <text x="268" y="218" fill="#d4920e" font-family="'DM Mono',monospace" font-size="8" data-lang="en">▲ +5 % vs. last year</text>
 
-        <!-- BIGQUERY -->
-        <rect x="182" y="108" width="112" height="78" fill="#f4f2ee" stroke="#d4920e" stroke-width="1.5"/>
-        <text x="238" y="127" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7" text-anchor="middle" letter-spacing="1.5">BIGQUERY</text>
-        <line x1="194" y1="133" x2="282" y2="133" stroke="#ddd8d0" stroke-width=".5"/>
-        <text x="194" y="145" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6">SELECT revenue,</text>
-        <text x="194" y="156" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6">  roas, margin</text>
-        <text x="194" y="167" fill="#d4920e" font-family="'DM Mono',monospace" font-size="6" data-lang="cs">→ 94 820 řádků</text>
-        <text x="194" y="167" fill="#d4920e" font-family="'DM Mono',monospace" font-size="6" data-lang="en">→ 94,820 rows</text>
+        <!-- Separator -->
+        <line x1="498" y1="24" x2="498" y2="258" stroke="#ddd8d0" stroke-width="1"/>
 
-        <!-- Arrow -->
-        <line x1="294" y1="147" x2="332" y2="147" stroke="#d4920e" stroke-width="1.5"/>
-        <polygon points="332,143 342,147 332,151" fill="#d4920e"/>
+        <!-- BAR CHART -->
+        <text x="516" y="38" fill="#7a7269" font-family="'DM Mono',monospace" font-size="8" letter-spacing="1.5" data-lang="cs">TRŽBY PODLE MĚSÍCE (Kč)</text>
+        <text x="516" y="38" fill="#7a7269" font-family="'DM Mono',monospace" font-size="8" letter-spacing="1.5" data-lang="en">REVENUE BY MONTH (CZK)</text>
 
-        <!-- DASHBOARD -->
-        <rect x="344" y="32" width="156" height="240" fill="#f8f7f4" stroke="#ddd8d0" stroke-width="1"/>
-        <rect x="344" y="32" width="156" height="20" fill="#ede8e0"/>
-        <text x="354" y="46" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" letter-spacing=".5">LOOKER STUDIO</text>
-        <rect x="352" y="60" width="66" height="30" fill="#ede8e0" stroke="#ddd8d0" stroke-width=".5"/>
-        <text x="357" y="71" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5" data-lang="cs">TRŽBY</text>
-        <text x="357" y="71" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5" data-lang="en">REVENUE</text>
-        <text x="357" y="83" fill="#1c1814" font-family="'Inter',sans-serif" font-size="9" font-weight="600">12,4 M</text>
-        <rect x="426" y="60" width="66" height="30" fill="#ede8e0" stroke="#ddd8d0" stroke-width=".5"/>
-        <text x="431" y="71" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5">ROAS</text>
-        <text x="431" y="83" fill="#d4920e" font-family="'Inter',sans-serif" font-size="9" font-weight="600">4,2 ×</text>
-        <rect x="352" y="100" width="140" height="60" fill="#ede8e0" stroke="#ddd8d0" stroke-width=".5"/>
-        <text x="357" y="111" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5" data-lang="cs">TRŽBY / MĚSÍC</text>
-        <text x="357" y="111" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5" data-lang="en">REVENUE / MONTH</text>
-        <rect x="360" y="137" width="12" height="14" fill="#d4d0c8"/>
-        <rect x="376" y="130" width="12" height="21" fill="#d4d0c8"/>
-        <rect x="392" y="124" width="12" height="27" fill="#d4920e" opacity=".5"/>
-        <rect x="408" y="118" width="12" height="33" fill="#d4920e" opacity=".75"/>
-        <rect x="424" y="112" width="12" height="39" fill="#d4920e"/>
-        <rect x="440" y="115" width="12" height="36" fill="#d4920e" opacity=".85"/>
-        <rect x="352" y="170" width="140" height="56" fill="#ede8e0" stroke="#ddd8d0" stroke-width=".5"/>
-        <text x="357" y="181" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5" data-lang="cs">ROAS PO KANÁLECH</text>
-        <text x="357" y="181" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5" data-lang="en">ROAS BY CHANNEL</text>
-        <text x="357" y="194" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5">Google</text>
-        <rect x="390" y="187" width="94" height="8" fill="#f4f0e8" stroke="#ddd8d0" stroke-width=".5"/>
-        <rect x="390" y="187" width="66" height="8" fill="#d4920e" opacity=".75"/>
-        <text x="357" y="208" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5">Meta</text>
-        <rect x="390" y="201" width="94" height="8" fill="#f4f0e8" stroke="#ddd8d0" stroke-width=".5"/>
-        <rect x="390" y="201" width="48" height="8" fill="#d4920e" opacity=".55"/>
-        <text x="357" y="222" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5">Email</text>
-        <rect x="390" y="215" width="94" height="8" fill="#f4f0e8" stroke="#ddd8d0" stroke-width=".5"/>
-        <rect x="390" y="215" width="82" height="8" fill="#d4920e" opacity=".9"/>
-        <rect x="352" y="234" width="140" height="30" fill="#ede8e0" stroke="#ddd8d0" stroke-width=".5"/>
-        <text x="357" y="246" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5" data-lang="cs">TOP PRODUKTY</text>
-        <text x="357" y="246" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5" data-lang="en">TOP PRODUCTS</text>
-        <text x="357" y="257" fill="#5a5048" font-family="'Inter',sans-serif" font-size="6" data-lang="cs">Produkt A</text>
-        <text x="357" y="257" fill="#5a5048" font-family="'Inter',sans-serif" font-size="6" data-lang="en">Product A</text>
-        <text x="484" y="257" fill="#d4920e" font-family="'DM Mono',monospace" font-size="6" text-anchor="end">124 300 Kč</text>
+        <!-- Y-axis labels -->
+        <text x="558" y="63" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" text-anchor="end">3,6 M</text>
+        <text x="558" y="112" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" text-anchor="end">2,7 M</text>
+        <text x="558" y="161" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" text-anchor="end">1,8 M</text>
+        <text x="558" y="210" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" text-anchor="end">0,9 M</text>
 
-        <!-- Annotation -->
-        <text x="238" y="280" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" text-anchor="middle" letter-spacing=".5" data-lang="cs">automatická aktualizace každý den</text>
-        <text x="238" y="280" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" text-anchor="middle" letter-spacing=".5" data-lang="en">automatic daily update</text>
-      </svg>
-    </div>
+        <!-- Grid lines -->
+        <line x1="562" y1="60" x2="1040" y2="60" stroke="#ddd8d0" stroke-width=".5"/>
+        <line x1="562" y1="109" x2="1040" y2="109" stroke="#ddd8d0" stroke-width=".5"/>
+        <line x1="562" y1="158" x2="1040" y2="158" stroke="#ddd8d0" stroke-width=".5"/>
+        <line x1="562" y1="207" x2="1040" y2="207" stroke="#ddd8d0" stroke-width=".5"/>
+        <line x1="562" y1="258" x2="1040" y2="258" stroke="#ddd8d0" stroke-width="1"/>
+
+        <!-- Bars: Pro 1.8M · Led 2.1M · Úno 2.3M · Bře 2.8M · Dub 3.4M · Kvě 3.6M -->
+        <rect x="566" y="160" width="55" height="98" fill="#d4d0c8"/>
+        <rect x="633" y="143" width="55" height="115" fill="#d4d0c8"/>
+        <rect x="700" y="132" width="55" height="126" fill="#d4920e" opacity=".4"/>
+        <rect x="767" y="104" width="55" height="154" fill="#d4920e" opacity=".65"/>
+        <rect x="834" y="71" width="55" height="187" fill="#d4920e" opacity=".85"/>
+        <rect x="901" y="60" width="55" height="198" fill="#d4920e"/>
+
+        <!-- Value labels -->
+        <text x="593" y="154" fill="#7a7269" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle">1,8 M</text>
+        <text x="660" y="137" fill="#7a7269" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle">2,1 M</text>
+        <text x="727" y="126" fill="#7a7269" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle">2,3 M</text>
+        <text x="794" y="98" fill="#7a7269" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle">2,8 M</text>
+        <text x="861" y="65" fill="#d4920e" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle" font-weight="bold">3,4 M</text>
+        <text x="928" y="54" fill="#d4920e" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle" font-weight="bold">3,6 M</text>
+
+        <!-- Month labels -->
+        <text x="593" y="272" fill="#7a7269" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle" data-lang="cs">Pro</text>
+        <text x="593" y="272" fill="#7a7269" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle" data-lang="en">Dec</text>
+        <text x="660" y="272" fill="#7a7269" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle" data-lang="cs">Led</text>
+        <text x="660" y="272" fill="#7a7269" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle" data-lang="en">Jan</text>
+        <text x="727" y="272" fill="#7a7269" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle" data-lang="cs">Úno</text>
+        <text x="727" y="272" fill="#7a7269" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle" data-lang="en">Feb</text>
+        <text x="794" y="272" fill="#7a7269" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle" data-lang="cs">Bře</text>
+        <text x="794" y="272" fill="#7a7269" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle" data-lang="en">Mar</text>
+        <text x="861" y="272" fill="#7a7269" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle" data-lang="cs">Dub</text>
+        <text x="861" y="272" fill="#7a7269" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle" data-lang="en">Apr</text>
+        <text x="928" y="272" fill="#d4920e" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle" data-lang="cs">Kvě</text>
+        <text x="928" y="272" fill="#d4920e" font-family="'DM Mono',monospace" font-size="8" text-anchor="middle" data-lang="en">May</text>
+  </svg>
   </div>
 
   <hr class="divider" />
