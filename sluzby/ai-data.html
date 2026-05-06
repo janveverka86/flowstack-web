@@ -46,19 +46,19 @@
     body.lang-cs text[data-lang="cs"] { display:inline; }
 
     /* NAV */
-    .nav-wrap { position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(244,240,232,.88); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-bottom:1px solid transparent; transition:border-color .3s; padding-top:env(safe-area-inset-top); }
-    .nav-wrap.scrolled { border-bottom-color:var(--border); }
-    nav { display:flex; justify-content:space-between; align-items:center; padding:1.2rem 2rem; max-width:1100px; margin:0 auto; }
-    .logo { font-family:'Playfair Display',serif; font-size:1.7rem; color:var(--fg); letter-spacing:-.02em; text-decoration:none; line-height:1; }
-    .logo span { color:var(--accent); }
-    .logo-sub { font-family:'Inter',sans-serif; font-size:.62rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-top:.35rem; font-weight:400; }
+    .nav-wrap { position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(28,24,20,.95); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-bottom:1px solid transparent; transition:padding .3s ease; padding-top:env(safe-area-inset-top); }
+    .nav-wrap.scrolled .logo-sub { max-height:0; opacity:0; margin-top:0; } .nav-wrap.scrolled nav { padding:.85rem 2rem; }
+    nav { display:flex; justify-content:space-between; align-items:center; padding:1.4rem 2rem; max-width:1100px; margin:0 auto; transition:padding .35s ease; }
+    .logo { font-family:'Playfair Display',serif; font-size:1.7rem; color:#f4f0e8; letter-spacing:-.02em; text-decoration:none; line-height:1; }
+    .logo > span { color:var(--accent); }
+    .logo-sub { font-family:'Inter',sans-serif; font-size:.62rem; letter-spacing:.12em; text-transform:uppercase; color:rgba(244,240,232,.5); margin-top:.35rem; font-weight:400; max-height:2rem; overflow:hidden; transition:max-height .3s ease,opacity .3s ease,margin-top .3s ease; }
     .nav-links { display:flex; align-items:center; gap:2rem; }
-    .nav-sep { width:1px; height:14px; background:var(--border); align-self:center; }
-    nav a { color:var(--muted); text-decoration:none; font-size:.82rem; font-weight:400; letter-spacing:.01em; transition:color .2s; }
-    nav a:hover { color:var(--accent); }
+    .nav-sep { width:1px; height:14px; background:rgba(255,255,255,.18); align-self:center; }
+    nav a { color:rgba(244,240,232,.65); text-decoration:none; font-size:.82rem; font-weight:400; letter-spacing:.01em; transition:color .2s; }
+    nav a:not(.logo):hover { color:var(--accent); }
     .nav-spacer { height:calc(68px + env(safe-area-inset-top, 0px)); }
     .lang-switcher { display:flex; gap:.4rem; margin-left:1rem; padding-left:1rem; border-left:1px solid var(--border); }
-    .lang-btn { background:none; border:1px solid transparent; color:var(--muted); font-family:'DM Mono',monospace; font-size:.7rem; letter-spacing:.12em; text-transform:uppercase; cursor:pointer; padding:.25rem .5rem; transition:color .2s,border-color .2s; }
+    .lang-btn { background:none; border:1px solid transparent; color:rgba(244,240,232,.6); font-family:'Inter',sans-serif; font-size:.7rem; letter-spacing:.12em; text-transform:uppercase; cursor:pointer; padding:.25rem .5rem; transition:color .2s,border-color .2s; }
     .lang-btn:hover { color:var(--accent); }
     .lang-btn.active { color:var(--accent); border-color:var(--accent); }
 
@@ -106,7 +106,7 @@
     .rp-preview-dots { display:flex; gap:.35rem; }
     .rp-preview-dots i { display:inline-block; width:9px; height:9px; border-radius:50%; background:var(--border); font-style:normal; }
     .rp-preview-dots i:first-child { background:var(--accent); opacity:.75; }
-    .rp-preview-label { font-family:'DM Mono',monospace; font-size:.63rem; color:var(--muted); letter-spacing:.08em; text-transform:uppercase; }
+    .rp-preview-label { font-family:'Inter',sans-serif; font-size:.63rem; color:var(--muted); letter-spacing:.08em; text-transform:uppercase; }
     .rp-highlight { background:#ede8e0; border:1px solid var(--border); border-left:3px solid var(--accent); padding:1.4rem 2rem; margin-top:2rem; position:relative; z-index:1; }
     .rp-highlight p { font-size:.88rem; color:#6a6258; line-height:1.8; margin:0; }
 
@@ -129,15 +129,15 @@
     .rp-form input:focus, .rp-form textarea:focus { border-color:var(--accent); }
     .rp-form textarea { min-height:110px; resize:vertical; }
     .rp-form button.cta-btn { width:100%; cursor:pointer; display:block; }
-    .form-success { font-family:'DM Mono',monospace; font-size:.82rem; color:var(--accent); letter-spacing:.05em; text-align:center; padding:1.5rem; border:1px solid var(--accent); }
-    .form-error { font-family:'DM Mono',monospace; font-size:.75rem; color:#c0392b; letter-spacing:.03em; margin-top:.5rem; }
-    .form-recaptcha-note { font-size:.48rem; color:var(--border); margin-top:.5rem; line-height:1.6; }
+    .form-success { font-family:'Inter',sans-serif; font-size:.82rem; color:var(--accent); letter-spacing:.05em; text-align:center; padding:1.5rem; border:1px solid var(--accent); }
+    .form-error { font-family:'Inter',sans-serif; font-size:.75rem; color:#c0392b; letter-spacing:.03em; margin-top:.5rem; }
+    .form-recaptcha-note { font-size:10px; transform:scale(.65); transform-origin:left top; display:block; color:rgba(160,150,135,.45); margin-top:.3rem; line-height:1.5; }
     .form-recaptcha-note a { color:inherit; text-decoration:none; }
     .form-recaptcha-note a:hover { color:var(--muted); }
     .grecaptcha-badge { visibility:hidden !important; }
 
     /* FOOTER */
-    footer { position:relative; z-index:1; border-top:1px solid var(--border); padding:2rem; max-width:1100px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+    footer { position:relative; z-index:1; background:#1c1814; border-top:1px solid rgba(255,255,255,.08); padding:2rem; } .footer-inner { max-width:1100px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
     footer p { font-family:'Inter',sans-serif; font-size:.72rem; color:var(--muted); letter-spacing:.04em; }
     footer a { font-family:'Inter',sans-serif; color:var(--muted); text-decoration:none; font-size:.72rem; letter-spacing:.04em; transition:color .2s; }
     footer a:hover { color:var(--accent); }
@@ -146,7 +146,7 @@
     /* LONG-TERM */
     .rp-phases { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); border:1px solid var(--border); margin-top:2.5rem; }
     .rp-phase { background:var(--bg); padding:2rem 1.8rem; }
-    .rp-phase-num { font-family:'DM Mono',monospace; font-size:.63rem; color:var(--accent); letter-spacing:.14em; text-transform:uppercase; margin-bottom:.8rem; }
+    .rp-phase-num { font-family:'Inter',sans-serif; font-size:.63rem; color:var(--accent); letter-spacing:.14em; text-transform:uppercase; margin-bottom:.8rem; }
     .rp-phase-title { font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:400; letter-spacing:-.01em; margin-bottom:.6rem; color:var(--fg); }
     .rp-phase p { font-size:.85rem; color:#6a6258; line-height:1.72; }
     @media(max-width:640px) { .rp-phases { grid-template-columns:1fr; } }
@@ -250,22 +250,22 @@
       <svg viewBox="0 0 500 310" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
         <!-- DATA SOURCES - left column -->
         <rect x="0" y="24" width="116" height="30" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
-        <text x="8" y="36" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5.5" letter-spacing=".8" data-lang="cs">OBJEDNÁVKY</text>
-        <text x="8" y="36" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5.5" letter-spacing=".8" data-lang="en">ORDERS</text>
+        <text x="8" y="36" fill="#7a7269" font-family="'Inter',sans-serif" font-size="5.5" letter-spacing=".8" data-lang="cs">OBJEDNÁVKY</text>
+        <text x="8" y="36" fill="#7a7269" font-family="'Inter',sans-serif" font-size="5.5" letter-spacing=".8" data-lang="en">ORDERS</text>
         <text x="8" y="48" fill="#1c1814" font-family="'Inter',sans-serif" font-size="8.5" font-weight="500">Shoptet / WooCommerce</text>
 
         <rect x="0" y="64" width="116" height="30" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
-        <text x="8" y="76" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5.5" letter-spacing=".8" data-lang="cs">ZÁKAZNÍCI</text>
-        <text x="8" y="76" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5.5" letter-spacing=".8" data-lang="en">CUSTOMERS</text>
+        <text x="8" y="76" fill="#7a7269" font-family="'Inter',sans-serif" font-size="5.5" letter-spacing=".8" data-lang="cs">ZÁKAZNÍCI</text>
+        <text x="8" y="76" fill="#7a7269" font-family="'Inter',sans-serif" font-size="5.5" letter-spacing=".8" data-lang="en">CUSTOMERS</text>
         <text x="8" y="88" fill="#1c1814" font-family="'Inter',sans-serif" font-size="8.5" font-weight="500">CRM / e-mail list</text>
 
         <rect x="0" y="104" width="116" height="30" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
-        <text x="8" y="116" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5.5" letter-spacing=".8" data-lang="cs">PRODUKTY</text>
-        <text x="8" y="116" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5.5" letter-spacing=".8" data-lang="en">PRODUCTS</text>
+        <text x="8" y="116" fill="#7a7269" font-family="'Inter',sans-serif" font-size="5.5" letter-spacing=".8" data-lang="cs">PRODUKTY</text>
+        <text x="8" y="116" fill="#7a7269" font-family="'Inter',sans-serif" font-size="5.5" letter-spacing=".8" data-lang="en">PRODUCTS</text>
         <text x="8" y="128" fill="#1c1814" font-family="'Inter',sans-serif" font-size="8.5" font-weight="500">Katalog / sklad</text>
 
         <rect x="0" y="144" width="116" height="30" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
-        <text x="8" y="156" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5.5" letter-spacing=".8">MARKETING</text>
+        <text x="8" y="156" fill="#7a7269" font-family="'Inter',sans-serif" font-size="5.5" letter-spacing=".8">MARKETING</text>
         <text x="8" y="168" fill="#1c1814" font-family="'Inter',sans-serif" font-size="8.5" font-weight="500">Ads &amp; GA4</text>
 
         <!-- Dashed connector lines to BigQuery -->
@@ -276,25 +276,25 @@
 
         <!-- BIGQUERY center box -->
         <rect x="182" y="100" width="112" height="90" fill="#f4f2ee" stroke="#d4920e" stroke-width="1.5"/>
-        <text x="238" y="118" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7" text-anchor="middle" letter-spacing="1.5">BIGQUERY</text>
+        <text x="238" y="118" fill="#d4920e" font-family="'Inter',sans-serif" font-size="7" text-anchor="middle" letter-spacing="1.5">BIGQUERY</text>
         <line x1="194" y1="124" x2="282" y2="124" stroke="#ddd8d0" stroke-width=".5"/>
         <!-- Data icon: small cylinder -->
         <ellipse cx="238" cy="138" rx="14" ry="5" fill="none" stroke="#ddd8d0" stroke-width="1"/>
         <line x1="224" y1="138" x2="224" y2="152" stroke="#ddd8d0" stroke-width="1"/>
         <line x1="252" y1="138" x2="252" y2="152" stroke="#ddd8d0" stroke-width="1"/>
         <ellipse cx="238" cy="152" rx="14" ry="5" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
-        <text x="238" y="166" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5.5" text-anchor="middle" data-lang="cs">čistá data · automaticky</text>
-        <text x="238" y="166" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5.5" text-anchor="middle" data-lang="en">clean data · automated</text>
-        <text x="238" y="176" fill="#d4920e" font-family="'DM Mono',monospace" font-size="5" text-anchor="middle">● ● ●</text>
+        <text x="238" y="166" fill="#7a7269" font-family="'Inter',sans-serif" font-size="5.5" text-anchor="middle" data-lang="cs">čistá data · automaticky</text>
+        <text x="238" y="166" fill="#7a7269" font-family="'Inter',sans-serif" font-size="5.5" text-anchor="middle" data-lang="en">clean data · automated</text>
+        <text x="238" y="176" fill="#d4920e" font-family="'Inter',sans-serif" font-size="5" text-anchor="middle">● ● ●</text>
 
         <!-- Arrow right: BigQuery → AI Agent, labeled API / Python -->
         <line x1="294" y1="145" x2="334" y2="145" stroke="#d4920e" stroke-width="1.5"/>
         <polygon points="334,141 344,145 334,149" fill="#d4920e"/>
-        <text x="314" y="140" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5.5" text-anchor="middle">API / Python</text>
+        <text x="314" y="140" fill="#7a7269" font-family="'Inter',sans-serif" font-size="5.5" text-anchor="middle">API / Python</text>
 
         <!-- AI AGENT right box -->
         <rect x="344" y="60" width="140" height="180" fill="#f4f2ee" stroke="#d4920e" stroke-width="1.5"/>
-        <text x="414" y="80" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7.5" text-anchor="middle" letter-spacing="1.5">AI AGENT</text>
+        <text x="414" y="80" fill="#d4920e" font-family="'Inter',sans-serif" font-size="7.5" text-anchor="middle" letter-spacing="1.5">AI AGENT</text>
         <line x1="356" y1="86" x2="472" y2="86" stroke="#ddd8d0" stroke-width=".5"/>
         <!-- Brain/network icon -->
         <circle cx="414" cy="106" r="14" fill="none" stroke="#ddd8d0" stroke-width="1"/>
@@ -304,20 +304,20 @@
         <line x1="409" y1="102" x2="419" y2="102" stroke="#d4920e" stroke-width=".75"/>
         <line x1="408" y1="105" x2="412" y2="110" stroke="#d4920e" stroke-width=".75"/>
         <line x1="420" y1="105" x2="416" y2="110" stroke="#d4920e" stroke-width=".75"/>
-        <text x="414" y="130" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" text-anchor="middle">Claude / GPT</text>
+        <text x="414" y="130" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6" text-anchor="middle">Claude / GPT</text>
         <line x1="356" y1="136" x2="472" y2="136" stroke="#ddd8d0" stroke-width=".5"/>
         <!-- Output items -->
-        <text x="364" y="152" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5.5">▸</text>
+        <text x="364" y="152" fill="#7a7269" font-family="'Inter',sans-serif" font-size="5.5">▸</text>
         <text x="374" y="152" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8" data-lang="cs">reporty</text>
         <text x="374" y="152" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8" data-lang="en">reports</text>
-        <text x="364" y="168" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5.5">▸</text>
+        <text x="364" y="168" fill="#7a7269" font-family="'Inter',sans-serif" font-size="5.5">▸</text>
         <text x="374" y="168" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8" data-lang="cs">predikce</text>
         <text x="374" y="168" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8" data-lang="en">predictions</text>
-        <text x="364" y="184" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5.5">▸</text>
+        <text x="364" y="184" fill="#7a7269" font-family="'Inter',sans-serif" font-size="5.5">▸</text>
         <text x="374" y="184" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8" data-lang="cs">doporučení</text>
         <text x="374" y="184" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8" data-lang="en">recommendations</text>
-        <text x="364" y="200" fill="#d4920e" font-family="'DM Mono',monospace" font-size="5.5">▸</text>
-        <text x="374" y="200" fill="#d4920e" font-family="'DM Mono',monospace" font-size="8" font-weight="500">auto</text>
+        <text x="364" y="200" fill="#d4920e" font-family="'Inter',sans-serif" font-size="5.5">▸</text>
+        <text x="374" y="200" fill="#d4920e" font-family="'Inter',sans-serif" font-size="8" font-weight="500">auto</text>
 
         <!-- Arrow down to notification -->
         <line x1="414" y1="240" x2="414" y2="256" stroke="#d4920e" stroke-width="1.5"/>
@@ -325,12 +325,12 @@
 
         <!-- SLACK / EMAIL / DASHBOARD output box -->
         <rect x="344" y="264" width="140" height="30" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
-        <text x="414" y="276" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5.5" text-anchor="middle" letter-spacing=".8">SLACK / EMAIL</text>
-        <text x="414" y="287" fill="#1c1814" font-family="'DM Mono',monospace" font-size="5.5" text-anchor="middle" letter-spacing=".8">DASHBOARD</text>
+        <text x="414" y="276" fill="#7a7269" font-family="'Inter',sans-serif" font-size="5.5" text-anchor="middle" letter-spacing=".8">SLACK / EMAIL</text>
+        <text x="414" y="287" fill="#1c1814" font-family="'Inter',sans-serif" font-size="5.5" text-anchor="middle" letter-spacing=".8">DASHBOARD</text>
 
         <!-- Bottom annotation -->
-        <text x="238" y="298" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" text-anchor="middle" letter-spacing=".5" data-lang="cs">automatické rozhodování na základě vašich dat</text>
-        <text x="238" y="298" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" text-anchor="middle" letter-spacing=".5" data-lang="en">automated decisions based on your data</text>
+        <text x="238" y="298" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6.5" text-anchor="middle" letter-spacing=".5" data-lang="cs">automatické rozhodování na základě vašich dat</text>
+        <text x="238" y="298" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6.5" text-anchor="middle" letter-spacing=".5" data-lang="en">automated decisions based on your data</text>
       </svg>
     </div>
   </div>
@@ -431,7 +431,7 @@
             <line x1="11" y1="18" x2="11" y2="24" stroke="#ddd8d0" stroke-width="1"/>
             <line x1="27" y1="18" x2="27" y2="24" stroke="#ddd8d0" stroke-width="1"/>
             <ellipse cx="19" cy="24" rx="8" ry="3" fill="#f4f0e8" stroke="#ddd8d0" stroke-width="1"/>
-            <text x="19" y="36" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5" text-anchor="middle">BQ</text>
+            <text x="19" y="36" fill="#7a7269" font-family="'Inter',sans-serif" font-size="5" text-anchor="middle">BQ</text>
           </svg>
           <div class="rp-step-title"><span data-lang="cs">Datový základ v BigQuery</span><span data-lang="en">Data foundation in BigQuery</span></div>
           <div class="rp-step-desc" data-lang="cs">Připravím data pro AI — čistění, strukturování, obohacení. AI agent potřebuje správná data, ne jen raw export.</div>
@@ -448,7 +448,7 @@
             <line x1="15.5" y1="13" x2="22.5" y2="13" stroke="#d4920e" stroke-width=".75"/>
             <line x1="14.5" y1="15.5" x2="17.5" y2="19.5" stroke="#d4920e" stroke-width=".75"/>
             <line x1="23.5" y1="15.5" x2="20.5" y2="19.5" stroke="#d4920e" stroke-width=".75"/>
-            <text x="19" y="35" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5" text-anchor="middle">Python</text>
+            <text x="19" y="35" fill="#7a7269" font-family="'Inter',sans-serif" font-size="5" text-anchor="middle">Python</text>
           </svg>
           <div class="rp-step-title"><span data-lang="cs">Vývoj AI agenta</span><span data-lang="en">AI agent development</span></div>
           <div class="rp-step-desc" data-lang="cs">Python agent s přístupem do BigQuery, definovanými nástroji a systémovým promptem znalosti vašeho byznysu.</div>
@@ -506,127 +506,127 @@
 
         <!-- Top bar -->
         <rect width="1060" height="46" fill="#ede8e0"/>
-        <text x="22" y="18" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7.5" letter-spacing="1.5">AI AGENT FLOWSTACK</text>
-        <text x="22" y="34" fill="#7a7269" font-family="'DM Mono',monospace" font-size="8" letter-spacing="1">e-commerce use cases</text>
+        <text x="22" y="18" fill="#d4920e" font-family="'Inter',sans-serif" font-size="7.5" letter-spacing="1.5">AI AGENT FLOWSTACK</text>
+        <text x="22" y="34" fill="#7a7269" font-family="'Inter',sans-serif" font-size="8" letter-spacing="1">e-commerce use cases</text>
 
         <!-- Card 1: DENNÍ REPORT -->
         <rect x="22" y="60" width="330" height="140" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
-        <text x="34" y="80" fill="#d4920e" font-family="'DM Mono',monospace" font-size="8" letter-spacing="1">01</text>
+        <text x="34" y="80" fill="#d4920e" font-family="'Inter',sans-serif" font-size="8" letter-spacing="1">01</text>
         <!-- chart icon -->
         <rect x="282" y="68" width="8" height="16" fill="#d4920e" opacity=".5"/>
         <rect x="293" y="63" width="8" height="21" fill="#d4920e" opacity=".75"/>
         <rect x="304" y="57" width="8" height="27" fill="#d4920e"/>
-        <text x="34" y="96" fill="#1c1814" font-family="'DM Mono',monospace" font-size="8.5" letter-spacing=".5" data-lang="cs">DENNÍ REPORT</text>
-        <text x="34" y="96" fill="#1c1814" font-family="'DM Mono',monospace" font-size="8.5" letter-spacing=".5" data-lang="en">DAILY REPORT</text>
+        <text x="34" y="96" fill="#1c1814" font-family="'Inter',sans-serif" font-size="8.5" letter-spacing=".5" data-lang="cs">DENNÍ REPORT</text>
+        <text x="34" y="96" fill="#1c1814" font-family="'Inter',sans-serif" font-size="8.5" letter-spacing=".5" data-lang="en">DAILY REPORT</text>
         <line x1="34" y1="102" x2="340" y2="102" stroke="#ddd8d0" stroke-width=".5"/>
         <text x="34" y="118" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="cs">Každé ráno pošle e-mail s výsledky</text>
         <text x="34" y="118" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="en">Every morning sends an email with</text>
         <text x="34" y="131" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="cs">předchozího dne</text>
         <text x="34" y="131" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="en">the previous day's results</text>
-        <text x="34" y="148" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">→ tržby · objednávky · ROAS</text>
-        <text x="34" y="162" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7">● automaticky každý den v 7:00</text>
+        <text x="34" y="148" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7">→ tržby · objednávky · ROAS</text>
+        <text x="34" y="162" fill="#d4920e" font-family="'Inter',sans-serif" font-size="7">● automaticky každý den v 7:00</text>
 
         <!-- Card 2: ZÁKAZNICKÁ SEGMENTACE -->
         <rect x="366" y="60" width="330" height="140" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
-        <text x="378" y="80" fill="#d4920e" font-family="'DM Mono',monospace" font-size="8" letter-spacing="1">02</text>
+        <text x="378" y="80" fill="#d4920e" font-family="'Inter',sans-serif" font-size="8" letter-spacing="1">02</text>
         <!-- people groups icon -->
         <circle cx="670" cy="75" r="7" fill="none" stroke="#d4920e" stroke-width="1.5"/>
         <circle cx="683" cy="75" r="7" fill="none" stroke="#ddd8d0" stroke-width="1"/>
         <circle cx="657" cy="75" r="7" fill="none" stroke="#ddd8d0" stroke-width="1"/>
-        <text x="378" y="96" fill="#1c1814" font-family="'DM Mono',monospace" font-size="8.5" letter-spacing=".5" data-lang="cs">ZÁKAZNICKÁ SEGMENTACE</text>
-        <text x="378" y="96" fill="#1c1814" font-family="'DM Mono',monospace" font-size="8.5" letter-spacing=".5" data-lang="en">CUSTOMER SEGMENTATION</text>
+        <text x="378" y="96" fill="#1c1814" font-family="'Inter',sans-serif" font-size="8.5" letter-spacing=".5" data-lang="cs">ZÁKAZNICKÁ SEGMENTACE</text>
+        <text x="378" y="96" fill="#1c1814" font-family="'Inter',sans-serif" font-size="8.5" letter-spacing=".5" data-lang="en">CUSTOMER SEGMENTATION</text>
         <line x1="378" y1="102" x2="684" y2="102" stroke="#ddd8d0" stroke-width=".5"/>
         <text x="378" y="118" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="cs">RFM analýza a segmentace zákazníků</text>
         <text x="378" y="118" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="en">RFM analysis and customer segmentation</text>
         <text x="378" y="131" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="cs">pro e-mailové kampaně</text>
         <text x="378" y="131" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="en">for email campaigns</text>
-        <text x="378" y="148" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">→ VIP · aktivní · ohrožení churn</text>
-        <text x="378" y="162" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7">● týdenní update segmentů</text>
+        <text x="378" y="148" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7">→ VIP · aktivní · ohrožení churn</text>
+        <text x="378" y="162" fill="#d4920e" font-family="'Inter',sans-serif" font-size="7">● týdenní update segmentů</text>
 
         <!-- Card 3: PREDIKCE SKLADU -->
         <rect x="710" y="60" width="330" height="140" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
-        <text x="722" y="80" fill="#d4920e" font-family="'DM Mono',monospace" font-size="8" letter-spacing="1">03</text>
+        <text x="722" y="80" fill="#d4920e" font-family="'Inter',sans-serif" font-size="8" letter-spacing="1">03</text>
         <!-- warehouse/boxes icon -->
         <rect x="992" y="62" width="16" height="12" fill="none" stroke="#d4920e" stroke-width="1.5"/>
         <rect x="1010" y="66" width="12" height="8" fill="none" stroke="#ddd8d0" stroke-width="1"/>
         <rect x="992" y="76" width="16" height="10" fill="none" stroke="#ddd8d0" stroke-width="1"/>
-        <text x="722" y="96" fill="#1c1814" font-family="'DM Mono',monospace" font-size="8.5" letter-spacing=".5" data-lang="cs">PREDIKCE SKLADU</text>
-        <text x="722" y="96" fill="#1c1814" font-family="'DM Mono',monospace" font-size="8.5" letter-spacing=".5" data-lang="en">INVENTORY PREDICTION</text>
+        <text x="722" y="96" fill="#1c1814" font-family="'Inter',sans-serif" font-size="8.5" letter-spacing=".5" data-lang="cs">PREDIKCE SKLADU</text>
+        <text x="722" y="96" fill="#1c1814" font-family="'Inter',sans-serif" font-size="8.5" letter-spacing=".5" data-lang="en">INVENTORY PREDICTION</text>
         <line x1="722" y1="102" x2="1028" y2="102" stroke="#ddd8d0" stroke-width=".5"/>
         <text x="722" y="118" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="cs">Upozorní na produkty, které dojdou</text>
         <text x="722" y="118" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="en">Alerts about products running out</text>
         <text x="722" y="131" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="cs">za 2 týdny</text>
         <text x="722" y="131" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="en">in 2 weeks</text>
-        <text x="722" y="148" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">→ počty dní · průměrný prodej</text>
-        <text x="722" y="162" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7">● alert do Slacku při riziku</text>
+        <text x="722" y="148" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7">→ počty dní · průměrný prodej</text>
+        <text x="722" y="162" fill="#d4920e" font-family="'Inter',sans-serif" font-size="7">● alert do Slacku při riziku</text>
 
         <!-- Card 4: ANALÝZA PRODUKTŮ -->
         <rect x="22" y="220" width="330" height="140" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
-        <text x="34" y="240" fill="#d4920e" font-family="'DM Mono',monospace" font-size="8" letter-spacing="1">04</text>
+        <text x="34" y="240" fill="#d4920e" font-family="'Inter',sans-serif" font-size="8" letter-spacing="1">04</text>
         <!-- bar chart icon -->
         <rect x="286" y="228" width="8" height="20" fill="#d4920e" opacity=".4"/>
         <rect x="297" y="222" width="8" height="26" fill="#d4920e" opacity=".7"/>
         <rect x="308" y="218" width="8" height="30" fill="#d4920e"/>
-        <text x="34" y="256" fill="#1c1814" font-family="'DM Mono',monospace" font-size="8.5" letter-spacing=".5" data-lang="cs">ANALÝZA PRODUKTŮ</text>
-        <text x="34" y="256" fill="#1c1814" font-family="'DM Mono',monospace" font-size="8.5" letter-spacing=".5" data-lang="en">PRODUCT ANALYSIS</text>
+        <text x="34" y="256" fill="#1c1814" font-family="'Inter',sans-serif" font-size="8.5" letter-spacing=".5" data-lang="cs">ANALÝZA PRODUKTŮ</text>
+        <text x="34" y="256" fill="#1c1814" font-family="'Inter',sans-serif" font-size="8.5" letter-spacing=".5" data-lang="en">PRODUCT ANALYSIS</text>
         <line x1="34" y1="262" x2="340" y2="262" stroke="#ddd8d0" stroke-width=".5"/>
         <text x="34" y="278" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="cs">Automaticky najde produkty</text>
         <text x="34" y="278" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="en">Automatically finds products</text>
         <text x="34" y="291" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="cs">s klesající marží</text>
         <text x="34" y="291" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="en">with declining margin</text>
-        <text x="34" y="308" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">→ marže · trend · srovnání</text>
-        <text x="34" y="322" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7">● týdenní report do e-mailu</text>
+        <text x="34" y="308" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7">→ marže · trend · srovnání</text>
+        <text x="34" y="322" fill="#d4920e" font-family="'Inter',sans-serif" font-size="7">● týdenní report do e-mailu</text>
 
         <!-- Card 5: ATTRIBUTION REPORTING -->
         <rect x="366" y="220" width="330" height="140" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
-        <text x="378" y="240" fill="#d4920e" font-family="'DM Mono',monospace" font-size="8" letter-spacing="1">05</text>
+        <text x="378" y="240" fill="#d4920e" font-family="'Inter',sans-serif" font-size="8" letter-spacing="1">05</text>
         <!-- funnel icon -->
         <polygon points="660,228 692,228 682,244 670,244" fill="none" stroke="#d4920e" stroke-width="1.5"/>
         <rect x="670" y="244" width="12" height="8" fill="none" stroke="#ddd8d0" stroke-width="1"/>
         <rect x="673" y="252" width="6" height="6" fill="none" stroke="#ddd8d0" stroke-width="1"/>
-        <text x="378" y="256" fill="#1c1814" font-family="'DM Mono',monospace" font-size="8.5" letter-spacing=".5">ATTRIBUTION REPORTING</text>
+        <text x="378" y="256" fill="#1c1814" font-family="'Inter',sans-serif" font-size="8.5" letter-spacing=".5">ATTRIBUTION REPORTING</text>
         <line x1="378" y1="262" x2="684" y2="262" stroke="#ddd8d0" stroke-width=".5"/>
         <text x="378" y="278" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="cs">Přiřadí objednávky ke kampaním</text>
         <text x="378" y="278" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="en">Attributes orders to campaigns</text>
         <text x="378" y="291" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="cs">napříč kanály</text>
         <text x="378" y="291" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="en">across channels</text>
-        <text x="378" y="308" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">→ Google · Meta · e-mail · organic</text>
-        <text x="378" y="322" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7">● na vyžádání nebo plánovaně</text>
+        <text x="378" y="308" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7">→ Google · Meta · e-mail · organic</text>
+        <text x="378" y="322" fill="#d4920e" font-family="'Inter',sans-serif" font-size="7">● na vyžádání nebo plánovaně</text>
 
         <!-- Card 6: ANOMALY DETECTION -->
         <rect x="710" y="220" width="330" height="140" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
-        <text x="722" y="240" fill="#d4920e" font-family="'DM Mono',monospace" font-size="8" letter-spacing="1">06</text>
+        <text x="722" y="240" fill="#d4920e" font-family="'Inter',sans-serif" font-size="8" letter-spacing="1">06</text>
         <!-- alert/bell icon -->
         <path d="M1020,228 Q1030,228 1030,238 L1030,248 L1012,248 L1012,238 Q1012,228 1020,228 Z" fill="none" stroke="#d4920e" stroke-width="1.5"/>
         <line x1="1020" y1="226" x2="1020" y2="230" stroke="#d4920e" stroke-width="1.5"/>
         <line x1="1016" y1="248" x2="1024" y2="248" stroke="#d4920e" stroke-width="1.5"/>
         <line x1="1018" y1="250" x2="1022" y2="253" stroke="#ddd8d0" stroke-width="1"/>
-        <text x="722" y="256" fill="#1c1814" font-family="'DM Mono',monospace" font-size="8.5" letter-spacing=".5">ANOMALY DETECTION</text>
+        <text x="722" y="256" fill="#1c1814" font-family="'Inter',sans-serif" font-size="8.5" letter-spacing=".5">ANOMALY DETECTION</text>
         <line x1="722" y1="262" x2="1028" y2="262" stroke="#ddd8d0" stroke-width=".5"/>
         <text x="722" y="278" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="cs">Upozorní na neobvyklé výkyvy</text>
         <text x="722" y="278" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="en">Alerts about unusual data spikes</text>
         <text x="722" y="291" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="cs">v datech</text>
         <text x="722" y="291" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8.5" data-lang="en">in the data</text>
-        <text x="722" y="308" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">→ tržby · konverze · náklady</text>
-        <text x="722" y="322" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7">● real-time alert do Slacku</text>
+        <text x="722" y="308" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7">→ tržby · konverze · náklady</text>
+        <text x="722" y="322" fill="#d4920e" font-family="'Inter',sans-serif" font-size="7">● real-time alert do Slacku</text>
 
         <!-- EXAMPLE CONVERSATION section -->
         <rect x="22" y="380" width="1016" height="130" fill="#f4f2ee" stroke="#ddd8d0" stroke-width="1"/>
         <rect x="22" y="380" width="1016" height="22" fill="#ede8e0"/>
-        <text x="34" y="396" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7.5" letter-spacing="1" data-lang="cs">PŘÍKLAD KONVERZACE</text>
-        <text x="34" y="396" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7.5" letter-spacing="1" data-lang="en">EXAMPLE CONVERSATION</text>
+        <text x="34" y="396" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7.5" letter-spacing="1" data-lang="cs">PŘÍKLAD KONVERZACE</text>
+        <text x="34" y="396" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7.5" letter-spacing="1" data-lang="en">EXAMPLE CONVERSATION</text>
         <!-- User bubble -->
         <rect x="34" y="412" width="220" height="26" rx="4" fill="#ddd8d0"/>
         <text x="46" y="422" fill="#1c1814" font-family="'Inter',sans-serif" font-size="8" data-lang="cs">Jak se dařilo posledních 7 dní?</text>
         <text x="46" y="422" fill="#1c1814" font-family="'Inter',sans-serif" font-size="8" data-lang="en">How did the last 7 days go?</text>
-        <text x="46" y="433" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6">Vy / You</text>
+        <text x="46" y="433" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6">Vy / You</text>
         <!-- AI bubble -->
         <rect x="34" y="450" width="980" height="48" rx="4" fill="#f8f5f0" stroke="#d4920e" stroke-width="1"/>
-        <text x="46" y="464" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7" letter-spacing=".5">AI AGENT</text>
+        <text x="46" y="464" fill="#d4920e" font-family="'Inter',sans-serif" font-size="7" letter-spacing=".5">AI AGENT</text>
         <text x="46" y="479" fill="#1c1814" font-family="'Inter',sans-serif" font-size="8" data-lang="cs">Tržby 284 000 Kč (+12 % vs. předchozí týden). Nejlepší produkt: Produkt A (47 obj.). ROAS Google Ads: 4,3 ×. ⚠ Produkt B: zásoby na 8 dní.</text>
         <text x="46" y="479" fill="#1c1814" font-family="'Inter',sans-serif" font-size="8" data-lang="en">Revenue 284,000 CZK (+12% vs. previous week). Top product: Product A (47 orders). Google Ads ROAS: 4.3×. ⚠ Product B has 8 days of stock left.</text>
-        <text x="46" y="492" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" data-lang="cs">na základě dat z BigQuery · právě teď</text>
-        <text x="46" y="492" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" data-lang="en">based on BigQuery data · right now</text>
+        <text x="46" y="492" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6" data-lang="cs">na základě dat z BigQuery · právě teď</text>
+        <text x="46" y="492" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6" data-lang="en">based on BigQuery data · right now</text>
       </svg>
     </div>
 
@@ -808,6 +808,7 @@
   </div>
 
   <footer>
+    <div class="footer-inner">
     <p>© 2025 Flowstack · Jan Veverka · Czech Republic</p>
     <div class="footer-links">
       <a href="https://www.linkedin.com/in/jan-veverka-39b24938" target="_blank" rel="noopener">LinkedIn</a>
@@ -815,13 +816,14 @@
       <a href="/">&#8592; <span data-lang="cs">Hlavní stránka</span><span data-lang="en">Homepage</span></a>
       <a href="/blog/">Blog</a>
     </div>
+      </div>
   </footer>
 
   <script>
     /* Nav scroll */
     var nav = document.getElementById('navWrap');
     window.addEventListener('scroll', function() {
-      nav.classList.toggle('scrolled', window.scrollY > 10);
+      nav.classList.toggle('scrolled', window.scrollY > 50);
     }, {passive:true});
 
     /* Language switching */

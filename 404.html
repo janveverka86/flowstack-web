@@ -16,19 +16,19 @@
     body { background:radial-gradient(ellipse at 50% 0%, #ece6da 0%, var(--bg) 65%); color:var(--fg); font-family:'Inter',sans-serif; font-weight:400; min-height:100vh; overflow-x:clip; display:flex; flex-direction:column; }
     body::after { content:''; position:fixed; inset:0; background-image:radial-gradient(circle, #c4bdb5 1px, transparent 1px); background-size:28px 28px; pointer-events:none; z-index:0; opacity:.35; }
 
-    .nav-wrap { position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(244,240,232,.88); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-bottom:1px solid var(--border); padding-top:env(safe-area-inset-top); }
-    nav { display:flex; justify-content:space-between; align-items:center; padding:1.2rem 2rem; max-width:1100px; margin:0 auto; }
-    .logo { font-family:'Playfair Display',serif; font-size:1.7rem; color:var(--fg); letter-spacing:-.02em; text-decoration:none; line-height:1; }
-    .logo span { color:var(--accent); }
-    .logo-sub { font-family:'Inter',sans-serif; font-size:.62rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-top:.35rem; font-weight:400; }
-    nav a { color:var(--muted); text-decoration:none; font-size:.82rem; transition:color .2s; }
-    nav a:hover { color:var(--accent); }
+    .nav-wrap { position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(28,24,20,.95); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-bottom:1px solid var(--border); padding-top:env(safe-area-inset-top); }
+    nav { display:flex; justify-content:space-between; align-items:center; padding:1.4rem 2rem; max-width:1100px; margin:0 auto; transition:padding .35s ease; }
+    .logo { font-family:'Playfair Display',serif; font-size:1.7rem; color:#f4f0e8; letter-spacing:-.02em; text-decoration:none; line-height:1; }
+    .logo > span { color:var(--accent); }
+    .logo-sub { font-family:'Inter',sans-serif; font-size:.62rem; letter-spacing:.12em; text-transform:uppercase; color:rgba(244,240,232,.5); margin-top:.35rem; font-weight:400; max-height:2rem; overflow:hidden; transition:max-height .3s ease,opacity .3s ease,margin-top .3s ease; }
+    nav a { color:rgba(244,240,232,.65); text-decoration:none; font-size:.82rem; transition:color .2s; }
+    nav a:not(.logo):hover { color:var(--accent); }
     .nav-spacer { height:calc(68px + env(safe-area-inset-top, 0px)); }
 
     main { position:relative; z-index:1; flex:1; display:flex; align-items:center; justify-content:center; padding:4rem 2rem 6rem; }
 
     .error-wrap { max-width:700px; width:100%; }
-    .error-tag { display:inline-block; font-family:'DM Mono',monospace; font-size:.68rem; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:var(--accent); border:1px solid var(--accent); padding:.25rem .7rem; margin-bottom:1.5rem; }
+    .error-tag { display:inline-block; font-family:'Inter',sans-serif; font-size:.68rem; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:var(--accent); border:1px solid var(--accent); padding:.25rem .7rem; margin-bottom:1.5rem; }
     h1 { font-family:'Playfair Display',serif; font-size:clamp(2.5rem,8vw,5rem); font-weight:400; letter-spacing:-.03em; line-height:1.05; margin-bottom:2rem; }
     h1 em { font-style:italic; color:var(--accent); }
 
@@ -123,12 +123,14 @@
   </main>
 
   <footer>
+    <div class="footer-inner">
     <p>© 2025 Flowstack · Jan Veverka · Czech Republic</p>
     <div class="footer-links">
       <a href="https://www.linkedin.com/in/jan-veverka-39b24938" target="_blank" rel="noopener">LinkedIn</a>
       <a href="tel:+420602603423">+420 602 603 423</a>
       <a href="mailto:jan.veverka@flowstack.cz">jan.veverka@flowstack.cz</a>
     </div>
+      </div>
   </footer>
 
   <script>
