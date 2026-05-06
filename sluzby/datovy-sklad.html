@@ -77,9 +77,9 @@
     .cta-btn:hover { opacity:.85; }
 
     /* HERO */
-    .rp-hero { position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:4rem 2rem 3rem; }
-    .rp-visual { position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:0 2rem 4rem; }
-    .rp-visual svg { display:block; width:100%; height:auto; }
+    .rp-hero { position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:4rem 2rem 5rem; }
+    .rp-hero-body { display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:start; margin:2.8rem 0 2.5rem; }
+    .rp-hero-visual svg { display:block; width:100%; height:auto; border:1px solid var(--border); }
     .rp-hero h1 { font-family:'Playfair Display',serif; font-size:clamp(2.6rem,5vw,3.8rem); font-weight:400; letter-spacing:-.03em; line-height:1.05; margin-bottom:1.2rem; }
     .rp-hero h1 em { font-style:italic; color:var(--accent); }
     .rp-hero-lead { font-size:1.05rem; color:#6a6258; line-height:1.8; margin-bottom:2rem; max-width:440px; }
@@ -180,9 +180,10 @@
       .rp-cta-inner { flex-direction:column; gap:2.5rem; }
       .rp-form { flex:none; max-width:100%; width:100%; }
     }
-    @media(max-width:600px) {
+    @media(max-width:700px) {
       .rp-hero { padding:3rem 1.5rem 4rem; }
-      .rp-visual { display:none; }
+      .rp-hero-body { grid-template-columns:1fr; }
+      .rp-hero-visual { display:none; }
       .rp-section, .rp-process, .rp-section-narrow { padding:4rem 1.5rem; }
       .rp-steps { grid-template-columns:1fr; }
       nav { padding:1rem 1.2rem; }
@@ -235,10 +236,11 @@
 
   <!-- HERO -->
   <div class="rp-hero">
-    <div>
-      <span class="rp-tag"><span data-lang="cs">Datový sklad &amp; Data engineering</span><span data-lang="en">Datový sklad &amp; Data engineering</span></span>
-      <h1 data-lang="cs">Osm systémů,<br><em>jeden zdroj pravdy.</em></h1>
-      <h1 data-lang="en">Eight systems,<br><em>one source of truth.</em></h1>
+    <span class="rp-tag"><span data-lang="cs">Datový sklad &amp; Data engineering</span><span data-lang="en">Datový sklad &amp; Data engineering</span></span>
+    <h1 data-lang="cs">Osm systémů,<br><em>jeden zdroj pravdy.</em></h1>
+    <h1 data-lang="en">Eight systems,<br><em>one source of truth.</em></h1>
+    <div class="rp-hero-body">
+      <div>
       <p class="rp-hero-lead" data-lang="cs">Shoptet, Pohoda, GA4, Meta Ads, email, srovnávače — každý systém má jiná čísla a nikdo neví, která jsou správná.</p>
       <p class="rp-hero-lead" data-lang="en">Shoptet, Pohoda, GA4, Meta Ads, email, price comparators — every system has different numbers and nobody knows which ones are right.</p>
       <div class="rp-pains">
@@ -258,24 +260,39 @@
           <span data-lang="en">Without connected data you can't see margin, LTV, or real ROAS — you're making decisions blind</span>
         </div>
       </div>
-      <a href="#kontakt" class="cta-btn"><span data-lang="cs">Nezávazná konzultace zdarma</span><span data-lang="en">Free consultation, no commitment</span></a>
+      </div>
+      <div class="rp-hero-visual">
+      <svg viewBox="0 0 480 240" xmlns="http://www.w3.org/2000/svg">
+        <!-- LEFT: Sources -->
+        <text x="24" y="22" fill="#7a7269" font-family="'Inter',sans-serif" font-size="9" letter-spacing="0.18em" text-transform="uppercase">ZDROJE DAT</text>
+        <text x="24" y="110" fill="#b0a898" font-family="'Playfair Display',serif" font-size="88">8</text>
+        <text x="24" y="136" fill="#7a7269" font-family="'Inter',sans-serif" font-size="11" data-lang="cs">GA4 · Meta Ads · Google Ads</text>
+        <text x="24" y="136" fill="#7a7269" font-family="'Inter',sans-serif" font-size="11" data-lang="en">GA4 · Meta Ads · Google Ads</text>
+        <text x="24" y="153" fill="#7a7269" font-family="'Inter',sans-serif" font-size="11" data-lang="cs">Shoptet · Pohoda · Fakturoid</text>
+        <text x="24" y="153" fill="#7a7269" font-family="'Inter',sans-serif" font-size="11" data-lang="en">Shoptet · Pohoda · Fakturoid</text>
+        <text x="24" y="170" fill="#9a9088" font-family="'Inter',sans-serif" font-size="10" data-lang="cs">+ Heuréka, Zboží.cz a další</text>
+        <text x="24" y="170" fill="#9a9088" font-family="'Inter',sans-serif" font-size="10" data-lang="en">+ Heuréka, Zboží.cz and more</text>
+        <!-- Arrow -->
+        <line x1="188" y1="90" x2="278" y2="90" stroke="#d4920e" stroke-width="2"/>
+        <polygon points="275,85 288,90 275,95" fill="#d4920e"/>
+        <text x="238" y="82" fill="#9a9088" font-family="'Inter',sans-serif" font-size="9" text-anchor="middle" data-lang="cs">denně</text>
+        <text x="238" y="82" fill="#9a9088" font-family="'Inter',sans-serif" font-size="9" text-anchor="middle" data-lang="en">daily</text>
+        <!-- RIGHT: Warehouse -->
+        <text x="456" y="22" fill="#d4920e" font-family="'Inter',sans-serif" font-size="9" letter-spacing="0.18em" text-anchor="end">BIGQUERY SKLAD</text>
+        <text x="456" y="110" fill="#d4920e" font-family="'Playfair Display',serif" font-size="88" text-anchor="end">1</text>
+        <text x="456" y="136" fill="#d4920e" font-family="'Inter',sans-serif" font-size="11" text-anchor="end" data-lang="cs">jeden zdroj pravdy</text>
+        <text x="456" y="136" fill="#d4920e" font-family="'Inter',sans-serif" font-size="11" text-anchor="end" data-lang="en">one source of truth</text>
+        <text x="456" y="153" fill="#7a7269" font-family="'Inter',sans-serif" font-size="11" text-anchor="end">Looker Studio · SQL · Python</text>
+        <text x="456" y="170" fill="#9a9088" font-family="'Inter',sans-serif" font-size="10" text-anchor="end" data-lang="cs">neomezená retence · žádný sampling</text>
+        <text x="456" y="170" fill="#9a9088" font-family="'Inter',sans-serif" font-size="10" text-anchor="end" data-lang="en">unlimited retention · no sampling</text>
+        <!-- Separator + note -->
+        <line x1="24" y1="192" x2="456" y2="192" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="240" y="214" fill="#9a9088" font-family="'Inter',sans-serif" font-size="9" text-anchor="middle" data-lang="cs">automatická aktualizace každý den · Dataform orchestration · BigQuery</text>
+        <text x="240" y="214" fill="#9a9088" font-family="'Inter',sans-serif" font-size="9" text-anchor="middle" data-lang="en">automatic daily update · Dataform orchestration · BigQuery</text>
+      </svg>
     </div>
-
-  </div>
-
-  <div class="rp-visual">
-    <svg viewBox="0 0 1060 140" xmlns="http://www.w3.org/2000/svg">
-        <!-- SQL snippet -->
-        <text x="319" y="44" fill="#d4920e" font-family="'DM Mono',monospace" font-size="16">SELECT</text>
-        <text x="433" y="44" fill="#1c1814" font-family="'DM Mono',monospace" font-size="16">  date, channel, revenue, roas</text>
-        <text x="319" y="70" fill="#d4920e" font-family="'DM Mono',monospace" font-size="16">FROM</text>
-        <text x="391" y="70" fill="#1c1814" font-family="'DM Mono',monospace" font-size="16">    mart.daily_performance</text>
-        <text x="319" y="96" fill="#d4920e" font-family="'DM Mono',monospace" font-size="16">WHERE</text>
-        <text x="403" y="96" fill="#1c1814" font-family="'DM Mono',monospace" font-size="16">   date &gt;= DATE_SUB(CURRENT_DATE(), 90)</text>
-        <!-- comment -->
-        <text x="319" y="126" fill="#7a7269" font-family="'DM Mono',monospace" font-size="14" data-lang="cs">-- 847 řádků · aktualizováno dnes · BigQuery</text>
-        <text x="319" y="126" fill="#7a7269" font-family="'DM Mono',monospace" font-size="14" data-lang="en">-- 847 rows · updated today · BigQuery</text>
-  </svg>
+    </div>
+    <a href="#kontakt" class="cta-btn"><span data-lang="cs">Nezávazná konzultace zdarma</span><span data-lang="en">Free consultation, no commitment</span></a>
   </div>
 
   <hr class="divider" />
@@ -405,7 +422,7 @@
             <polygon points="10,16 19,20 28,16" fill="#d4920e" opacity=".6"/>
             <line x1="8" y1="12" x2="14" y2="12" stroke="#d4920e" stroke-width="1"/>
             <line x1="8" y1="24" x2="20" y2="24" stroke="#d4920e" stroke-width="1"/>
-            <text x="19" y="37" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5.5" text-anchor="middle">dbt/Dataform</text>
+            <text x="19" y="37" fill="#7a7269" font-family="'Inter',sans-serif" font-size="5.5" text-anchor="middle">dbt/Dataform</text>
           </svg>
           <div class="rp-step-title"><span data-lang="cs">Transformační vrstva</span><span data-lang="en">Transformation layer</span></div>
           <div class="rp-step-desc" data-lang="cs">V Dataformu nebo dbt postavím transformační modely — čistění, agregace, business metriky. Data ready pro reporting.</div>
@@ -447,43 +464,43 @@
 
         <!-- ── LEFT LAYER: SOURCE DATA ── -->
         <rect x="22" y="60" width="280" height="440" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
-        <text x="162" y="84" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7.5" letter-spacing="1.2" text-anchor="middle" data-lang="cs">ZDROJOVÁ DATA</text>
-        <text x="162" y="84" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7.5" letter-spacing="1.2" text-anchor="middle" data-lang="en">SOURCE DATA</text>
+        <text x="162" y="84" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7.5" letter-spacing="1.2" text-anchor="middle" data-lang="cs">ZDROJOVÁ DATA</text>
+        <text x="162" y="84" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7.5" letter-spacing="1.2" text-anchor="middle" data-lang="en">SOURCE DATA</text>
         <line x1="22" y1="92" x2="302" y2="92" stroke="#ddd8d0" stroke-width=".5"/>
 
         <!-- Source system boxes -->
         <rect x="36" y="104" width="240" height="46" fill="#f4f0e8" stroke="#ddd8d0" stroke-width="1"/>
-        <text x="48" y="120" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" letter-spacing=".8">E-SHOP</text>
+        <text x="48" y="120" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6" letter-spacing=".8">E-SHOP</text>
         <text x="48" y="136" fill="#1c1814" font-family="'Inter',sans-serif" font-size="9" font-weight="500">Shoptet API</text>
         <line x1="276" y1="127" x2="302" y2="127" stroke="#ddd8d0" stroke-width="1" stroke-dasharray="3,2"/>
 
         <rect x="36" y="162" width="240" height="46" fill="#f4f0e8" stroke="#ddd8d0" stroke-width="1"/>
-        <text x="48" y="178" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" letter-spacing=".8" data-lang="cs">ÚČETNICTVÍ</text>
-        <text x="48" y="178" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" letter-spacing=".8" data-lang="en">ACCOUNTING</text>
+        <text x="48" y="178" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6" letter-spacing=".8" data-lang="cs">ÚČETNICTVÍ</text>
+        <text x="48" y="178" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6" letter-spacing=".8" data-lang="en">ACCOUNTING</text>
         <text x="48" y="194" fill="#1c1814" font-family="'Inter',sans-serif" font-size="9" font-weight="500">Pohoda MS SQL</text>
         <line x1="276" y1="185" x2="302" y2="185" stroke="#ddd8d0" stroke-width="1" stroke-dasharray="3,2"/>
 
         <rect x="36" y="220" width="240" height="46" fill="#f4f0e8" stroke="#ddd8d0" stroke-width="1"/>
-        <text x="48" y="236" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" letter-spacing=".8" data-lang="cs">ANALYTIKA</text>
-        <text x="48" y="236" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" letter-spacing=".8" data-lang="en">ANALYTICS</text>
+        <text x="48" y="236" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6" letter-spacing=".8" data-lang="cs">ANALYTIKA</text>
+        <text x="48" y="236" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6" letter-spacing=".8" data-lang="en">ANALYTICS</text>
         <text x="48" y="252" fill="#1c1814" font-family="'Inter',sans-serif" font-size="9" font-weight="500">GA4 Export</text>
         <line x1="276" y1="243" x2="302" y2="243" stroke="#ddd8d0" stroke-width="1" stroke-dasharray="3,2"/>
 
         <rect x="36" y="278" width="240" height="46" fill="#f4f0e8" stroke="#ddd8d0" stroke-width="1"/>
-        <text x="48" y="294" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" letter-spacing=".8" data-lang="cs">REKLAMA</text>
-        <text x="48" y="294" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" letter-spacing=".8" data-lang="en">ADVERTISING</text>
+        <text x="48" y="294" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6" letter-spacing=".8" data-lang="cs">REKLAMA</text>
+        <text x="48" y="294" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6" letter-spacing=".8" data-lang="en">ADVERTISING</text>
         <text x="48" y="310" fill="#1c1814" font-family="'Inter',sans-serif" font-size="9" font-weight="500">Google Ads API</text>
         <line x1="276" y1="301" x2="302" y2="301" stroke="#ddd8d0" stroke-width="1" stroke-dasharray="3,2"/>
 
         <rect x="36" y="336" width="240" height="46" fill="#f4f0e8" stroke="#ddd8d0" stroke-width="1"/>
-        <text x="48" y="352" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" letter-spacing=".8" data-lang="cs">REKLAMA</text>
-        <text x="48" y="352" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" letter-spacing=".8" data-lang="en">ADVERTISING</text>
+        <text x="48" y="352" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6" letter-spacing=".8" data-lang="cs">REKLAMA</text>
+        <text x="48" y="352" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6" letter-spacing=".8" data-lang="en">ADVERTISING</text>
         <text x="48" y="368" fill="#1c1814" font-family="'Inter',sans-serif" font-size="9" font-weight="500">Meta Ads API</text>
         <line x1="276" y1="359" x2="302" y2="359" stroke="#ddd8d0" stroke-width="1" stroke-dasharray="3,2"/>
 
         <rect x="36" y="394" width="240" height="46" fill="#f4f0e8" stroke="#ddd8d0" stroke-width="1"/>
-        <text x="48" y="410" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" letter-spacing=".8" data-lang="cs">SROVNÁVAČ</text>
-        <text x="48" y="410" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" letter-spacing=".8" data-lang="en">COMPARATOR</text>
+        <text x="48" y="410" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6" letter-spacing=".8" data-lang="cs">SROVNÁVAČ</text>
+        <text x="48" y="410" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6" letter-spacing=".8" data-lang="en">COMPARATOR</text>
         <text x="48" y="426" fill="#1c1814" font-family="'Inter',sans-serif" font-size="9" font-weight="500">Heuréka XML</text>
         <line x1="276" y1="417" x2="302" y2="417" stroke="#ddd8d0" stroke-width="1" stroke-dasharray="3,2"/>
 
@@ -492,23 +509,23 @@
 
         <!-- ── CENTER LAYER: BIGQUERY / TRANSFORMACE ── -->
         <rect x="346" y="60" width="368" height="440" fill="#f4f2ee" stroke="#d4920e" stroke-width="1.5"/>
-        <text x="530" y="84" fill="#d4920e" font-family="'DM Mono',monospace" font-size="8" letter-spacing="1.5" text-anchor="middle">BIGQUERY</text>
-        <text x="530" y="96" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" text-anchor="middle" letter-spacing=".8" data-lang="cs">TRANSFORMACE</text>
-        <text x="530" y="96" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" text-anchor="middle" letter-spacing=".8" data-lang="en">TRANSFORMATION</text>
+        <text x="530" y="84" fill="#d4920e" font-family="'Inter',sans-serif" font-size="8" letter-spacing="1.5" text-anchor="middle">BIGQUERY</text>
+        <text x="530" y="96" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6.5" text-anchor="middle" letter-spacing=".8" data-lang="cs">TRANSFORMACE</text>
+        <text x="530" y="96" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6.5" text-anchor="middle" letter-spacing=".8" data-lang="en">TRANSFORMATION</text>
         <line x1="346" y1="104" x2="714" y2="104" stroke="#d4920e" stroke-width=".75" opacity=".4"/>
 
         <!-- raw_data sublayer -->
         <rect x="360" y="118" width="340" height="96" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
-        <text x="370" y="134" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" letter-spacing=".8">raw_data</text>
+        <text x="370" y="134" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6.5" letter-spacing=".8">raw_data</text>
         <line x1="360" y1="140" x2="700" y2="140" stroke="#ddd8d0" stroke-width=".5"/>
         <rect x="370" y="148" width="146" height="18" fill="#f4f0e8" stroke="#ddd8d0" stroke-width=".5"/>
-        <text x="376" y="160" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6">raw_shoptet_orders</text>
+        <text x="376" y="160" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6">raw_shoptet_orders</text>
         <rect x="524" y="148" width="166" height="18" fill="#f4f0e8" stroke="#ddd8d0" stroke-width=".5"/>
-        <text x="530" y="160" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6">raw_pohoda_invoices</text>
+        <text x="530" y="160" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6">raw_pohoda_invoices</text>
         <rect x="370" y="172" width="146" height="18" fill="#f4f0e8" stroke="#ddd8d0" stroke-width=".5"/>
-        <text x="376" y="184" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6">raw_ga4_sessions</text>
+        <text x="376" y="184" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6">raw_ga4_sessions</text>
         <rect x="524" y="172" width="166" height="18" fill="#f4f0e8" stroke="#ddd8d0" stroke-width=".5"/>
-        <text x="530" y="184" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6">raw_google_ads</text>
+        <text x="530" y="184" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6">raw_google_ads</text>
 
         <!-- Arrow raw→staging -->
         <line x1="530" y1="214" x2="530" y2="228" stroke="#d4920e" stroke-width="1.5"/>
@@ -516,16 +533,16 @@
 
         <!-- staging sublayer -->
         <rect x="360" y="238" width="340" height="96" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
-        <text x="370" y="254" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" letter-spacing=".8">staging</text>
+        <text x="370" y="254" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6.5" letter-spacing=".8">staging</text>
         <line x1="360" y1="260" x2="700" y2="260" stroke="#ddd8d0" stroke-width=".5"/>
         <rect x="370" y="268" width="146" height="18" fill="#f4f0e8" stroke="#ddd8d0" stroke-width=".5"/>
-        <text x="376" y="280" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6">stg_orders</text>
+        <text x="376" y="280" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6">stg_orders</text>
         <rect x="524" y="268" width="166" height="18" fill="#f4f0e8" stroke="#ddd8d0" stroke-width=".5"/>
-        <text x="530" y="280" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6">stg_ads_spend</text>
+        <text x="530" y="280" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6">stg_ads_spend</text>
         <rect x="370" y="292" width="146" height="18" fill="#f4f0e8" stroke="#ddd8d0" stroke-width=".5"/>
-        <text x="376" y="304" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6">stg_sessions</text>
+        <text x="376" y="304" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6">stg_sessions</text>
         <rect x="524" y="292" width="166" height="18" fill="#f4f0e8" stroke="#ddd8d0" stroke-width=".5"/>
-        <text x="530" y="304" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6">stg_customers</text>
+        <text x="530" y="304" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6">stg_customers</text>
 
         <!-- Arrow staging→mart -->
         <line x1="530" y1="334" x2="530" y2="348" stroke="#d4920e" stroke-width="1.5"/>
@@ -533,20 +550,20 @@
 
         <!-- mart sublayer -->
         <rect x="360" y="358" width="340" height="116" fill="#ede8e0" stroke="#d4920e" stroke-width="1"/>
-        <text x="370" y="374" fill="#d4920e" font-family="'DM Mono',monospace" font-size="6.5" letter-spacing=".8">mart</text>
-        <text x="430" y="374" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" data-lang="cs">— business modely</text>
-        <text x="430" y="374" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" data-lang="en">— business models</text>
+        <text x="370" y="374" fill="#d4920e" font-family="'Inter',sans-serif" font-size="6.5" letter-spacing=".8">mart</text>
+        <text x="430" y="374" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6" data-lang="cs">— business modely</text>
+        <text x="430" y="374" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6" data-lang="en">— business models</text>
         <line x1="360" y1="380" x2="700" y2="380" stroke="#d4920e" stroke-width=".5" opacity=".5"/>
         <rect x="370" y="388" width="146" height="18" fill="#f8f5f0" stroke="#d4920e" stroke-width=".5"/>
-        <text x="376" y="400" fill="#d4920e" font-family="'DM Mono',monospace" font-size="6">mart_orders_daily</text>
+        <text x="376" y="400" fill="#d4920e" font-family="'Inter',sans-serif" font-size="6">mart_orders_daily</text>
         <rect x="524" y="388" width="166" height="18" fill="#f8f5f0" stroke="#d4920e" stroke-width=".5"/>
-        <text x="530" y="400" fill="#d4920e" font-family="'DM Mono',monospace" font-size="6">mart_roas_by_channel</text>
+        <text x="530" y="400" fill="#d4920e" font-family="'Inter',sans-serif" font-size="6">mart_roas_by_channel</text>
         <rect x="370" y="412" width="146" height="18" fill="#f8f5f0" stroke="#d4920e" stroke-width=".5"/>
-        <text x="376" y="424" fill="#d4920e" font-family="'DM Mono',monospace" font-size="6">mart_customer_ltv</text>
+        <text x="376" y="424" fill="#d4920e" font-family="'Inter',sans-serif" font-size="6">mart_customer_ltv</text>
         <rect x="524" y="412" width="166" height="18" fill="#f8f5f0" stroke="#d4920e" stroke-width=".5"/>
-        <text x="530" y="424" fill="#d4920e" font-family="'DM Mono',monospace" font-size="6">mart_product_margin</text>
-        <text x="376" y="458" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6">SELECT date, channel,</text>
-        <text x="376" y="469" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6">  SUM(revenue) / SUM(spend) AS roas</text>
+        <text x="530" y="424" fill="#d4920e" font-family="'Inter',sans-serif" font-size="6">mart_product_margin</text>
+        <text x="376" y="458" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6">SELECT date, channel,</text>
+        <text x="376" y="469" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6">  SUM(revenue) / SUM(spend) AS roas</text>
 
         <!-- Center→Right arrow -->
         <line x1="714" y1="283" x2="740" y2="283" stroke="#d4920e" stroke-width="1.5"/>
@@ -554,46 +571,46 @@
 
         <!-- ── RIGHT LAYER: OUTPUTS ── -->
         <rect x="758" y="60" width="280" height="440" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
-        <text x="898" y="84" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7.5" letter-spacing="1.2" text-anchor="middle" data-lang="cs">VÝSTUPY</text>
-        <text x="898" y="84" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7.5" letter-spacing="1.2" text-anchor="middle" data-lang="en">OUTPUTS</text>
+        <text x="898" y="84" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7.5" letter-spacing="1.2" text-anchor="middle" data-lang="cs">VÝSTUPY</text>
+        <text x="898" y="84" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7.5" letter-spacing="1.2" text-anchor="middle" data-lang="en">OUTPUTS</text>
         <line x1="758" y1="92" x2="1038" y2="92" stroke="#ddd8d0" stroke-width=".5"/>
 
         <rect x="772" y="110" width="252" height="80" fill="#f4f0e8" stroke="#ddd8d0" stroke-width="1"/>
-        <text x="784" y="130" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" letter-spacing=".8">REPORTING</text>
+        <text x="784" y="130" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6.5" letter-spacing=".8">REPORTING</text>
         <text x="784" y="146" fill="#1c1814" font-family="'Inter',sans-serif" font-size="11" font-weight="500">Looker Studio</text>
-        <text x="784" y="162" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" data-lang="cs">Živé dashboardy a reporty</text>
-        <text x="784" y="162" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" data-lang="en">Live dashboards and reports</text>
-        <text x="784" y="178" fill="#d4920e" font-family="'DM Mono',monospace" font-size="6.5">→ sdílení přes odkaz</text>
+        <text x="784" y="162" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6.5" data-lang="cs">Živé dashboardy a reporty</text>
+        <text x="784" y="162" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6.5" data-lang="en">Live dashboards and reports</text>
+        <text x="784" y="178" fill="#d4920e" font-family="'Inter',sans-serif" font-size="6.5">→ sdílení přes odkaz</text>
 
         <rect x="772" y="208" width="252" height="80" fill="#f4f0e8" stroke="#ddd8d0" stroke-width="1"/>
-        <text x="784" y="228" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" letter-spacing=".8" data-lang="cs">ANALÝZY</text>
-        <text x="784" y="228" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" letter-spacing=".8" data-lang="en">ANALYTICS</text>
+        <text x="784" y="228" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6.5" letter-spacing=".8" data-lang="cs">ANALÝZY</text>
+        <text x="784" y="228" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6.5" letter-spacing=".8" data-lang="en">ANALYTICS</text>
         <text x="784" y="244" fill="#1c1814" font-family="'Inter',sans-serif" font-size="11" font-weight="500">BigQuery SQL</text>
-        <text x="784" y="260" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" data-lang="cs">Ad-hoc dotazy a segmentace</text>
-        <text x="784" y="260" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" data-lang="en">Ad-hoc queries and segmentation</text>
-        <text x="784" y="276" fill="#d4920e" font-family="'DM Mono',monospace" font-size="6.5">→ SELECT * FROM mart.*</text>
+        <text x="784" y="260" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6.5" data-lang="cs">Ad-hoc dotazy a segmentace</text>
+        <text x="784" y="260" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6.5" data-lang="en">Ad-hoc queries and segmentation</text>
+        <text x="784" y="276" fill="#d4920e" font-family="'Inter',sans-serif" font-size="6.5">→ SELECT * FROM mart.*</text>
 
         <rect x="772" y="306" width="252" height="80" fill="#f4f0e8" stroke="#ddd8d0" stroke-width="1"/>
-        <text x="784" y="326" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" letter-spacing=".8">AI AGENTI</text>
+        <text x="784" y="326" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6.5" letter-spacing=".8">AI AGENTI</text>
         <text x="784" y="342" fill="#1c1814" font-family="'Inter',sans-serif" font-size="11" font-weight="500">Python</text>
-        <text x="784" y="358" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" data-lang="cs">Automatizace a predikce</text>
-        <text x="784" y="358" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" data-lang="en">Automation and predictions</text>
-        <text x="784" y="374" fill="#d4920e" font-family="'DM Mono',monospace" font-size="6.5">→ bigquery.Client()</text>
+        <text x="784" y="358" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6.5" data-lang="cs">Automatizace a predikce</text>
+        <text x="784" y="358" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6.5" data-lang="en">Automation and predictions</text>
+        <text x="784" y="374" fill="#d4920e" font-family="'Inter',sans-serif" font-size="6.5">→ bigquery.Client()</text>
 
         <rect x="772" y="404" width="252" height="72" fill="#f4f0e8" stroke="#ddd8d0" stroke-width="1"/>
-        <text x="784" y="424" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" letter-spacing=".8" data-lang="cs">EXPORTY</text>
-        <text x="784" y="424" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" letter-spacing=".8" data-lang="en">EXPORTS</text>
+        <text x="784" y="424" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6.5" letter-spacing=".8" data-lang="cs">EXPORTY</text>
+        <text x="784" y="424" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6.5" letter-spacing=".8" data-lang="en">EXPORTS</text>
         <text x="784" y="440" fill="#1c1814" font-family="'Inter',sans-serif" font-size="11" font-weight="500">Sheets / CSV</text>
-        <text x="784" y="456" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" data-lang="cs">Sdílení s týmem</text>
-        <text x="784" y="456" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" data-lang="en">Share with the team</text>
+        <text x="784" y="456" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6.5" data-lang="cs">Sdílení s týmem</text>
+        <text x="784" y="456" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6.5" data-lang="en">Share with the team</text>
 
         <!-- Layer labels at bottom -->
-        <text x="162" y="516" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" text-anchor="middle" data-lang="cs">6 zdrojů · Python konektory</text>
-        <text x="162" y="516" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" text-anchor="middle" data-lang="en">6 sources · Python connectors</text>
-        <text x="530" y="516" fill="#d4920e" font-family="'DM Mono',monospace" font-size="6.5" text-anchor="middle" data-lang="cs">Dataform / dbt · automatická aktualizace</text>
-        <text x="530" y="516" fill="#d4920e" font-family="'DM Mono',monospace" font-size="6.5" text-anchor="middle" data-lang="en">Dataform / dbt · automatic refresh</text>
-        <text x="898" y="516" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" text-anchor="middle" data-lang="cs">4 výstupní vrstvy</text>
-        <text x="898" y="516" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" text-anchor="middle" data-lang="en">4 output layers</text>
+        <text x="162" y="516" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6.5" text-anchor="middle" data-lang="cs">6 zdrojů · Python konektory</text>
+        <text x="162" y="516" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6.5" text-anchor="middle" data-lang="en">6 sources · Python connectors</text>
+        <text x="530" y="516" fill="#d4920e" font-family="'Inter',sans-serif" font-size="6.5" text-anchor="middle" data-lang="cs">Dataform / dbt · automatická aktualizace</text>
+        <text x="530" y="516" fill="#d4920e" font-family="'Inter',sans-serif" font-size="6.5" text-anchor="middle" data-lang="en">Dataform / dbt · automatic refresh</text>
+        <text x="898" y="516" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6.5" text-anchor="middle" data-lang="cs">4 výstupní vrstvy</text>
+        <text x="898" y="516" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6.5" text-anchor="middle" data-lang="en">4 output layers</text>
       </svg>
     </div>
 

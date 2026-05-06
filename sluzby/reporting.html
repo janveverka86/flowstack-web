@@ -77,9 +77,9 @@
     .cta-btn:hover { opacity:.85; }
 
     /* HERO */
-    .rp-hero { position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:4rem 2rem 3rem; }
-    .rp-visual { position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:0 2rem 4rem; }
-    .rp-visual svg { display:block; width:100%; height:auto; }
+    .rp-hero { position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:4rem 2rem 5rem; }
+    .rp-hero-body { display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:start; margin:2.8rem 0 2.5rem; }
+    .rp-hero-visual svg { display:block; width:100%; height:auto; border:1px solid var(--border); }
     .rp-hero h1 { font-family:'Playfair Display',serif; font-size:clamp(2.6rem,5vw,3.8rem); font-weight:400; letter-spacing:-.03em; line-height:1.05; margin-bottom:1.2rem; }
     .rp-hero h1 em { font-style:italic; color:var(--accent); }
     .rp-hero-lead { font-size:1.05rem; color:#6a6258; line-height:1.8; margin-bottom:2rem; max-width:440px; }
@@ -180,9 +180,10 @@
       .rp-cta-inner { flex-direction:column; gap:2.5rem; }
       .rp-form { flex:none; max-width:100%; width:100%; }
     }
-    @media(max-width:600px) {
+    @media(max-width:700px) {
       .rp-hero { padding:3rem 1.5rem 4rem; }
-      .rp-visual { display:none; }
+      .rp-hero-body { grid-template-columns:1fr; }
+      .rp-hero-visual { display:none; }
       .rp-section, .rp-process, .rp-section-narrow { padding:4rem 1.5rem; }
       .rp-steps { grid-template-columns:1fr; }
       nav { padding:1rem 1.2rem; }
@@ -235,10 +236,11 @@
 
   <!-- HERO -->
   <div class="rp-hero">
-    <div>
-      <span class="rp-tag"><span data-lang="cs">Reporting &amp; Dashboardy</span><span data-lang="en">Reporting &amp; Dashboards</span></span>
-      <h1 data-lang="cs">Místo tabulek<br><em>živý dashboard.</em></h1>
-      <h1 data-lang="en">Replace spreadsheets<br><em>with a live dashboard.</em></h1>
+    <span class="rp-tag"><span data-lang="cs">Reporting &amp; Dashboardy</span><span data-lang="en">Reporting &amp; Dashboards</span></span>
+    <h1 data-lang="cs">Místo tabulek<br><em>živý dashboard.</em></h1>
+    <h1 data-lang="en">Replace spreadsheets<br><em>with a live dashboard.</em></h1>
+    <div class="rp-hero-body">
+      <div>
       <p class="rp-hero-lead" data-lang="cs">Každé ráno víte přesně, kde stojí váš e-shop — bez manuální práce v Excelu, bez čekání na kohokoli.</p>
       <p class="rp-hero-lead" data-lang="en">Every morning you know exactly where your e-shop stands — no manual Excel work, no waiting for anyone.</p>
       <div class="rp-pains">
@@ -258,36 +260,42 @@
           <span data-lang="en">Management asks for numbers — you're still looking for them</span>
         </div>
       </div>
-      <a href="#kontakt" class="cta-btn"><span data-lang="cs">Nezávazná konzultace zdarma</span><span data-lang="en">Free consultation, no commitment</span></a>
+      </div>
+      <div class="rp-hero-visual">
+      <svg viewBox="0 0 480 350" xmlns="http://www.w3.org/2000/svg">
+        <!-- KPI 1: TRŽBY -->
+        <rect x="12" y="16" width="218" height="155" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="24" y="38" fill="#7a7269" font-family="'Inter',sans-serif" font-size="10" letter-spacing="1.5" data-lang="cs">CELKOVÉ TRŽBY</text>
+        <text x="24" y="38" fill="#7a7269" font-family="'Inter',sans-serif" font-size="10" letter-spacing="1.5" data-lang="en">TOTAL REVENUE</text>
+        <text x="24" y="102" fill="#1c1814" font-family="'Playfair Display',serif" font-size="44">12,4 M Kč</text>
+        <text x="24" y="140" fill="#d4920e" font-family="'Inter',sans-serif" font-size="9" data-lang="cs">▲ +18 % vs. loňský rok</text>
+        <text x="24" y="140" fill="#d4920e" font-family="'Inter',sans-serif" font-size="9" data-lang="en">▲ +18 % vs. last year</text>
+        <!-- KPI 2: OBJEDNÁVKY -->
+        <rect x="242" y="16" width="226" height="155" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="254" y="38" fill="#7a7269" font-family="'Inter',sans-serif" font-size="10" letter-spacing="1.5" data-lang="cs">OBJEDNÁVKY</text>
+        <text x="254" y="38" fill="#7a7269" font-family="'Inter',sans-serif" font-size="10" letter-spacing="1.5" data-lang="en">ORDERS</text>
+        <text x="254" y="102" fill="#1c1814" font-family="'Playfair Display',serif" font-size="44">3 847</text>
+        <text x="254" y="140" fill="#d4920e" font-family="'Inter',sans-serif" font-size="9" data-lang="cs">▲ +12 % vs. loňský rok</text>
+        <text x="254" y="140" fill="#d4920e" font-family="'Inter',sans-serif" font-size="9" data-lang="en">▲ +12 % vs. last year</text>
+        <!-- KPI 3: ROAS (accent border) -->
+        <rect x="12" y="183" width="3" height="155" fill="#d4920e"/>
+        <rect x="15" y="183" width="215" height="155" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="27" y="205" fill="#7a7269" font-family="'Inter',sans-serif" font-size="10" letter-spacing="1.5" data-lang="cs">PRŮMĚRNÝ ROAS</text>
+        <text x="27" y="205" fill="#7a7269" font-family="'Inter',sans-serif" font-size="10" letter-spacing="1.5" data-lang="en">AVG. ROAS</text>
+        <text x="27" y="269" fill="#d4920e" font-family="'Playfair Display',serif" font-size="44">4,2 ×</text>
+        <text x="27" y="307" fill="#7a7269" font-family="'Inter',sans-serif" font-size="9" data-lang="cs">▼ −0,3 vs. loňský rok</text>
+        <text x="27" y="307" fill="#7a7269" font-family="'Inter',sans-serif" font-size="9" data-lang="en">▼ −0.3 vs. last year</text>
+        <!-- KPI 4: AOV -->
+        <rect x="242" y="183" width="226" height="155" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
+        <text x="254" y="205" fill="#7a7269" font-family="'Inter',sans-serif" font-size="10" letter-spacing="1.5" data-lang="cs">PRŮM. OBJEDNÁVKA</text>
+        <text x="254" y="205" fill="#7a7269" font-family="'Inter',sans-serif" font-size="10" letter-spacing="1.5" data-lang="en">AVG. ORDER VALUE</text>
+        <text x="254" y="269" fill="#1c1814" font-family="'Playfair Display',serif" font-size="44">3 224 Kč</text>
+        <text x="254" y="307" fill="#d4920e" font-family="'Inter',sans-serif" font-size="9" data-lang="cs">▲ +5 % vs. loňský rok</text>
+        <text x="254" y="307" fill="#d4920e" font-family="'Inter',sans-serif" font-size="9" data-lang="en">▲ +5 % vs. last year</text>
+      </svg>
     </div>
-
-  </div>
-
-  <div class="rp-visual">
-    <svg viewBox="0 0 1060 130" xmlns="http://www.w3.org/2000/svg">
-        <!-- TRŽBY left -->
-        <text x="60" y="24" fill="#7a7269" font-family="'DM Mono',monospace" font-size="9" letter-spacing="2" data-lang="cs">CELKOVÉ TRŽBY</text>
-        <text x="60" y="24" fill="#7a7269" font-family="'DM Mono',monospace" font-size="9" letter-spacing="2" data-lang="en">TOTAL REVENUE</text>
-        <text x="60" y="88" fill="#1c1814" font-family="'Playfair Display',serif" font-size="56">12,4 M</text>
-        <text x="60" y="110" fill="#d4920e" font-family="'DM Mono',monospace" font-size="9" data-lang="cs">Kč · ▲ +18 % vs. loňský rok</text>
-        <text x="60" y="110" fill="#d4920e" font-family="'DM Mono',monospace" font-size="9" data-lang="en">CZK · ▲ +18 % vs. last year</text>
-        <!-- separator -->
-        <line x1="353" y1="20" x2="353" y2="115" stroke="#ddd8d0" stroke-width="1"/>
-        <!-- ROAS center -->
-        <text x="530" y="24" fill="#d4920e" font-family="'DM Mono',monospace" font-size="9" letter-spacing="2" text-anchor="middle" data-lang="cs">PRŮMĚRNÝ ROAS</text>
-        <text x="530" y="24" fill="#d4920e" font-family="'DM Mono',monospace" font-size="9" letter-spacing="2" text-anchor="middle" data-lang="en">AVG. ROAS</text>
-        <text x="530" y="88" fill="#d4920e" font-family="'Playfair Display',serif" font-size="56" text-anchor="middle">4,2 ×</text>
-        <text x="530" y="110" fill="#7a7269" font-family="'DM Mono',monospace" font-size="9" text-anchor="middle" data-lang="cs">30denní průměr e-commerce</text>
-        <text x="530" y="110" fill="#7a7269" font-family="'DM Mono',monospace" font-size="9" text-anchor="middle" data-lang="en">30-day e-commerce average</text>
-        <!-- separator -->
-        <line x1="707" y1="20" x2="707" y2="115" stroke="#ddd8d0" stroke-width="1"/>
-        <!-- OBJEDNÁVKY right -->
-        <text x="1000" y="24" fill="#7a7269" font-family="'DM Mono',monospace" font-size="9" letter-spacing="2" text-anchor="end" data-lang="cs">OBJEDNÁVKY / MĚSÍC</text>
-        <text x="1000" y="24" fill="#7a7269" font-family="'DM Mono',monospace" font-size="9" letter-spacing="2" text-anchor="end" data-lang="en">ORDERS / MONTH</text>
-        <text x="1000" y="88" fill="#1c1814" font-family="'Playfair Display',serif" font-size="56" text-anchor="end">3 847</text>
-        <text x="1000" y="110" fill="#d4920e" font-family="'DM Mono',monospace" font-size="9" text-anchor="end" data-lang="cs">▲ +12 % vs. loňský rok</text>
-        <text x="1000" y="110" fill="#d4920e" font-family="'DM Mono',monospace" font-size="9" text-anchor="end" data-lang="en">▲ +12 % vs. last year</text>
-  </svg>
+    </div>
+    <a href="#kontakt" class="cta-btn"><span data-lang="cs">Nezávazná konzultace zdarma</span><span data-lang="en">Free consultation, no commitment</span></a>
   </div>
 
   <hr class="divider" />
@@ -383,7 +391,7 @@
             <rect x="9" y="18" width="12" height="6" fill="#d4920e" opacity=".3"/>
             <rect x="23" y="18" width="6" height="6" fill="#d4920e" opacity=".7"/>
             <polyline points="9,19 13,16 17,18 21,14 25,16" stroke="#d4920e" stroke-width="1" fill="none"/>
-            <text x="19" y="37" fill="#7a7269" font-family="'DM Mono',monospace" font-size="5" text-anchor="middle">DEMO</text>
+            <text x="19" y="37" fill="#7a7269" font-family="'Inter',sans-serif" font-size="5" text-anchor="middle">DEMO</text>
           </svg>
           <div class="rp-step-title"><span data-lang="cs">Ukázka na demo datech</span><span data-lang="en">Demo prototype</span></div>
           <div class="rp-step-desc" data-lang="cs">Připravím prototyp dashboardu. Uvidíte přesně co dostanete ještě před zahájením.</div>
@@ -458,52 +466,52 @@
 
         <!-- Top bar -->
         <rect width="1060" height="46" fill="#ede8e0"/>
-        <text x="22" y="18" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7.5" letter-spacing="1.5">FLOWSTACK</text>
+        <text x="22" y="18" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7.5" letter-spacing="1.5">FLOWSTACK</text>
         <text x="22" y="34" fill="#1c1814" font-family="'Playfair Display',serif" font-size="11" data-lang="cs">E-commerce přehled</text>
         <text x="22" y="34" fill="#1c1814" font-family="'Playfair Display',serif" font-size="11" data-lang="en">E-commerce overview</text>
         <rect x="680" y="14" width="160" height="18" fill="#f4f0e8" stroke="#ddd8d0" stroke-width="1"/>
-        <text x="688" y="27" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" data-lang="cs">1. 1. – 31. 5. 2026</text>
-        <text x="688" y="27" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" data-lang="en">Jan 1 – May 31, 2026</text>
-        <text x="868" y="27" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" data-lang="cs">Přehled</text>
-        <text x="868" y="27" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" data-lang="en">Overview</text>
-        <text x="930" y="27" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7" font-weight="bold" data-lang="cs">Produkty</text>
-        <text x="930" y="27" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7" font-weight="bold" data-lang="en">Products</text>
-        <text x="992" y="27" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" data-lang="cs">Zákazníci</text>
-        <text x="992" y="27" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" data-lang="en">Customers</text>
+        <text x="688" y="27" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7" data-lang="cs">1. 1. – 31. 5. 2026</text>
+        <text x="688" y="27" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7" data-lang="en">Jan 1 – May 31, 2026</text>
+        <text x="868" y="27" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7" data-lang="cs">Přehled</text>
+        <text x="868" y="27" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7" data-lang="en">Overview</text>
+        <text x="930" y="27" fill="#d4920e" font-family="'Inter',sans-serif" font-size="7" font-weight="bold" data-lang="cs">Produkty</text>
+        <text x="930" y="27" fill="#d4920e" font-family="'Inter',sans-serif" font-size="7" font-weight="bold" data-lang="en">Products</text>
+        <text x="992" y="27" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7" data-lang="cs">Zákazníci</text>
+        <text x="992" y="27" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7" data-lang="en">Customers</text>
 
         <!-- KPI row -->
         <rect x="22" y="60" width="242" height="82" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
-        <text x="34" y="79" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" letter-spacing="1" data-lang="cs">CELKOVÉ TRŽBY</text>
-        <text x="34" y="79" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" letter-spacing="1" data-lang="en">TOTAL REVENUE</text>
+        <text x="34" y="79" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7" letter-spacing="1" data-lang="cs">CELKOVÉ TRŽBY</text>
+        <text x="34" y="79" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7" letter-spacing="1" data-lang="en">TOTAL REVENUE</text>
         <text x="34" y="116" fill="#1c1814" font-family="'Playfair Display',serif" font-size="28">12,4 M Kč</text>
-        <text x="34" y="134" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7" data-lang="cs">▲ +18 % vs. loňský rok</text>
-        <text x="34" y="134" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7" data-lang="en">▲ +18 % vs. last year</text>
+        <text x="34" y="134" fill="#d4920e" font-family="'Inter',sans-serif" font-size="7" data-lang="cs">▲ +18 % vs. loňský rok</text>
+        <text x="34" y="134" fill="#d4920e" font-family="'Inter',sans-serif" font-size="7" data-lang="en">▲ +18 % vs. last year</text>
 
         <rect x="278" y="60" width="242" height="82" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
-        <text x="290" y="79" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" letter-spacing="1" data-lang="cs">OBJEDNÁVKY</text>
-        <text x="290" y="79" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" letter-spacing="1" data-lang="en">ORDERS</text>
+        <text x="290" y="79" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7" letter-spacing="1" data-lang="cs">OBJEDNÁVKY</text>
+        <text x="290" y="79" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7" letter-spacing="1" data-lang="en">ORDERS</text>
         <text x="290" y="116" fill="#1c1814" font-family="'Playfair Display',serif" font-size="28">3 847</text>
-        <text x="290" y="134" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7" data-lang="cs">▲ +12 % vs. loňský rok</text>
-        <text x="290" y="134" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7" data-lang="en">▲ +12 % vs. last year</text>
+        <text x="290" y="134" fill="#d4920e" font-family="'Inter',sans-serif" font-size="7" data-lang="cs">▲ +12 % vs. loňský rok</text>
+        <text x="290" y="134" fill="#d4920e" font-family="'Inter',sans-serif" font-size="7" data-lang="en">▲ +12 % vs. last year</text>
 
         <rect x="534" y="60" width="242" height="82" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
-        <text x="546" y="79" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" letter-spacing="1" data-lang="cs">PRŮMĚRNÝ ROAS</text>
-        <text x="546" y="79" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" letter-spacing="1" data-lang="en">AVG. ROAS</text>
+        <text x="546" y="79" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7" letter-spacing="1" data-lang="cs">PRŮMĚRNÝ ROAS</text>
+        <text x="546" y="79" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7" letter-spacing="1" data-lang="en">AVG. ROAS</text>
         <text x="546" y="116" fill="#d4920e" font-family="'Playfair Display',serif" font-size="28">4,2 ×</text>
-        <text x="546" y="134" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" data-lang="cs">▼ −0,3 vs. loňský rok</text>
-        <text x="546" y="134" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" data-lang="en">▼ −0.3 vs. last year</text>
+        <text x="546" y="134" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7" data-lang="cs">▼ −0,3 vs. loňský rok</text>
+        <text x="546" y="134" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7" data-lang="en">▼ −0.3 vs. last year</text>
 
         <rect x="790" y="60" width="248" height="82" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
-        <text x="802" y="79" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" letter-spacing="1" data-lang="cs">PRŮM. HODNOTA OBJEDNÁVKY</text>
-        <text x="802" y="79" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" letter-spacing="1" data-lang="en">AVG. ORDER VALUE</text>
+        <text x="802" y="79" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7" letter-spacing="1" data-lang="cs">PRŮM. HODNOTA OBJEDNÁVKY</text>
+        <text x="802" y="79" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7" letter-spacing="1" data-lang="en">AVG. ORDER VALUE</text>
         <text x="802" y="116" fill="#1c1814" font-family="'Playfair Display',serif" font-size="28">3 224 Kč</text>
-        <text x="802" y="134" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7" data-lang="cs">▲ +5 % vs. loňský rok</text>
-        <text x="802" y="134" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7" data-lang="en">▲ +5 % vs. last year</text>
+        <text x="802" y="134" fill="#d4920e" font-family="'Inter',sans-serif" font-size="7" data-lang="cs">▲ +5 % vs. loňský rok</text>
+        <text x="802" y="134" fill="#d4920e" font-family="'Inter',sans-serif" font-size="7" data-lang="en">▲ +5 % vs. last year</text>
 
         <!-- Bar chart -->
         <rect x="22" y="158" width="500" height="180" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
-        <text x="34" y="177" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" letter-spacing="1" data-lang="cs">TRŽBY PODLE MĚSÍCE (Kč)</text>
-        <text x="34" y="177" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" letter-spacing="1" data-lang="en">REVENUE BY MONTH (CZK)</text>
+        <text x="34" y="177" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7" letter-spacing="1" data-lang="cs">TRŽBY PODLE MĚSÍCE (Kč)</text>
+        <text x="34" y="177" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7" letter-spacing="1" data-lang="en">REVENUE BY MONTH (CZK)</text>
         <line x1="60" y1="196" x2="508" y2="196" stroke="#ddd8d0" stroke-width=".5"/>
         <line x1="60" y1="216" x2="508" y2="216" stroke="#ddd8d0" stroke-width=".5"/>
         <line x1="60" y1="236" x2="508" y2="236" stroke="#ddd8d0" stroke-width=".5"/>
@@ -515,116 +523,116 @@
         <rect x="230" y="228" width="54" height="66" fill="#d4920e" opacity=".45"/>
         <rect x="306" y="214" width="54" height="80" fill="#d4920e" opacity=".7"/>
         <rect x="382" y="196" width="54" height="98" fill="#d4920e"/>
-        <text x="105" y="244" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" text-anchor="middle">1,8 M</text>
-        <text x="181" y="232" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" text-anchor="middle">2,1 M</text>
-        <text x="257" y="224" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" text-anchor="middle">2,3 M</text>
-        <text x="333" y="210" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6" text-anchor="middle">2,8 M</text>
-        <text x="409" y="192" fill="#d4920e" font-family="'DM Mono',monospace" font-size="6" text-anchor="middle" font-weight="bold">3,4 M</text>
+        <text x="105" y="244" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6" text-anchor="middle">1,8 M</text>
+        <text x="181" y="232" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6" text-anchor="middle">2,1 M</text>
+        <text x="257" y="224" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6" text-anchor="middle">2,3 M</text>
+        <text x="333" y="210" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6" text-anchor="middle">2,8 M</text>
+        <text x="409" y="192" fill="#d4920e" font-family="'Inter',sans-serif" font-size="6" text-anchor="middle" font-weight="bold">3,4 M</text>
         <!-- Month labels -->
-        <text x="105" y="308" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" text-anchor="middle" data-lang="cs">Leden</text>
-        <text x="105" y="308" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" text-anchor="middle" data-lang="en">Jan</text>
-        <text x="181" y="308" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" text-anchor="middle" data-lang="cs">Únor</text>
-        <text x="181" y="308" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" text-anchor="middle" data-lang="en">Feb</text>
-        <text x="257" y="308" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" text-anchor="middle" data-lang="cs">Březen</text>
-        <text x="257" y="308" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" text-anchor="middle" data-lang="en">Mar</text>
-        <text x="333" y="308" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" text-anchor="middle" data-lang="cs">Duben</text>
-        <text x="333" y="308" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" text-anchor="middle" data-lang="en">Apr</text>
-        <text x="409" y="308" fill="#d4920e" font-family="'DM Mono',monospace" font-size="6.5" text-anchor="middle" data-lang="cs">Květen</text>
-        <text x="409" y="308" fill="#d4920e" font-family="'DM Mono',monospace" font-size="6.5" text-anchor="middle" data-lang="en">May</text>
+        <text x="105" y="308" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6.5" text-anchor="middle" data-lang="cs">Leden</text>
+        <text x="105" y="308" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6.5" text-anchor="middle" data-lang="en">Jan</text>
+        <text x="181" y="308" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6.5" text-anchor="middle" data-lang="cs">Únor</text>
+        <text x="181" y="308" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6.5" text-anchor="middle" data-lang="en">Feb</text>
+        <text x="257" y="308" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6.5" text-anchor="middle" data-lang="cs">Březen</text>
+        <text x="257" y="308" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6.5" text-anchor="middle" data-lang="en">Mar</text>
+        <text x="333" y="308" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6.5" text-anchor="middle" data-lang="cs">Duben</text>
+        <text x="333" y="308" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6.5" text-anchor="middle" data-lang="en">Apr</text>
+        <text x="409" y="308" fill="#d4920e" font-family="'Inter',sans-serif" font-size="6.5" text-anchor="middle" data-lang="cs">Květen</text>
+        <text x="409" y="308" fill="#d4920e" font-family="'Inter',sans-serif" font-size="6.5" text-anchor="middle" data-lang="en">May</text>
 
         <!-- Channel ROAS -->
         <rect x="534" y="158" width="504" height="180" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
-        <text x="546" y="177" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" letter-spacing="1" data-lang="cs">ROAS PODLE KANÁLU</text>
-        <text x="546" y="177" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" letter-spacing="1" data-lang="en">ROAS BY CHANNEL</text>
+        <text x="546" y="177" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7" letter-spacing="1" data-lang="cs">ROAS PODLE KANÁLU</text>
+        <text x="546" y="177" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7" letter-spacing="1" data-lang="en">ROAS BY CHANNEL</text>
         <line x1="546" y1="183" x2="1026" y2="183" stroke="#ddd8d0" stroke-width=".5"/>
         <text x="546" y="202" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8">Google Ads</text>
         <rect x="660" y="191" width="340" height="14" fill="#f4f0e8" stroke="#ddd8d0" stroke-width=".5"/>
         <rect x="660" y="191" width="231" height="14" fill="#d4920e" opacity=".75"/>
-        <text x="900" y="202" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7">4,8 ×</text>
+        <text x="900" y="202" fill="#d4920e" font-family="'Inter',sans-serif" font-size="7">4,8 ×</text>
         <text x="546" y="224" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8">Meta Ads</text>
         <rect x="660" y="213" width="340" height="14" fill="#f4f0e8" stroke="#ddd8d0" stroke-width=".5"/>
         <rect x="660" y="213" width="177" height="14" fill="#d4920e" opacity=".55"/>
-        <text x="846" y="224" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">3,7 ×</text>
+        <text x="846" y="224" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7">3,7 ×</text>
         <text x="546" y="246" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8">Heuréka</text>
         <rect x="660" y="235" width="340" height="14" fill="#f4f0e8" stroke="#ddd8d0" stroke-width=".5"/>
         <rect x="660" y="235" width="134" height="14" fill="#d4920e" opacity=".4"/>
-        <text x="802" y="246" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">2,8 ×</text>
+        <text x="802" y="246" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7">2,8 ×</text>
         <text x="546" y="268" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8">E-mail marketing</text>
         <rect x="660" y="257" width="340" height="14" fill="#f4f0e8" stroke="#ddd8d0" stroke-width=".5"/>
         <rect x="660" y="257" width="268" height="14" fill="#d4920e" opacity=".88"/>
-        <text x="938" y="268" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7" font-weight="bold">5,6 ×</text>
+        <text x="938" y="268" fill="#d4920e" font-family="'Inter',sans-serif" font-size="7" font-weight="bold">5,6 ×</text>
         <text x="546" y="290" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8" data-lang="cs">Organické vyhledávání</text>
         <text x="546" y="290" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8" data-lang="en">Organic search</text>
         <rect x="660" y="279" width="340" height="14" fill="#f4f0e8" stroke="#ddd8d0" stroke-width=".5"/>
         <rect x="660" y="279" width="306" height="14" fill="#d4920e" opacity=".95"/>
-        <text x="976" y="290" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7" font-weight="bold">6,4 ×</text>
+        <text x="976" y="290" fill="#d4920e" font-family="'Inter',sans-serif" font-size="7" font-weight="bold">6,4 ×</text>
 
         <!-- Product table -->
         <rect x="22" y="354" width="660" height="158" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
-        <text x="34" y="373" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" letter-spacing="1" data-lang="cs">TOP PRODUKTY DLE TRŽEB</text>
-        <text x="34" y="373" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" letter-spacing="1" data-lang="en">TOP PRODUCTS BY REVENUE</text>
+        <text x="34" y="373" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7" letter-spacing="1" data-lang="cs">TOP PRODUKTY DLE TRŽEB</text>
+        <text x="34" y="373" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7" letter-spacing="1" data-lang="en">TOP PRODUCTS BY REVENUE</text>
         <rect x="22" y="377" width="660" height="18" fill="#f4f0e8"/>
-        <text x="34" y="390" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" data-lang="cs">PRODUKT</text>
-        <text x="34" y="390" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" data-lang="en">PRODUCT</text>
-        <text x="400" y="390" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" data-lang="cs">TRŽBY</text>
-        <text x="400" y="390" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" data-lang="en">REVENUE</text>
-        <text x="498" y="390" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" data-lang="cs">KS</text>
-        <text x="498" y="390" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" data-lang="en">PCS</text>
-        <text x="570" y="390" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" data-lang="cs">MARŽE</text>
-        <text x="570" y="390" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" data-lang="en">MARGIN</text>
-        <text x="636" y="390" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5">TREND</text>
+        <text x="34" y="390" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6.5" data-lang="cs">PRODUKT</text>
+        <text x="34" y="390" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6.5" data-lang="en">PRODUCT</text>
+        <text x="400" y="390" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6.5" data-lang="cs">TRŽBY</text>
+        <text x="400" y="390" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6.5" data-lang="en">REVENUE</text>
+        <text x="498" y="390" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6.5" data-lang="cs">KS</text>
+        <text x="498" y="390" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6.5" data-lang="en">PCS</text>
+        <text x="570" y="390" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6.5" data-lang="cs">MARŽE</text>
+        <text x="570" y="390" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6.5" data-lang="en">MARGIN</text>
+        <text x="636" y="390" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6.5">TREND</text>
 
         <line x1="22" y1="395" x2="682" y2="395" stroke="#ddd8d0" stroke-width=".5"/>
         <text x="34" y="412" fill="#1c1814" font-family="'Inter',sans-serif" font-size="8" data-lang="cs">Produkt A – Premium varianta</text>
         <text x="34" y="412" fill="#1c1814" font-family="'Inter',sans-serif" font-size="8" data-lang="en">Product A – Premium variant</text>
-        <text x="400" y="412" fill="#1c1814" font-family="'DM Mono',monospace" font-size="7">1 240 000 Kč</text>
-        <text x="498" y="412" fill="#1c1814" font-family="'DM Mono',monospace" font-size="7">387</text>
-        <text x="570" y="412" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7">42 %</text>
-        <text x="636" y="412" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7">▲ +24 %</text>
+        <text x="400" y="412" fill="#1c1814" font-family="'Inter',sans-serif" font-size="7">1 240 000 Kč</text>
+        <text x="498" y="412" fill="#1c1814" font-family="'Inter',sans-serif" font-size="7">387</text>
+        <text x="570" y="412" fill="#d4920e" font-family="'Inter',sans-serif" font-size="7">42 %</text>
+        <text x="636" y="412" fill="#d4920e" font-family="'Inter',sans-serif" font-size="7">▲ +24 %</text>
 
         <line x1="22" y1="418" x2="682" y2="418" stroke="#ddd8d0" stroke-width=".5"/>
         <text x="34" y="435" fill="#1c1814" font-family="'Inter',sans-serif" font-size="8" data-lang="cs">Produkt B – Základní varianta</text>
         <text x="34" y="435" fill="#1c1814" font-family="'Inter',sans-serif" font-size="8" data-lang="en">Product B – Basic variant</text>
-        <text x="400" y="435" fill="#1c1814" font-family="'DM Mono',monospace" font-size="7">987 000 Kč</text>
-        <text x="498" y="435" fill="#1c1814" font-family="'DM Mono',monospace" font-size="7">654</text>
-        <text x="570" y="435" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">28 %</text>
-        <text x="636" y="435" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7">▲ +8 %</text>
+        <text x="400" y="435" fill="#1c1814" font-family="'Inter',sans-serif" font-size="7">987 000 Kč</text>
+        <text x="498" y="435" fill="#1c1814" font-family="'Inter',sans-serif" font-size="7">654</text>
+        <text x="570" y="435" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7">28 %</text>
+        <text x="636" y="435" fill="#d4920e" font-family="'Inter',sans-serif" font-size="7">▲ +8 %</text>
 
         <line x1="22" y1="441" x2="682" y2="441" stroke="#ddd8d0" stroke-width=".5"/>
         <text x="34" y="458" fill="#1c1814" font-family="'Inter',sans-serif" font-size="8" data-lang="cs">Produkt C – Příslušenství</text>
         <text x="34" y="458" fill="#1c1814" font-family="'Inter',sans-serif" font-size="8" data-lang="en">Product C – Accessories</text>
-        <text x="400" y="458" fill="#1c1814" font-family="'DM Mono',monospace" font-size="7">672 000 Kč</text>
-        <text x="498" y="458" fill="#1c1814" font-family="'DM Mono',monospace" font-size="7">1 203</text>
-        <text x="570" y="458" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">35 %</text>
-        <text x="636" y="458" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">— 0 %</text>
+        <text x="400" y="458" fill="#1c1814" font-family="'Inter',sans-serif" font-size="7">672 000 Kč</text>
+        <text x="498" y="458" fill="#1c1814" font-family="'Inter',sans-serif" font-size="7">1 203</text>
+        <text x="570" y="458" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7">35 %</text>
+        <text x="636" y="458" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7">— 0 %</text>
 
         <line x1="22" y1="464" x2="682" y2="464" stroke="#ddd8d0" stroke-width=".5"/>
         <text x="34" y="481" fill="#1c1814" font-family="'Inter',sans-serif" font-size="8" data-lang="cs">Produkt D – Sezónní edice</text>
         <text x="34" y="481" fill="#1c1814" font-family="'Inter',sans-serif" font-size="8" data-lang="en">Product D – Seasonal edition</text>
-        <text x="400" y="481" fill="#1c1814" font-family="'DM Mono',monospace" font-size="7">451 000 Kč</text>
-        <text x="498" y="481" fill="#1c1814" font-family="'DM Mono',monospace" font-size="7">298</text>
-        <text x="570" y="481" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">51 %</text>
-        <text x="636" y="481" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7">▼ −5 %</text>
+        <text x="400" y="481" fill="#1c1814" font-family="'Inter',sans-serif" font-size="7">451 000 Kč</text>
+        <text x="498" y="481" fill="#1c1814" font-family="'Inter',sans-serif" font-size="7">298</text>
+        <text x="570" y="481" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7">51 %</text>
+        <text x="636" y="481" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7">▼ −5 %</text>
 
         <!-- Retention donut -->
         <rect x="696" y="354" width="342" height="158" fill="#ede8e0" stroke="#ddd8d0" stroke-width="1"/>
-        <text x="708" y="373" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" letter-spacing="1" data-lang="cs">ZÁKAZNICKÁ RETENCE</text>
-        <text x="708" y="373" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" letter-spacing="1" data-lang="en">CUSTOMER RETENTION</text>
+        <text x="708" y="373" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7" letter-spacing="1" data-lang="cs">ZÁKAZNICKÁ RETENCE</text>
+        <text x="708" y="373" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7" letter-spacing="1" data-lang="en">CUSTOMER RETENTION</text>
         <circle cx="794" cy="446" r="52" fill="none" stroke="#f4f0e8" stroke-width="24"/>
         <circle cx="794" cy="446" r="52" fill="none" stroke="#d4920e" stroke-width="24" stroke-dasharray="163 164" stroke-dashoffset="163" transform="rotate(-90 794 446)" opacity=".25"/>
         <circle cx="794" cy="446" r="52" fill="none" stroke="#d4920e" stroke-width="24" stroke-dasharray="114 213" stroke-dashoffset="163" transform="rotate(-90 794 446)"/>
         <text x="794" y="441" fill="#1c1814" font-family="'Playfair Display',serif" font-size="20" text-anchor="middle">54 %</text>
-        <text x="794" y="458" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" text-anchor="middle" data-lang="cs">opakovaný nákup</text>
-        <text x="794" y="458" fill="#7a7269" font-family="'DM Mono',monospace" font-size="6.5" text-anchor="middle" data-lang="en">repeat purchase</text>
+        <text x="794" y="458" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6.5" text-anchor="middle" data-lang="cs">opakovaný nákup</text>
+        <text x="794" y="458" fill="#7a7269" font-family="'Inter',sans-serif" font-size="6.5" text-anchor="middle" data-lang="en">repeat purchase</text>
         <rect x="866" y="418" width="10" height="10" fill="#d4920e"/>
         <text x="882" y="427" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8" data-lang="cs">Vracející se</text>
         <text x="882" y="427" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8" data-lang="en">Returning</text>
         <rect x="866" y="436" width="10" height="10" fill="#d4920e" opacity=".25"/>
         <text x="882" y="445" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8" data-lang="cs">Noví zákazníci</text>
         <text x="882" y="445" fill="#5a5048" font-family="'Inter',sans-serif" font-size="8" data-lang="en">New customers</text>
-        <text x="866" y="468" fill="#d4920e" font-family="'DM Mono',monospace" font-size="7">▲ +6 % YoY</text>
-        <text x="866" y="482" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" data-lang="cs">3 847 zákazníků</text>
-        <text x="866" y="482" fill="#7a7269" font-family="'DM Mono',monospace" font-size="7" data-lang="en">3,847 customers</text>
+        <text x="866" y="468" fill="#d4920e" font-family="'Inter',sans-serif" font-size="7">▲ +6 % YoY</text>
+        <text x="866" y="482" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7" data-lang="cs">3 847 zákazníků</text>
+        <text x="866" y="482" fill="#7a7269" font-family="'Inter',sans-serif" font-size="7" data-lang="en">3,847 customers</text>
       </svg>
     </div>
 
