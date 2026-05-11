@@ -35,6 +35,7 @@
     html { scroll-behavior:smooth; background:#1c1814; }
     body { background:radial-gradient(ellipse at 50% 0%, #ece6da 0%, var(--bg) 65%); color:var(--fg); font-family:'Inter',sans-serif; font-weight:400; min-height:100vh; overflow-x:clip; }
     body::after { content:''; position:fixed; inset:0; background-image:radial-gradient(circle, #c4bdb5 1px, transparent 1px); background-size:28px 28px; pointer-events:none; z-index:0; opacity:.35; }
+    body::before { content:''; position:fixed; inset:0; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events:none; z-index:2; opacity:.25; }
 
     [data-lang] { display:none; }
     body.lang-cs [data-lang="cs"] { display:block; }
@@ -63,6 +64,13 @@
     .hamburger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
     .hamburger.open span:nth-child(2) { opacity:0; }
     .hamburger.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
+    .nav-sep { width:1px; height:14px; background:rgba(255,255,255,.18); align-self:center; }
+    /* SERVICES DROPDOWN */
+    .nav-dropdown { position:relative; display:flex; align-items:center; }
+    .nav-dropdown-menu { position:absolute; top:calc(100% + 10px); left:50%; transform:translateX(-50%); background:rgba(244,240,232,.97); border:1px solid var(--border); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); box-shadow:0 8px 32px rgba(0,0,0,.1); padding:.4rem 0; min-width:210px; opacity:0; pointer-events:none; transition:opacity .18s; z-index:200; }
+    .nav-dropdown.open .nav-dropdown-menu { opacity:1; pointer-events:auto; }
+    .nav-dropdown-menu a { display:block; padding:.55rem 1.2rem; font-size:.78rem; color:var(--muted); white-space:nowrap; border-bottom:none !important; width:auto !important; }
+    .nav-dropdown-menu a:hover { color:var(--accent); background:#f0ece4; }
     @media(max-width:700px) {
       nav { padding:1rem 1.2rem; }
       .logo { font-size:1.3rem; }
@@ -72,6 +80,12 @@
       .nav-links.open { display:flex; position:fixed; top:calc(58px + env(safe-area-inset-top, 0px)); left:0; right:0; background:rgba(28,24,20,.98); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); padding:0 1.5rem; border-bottom:1px solid rgba(255,255,255,.08); z-index:99; }
       .nav-links a { padding:.9rem 0; border-bottom:1px solid rgba(255,255,255,.08); width:100%; font-size:.8rem; }
       .lang-switcher { margin:1rem 0 1.2rem; padding:.8rem 0 0; border-top:1px solid var(--border); border-left:none; padding-left:0; margin-left:0; }
+      .nav-sep { display:none; }
+      /* dropdown goes inline on mobile */
+      .nav-dropdown { flex-direction:column; align-items:flex-start; width:100%; border-bottom:1px solid var(--border); padding:.9rem 0 .5rem; }
+      .nav-dropdown > a { padding:0 !important; border-bottom:none !important; }
+      .nav-dropdown-menu { position:static; transform:none; opacity:1; pointer-events:auto; background:none; border:none; box-shadow:none; backdrop-filter:none; -webkit-backdrop-filter:none; padding:.4rem 0 0; min-width:0; }
+      .nav-dropdown-menu a { padding:.45rem 0 .45rem 1rem !important; font-size:.75rem; color:var(--muted); }
     }
 
     main { position:relative; z-index:1; max-width:720px; margin:0 auto; padding:4rem 2rem 6rem; }
@@ -99,22 +113,32 @@
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PQGBDW9Q" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <div class="nav-wrap" id="nav-wrap">
-    <nav>
-      <a href="/" class="logo">Flow<span>stack</span><div class="logo-sub">Jan Veverka · <span data-lang="cs">Datová analytika</span><span data-lang="en">Data Analytics</span></div></a>
-      <div class="nav-links" id="nav-links">
-        <a href="/sluzby/"><span data-lang="cs">Služby</span><span data-lang="en">Services</span></a>
-        <a href="/#o-mne"><span data-lang="cs">O mně</span><span data-lang="en">About</span></a>
-        <a href="/#kontakt"><span data-lang="cs">Kontakt</span><span data-lang="en">Contact</span></a>
-        <a href="/blog/">Blog</a>
-        <div class="lang-switcher">
-          <button class="lang-btn active" id="btn-cs" onclick="setLang('cs')">CS</button>
-          <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+  <nav>
+    <a href="https://flowstack.cz/" class="logo" style="text-decoration:none;">Flow<span>stack</span><div class="logo-sub">Jan Veverka · Datová analytika</div></a>
+    <div class="nav-links" id="nav-links">
+      <a href="/#reference"><span data-lang="cs">Reference</span><span data-lang="en">Clients</span></a>
+      <div class="nav-dropdown">
+        <a href="/sluzby/" aria-haspopup="true" aria-expanded="false"><span data-lang="cs">Služby</span><span data-lang="en">Services</span></a>
+        <div class="nav-dropdown-menu">
+          <a href="/sluzby/reporting.html"><span data-lang="cs">Reporting &amp; dashboardy</span><span data-lang="en">Reporting &amp; dashboards</span></a>
+          <a href="/sluzby/sgtm.html"><span data-lang="cs">Server-side GTM</span><span data-lang="en">Server-side GTM</span></a>
+          <a href="/sluzby/datovy-sklad.html"><span data-lang="cs">Datový sklad</span><span data-lang="en">Data warehouse</span></a>
+          <a href="/sluzby/ga4.html"><span data-lang="cs">GA4 &amp; analytika</span><span data-lang="en">GA4 &amp; analytics</span></a>
         </div>
       </div>
-      <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-    </nav>
+      <a href="/#o-mne"><span data-lang="cs">O mně</span><span data-lang="en">About</span></a>
+      <a href="/#kontakt"><span data-lang="cs">Kontakt</span><span data-lang="en">Contact</span></a>
+      <span class="nav-sep"></span>
+      <a href="/blog/">Blog</a>
+      <div class="lang-switcher">
+        <button class="lang-btn" onclick="setLang('en')">EN</button>
+        <button class="lang-btn active" onclick="setLang('cs')">CZ</button>
+      </div>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
   </div>
   <div class="nav-spacer"></div>
 
@@ -247,9 +271,11 @@
 
   <script>
     function setLang(lang) {
+      document.documentElement.lang = lang === 'cs' ? 'cs' : 'en';
       document.body.className = 'lang-' + lang;
-      document.getElementById('btn-cs').classList.toggle('active', lang === 'cs');
-      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.textContent.toLowerCase() === lang || (lang === 'cs' && btn.textContent === 'CZ'));
+      });
       localStorage.setItem('lang', lang);
     }
     const saved = localStorage.getItem('lang');
@@ -270,6 +296,29 @@
         navLinks.classList.remove('open');
         hamburger.classList.remove('open');
         hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    document.querySelectorAll('.nav-dropdown').forEach(function(dd) {
+      var menu = dd.querySelector('.nav-dropdown-menu');
+      var trigger = dd.querySelector(':scope > a');
+      var closeTimer;
+      function openMenu() { clearTimeout(closeTimer); dd.classList.add('open'); trigger.setAttribute('aria-expanded','true'); }
+      function closeMenu() { dd.classList.remove('open'); trigger.setAttribute('aria-expanded','false'); }
+      dd.addEventListener('mouseenter', openMenu);
+      dd.addEventListener('mouseleave', function() { closeTimer = setTimeout(closeMenu, 300); });
+      trigger.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowDown') { e.preventDefault(); openMenu(); var f = menu.querySelector('a'); if (f) f.focus(); }
+        else if (e.key === 'Escape') { closeMenu(); }
+      });
+      var items = Array.from(menu.querySelectorAll('a'));
+      items.forEach(function(item, i) {
+        item.addEventListener('keydown', function(e) {
+          if (e.key === 'ArrowDown') { e.preventDefault(); if (items[i+1]) items[i+1].focus(); }
+          else if (e.key === 'ArrowUp') { e.preventDefault(); if (i===0) { closeMenu(); trigger.focus(); } else items[i-1].focus(); }
+          else if (e.key === 'Escape') { closeMenu(); trigger.focus(); }
+          else if (e.key === 'Tab') { setTimeout(closeMenu, 50); }
+        });
       });
     });
   </script>
