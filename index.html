@@ -228,10 +228,16 @@
     .accent-line { width:48px; height:2px; background:var(--accent); margin-bottom:2rem; }
 
     footer { position:relative; z-index:1; background:#1c1814; border-top:1px solid rgba(255,255,255,.08); padding:2rem; } .footer-inner { max-width:1100px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
-    @media(max-width:600px) { .footer-inner { flex-direction:column; align-items:flex-start; gap:.6rem; } .footer-inner .nav-links { flex-wrap:wrap; gap:.8rem; } }
+    @media(max-width:600px) { .footer-inner { flex-direction:column; align-items:flex-start; gap:.6rem; } }
     footer p { font-family:'Inter',sans-serif; font-size:.72rem; color:rgba(244,240,232,.45); letter-spacing:.04em; }
     footer a { font-family:'Inter',sans-serif; color:rgba(244,240,232,.55); text-decoration:none; font-size:.72rem; letter-spacing:.04em; transition:color .2s; }
     footer a:hover { color:var(--accent); }
+    .footer-right { display:flex; flex-direction:column; align-items:flex-end; gap:.4rem; }
+    .footer-links { display:flex; gap:1.5rem; flex-wrap:wrap; align-items:center; justify-content:flex-end; }
+    .footer-legal { display:flex; gap:1.2rem; flex-wrap:wrap; align-items:center; justify-content:flex-end; }
+    .footer-legal a { color:rgba(244,240,232,.28) !important; font-size:.66rem; }
+    .footer-legal a:hover { color:var(--accent) !important; }
+    @media(max-width:600px) { .footer-right { align-items:flex-start; } }
 
     [data-lang] { display:none; }
     body.lang-en [data-lang="en"] { display:block; }
@@ -946,13 +952,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <footer>
     <div class="footer-inner">
     <p>© 2025 Flowstack · Jan Veverka · IČO 76462927</p>
-    <div class="nav-links">
-      <a href="https://www.linkedin.com/in/jan-veverka-39b24938" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="tel:+420602603423">+420 602 603 423</a>
-      <a href="mailto:jan.veverka@flowstack.cz">jan.veverka@flowstack.cz</a>
-            <a href="/privacy.html"><span data-lang="cs">Ochrana osobních údajů</span><span data-lang="en">Privacy Policy</span></a>
+    <div class="footer-right">
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/jan-veverka-39b24938" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="tel:+420602603423">+420 602 603 423</a>
+        <a href="mailto:jan.veverka@flowstack.cz">jan.veverka@flowstack.cz</a>
+      </div>
+      <div class="footer-legal">
+        <a href="/privacy.html"><span data-lang="cs">Ochrana osobních údajů</span><span data-lang="en">Privacy Policy</span></a>
         <a href="/terms.html"><span data-lang="cs">Obchodní podmínky</span><span data-lang="en">Terms</span></a>
       </div>
+    </div>
       </div>
   </footer>
 
@@ -1061,7 +1071,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       });
     }, { threshold: 0.5 });
     document.querySelectorAll('.counter-val[data-target]').forEach(el => counterObs.observe(el));
-
 
     function setLang(lang) {
       document.documentElement.lang = lang === 'cs' ? 'cs' : 'en';

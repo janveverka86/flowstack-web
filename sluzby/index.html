@@ -124,6 +124,12 @@
     footer p, footer span { font-family:'Inter',sans-serif; font-size:.72rem; color:rgba(244,240,232,.45); letter-spacing:.04em; }
     footer a { font-family:'Inter',sans-serif; color:rgba(244,240,232,.55); text-decoration:none; font-size:.72rem; letter-spacing:.04em; transition:color .2s; }
     footer a:hover { color:var(--accent); }
+    .footer-right { display:flex; flex-direction:column; align-items:flex-end; gap:.4rem; }
+    .footer-links { display:flex; gap:1.5rem; flex-wrap:wrap; align-items:center; justify-content:flex-end; }
+    .footer-legal { display:flex; gap:1.2rem; flex-wrap:wrap; align-items:center; justify-content:flex-end; }
+    .footer-legal a { color:rgba(244,240,232,.28) !important; font-size:.66rem; }
+    .footer-legal a:hover { color:var(--accent) !important; }
+    @media(max-width:600px) { .footer-right { align-items:flex-start; } }
 
     /* RESPONSIVE */
     @media(max-width:900px) {
@@ -308,13 +314,17 @@
   <footer>
     <div class="footer-inner">
     <span>© 2025 Flowstack · Jan Veverka</span>
-    <div class="nav-links">
-      <a href="/">Home</a>
-      <a href="/blog/">Blog</a>
-      <a href="/#kontakt"><span data-lang="cs">Kontakt</span><span data-lang="en">Contact</span></a>
-            <a href="/privacy.html"><span data-lang="cs">Ochrana osobních údajů</span><span data-lang="en">Privacy Policy</span></a>
+    <div class="footer-right">
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="/blog/">Blog</a>
+        <a href="/#kontakt"><span data-lang="cs">Kontakt</span><span data-lang="en">Contact</span></a>
+      </div>
+      <div class="footer-legal">
+        <a href="/privacy.html"><span data-lang="cs">Ochrana osobních údajů</span><span data-lang="en">Privacy Policy</span></a>
         <a href="/terms.html"><span data-lang="cs">Obchodní podmínky</span><span data-lang="en">Terms</span></a>
       </div>
+    </div>
       </div>
   </footer>
 
