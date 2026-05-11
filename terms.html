@@ -43,18 +43,36 @@
     body.lang-cs span[data-lang="cs"] { display:inline; }
     body.lang-en span[data-lang="en"] { display:inline; }
 
-    .nav-wrap { position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(28,24,20,.95); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-bottom:1px solid transparent; padding-top:env(safe-area-inset-top); }
-    nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 2rem; max-width:1100px; margin:0 auto; transition:padding .35s ease; }
+    .nav-wrap { position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(28,24,20,.95); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-bottom:1px solid transparent; transition:padding .3s ease; padding-top:env(safe-area-inset-top); }
+    .nav-wrap.scrolled .logo-sub { max-height:0; opacity:0; margin-top:0; } .nav-wrap.scrolled nav { padding:.85rem 2rem; }
+    .nav-spacer { height:calc(68px + env(safe-area-inset-top, 0px)); }
+    @media(max-width:600px) { .nav-spacer { height:calc(58px + env(safe-area-inset-top, 0px)); } }
+    nav { position:relative; z-index:10; display:flex; justify-content:space-between; align-items:center; padding:1rem 2rem; max-width:1100px; margin:0 auto; transition:padding .35s ease; }
     .logo { font-family:'Playfair Display',serif; font-size:1.7rem; color:#f4f0e8; letter-spacing:-.02em; text-decoration:none; line-height:1; }
     .logo > span { color:var(--accent); }
-    .logo-sub { font-family:'Inter',sans-serif; font-size:.62rem; letter-spacing:.12em; text-transform:uppercase; color:rgba(244,240,232,.5); margin-top:.35rem; font-weight:400; }
-    nav a { color:rgba(244,240,232,.65); text-decoration:none; font-size:.82rem; transition:color .2s; }
+    .logo-sub { font-family:'Inter',sans-serif; font-size:.62rem; letter-spacing:.12em; text-transform:uppercase; color:rgba(244,240,232,.5); margin-top:.35rem; font-weight:400; max-height:2rem; overflow:hidden; transition:max-height .3s ease,opacity .3s ease,margin-top .3s ease; }
+    .nav-links { display:flex; align-items:center; gap:2rem; }
+    nav a { color:rgba(244,240,232,.65); text-decoration:none; font-family:'Inter',sans-serif; font-size:.82rem; font-weight:400; letter-spacing:.01em; transition:color .2s; }
     nav a:not(.logo):hover { color:var(--accent); }
-    .nav-spacer { height:calc(68px + env(safe-area-inset-top, 0px)); }
-    .lang-switcher { display:flex; gap:.4rem; margin-left:1rem; padding-left:1rem; border-left:1px solid rgba(255,255,255,.15); }
+    .lang-switcher { display:flex; gap:.4rem; margin-left:1rem; padding-left:1rem; border-left:1px solid var(--border); }
     .lang-btn { background:none; border:1px solid transparent; color:rgba(244,240,232,.6); font-family:'Inter',sans-serif; font-size:.7rem; letter-spacing:.12em; text-transform:uppercase; cursor:pointer; padding:.25rem .5rem; transition:color .2s,border-color .2s; }
     .lang-btn:hover { color:var(--accent); }
     .lang-btn.active { color:var(--accent); border-color:var(--accent); }
+    .hamburger { display:none; flex-direction:column; justify-content:center; gap:5px; background:none; border:none; cursor:pointer; padding:4px; flex-shrink:0; }
+    .hamburger span { display:block; width:20px; height:1.5px; background:#f4f0e8; transition:transform .25s, opacity .25s; }
+    .hamburger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity:0; }
+    .hamburger.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
+    @media(max-width:700px) {
+      nav { padding:1rem 1.2rem; }
+      .logo { font-size:1.3rem; }
+      .logo-sub { display:none; }
+      .hamburger { display:flex; }
+      .nav-links { display:none; flex-direction:column; align-items:flex-start; gap:0; }
+      .nav-links.open { display:flex; position:fixed; top:calc(58px + env(safe-area-inset-top, 0px)); left:0; right:0; background:rgba(28,24,20,.98); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); padding:0 1.5rem; border-bottom:1px solid rgba(255,255,255,.08); z-index:99; }
+      .nav-links a { padding:.9rem 0; border-bottom:1px solid rgba(255,255,255,.08); width:100%; font-size:.8rem; }
+      .lang-switcher { margin:1rem 0 1.2rem; padding:.8rem 0 0; border-top:1px solid var(--border); border-left:none; padding-left:0; margin-left:0; }
+    }
 
     main { position:relative; z-index:1; max-width:720px; margin:0 auto; padding:4rem 2rem 6rem; }
     .page-tag { display:inline-block; font-family:'Inter',sans-serif; font-size:.68rem; font-weight:500; letter-spacing:.18em; text-transform:uppercase; color:var(--accent); border:1px solid var(--accent); padding:.25rem .7rem; margin-bottom:1.5rem; }
@@ -69,6 +87,7 @@
 
     footer { position:relative; z-index:1; background:#1c1814; border-top:1px solid rgba(255,255,255,.08); padding:2rem; }
     .footer-inner { max-width:1100px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+    @media(max-width:600px) { .footer-inner { flex-direction:column; align-items:flex-start; gap:.6rem; } .footer-inner .footer-links { flex-wrap:wrap; gap:.8rem; } }
     footer p { font-family:'Inter',sans-serif; font-size:.72rem; color:rgba(244,240,232,.45); letter-spacing:.04em; }
     footer a { font-family:'Inter',sans-serif; color:rgba(244,240,232,.55); text-decoration:none; font-size:.72rem; letter-spacing:.04em; transition:color .2s; }
     footer a:hover { color:var(--accent); }
@@ -78,18 +97,22 @@
 <body class="lang-cs">
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PQGBDW9Q" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-  <div class="nav-wrap">
+  <div class="nav-wrap" id="nav-wrap">
     <nav>
       <a href="/" class="logo">Flow<span>stack</span><div class="logo-sub">Jan Veverka · <span data-lang="cs">Datová analytika</span><span data-lang="en">Data Analytics</span></div></a>
-      <div style="display:flex;align-items:center;gap:2rem;">
+      <div class="nav-links" id="nav-links">
         <a href="/sluzby/"><span data-lang="cs">Služby</span><span data-lang="en">Services</span></a>
-        <a href="/blog/">Blog</a>
+        <a href="/#o-mne"><span data-lang="cs">O mně</span><span data-lang="en">About</span></a>
         <a href="/#kontakt"><span data-lang="cs">Kontakt</span><span data-lang="en">Contact</span></a>
+        <a href="/blog/">Blog</a>
         <div class="lang-switcher">
           <button class="lang-btn active" id="btn-cs" onclick="setLang('cs')">CS</button>
           <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
         </div>
       </div>
+      <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </nav>
   </div>
   <div class="nav-spacer"></div>
@@ -184,9 +207,11 @@
     <div class="footer-inner">
       <p>© 2025 Flowstack · Jan Veverka · IČO 76462927</p>
       <div class="footer-links">
+        <a href="https://www.linkedin.com/in/jan-veverka-39b24938" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="tel:+420602603423">+420 602 603 423</a>
+        <a href="mailto:jan.veverka@flowstack.cz">jan.veverka@flowstack.cz</a>
         <a href="/privacy.html"><span data-lang="cs">Ochrana osobních údajů</span><span data-lang="en">Privacy Policy</span></a>
         <a href="/terms.html"><span data-lang="cs">Obchodní podmínky</span><span data-lang="en">Terms</span></a>
-        <a href="mailto:jan.veverka@flowstack.cz">jan.veverka@flowstack.cz</a>
       </div>
     </div>
   </footer>
@@ -200,6 +225,24 @@
     }
     const saved = localStorage.getItem('lang');
     if (saved) setLang(saved);
+
+    const navWrap = document.getElementById('nav-wrap');
+    window.addEventListener('scroll', () => navWrap.classList.toggle('scrolled', window.scrollY > 50), { passive: true });
+
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+    hamburger.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      hamburger.classList.toggle('open', open);
+      hamburger.setAttribute('aria-expanded', open);
+    });
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
   </script>
 </body>
 </html>
